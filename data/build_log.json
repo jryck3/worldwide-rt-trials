@@ -1,0 +1,47 @@
+[
+ {
+  "pipeline": "ctsu",
+  "export": "docs/index.html",
+  "generated_at": "2026-10-08T17:53:16+00:00",
+  "snapshot_fetched_at": "2026-10-08T17:53:14+00:00",
+  "rt_rows": 57,
+  "feed_counts": {
+   "all": 254,
+   "active": 232,
+   "rt_related": 57,
+   "rt_open": 50
+  }
+ },
+ {
+  "pipeline": "eortc",
+  "studies_read": 1170,
+  "kept_studies": 165,
+  "research_projects": 16
+ },
+ {
+  "pipeline": "rttqa",
+  "pages": 43,
+  "rows": 36
+ },
+ {
+  "pipeline": "trog",
+  "pages": 106
+ },
+ {
+  "pipeline": "cctg",
+  "added": 127,
+  "merged_into_existing": 24,
+  "not_rt": 487
+ },
+ {
+  "pipeline": "krog",
+  "board_rows": 200,
+  "kept": 53
+ },
+ {
+  "pipeline": "ctgov",
+  "added": 4926,
+  "enriched": 297,
+  "nct_seen": 6724
+ }
+]

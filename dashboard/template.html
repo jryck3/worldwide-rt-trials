@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worldwide RT trials</title>
+<style>
+  :root {
+    --ink: #1c2430;
+    --muted: #5c6b7a;
+    --line: #d5dde6;
+    --paper: #f4f7fa;
+    --card: #fff;
+    --blue: #1d4e89;
+    --green: #0f6b4c;
+    --amber: #8a5a00;
+    --red: #8d2f2f;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.45 "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif; color: var(--ink); background: var(--paper); }
+  header { background: #14304f; color: #fff; padding: 22px 28px 18px; }
+  .head-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+  header h1 { margin: 0 0 6px; font-size: 26px; font-weight: 650; letter-spacing: 0; }
+  header p { margin: 0; max-width: 920px; color: #d5e2ef; }
+  .account { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #d5e2ef; }
+  .gbtn, .btn { font: 14px/1.2 sans-serif; border-radius: 999px; cursor: pointer; }
+  .gbtn { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: #1f1f1f; border: 1px solid #dadce0; padding: 7px 14px 7px 10px; }
+  .btn { background: #14304f; color: #fff; border: 1px solid #14304f; padding: 7px 12px; }
+  .btn.ghost { background: #fff; color: var(--ink); border-color: var(--line); }
+  .btn:disabled { opacity: .5; cursor: default; }
+  main { padding: 16px 22px 48px; }
+  .counts { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .counts div { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; min-width: 120px; }
+  .counts b { display: block; font-size: 20px; }
+  .counts span { color: var(--muted); font-size: 12px; }
+  .filters { display: flex; flex-direction: column; gap: 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 4px 12px 8px; }
+  .filter-row { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+  .filter-row:first-child { border-top: 0; }
+  .filter-name { min-width: 72px; font: 650 12px/1.3 sans-serif; color: var(--muted); }
+  .check { display: flex; flex-direction: row; align-items: center; gap: 5px; font: 14px/1.3 sans-serif; color: var(--ink); }
+  .check.all { font-weight: 650; margin-right: 4px; }
+  input[type="search"] { font: 14px/1.3 sans-serif; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; background: #fff; min-width: 280px; }
+  input[type="checkbox"] { margin: 0; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); margin-top: 12px; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; color: var(--muted); font-weight: 650; cursor: pointer; position: sticky; top: 0; background: #eef3f8; }
+  tr.data:hover { background: #f3f7fb; }
+  tr.data { cursor: pointer; }
+  tr.detail td { background: #f8fbfe; }
+  .name { font-weight: 650; }
+  .sub { color: var(--muted); font-size: 12px; }
+  .chip { display: inline-block; border-radius: 999px; padding: 1px 7px; font-size: 11px; font-family: sans-serif; margin-right: 4px; border: 1px solid var(--line); }
+  .focused { background: #e5f2ea; color: var(--green); border-color: #b7dcc8; }
+  .component { background: #e8f0fa; color: var(--blue); border-color: #c5d7ee; }
+  .radio { background: #f8efe4; color: var(--amber); border-color: #ead7b4; }
+  .snap { background: #e5f2ea; }
+  .target { background: #f4f1e8; }
+  .posted { background: #e7eef8; }
+  .once { background: #f8e8e8; }
+  .statusq { background: #eef1f4; }
+  .empty { padding: 28px; color: var(--muted); }
+  a { color: var(--blue); }
+  .detail-grid { display: grid; grid-template-columns: 180px 1fr; gap: 4px 10px; font-size: 14px; }
+  .detail-grid b { color: var(--muted); font-weight: 600; }
+  .mine-panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin: 8px 0 16px; }
+  .mine-panel h2 { margin: 0 0 10px; font-size: 18px; }
+  .mine-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .combo { position: relative; flex: 1 1 320px; }
+  .combo input { width: 100%; }
+  #add-list { position: absolute; z-index: 5; left: 0; right: 0; top: calc(100% + 4px); margin: 0; padding: 4px; list-style: none; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); max-height: 320px; overflow: auto; }
+  #add-list li { padding: 7px 8px; border-radius: 6px; cursor: pointer; }
+  #add-list li:hover, #add-list li.act { background: #eef3f8; }
+  .save-state { color: var(--muted); font-size: 12.5px; margin: 8px 0; }
+  .save-state.err { color: var(--red); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 12px; }
+  .card { background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--blue); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .card .top { display: flex; justify-content: space-between; gap: 8px; }
+  .card .name { font-weight: 650; }
+  .card .proto, .card .title { color: var(--muted); font-size: 13px; }
+  .card .x { border: 0; background: transparent; color: var(--muted); font-size: 20px; cursor: pointer; line-height: 1; }
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .metric .mv { font-weight: 650; }
+  .metric .ml { color: var(--muted); font-size: 12px; }
+  .bar { height: 10px; background: #e6ebf1; border-radius: 6px; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--blue); }
+  .star { border: 0; background: transparent; cursor: pointer; color: #b7791f; font-size: 18px; line-height: 1; padding: 0 4px 0 0; }
+  .empty-mine { color: var(--muted); border: 1px dashed var(--line); border-radius: 10px; padding: 14px; }
+  .brief { margin-top: 14px; display: grid; gap: 14px; }
+  .brief h4 { margin: 0 0 6px; font-size: 15px; }
+  .brief .caveat { margin: 0; color: var(--muted); font-size: 13px; }
+  .flow { list-style: none; margin: 0; padding: 0; }
+  .flow > li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 10px; }
+  .flow .rail { display: flex; flex-direction: column; align-items: center; }
+  .flow .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--blue); margin-top: 5px; flex: none; }
+  .flow .line { width: 2px; flex: 1; background: #c5d4e8; min-height: 12px; }
+  .flow .step-body { padding-bottom: 10px; min-width: 0; }
+  .arms { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 8px; margin-top: 8px; }
+  .arm { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: #fff; }
+  .brief ul { margin: 0; padding-left: 18px; }
+  .brief li { margin: 3px 0; }
+  .pre { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; margin-top: 0; }
+  .pre th, .pre td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; vertical-align: top; }
+  .pre th { position: static; cursor: default; background: #f4f7fb; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="head-row">
+    <div>
+      <h1>Worldwide radiation oncology trials</h1>
+      <p>Phase 2, phase 2/3, and phase 3 trials in which radiotherapy is a randomized or protocol-specified treatment. Accrual is labeled by how the number was obtained. An estimated registry enrollment is a target. A patients-per-month figure is shown only when the numerator is a snapshot actual.</p>
+    </div>
+    <div class="account" id="account"></div>
+  </div>
+</header>
+<main>
+  <section class="mine-panel" aria-labelledby="mine-h">
+    <h2 id="mine-h">My trials</h2>
+    <div class="mine-tools">
+      <div class="combo">
+        <input id="add-q" type="search" placeholder="Add a trial: name, NCT, ISRCTN, or group" autocomplete="off">
+        <ul id="add-list" hidden></ul>
+      </div>
+      <button class="btn" id="share" type="button">Copy share link</button>
+      <button class="btn ghost" id="clear" type="button">Clear list</button>
+    </div>
+    <div class="save-state" id="save-state"></div>
+    <div class="cards" id="mine"></div>
+  </section>
+  <div class="counts" id="counts"></div>
+  <div class="filters" id="filters">
+    <div class="filter-row">
+      <span class="filter-name">Search</span>
+      <input id="q" type="search" placeholder="Name, NCT, ISRCTN, group, disease">
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th data-k="name">Trial</th>
+        <th data-k="lead_group">Group</th>
+        <th data-k="phase">Phase</th>
+        <th data-k="status">Status</th>
+        <th data-k="accrual">Accrual</th>
+        <th data-k="endpoint">Primary endpoint</th>
+        <th data-k="where">Where open</th>
+        <th data-k="source_pipeline">Brought in by</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <p class="empty" id="empty" hidden>No trials match these filters.</p>
+</main>
+<script id="payload" type="application/json">__DATA__</script>
+<script>
+const DATA = JSON.parse(document.getElementById("payload").textContent);
+const $ = id => document.getElementById(id);
+const state = { q: "", sort: "name", dir: 1, open: null };
+const QUALITY = { snapshot: "Snapshot", "target-only": "Target only", "reported-once": "Reported once", "status-only": "Status only", "sponsor-posted": "Sponsor-posted actual" };
+const SOURCE_LABEL = {
+  nrg: "NRG", swog: "SWOG", ecog: "ECOG-ACRIN", alliance: "ALLIANCE", cctg: "CCTG", cog: "COG",
+  etctn: "ETCTN", "pep-ctn": "PEP-CTN", eortc: "EORTC", trog: "TROG", rttqa: "RTTQA", krog: "KROG",
+  ctgov: "CLINICALTRIALS.GOV", ctsu: "CTSU",
+};
+const FIREBASE = {"apiKey":"AIzaSyDhA_pFubhAvRyQSEPWA-hboG82osBl9Vc","authDomain":"ctsu-dashboard.firebaseapp.com","projectId":"ctsu-dashboard","storageBucket":"ctsu-dashboard.firebasestorage.app","messagingSenderId":"631112593123","appId":"1:631112593123:web:96ee150fdda5475a959fd6"};
+const FIREBASE_SDK = "https://www.gstatic.com/firebasejs/13.0.0";
+const STORE_KEY = "worldwide-rt:my-trials";
+const GOOGLE_G = '<svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>';
+const BY = Object.fromEntries(DATA.trials.map(t => [t.id, t]));
+
+function syncAllBox(row) {
+  const boxes = [...row.querySelectorAll('input[type="checkbox"]:not([data-all])')];
+  const all = row.querySelector("input[data-all]");
+  const on = boxes.filter(box => box.checked).length;
+  all.checked = on === boxes.length;
+  all.indeterminate = on > 0 && on < boxes.length;
+}
+
+function addFilterRow(key, label, options, selected) {
+  state[key] = new Set(selected);
+  const row = document.createElement("div");
+  row.className = "filter-row";
+  const allOn = options.every(([value]) => selected.includes(value));
+  row.innerHTML = `<span class="filter-name">${esc(label)}</span><label class="check all"><input type="checkbox" data-all="${esc(key)}"${allOn ? " checked" : ""}> All</label>` + options.map(([value, text]) =>
+    `<label class="check"><input type="checkbox" name="${esc(key)}" value="${esc(value)}"${selected.includes(value) ? " checked" : ""}> ${esc(text)}</label>`
+  ).join("");
+  $("filters").appendChild(row);
+  syncAllBox(row);
+}
+
+function esc(v) { return String(v ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+function phaseText(t) {
+  const code = t.phase || "Not stated";
+  const map = { NA: "Not applicable", cohort: "Cohort", "2": "2", "3": "3", "2/3": "2/3", "1": "1", "1/2": "1/2" };
+  let text = map[code] || code;
+  if (t.phase_in_title && t.phase_in_title !== t.phase) text += ` (record text: phase ${t.phase_in_title})`;
+  return text;
+}
+function accrualText(t) {
+  const a = t.accrual || {};
+  if (a.quality === "snapshot") return `${a.actual ?? "?"} / ${a.target ?? "?"}`;
+  if (a.quality === "sponsor-posted") return `${a.actual} posted actual`;
+  if (a.quality === "target-only") return `target ${a.target ?? "?"}` + (a.reported ? `; ${a.reported.n} reported once` : "");
+  if (a.quality === "reported-once" && a.reported) return `${a.reported.n} reported once`;
+  if (a.reported) return `${a.quality === "target-only" ? "target " + (a.target ?? "?") + "; " : ""}${a.reported.n} reported once`;
+  return "No number";
+}
+function whereText(t) {
+  if (t.countries_open && t.countries_open.length) return t.countries_open.slice(0, 4).join(", ") + (t.countries_open.length > 4 ? "…" : "");
+  if (t.country_limit) return t.country_limit.split(".")[0];
+  if (t.countries_listed && t.countries_listed.length) return "Sites listed";
+  return "";
+}
+function phaseKey(t) {
+  if (["2", "2/3", "3", "NA", "1", "1/2"].includes(t.phase)) return t.phase;
+  if (t.phase === "cohort" || t.record_kind === "platform" || t.record_kind === "cohort") return "cohort";
+  if (!t.phase && ["2", "2/3", "3"].includes(t.phase_in_title)) return "unstated";
+  return "other";
+}
+function match(t) {
+  if (!state.phase.has(phaseKey(t))) return false;
+  if (!state.status.has(t.status || "unknown")) return false;
+  const beam = t.rt_role === "RT-focused" || t.rt_role === "RT component";
+  if (!(state.role.has(t.rt_role) || (state.role.has("beam") && beam))) return false;
+  const accrual = t.accrual || {};
+  if (!state.quality.has(accrual.quality) && !(state.quality.has("reported-once") && accrual.reported)) return false;
+  if (!((t.source_tags || [t.source_pipeline]).some(tag => state.source.has(tag)))) return false;
+  if (state.disease && !(t.disease_sites || ["Other"]).some(site => state.disease.has(site))) return false;
+  if (state.q) {
+    const blob = [t.name, t.title, t.nct, t.isrctn, (t.protocols || []).join(" "), (t.groups || []).join(" "), (t.conditions || []).join(" "), t.population, t.platform].join(" ").toLowerCase();
+    if (!state.q.toLowerCase().split(/\s+/).every(w => blob.includes(w))) return false;
+  }
+  return true;
+}
+function roleChip(role) {
+  const cls = role === "RT-focused" ? "focused" : role === "RT component" ? "component" : "radio";
+  return `<span class="chip ${cls}">${esc(role || "")}</span>`;
+}
+function qChip(q) {
+  const cls = q === "snapshot" ? "snap" : q === "target-only" ? "target" : q === "sponsor-posted" ? "posted" : q === "reported-once" ? "once" : "statusq";
+  return `<span class="chip ${cls}">${esc(QUALITY[q] || q)}</span>`;
+}
+function assessRows(rows) {
+  return (rows || []).map(row => `<tr><td>${esc(row.item)}</td><td>${esc(row.window)}</td><td>${esc(row.note || "")}</td></tr>`).join("");
+}
+function schemaHtml(steps) {
+  return (steps || []).map((step, i, all) => {
+    const arms = (step.arms || []).map(arm => `<div class="arm"><b>${esc(arm.label)}</b><div>${esc(arm.text || "")}</div></div>`).join("");
+    return `<li><div class="rail"><span class="dot"></span>${i < all.length - 1 ? `<span class="line"></span>` : ""}</div><div class="step-body"><b>${esc(step.label)}</b>${step.text ? `<div>${esc(step.text)}</div>` : ""}${arms ? `<div class="arms">${arms}</div>` : ""}${step.note ? `<p class="caveat">${esc(step.note)}</p>` : ""}</div></li>`;
+  }).join("");
+}
+function briefHtml(t) {
+  const b = t.brief;
+  if (b) {
+    const amendments = (b.amendments || []).map(item => `<li><b>${esc(item.date)}</b> ${esc(item.text)}</li>`).join("");
+    const eligibility = (b.eligibility || []).map(item => `<li>${esc(item)}</li>`).join("");
+    const submission = (b.submission || []).map(item => `<li><b>${esc(item.label)}</b> ${esc(item.text)}</li>`).join("");
+    const pre = assessRows(b.pretreatment);
+    const during = assessRows(b.during);
+    const follow = assessRows(b.followup);
+    const calendar = assessRows(b.calendar);
+    const specimens = assessRows(b.specimens);
+    const steps = schemaHtml(b.schema);
+    return `<div class="brief">
+      <p class="caveat">Rendition of the current protocol on file, not a copy of the protocol page. Confirm the protocol before enrollment.</p>
+      ${amendments ? `<div><h4>Amendments</h4><ul>${amendments}</ul></div>` : ""}
+      ${steps ? `<div><h4>Schema</h4><ol class="flow">${steps}</ol></div>` : ""}
+      ${eligibility ? `<div><h4>Eligibility</h4><ul>${eligibility}</ul></div>` : ""}
+      ${pre ? `<div><h4>Pre-treatment assessments</h4><table class="pre"><thead><tr><th>Assessment</th><th>Window</th><th>Note</th></tr></thead><tbody>${pre}</tbody></table></div>` : ""}
+      ${during ? `<div><h4>Assessments during treatment</h4><table class="pre"><thead><tr><th>Assessment</th><th>Timing</th><th>Note</th></tr></thead><tbody>${during}</tbody></table></div>` : ""}
+      ${follow ? `<div><h4>Assessments in follow-up</h4><table class="pre"><thead><tr><th>Assessment</th><th>Timing</th><th>Note</th></tr></thead><tbody>${follow}</tbody></table></div>` : ""}
+      ${calendar ? `<div><h4>Study calendar</h4><table class="pre"><thead><tr><th>Assessment</th><th>Timing</th><th>Note</th></tr></thead><tbody>${calendar}</tbody></table></div>` : ""}
+      ${specimens ? `<div><h4>Specimen collection</h4><table class="pre"><thead><tr><th>Specimen</th><th>Timing</th><th>Note</th></tr></thead><tbody>${specimens}</tbody></table></div>` : ""}
+      ${submission ? `<div><h4>Data submission</h4><ul>${submission}</ul></div>` : ""}
+    </div>`;
+  }
+  const steps = schemaHtml(t.registry_schema);
+  return `<div class="brief"><p class="caveat">No protocol brief is on file. Amendments, eligibility, assessment tables, the study calendar, specimens, and image submission (TRIAD for many NCI radiotherapy trials, or that group's own system) are shown only when they were read from a protocol.</p>${steps ? `<div><h4>Registry arms</h4><ol class="flow">${steps}</ol></div>` : ""}</div>`;
+}
+function detail(t) {
+  const a = t.accrual || {};
+  const rows = [
+    ["Title", t.title],
+    ["Registry", [t.nct, t.isrctn].filter(Boolean).join(", ") || "None"],
+    ["Protocols", (t.protocols || []).join(", ")],
+    ["Groups", (t.groups || []).join(", ")],
+    ["Disease site", (t.disease_sites || []).join(", ")],
+    ["CTSU disease", t.ctsu_disease],
+    ["NCI program", t.nci_program],
+    ["Primary completion", t.primary_completion],
+    ["Screening accrual", t.screening_accrual != null ? String(t.screening_accrual) : ""],
+    ["Protocol version", (t.brief || {}).version_date],
+    ["Platform", t.platform],
+    ["Modality", t.modality],
+    ["Population", t.population],
+    ["Primary endpoint", (t.primary_endpoints || []).join("; ")],
+    ["Accrual quality", QUALITY[a.quality] || a.quality],
+    ["Accrual", accrualText(t)],
+    ["Accrual source", a.source ? `${a.source}${a.as_of ? " (" + a.as_of + ")" : ""}` : ""],
+    ["Reported once", a.reported ? `${a.reported.n} (${a.reported.date}): ${a.reported.source}` : ""],
+    ["Patients per month", a.quality === "snapshot" && a.rate_per_month != null ? String(a.rate_per_month) : ""],
+    ["Status source", `${t.status_source || ""} ${t.status_checked || ""}`.trim()],
+    ["Registry status", t.registry_status && t.registry_status !== t.status ? t.registry_status : ""],
+    ["Enrollment geography", t.country_limit],
+    ["Brought in by", t.source_pipeline],
+    ["Also seen in", (t.pipelines || []).filter(p => p !== t.source_pipeline).join(", ")],
+    ["Notes", (a.notes || []).join(" ")],
+    ["Disagreements", (t.disagreements || []).map(d => `${d.field}: registry ${d.registry_value}. ${d.other_source}: ${d.other_value}`).join(" ")],
+  ];
+  const links = Object.entries(t.urls || {}).filter(([, url]) => url).map(([k, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(k)}</a>`).join(" · ");
+  return `<div class="detail-grid">${rows.filter(([, v]) => v).map(([k, v]) => `<b>${esc(k)}</b><div>${esc(v)}</div>`).join("")}${links ? `<b>Links</b><div>${links}</div>` : ""}</div>${briefHtml(t)}`;
+}
+function render() {
+  let rows = DATA.trials.filter(match);
+  const key = state.sort;
+  rows.sort((a, b) => {
+    const av = key === "accrual" ? (a.accrual.actual ?? a.accrual.target ?? -1) : key === "endpoint" ? (a.primary_endpoints || [""])[0] : (a[key] || "");
+    const bv = key === "accrual" ? (b.accrual.actual ?? b.accrual.target ?? -1) : key === "endpoint" ? (b.primary_endpoints || [""])[0] : (b[key] || "");
+    if (av < bv) return -1 * state.dir;
+    if (av > bv) return 1 * state.dir;
+    return (a.name || "").localeCompare(b.name || "");
+  });
+  const recruiting = rows.filter(t => t.status === "recruiting").length;
+  const snap = rows.filter(t => t.accrual.quality === "snapshot").length;
+  $("counts").innerHTML = [
+    [rows.length, "Matching trials"],
+    [recruiting, "Recruiting in this view"],
+    [snap, "With a snapshot accrual"],
+    [DATA.trials.length, "In the database"],
+  ].map(([n, label]) => `<div><b>${n}</b><span>${label}</span></div>`).join("");
+  $("empty").hidden = rows.length > 0;
+  $("rows").innerHTML = rows.map(t => {
+    const id = esc(t.id);
+    const open = state.open === t.id;
+    return `<tr class="data" data-id="${id}"><td><div class="name">${starBtn(t.id)} ${esc(t.name || t.title)}</div><div class="sub">${esc(t.nct || t.isrctn || "")} ${roleChip(t.rt_role)}</div></td><td>${esc((t.groups || []).slice(0, 3).join(", "))}</td><td>${esc(phaseText(t))}</td><td>${esc(t.status || "")}</td><td>${esc(accrualText(t))}<div>${qChip(t.accrual.quality)}</div></td><td>${esc((t.primary_endpoints || [])[0] || "")}</td><td>${esc(whereText(t))}</td><td>${esc(t.source_pipeline || "")}</td></tr>${open ? `<tr class="detail"><td colspan="8">${detail(t)}</td></tr>` : ""}`;
+  }).join("");
+}
+document.querySelector("thead").onclick = ev => {
+  const k = ev.target.dataset.k;
+  if (!k) return;
+  if (state.sort === k) state.dir *= -1;
+  else { state.sort = k; state.dir = 1; }
+  render();
+};
+const sync = { available: location.protocol !== "file:", api: null, user: null };
+const store = {
+  list: [], remote: null,
+  load() {
+    const params = new URLSearchParams(location.search).get("trials");
+    if (params) {
+      this.list = [...new Set(params.split(",").map(x => x.trim()).filter(id => BY[id]))];
+      history.replaceState(null, "", location.pathname + location.hash);
+      this.saveLocal();
+      return;
+    }
+    try { this.list = JSON.parse(localStorage.getItem(STORE_KEY) || "[]").filter(id => BY[id]); }
+    catch (e) { this.list = []; }
+  },
+  has(id) { return this.list.includes(id); },
+  saveLocal() { try { localStorage.setItem(STORE_KEY, JSON.stringify(this.list)); } catch (e) {} },
+  set(list) {
+    this.list = [...new Set(list)].filter(id => BY[id]);
+    this.saveLocal();
+    if (this.remote) this.remote(this.list).catch(err => flash("Signed in, but the list could not be saved to your Google account. It is still saved in this browser.", true));
+    renderMine();
+    render();
+  },
+  add(id) { if (BY[id] && !this.has(id)) this.set([...this.list, id]); },
+  remove(id) { this.set(this.list.filter(x => x !== id)); },
+  toggle(id) { this.has(id) ? this.remove(id) : this.add(id); },
+};
+
+function flash(text, error) {
+  const el = $("save-state");
+  el.textContent = text;
+  el.classList.toggle("err", !!error);
+}
+
+function renderSaveState() {
+  if (sync.user) flash(`Synced for ${sync.user.email}. This list is separate from the CTSU tracker.`);
+  else if (location.protocol === "file:") flash("Saved in this browser. Open this page from localhost to sign in with Gmail.");
+  else flash("Saved in this browser. Sign in with Gmail to keep My trials on your other devices.");
+}
+
+function starBtn(id) {
+  const on = store.has(id);
+  return `<button type="button" class="star" data-star="${esc(id)}" aria-pressed="${on}" aria-label="${on ? "Remove from My trials" : "Add to My trials"}">${on ? "★" : "☆"}</button>`;
+}
+
+function card(t) {
+  const a = t.accrual || {};
+  const bar = a.quality === "snapshot" && a.target ? `<div class="bar" title="${a.actual} of ${a.target}"><span style="width:${Math.min(100, 100 * (a.actual || 0) / a.target)}%"></span></div>` : "";
+  const rate = a.quality === "snapshot" && a.rate_per_month != null ? `${a.rate_per_month} /mo` : "Not a snapshot";
+  return `<article class="card">
+    <div class="top"><div><div class="name">${esc(t.name || t.title)}</div><div class="proto">${esc(t.nct || t.isrctn || "")} · ${esc((t.groups || []).slice(0, 3).join(", "))} · ${esc(phaseText(t))}</div></div>
+    <button class="x" type="button" data-remove="${esc(t.id)}" aria-label="Remove from My trials">×</button></div>
+    <div class="title">${esc(t.title || "")}</div>
+    ${bar}
+    <div class="metrics">
+      <div class="metric"><div class="mv">${esc(accrualText(t))}</div><div class="ml">${esc(QUALITY[a.quality] || a.quality || "Accrual")}</div></div>
+      <div class="metric"><div class="mv">${esc(rate)}</div><div class="ml">Patients per month</div></div>
+      <div class="metric"><div class="mv">${esc(t.status || "")}</div><div class="ml">Status</div></div>
+      <div class="metric"><div class="mv">${esc((t.primary_endpoints || [])[0] || "Not stated")}</div><div class="ml">Primary endpoint</div></div>
+    </div>
+    <div>${roleChip(t.rt_role)} <span class="chip">${esc(SOURCE_LABEL[t.source_pipeline] || t.source_pipeline || "")}</span></div>
+  </article>`;
+}
+
+function renderMine() {
+  $("share").disabled = $("clear").disabled = !store.list.length;
+  $("mine").innerHTML = store.list.length
+    ? store.list.map(id => card(BY[id])).join("")
+    : `<div class="empty-mine"><b>No trials selected.</b> Search above, or click the star on a study in the table.</div>`;
+  if (!$("save-state").classList.contains("err")) renderSaveState();
+}
+
+function renderAccount() {
+  const el = $("account");
+  if (sync.user) {
+    el.innerHTML = `<span>${esc(sync.user.email)}</span><button class="btn" id="signout" type="button">Sign out</button>`;
+    $("signout").onclick = () => sync.api.signOut();
+    return;
+  }
+  el.innerHTML = `<button class="gbtn" id="signin" type="button">${GOOGLE_G}<span>Sign in with Gmail</span></button>`;
+  $("signin").onclick = () => {
+    if (!sync.api) {
+      flash(location.protocol === "file:"
+        ? "Gmail sign-in needs this page served from localhost. The list is still saved in this browser."
+        : "Gmail sign-in is not available in this browser.", true);
+      return;
+    }
+    sync.api.signIn().catch(err => {
+      if (!["auth/popup-closed-by-user", "auth/cancelled-popup-request"].includes(err.code)) flash(`Gmail sign-in failed (${err.code || err.message}).`, true);
+    });
+  };
+}
+
+async function initFirebase() {
+  if (location.protocol === "file:") { renderAccount(); return; }
+  try {
+    const [{initializeApp}, A, F] = await Promise.all(["app", "auth", "firestore"].map(m => import(`${FIREBASE_SDK}/firebase-${m}.js`)));
+    const app = initializeApp(FIREBASE);
+    const auth = A.getAuth(app);
+    const db = F.getFirestore(app);
+    const provider = new A.GoogleAuthProvider();
+    provider.setCustomParameters({prompt: "select_account"});
+    sync.api = { signIn: () => A.signInWithPopup(auth, provider), signOut: () => A.signOut(auth) };
+    renderAccount();
+    A.onAuthStateChanged(auth, async user => {
+      if (!user) { sync.user = null; store.remote = null; renderAccount(); renderSaveState(); return; }
+      sync.user = {email: user.email || user.displayName || "signed in"};
+      const ref = F.doc(db, "users", user.uid);
+      store.remote = list => F.setDoc(ref, {worldwideTrials: list, worldwideUpdated: F.serverTimestamp()}, {merge: true});
+      try {
+        const snap = await F.getDoc(ref);
+        const cloud = snap.exists() && Array.isArray(snap.data().worldwideTrials) ? snap.data().worldwideTrials.filter(id => BY[id]) : null;
+        if (cloud) store.set([...new Set([...cloud, ...store.list])]);
+        else store.remote(store.list).catch(() => {});
+      } catch (err) {
+        flash("Signed in, but the saved list could not be loaded. Changes stay in this browser.", true);
+      }
+      renderAccount();
+      renderSaveState();
+    });
+  } catch (err) {
+    renderAccount();
+  }
+}
+
+function showAddList(items, active) {
+  const list = $("add-list");
+  if (!items) { list.hidden = true; list.innerHTML = ""; return; }
+  list.hidden = false;
+  list.innerHTML = items.length ? items.map((t, i) => `<li class="${i === active ? "act" : ""}" data-add="${esc(t.id)}"><b>${esc(t.name || t.title)}</b><div class="proto">${esc(t.nct || t.isrctn || "")}</div></li>`).join("") : `<li>No matching trial</li>`;
+}
+
+$("rows").onclick = ev => {
+  const star = ev.target.closest("[data-star]");
+  if (star) { store.toggle(star.dataset.star); return; }
+  const tr = ev.target.closest("tr.data");
+  if (!tr) return;
+  state.open = state.open === tr.dataset.id ? null : tr.dataset.id;
+  render();
+};
+$("mine").onclick = ev => {
+  const btn = ev.target.closest("[data-remove]");
+  if (btn) store.remove(btn.dataset.remove);
+};
+let addHits = [], addActive = 0;
+$("add-q").addEventListener("input", () => {
+  const words = $("add-q").value.toLowerCase().split(/\s+/).filter(Boolean);
+  addHits = !words.length ? [] : DATA.trials.filter(t => words.every(w => trialBlob(t).includes(w))).slice(0, 8);
+  addActive = 0;
+  showAddList(words.length ? addHits : null, addActive);
+});
+$("add-q").addEventListener("keydown", ev => {
+  if (ev.key === "ArrowDown") { addActive = Math.min(addHits.length - 1, addActive + 1); showAddList(addHits, addActive); ev.preventDefault(); }
+  if (ev.key === "ArrowUp") { addActive = Math.max(0, addActive - 1); showAddList(addHits, addActive); ev.preventDefault(); }
+  if (ev.key === "Enter" && addHits[addActive]) { store.add(addHits[addActive].id); $("add-q").value = ""; showAddList(null); }
+  if (ev.key === "Escape") showAddList(null);
+});
+$("add-list").onclick = ev => {
+  const li = ev.target.closest("[data-add]");
+  if (!li) return;
+  store.add(li.dataset.add);
+  $("add-q").value = "";
+  showAddList(null);
+};
+$("clear").onclick = () => { if (store.list.length && confirm("Remove every trial from My trials?")) store.set([]); };
+$("share").onclick = async () => {
+  const url = `${location.origin}${location.pathname}?trials=${encodeURIComponent(store.list.join(","))}`;
+  try { await navigator.clipboard.writeText(url); flash("Share link copied."); }
+  catch (e) { flash(url); }
+};
+function trialBlob(t) {
+  return [t.name, t.title, t.nct, t.isrctn, (t.protocols || []).join(" "), (t.groups || []).join(" "), t.id].join(" ").toLowerCase();
+}
+addFilterRow("phase", "Phase", [
+  ["2", "Phase 2"], ["2/3", "Phase 2/3"], ["3", "Phase 3"], ["NA", "Not applicable"],
+  ["cohort", "Cohorts"], ["unstated", "Not stated"], ["1", "Phase 1"], ["1/2", "Phase 1/2"], ["other", "Other"],
+], ["2", "2/3", "3"]);
+addFilterRow("status", "Status", [
+  ["not yet recruiting", "Not yet recruiting"], ["recruiting", "Recruiting"],
+  ["enrolling by invitation", "Enrolling by invitation"], ["closed to accrual", "Closed to accrual"],
+  ["completed", "Completed"], ["suspended", "Suspended"], ["terminated", "Terminated"],
+  ["withdrawn", "Withdrawn"], ["unknown", "Unknown"],
+], ["recruiting"]);
+addFilterRow("role", "RT role", [
+  ["beam", "External beam and brachytherapy"],
+  ["RT-focused", "RT-focused"], ["RT component", "RT component"], ["Radiopharmaceutical", "Radiopharmaceutical"],
+], ["beam", "RT-focused", "RT component", "Radiopharmaceutical"]);
+const diseaseOrder = ["Breast", "GU", "NSCLC", "SCLC", "Lung, other", "Head and neck", "CNS", "GI", "Gynecologic", "Lymphoma", "Hematologic", "Sarcoma", "Skin", "Oligometastatic", "Mixed histology", "Other"];
+const diseases = diseaseOrder.filter(site => DATA.trials.some(t => (t.disease_sites || []).includes(site)));
+addFilterRow("disease", "Disease", diseases.map(site => [site, site]), diseases);
+addFilterRow("quality", "Accrual", [
+  ["snapshot", "Snapshot"], ["sponsor-posted", "Sponsor-posted actual"], ["target-only", "Target only"],
+  ["reported-once", "Reported once"], ["status-only", "Status only"],
+], ["snapshot", "sponsor-posted", "target-only", "reported-once", "status-only"]);
+const sourceOrder = ["nrg", "swog", "ecog", "alliance", "cctg", "cog", "etctn", "pep-ctn", "eortc", "trog", "rttqa", "krog", "ctgov"];
+const sources = sourceOrder.filter(s => DATA.trials.some(t => (t.source_tags || []).includes(s)));
+addFilterRow("source", "Source", sources.map(s => [s, SOURCE_LABEL[s] || s]), sources);
+$("filters").addEventListener("change", ev => {
+  const box = ev.target;
+  if (!box.matches || !box.matches('input[type="checkbox"]')) return;
+  const row = box.closest(".filter-row");
+  if (box.dataset.all) {
+    const boxes = [...row.querySelectorAll('input[type="checkbox"]:not([data-all])')];
+    boxes.forEach(item => { item.checked = box.checked; });
+    state[box.dataset.all] = new Set(box.checked ? boxes.map(item => item.value) : []);
+    box.indeterminate = false;
+    render();
+    return;
+  }
+  if (box.checked) state[box.name].add(box.value);
+  else state[box.name].delete(box.value);
+  syncAllBox(row);
+  render();
+});
+$("q").oninput = () => { state.q = $("q").value; render(); };
+store.load();
+renderMine();
+initFirebase();
+render();
+</script>
+</body>
+</html>

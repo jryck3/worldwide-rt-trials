@@ -1,0 +1,76 @@
+{
+  "NCT03721341": {
+    "notes": [
+      "The 2019 protocol calculated a sample size of 159 patients (Palma et al., BMC Cancer. 2019;19:816. doi:10.1186/s12885-019-5977-6). ClinicalTrials.gov lists enrollment 204 with type Actual on the 30 September 2026 update.",
+      "A SABR-SYNC protocol paper states that SABR-COMET-10 completed accrual in late 2023. This build did not confirm the sample list's date of 9 December 2023."
+    ]
+  },
+  "NCT03862911": {
+    "groups": ["Cancer Trials Ireland"],
+    "notes": [
+      "Cancer Trials Ireland posted on 4 December 2025 that recruitment had closed because the accrual target was reached. The post does not give an enrolled headcount. The ClinicalTrials.gov figure of 330 remains an estimate, so it is the target."
+    ]
+  },
+  "NCT02417662": {
+    "notes": [
+      "No ISRCTN record was returned for SARON. The RTTQA page calls it a randomised phase III trial. The ClinicalTrials.gov official title says a randomised phase II trial, the structured phase field is not applicable, and the primary outcome measure is overall survival. Enrollment 140 is the sponsor-posted actual on the 6 May 2026 update."
+    ],
+    "disagreements": [
+      {
+        "field": "phase",
+        "registry_value": "Not applicable. Official title: randomised phase II.",
+        "other_value": "The RTTQA page says randomised phase III. The 8 October 2026 sample list said phase 2/3.",
+        "other_source": "RTTQA page and sample list"
+      },
+      {
+        "field": "primary endpoint",
+        "registry_value": "Overall survival",
+        "other_value": "The sample list described feasibility and toxicity as the primary concern.",
+        "other_source": "8 October 2026 sample list"
+      }
+    ]
+  },
+  "NCT03391869": {
+    "notes": [
+      "ClinicalTrials.gov primary outcome measures are overall survival in the overall population and overall survival in the oligometastatic subgroup. The sample list said progression-free survival.",
+      "Status on the 18 September 2026 ClinicalTrials.gov update is active, not recruiting. Enrollment 339 has type Actual. A results presentation does not remove the trial from the tracker."
+    ],
+    "disagreements": [
+      {
+        "field": "primary endpoint",
+        "registry_value": "Overall survival in the overall population; overall survival in the oligometastatic subgroup",
+        "other_value": "The sample list said progression-free survival.",
+        "other_source": "8 October 2026 sample list"
+      }
+    ]
+  },
+  "NCT05784428": {
+    "notes": [
+      "Structured phase is not applicable. The design text calls it a phase III multicentre randomized trial. Primary outcome measures are adverse events and change in patient-reported quality of life. Estimated enrollment is 598."
+    ],
+    "disagreements": [
+      {
+        "field": "primary endpoint",
+        "registry_value": "Adverse events; change in patient-reported quality of life",
+        "other_value": "The sample list named a quality-of-life primary endpoint only.",
+        "other_source": "8 October 2026 sample list"
+      }
+    ]
+  },
+  "ISRCTN52137148": {
+    "disagreements": [
+      {
+        "field": "status",
+        "registry_value": "Closed to accrual. ISRCTN recruitment end date is 2026-09-14.",
+        "other_value": "The 8 October 2026 sample list described the trial as open in the UK.",
+        "other_source": "8 October 2026 sample list"
+      }
+    ],
+    "reported": {
+      "n": 20,
+      "date": "2026",
+      "source": "Woolf D, Downs N, Sutton C, et al. QUARTZ LUNG, a candidate-specific trial within the TOURIST platform. Lung Cancer. 2026;212:109241. The abstract states that 20 patients had been recruited.",
+      "url": "https://knowledge.lancashire.ac.uk/id/eprint/58472/"
+    }
+  }
+}
