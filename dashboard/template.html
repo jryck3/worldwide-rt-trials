@@ -40,6 +40,12 @@
   .check { display: flex; flex-direction: row; align-items: center; gap: 5px; font: 14px/1.3 sans-serif; color: var(--ink); }
   .check.all { font: 400 12px/1.3 sans-serif; color: #8b98a6; margin-right: 10px; }
   input[type="search"] { font: 14px/1.3 sans-serif; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; background: #fff; min-width: 280px; }
+  .search-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .country-wrap { position: relative; }
+  .country-btn { font: 14px/1.3 sans-serif; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; min-width: 220px; text-align: left; cursor: pointer; }
+  .country-panel { position: absolute; z-index: 6; top: calc(100% + 4px); left: 0; width: min(360px, 86vw); background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; }
+  .country-panel input[type="search"] { width: 100%; min-width: 0; margin: 0 0 6px; }
+  .country-list { max-height: 260px; overflow: auto; display: flex; flex-direction: column; gap: 4px; padding-top: 4px; }
   input[type="checkbox"] { margin: 0; }
   table { width: 100%; border-collapse: collapse; background: var(--card); margin-top: 12px; font-size: 14px; }
   th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
@@ -62,6 +68,7 @@
   a { color: var(--blue); }
   .detail-grid { display: grid; grid-template-columns: 180px 1fr; gap: 4px 10px; font-size: 14px; }
   .detail-grid b { color: var(--muted); font-weight: 600; }
+  .paper + .paper { margin-top: 8px; }
   .mine-panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin: 8px 0 16px; }
   .mine-panel h2 { margin: 0 0 10px; font-size: 18px; }
   .mine-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
@@ -131,7 +138,10 @@
   <div class="filters" id="filters">
     <div class="filter-row">
       <span class="filter-name">Search</span>
-      <input id="q" type="search" placeholder="Name, NCT, ISRCTN, group, disease">
+      <div class="search-tools">
+        <input id="q" type="search" placeholder="Name, NCT, ISRCTN, group, disease">
+        <label class="check all"><input type="checkbox" id="master-all"> All</label>
+      </div>
     </div>
   </div>
   <table>
@@ -176,7 +186,10 @@ function syncAllBox(row) {
   all.indeterminate = on > 0 && on < boxes.length;
 }
 
+const FILTERS = {};
+let countries = [];
 function addFilterRow(key, label, options, selected) {
+  FILTERS[key] = options.map(([value]) => value);
   state[key] = new Set(selected);
   const row = document.createElement("div");
   row.className = "filter-row";
@@ -211,6 +224,11 @@ function whereText(t) {
   if (t.countries_listed && t.countries_listed.length) return "Sites listed";
   return "";
 }
+function countryKeys(t) {
+  const raw = (t.countries_listed && t.countries_listed.length) ? t.countries_listed : (t.countries_open || []);
+  if (!raw.length) return ["Not listed"];
+  return raw.map(country => country === "Korea" ? "South Korea" : country);
+}
 function phaseKey(t) {
   if (["2", "2/3", "3", "NA", "1", "1/2"].includes(t.phase)) return t.phase;
   if (t.phase === "cohort" || t.record_kind === "platform" || t.record_kind === "cohort") return "cohort";
@@ -226,6 +244,7 @@ function match(t) {
   if (!state.quality.has(accrual.quality) && !(state.quality.has("reported-once") && accrual.reported)) return false;
   if (!((t.source_tags || [t.source_pipeline]).some(tag => state.source.has(tag)))) return false;
   if (state.disease && !(t.disease_sites || ["Other"]).some(site => state.disease.has(site))) return false;
+  if (state.country && !countryKeys(t).some(country => state.country.has(country))) return false;
   if (state.q) {
     const blob = [t.name, t.title, t.nct, t.isrctn, (t.protocols || []).join(" "), (t.groups || []).join(" "), (t.conditions || []).join(" "), t.population, t.platform].join(" ").toLowerCase();
     if (!state.q.toLowerCase().split(/\s+/).every(w => blob.includes(w))) return false;
@@ -261,8 +280,12 @@ function briefHtml(t) {
     const calendar = assessRows(b.calendar);
     const specimens = assessRows(b.specimens);
     const steps = schemaHtml(b.schema);
+    const fromProtocolFile = !b.schema_source || /protocol on file|protocol page/i.test(b.schema_source);
+    const caveat = fromProtocolFile
+      ? "Rendition of the current protocol on file, not a copy of the protocol page. Confirm the protocol before enrollment."
+      : "Taken from the cited paper. Confirm the current protocol before enrollment.";
     return `<div class="brief">
-      <p class="caveat">Rendition of the current protocol on file, not a copy of the protocol page. Confirm the protocol before enrollment.</p>
+      <p class="caveat">${esc(caveat)}</p>
       ${amendments ? `<div><h4>Amendments</h4><ul>${amendments}</ul></div>` : ""}
       ${steps ? `<div><h4>Schema</h4>${b.schema_source ? `<p class="caveat">${esc(b.schema_source)}</p>` : ""}<ol class="flow">${steps}</ol></div>` : ""}
       ${eligibility ? `<div><h4>Eligibility</h4><ul>${eligibility}</ul></div>` : ""}
@@ -276,6 +299,21 @@ function briefHtml(t) {
   }
   const steps = schemaHtml(t.registry_schema);
   return `<div class="brief"><p class="caveat">No protocol PDF is on file for this row. A published protocol paper has not been read into the schema. Amendments, assessment tables, the study calendar, specimens, and image submission are shown only when a protocol was read.</p>${steps ? `<div><h4>Schema</h4><p class="caveat">ClinicalTrials.gov study record. The arms and design text are the registry's.</p><ol class="flow">${steps}</ol></div>` : ""}</div>`;
+}
+function paperHtml(t) {
+  const papers = t.publications || [];
+  if (!papers.length) return "";
+  const blocks = papers.map(p => {
+    const links = [];
+    if (p.pubmed) links.push(`<a href="${esc(p.pubmed)}" target="_blank" rel="noopener">PubMed</a>`);
+    if (p.pmc) links.push(`<a href="${esc(p.pmc)}" target="_blank" rel="noopener">PMC</a>`);
+    if (p.doi_url) links.push(`<a href="${esc(p.doi_url)}" target="_blank" rel="noopener">DOI</a>`);
+    const cite = [p.authors, p.journal, p.year].filter(Boolean).join(", ");
+    const role = p.role === "protocol" ? "Protocol" : p.role === "results" ? "Results" : "Paper";
+    return `<div class="paper"><div class="sub">${esc(role)}${cite ? " · " + esc(cite) : ""}</div><div>${esc(p.title || "")}</div>${links.length ? `<div>${links.join(" · ")}</div>` : ""}</div>`;
+  }).join("");
+  const more = t.publications_more > 0 ? `<div class="sub">${t.publications_more} more papers name this trial.</div>` : "";
+  return blocks + more;
 }
 function detail(t) {
   const a = t.accrual || {};
@@ -308,7 +346,8 @@ function detail(t) {
     ["Disagreements", (t.disagreements || []).map(d => `${d.field}: registry ${d.registry_value}. ${d.other_source}: ${d.other_value}`).join(" ")],
   ];
   const links = Object.entries(t.urls || {}).filter(([, url]) => url).map(([k, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(k)}</a>`).join(" · ");
-  return `<div class="detail-grid">${rows.filter(([, v]) => v).map(([k, v]) => `<b>${esc(k)}</b><div>${esc(v)}</div>`).join("")}${links ? `<b>Links</b><div>${links}</div>` : ""}</div>${briefHtml(t)}`;
+  const papers = paperHtml(t);
+  return `<div class="detail-grid">${rows.filter(([, v]) => v).map(([k, v]) => `<b>${esc(k)}</b><div>${esc(v)}</div>`).join("")}${papers ? `<b>Papers</b><div>${papers}</div>` : ""}${links ? `<b>Links</b><div>${links}</div>` : ""}</div>${briefHtml(t)}`;
 }
 function render() {
   let rows = DATA.trials.filter(match);
@@ -518,7 +557,7 @@ function trialBlob(t) {
 addFilterRow("phase", "Phase", [
   ["2", "Phase 2"], ["2/3", "Phase 2/3"], ["3", "Phase 3"], ["NA", "Not applicable"],
   ["cohort", "Cohorts"], ["unstated", "Not stated"], ["1", "Phase 1"], ["1/2", "Phase 1/2"], ["other", "Other"],
-], ["2", "2/3", "3"]);
+], ["2", "2/3", "3", "cohort"]);
 addFilterRow("status", "Status", [
   ["not yet recruiting", "Not yet recruiting"], ["recruiting", "Recruiting"],
   ["enrolling by invitation", "Enrolling by invitation"], ["closed to accrual", "Closed to accrual"],
@@ -532,6 +571,10 @@ addFilterRow("role", "RT role", [
 const diseaseOrder = ["Breast", "GU", "NSCLC", "SCLC", "Lung, other", "Head and neck", "CNS", "GI", "Gynecologic", "Lymphoma", "Hematologic", "Sarcoma", "Skin", "Oligometastatic", "Mixed histology", "Other"];
 const diseases = diseaseOrder.filter(site => DATA.trials.some(t => (t.disease_sites || []).includes(site)));
 addFilterRow("disease", "Disease", diseases.map(site => [site, site]), diseases);
+const countryCounts = {};
+DATA.trials.forEach(t => countryKeys(t).forEach(country => { countryCounts[country] = (countryCounts[country] || 0) + 1; }));
+countries = Object.keys(countryCounts).sort((a, b) => (countryCounts[b] - countryCounts[a]) || a.localeCompare(b));
+addCountryFilter(countries);
 addFilterRow("quality", "Accrual", [
   ["snapshot", "Snapshot"], ["sponsor-posted", "Sponsor-posted actual"], ["target-only", "Target only"],
   ["reported-once", "Reported once"], ["status-only", "Status only"],
@@ -539,23 +582,101 @@ addFilterRow("quality", "Accrual", [
 const sourceOrder = ["nrg", "swog", "ecog", "alliance", "cctg", "cog", "etctn", "pep-ctn", "eortc", "trog", "rttqa", "krog", "ctgov"];
 const sources = sourceOrder.filter(s => DATA.trials.some(t => (t.source_tags || []).includes(s)));
 addFilterRow("source", "Source", sources.map(s => [s, SOURCE_LABEL[s] || s]), sources);
+function syncMaster() {
+  const filtersComplete = Object.entries(FILTERS).every(([key, values]) => values.every(value => state[key].has(value)));
+  const filtersAny = Object.entries(FILTERS).some(([key, values]) => values.some(value => state[key].has(value)));
+  const countryComplete = state.country.size === countries.length;
+  const complete = filtersComplete && countryComplete;
+  const master = $("master-all");
+  master.checked = complete;
+  master.indeterminate = !complete && (filtersAny || state.country.size > 0);
+}
+function setEveryFilter(on) {
+  document.querySelectorAll('#filters input[type="checkbox"][name]').forEach(box => { box.checked = on; });
+  Object.entries(FILTERS).forEach(([key, values]) => { state[key] = new Set(on ? values : []); });
+  document.querySelectorAll("#filters .filter-row").forEach(row => {
+    if (row.querySelector("input[data-all]")) syncAllBox(row);
+  });
+  state.country = new Set(on ? countries : []);
+  paintCountry();
+  syncMaster();
+  render();
+}
+function countryLabel() {
+  if (state.country.size === countries.length) return "All countries";
+  if (!state.country.size) return "No country selected";
+  const picked = countries.filter(country => state.country.has(country));
+  if (picked.length <= 2) return picked.join(", ");
+  return picked.length + " countries";
+}
+function paintCountry() {
+  const query = ($("country-q").value || "").trim().toLowerCase();
+  const shown = countries.filter(country => !query || country.toLowerCase().includes(query));
+  $("country-list").innerHTML = shown.map(country => `<label class="check"><input type="checkbox" data-country="${esc(country)}"${state.country.has(country) ? " checked" : ""}> ${esc(country)}</label>`).join("") || `<div class="sub">No matching country</div>`;
+  $("country-btn").textContent = countryLabel();
+  const all = $("country-all");
+  all.checked = state.country.size === countries.length;
+  all.indeterminate = state.country.size > 0 && state.country.size < countries.length;
+}
+function addCountryFilter(list) {
+  countries = list;
+  state.country = new Set(list);
+  const row = document.createElement("div");
+  row.className = "filter-row";
+  row.innerHTML = `<span class="filter-name">Country</span><div class="country-wrap"><button type="button" class="country-btn" id="country-btn">All countries</button><div class="country-panel" id="country-panel" hidden><input id="country-q" type="search" placeholder="Search countries" autocomplete="off"><label class="check all"><input type="checkbox" id="country-all" checked> All</label><div class="country-list" id="country-list"></div></div></div>`;
+  $("filters").appendChild(row);
+  paintCountry();
+  $("country-btn").onclick = () => {
+    const panel = $("country-panel");
+    panel.hidden = !panel.hidden;
+    if (!panel.hidden) $("country-q").focus();
+  };
+  $("country-q").oninput = () => paintCountry();
+  $("country-panel").addEventListener("change", ev => {
+    const box = ev.target;
+    if (box.id === "country-all") state.country = new Set(box.checked ? countries : []);
+    else if (box.dataset.country) {
+      if (box.checked) state.country.add(box.dataset.country);
+      else state.country.delete(box.dataset.country);
+    } else return;
+    paintCountry();
+    syncMaster();
+    render();
+    ev.stopPropagation();
+  });
+  document.addEventListener("click", ev => {
+    if (!ev.target.closest(".country-wrap")) $("country-panel").hidden = true;
+  });
+  $("country-q").addEventListener("keydown", ev => {
+    if (ev.key === "Escape") $("country-panel").hidden = true;
+  });
+}
 $("filters").addEventListener("change", ev => {
   const box = ev.target;
   if (!box.matches || !box.matches('input[type="checkbox"]')) return;
+  if (box.id === "master-all") {
+    const complete = Object.entries(FILTERS).every(([key, values]) => values.every(value => state[key].has(value))) && state.country.size === countries.length;
+    setEveryFilter(!complete);
+    return;
+  }
+  if (box.id === "country-all" || box.dataset.country) return;
   const row = box.closest(".filter-row");
   if (box.dataset.all) {
     const boxes = [...row.querySelectorAll('input[type="checkbox"]:not([data-all])')];
     boxes.forEach(item => { item.checked = box.checked; });
     state[box.dataset.all] = new Set(box.checked ? boxes.map(item => item.value) : []);
     box.indeterminate = false;
+    syncMaster();
     render();
     return;
   }
   if (box.checked) state[box.name].add(box.value);
   else state[box.name].delete(box.value);
   syncAllBox(row);
+  syncMaster();
   render();
 });
+syncMaster();
 $("q").oninput = () => { state.q = $("q").value; render(); };
 store.load();
 renderMine();

@@ -227,23 +227,29 @@ def version_from_name(path):
     return match.group(1) if match else ""
 
 
+BRIEF_SECTIONS = ("eligibility", "pretreatment", "during", "followup", "calendar", "specimens", "amendments", "submission")
+
+
 def _apply_record(trial, record):
     brief = trial.setdefault("brief", {})
-    if brief.get("schema"):
-        return False
-    brief["schema"] = record["schema"]
-    brief["schema_source"] = record["schema_source"]
-    return True
+    applied = False
+    if record.get("schema") and not brief.get("schema"):
+        brief["schema"] = record["schema"]
+        brief["schema_source"] = record.get("schema_source")
+        applied = True
+    for key in BRIEF_SECTIONS:
+        if record.get(key) and not brief.get(key):
+            brief[key] = record[key]
+            applied = True
+    return applied
 
 
 def apply_saved_schemas(trials, saved):
     for trial in trials:
-        if (trial.get("brief") or {}).get("schema"):
-            continue
         keys = [trial.get("nct"), trial.get("id"), *_trial_keys(trial)]
         for key in keys:
             record = saved.get(key or "")
-            if record and record.get("schema"):
+            if record and (record.get("schema") or any(record.get(section) for section in BRIEF_SECTIONS)):
                 _apply_record(trial, record)
                 break
 

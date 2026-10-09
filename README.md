@@ -6,11 +6,13 @@ This project does not modify the CTSU tracker. The CTSU rows here are a read of 
 
 Open `dashboard/index.html` in a browser, or use the public page. The trial table is embedded in that file, and the same file is published from `docs/index.html`. `data/trials.json` is the same payload. There are 5,470 trials.
 
-The opening view is phase 2, phase 2/3, and phase 3, status Recruiting, every RT role, every accrual quality, every disease site, and every source. Each filter row has an All box. My trials is saved in the browser. Sign in with Gmail works when the page is opened from localhost, and that list is stored separately from the CTSU tracker.
+The opening view is phase 2, phase 2/3, phase 3, and cohorts, status Recruiting, every RT role, every accrual quality, every disease site, every country, and every source. Country is a searchable multi-select. A trial matches if any listed site is in a selected country. Trials with no country on the record are under Not listed. KROG's label Korea is counted with South Korea. The All box beside Search turns every filter on or off. Each filter row still has its own All box. My trials is saved in the browser. Sign in with Gmail works when the page is opened from localhost, and that list is stored separately from the CTSU tracker.
 
 NRG, SWOG, and ECOG-ACRIN studies are named with the protocol number first, then the acronym: NRG-GU015 (ARCHER), S2427 (BRIGHT), EA2182 (DECREASE). The source row is the cooperative group or the pipeline that is not already covered by a group. CTSU is not a source checkbox. Every CTSU radiotherapy study is NRG, SWOG, ECOG-ACRIN, ALLIANCE, CCTG, COG, ETCTN, or PEP-CTN. The table column Brought in by still says which pipeline created the row.
 
 An opened NCI study with a protocol on file shows the same kind of brief as the CTSU tracker: amendments, schema, eligibility, assessments, study calendar, specimens, and data submission, including TRIAD when that protocol requires it. Other trials show the ClinicalTrials.gov arm list. A full calendar, specimen table, or image-submission rule is included only when it was read from a protocol. It is not invented.
+
+When a paper names the trial, the opened study details include a Papers row with PubMed, PMC, and DOI links. Protocol papers are listed first. The weekly paper search is `.github/workflows/papers.yml` (Sunday 14:00 UTC, also runnable by hand). It refreshes those links. It does not commit manuscripts. Full-text files stay in local `sources/`, which is gitignored.
 
 ## Accrual quality
 

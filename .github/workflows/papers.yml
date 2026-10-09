@@ -1,0 +1,47 @@
+name: Refresh paper links
+
+on:
+  schedule:
+    # Sunday 14:00 UTC. Morning in US Eastern time. At least weekly.
+    - cron: "0 14 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-links
+  cancel-in-progress: false
+
+jobs:
+  papers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Search PubMed and Europe PMC
+        run: python scripts/refresh_papers.py
+
+      - name: Commit paper links
+        if: always()
+        run: |
+          files=()
+          for f in config/publications.json data/trials.json docs/index.html dashboard/index.html; do
+            if [ -f "$f" ]; then files+=("$f"); fi
+          done
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No paper-link files"
+            exit 0
+          fi
+          git add "${files[@]}"
+          if git diff --cached --quiet; then
+            echo "No paper-link changes"
+          else
+            git -c user.name="worldwide-rt-papers" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Refresh paper links $(date -u +%F)"
+            git push
+          fi

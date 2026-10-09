@@ -8,6 +8,7 @@ import re
 from pathlib import Path
 
 from .pipelines.ctsu import CTSU_ROOT, load_export
+from .papers import attach_publications
 from .schema_pdf import apply_saved_schemas, schemas_from_local_protocols
 from .textutil import clip
 
@@ -366,6 +367,7 @@ def annotate(trials, root):
     _attach_ctsu_meta(trials)
     _attach_briefs(trials, _brief_index())
     apply_saved_schemas(trials, _load_saved_schemas(root))
+    attach_publications(trials, root)
     _write_saved_schemas(root, schemas_from_local_protocols(trials))
     _attach_registry_schema(trials, root / "data" / "cache" / "ctgov")
     for trial in trials:
