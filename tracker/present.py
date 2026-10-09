@@ -8,6 +8,7 @@ import re
 from pathlib import Path
 
 from .pipelines.ctsu import CTSU_ROOT, load_export
+from .schema_pdf import apply_saved_schemas, schemas_from_local_protocols
 from .textutil import clip
 
 NRG_ID = re.compile(r"\bNRG[-\s]?([A-Z]{2})[-\s]?(\d{3,4})\b", re.I)
@@ -298,6 +299,27 @@ def _arm_step(study):
     }
 
 
+def _registry_steps(study):
+    protocol = study.get("protocolSection") or {}
+    description = protocol.get("descriptionModule") or {}
+    design = ((protocol.get("designModule") or {}).get("designInfo") or {})
+    text = clip(description.get("detailedDescription") or description.get("briefSummary") or "", 700)
+    model = design.get("interventionModelDescription")
+    if isinstance(model, str) and model and (not text or len(text) < 80):
+        text = clip(model, 700)
+    steps = []
+    if text:
+        steps.append({
+            "label": "Design",
+            "text": text,
+            "note": "ClinicalTrials.gov description. This is not a protocol schema page.",
+        })
+    arms = _arm_step(study)
+    if arms:
+        steps.append(arms)
+    return steps
+
+
 def _attach_registry_schema(trials, cache_dir):
     if not cache_dir or not Path(cache_dir).exists():
         return
@@ -313,13 +335,29 @@ def _attach_registry_schema(trials, cache_dir):
             nct = ((study.get("protocolSection") or {}).get("identificationModule") or {}).get("nctId")
             if nct not in wanted or nct in found:
                 continue
-            step = _arm_step(study)
-            if step:
-                found[nct] = [step]
+            steps = _registry_steps(study)
+            if steps:
+                found[nct] = steps
     for trial in trials:
         steps = found.get(trial.get("nct"))
         if steps and not (trial.get("brief") or {}).get("schema"):
             trial["registry_schema"] = steps
+
+
+def _load_saved_schemas(root):
+    path = Path(root) / "config" / "protocol_schemas.json"
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text())
+
+
+def _write_saved_schemas(root, filled):
+    if not filled:
+        return
+    path = Path(root) / "config" / "protocol_schemas.json"
+    saved = _load_saved_schemas(root)
+    saved.update(filled)
+    path.write_text(json.dumps(saved, indent=1, ensure_ascii=False) + "\n")
 
 
 def annotate(trials, root):
@@ -327,6 +365,8 @@ def annotate(trials, root):
     root = Path(root)
     _attach_ctsu_meta(trials)
     _attach_briefs(trials, _brief_index())
+    apply_saved_schemas(trials, _load_saved_schemas(root))
+    _write_saved_schemas(root, schemas_from_local_protocols(trials))
     _attach_registry_schema(trials, root / "data" / "cache" / "ctgov")
     for trial in trials:
         trial["name"] = display_name(trial)

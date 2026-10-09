@@ -38,7 +38,7 @@
   .filter-row:first-child { border-top: 0; }
   .filter-name { min-width: 72px; font: 650 12px/1.3 sans-serif; color: var(--muted); }
   .check { display: flex; flex-direction: row; align-items: center; gap: 5px; font: 14px/1.3 sans-serif; color: var(--ink); }
-  .check.all { font-weight: 650; margin-right: 4px; }
+  .check.all { font: 400 12px/1.3 sans-serif; color: #8b98a6; margin-right: 10px; }
   input[type="search"] { font: 14px/1.3 sans-serif; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; background: #fff; min-width: 280px; }
   input[type="checkbox"] { margin: 0; }
   table { width: 100%; border-collapse: collapse; background: var(--card); margin-top: 12px; font-size: 14px; }
@@ -264,7 +264,7 @@ function briefHtml(t) {
     return `<div class="brief">
       <p class="caveat">Rendition of the current protocol on file, not a copy of the protocol page. Confirm the protocol before enrollment.</p>
       ${amendments ? `<div><h4>Amendments</h4><ul>${amendments}</ul></div>` : ""}
-      ${steps ? `<div><h4>Schema</h4><ol class="flow">${steps}</ol></div>` : ""}
+      ${steps ? `<div><h4>Schema</h4>${b.schema_source ? `<p class="caveat">${esc(b.schema_source)}</p>` : ""}<ol class="flow">${steps}</ol></div>` : ""}
       ${eligibility ? `<div><h4>Eligibility</h4><ul>${eligibility}</ul></div>` : ""}
       ${pre ? `<div><h4>Pre-treatment assessments</h4><table class="pre"><thead><tr><th>Assessment</th><th>Window</th><th>Note</th></tr></thead><tbody>${pre}</tbody></table></div>` : ""}
       ${during ? `<div><h4>Assessments during treatment</h4><table class="pre"><thead><tr><th>Assessment</th><th>Timing</th><th>Note</th></tr></thead><tbody>${during}</tbody></table></div>` : ""}
@@ -275,7 +275,7 @@ function briefHtml(t) {
     </div>`;
   }
   const steps = schemaHtml(t.registry_schema);
-  return `<div class="brief"><p class="caveat">No protocol brief is on file. Amendments, eligibility, assessment tables, the study calendar, specimens, and image submission (TRIAD for many NCI radiotherapy trials, or that group's own system) are shown only when they were read from a protocol.</p>${steps ? `<div><h4>Registry arms</h4><ol class="flow">${steps}</ol></div>` : ""}</div>`;
+  return `<div class="brief"><p class="caveat">No protocol PDF is on file for this row. A published protocol paper has not been read into the schema. Amendments, assessment tables, the study calendar, specimens, and image submission are shown only when a protocol was read.</p>${steps ? `<div><h4>Schema</h4><p class="caveat">ClinicalTrials.gov study record. The arms and design text are the registry's.</p><ol class="flow">${steps}</ol></div>` : ""}</div>`;
 }
 function detail(t) {
   const a = t.accrual || {};

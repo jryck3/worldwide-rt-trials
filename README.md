@@ -2,9 +2,9 @@
 
 Local tracker of phase 2, phase 2/3, and phase 3 interventional trials in which radiotherapy is a randomized or protocol-specified treatment. It is for finding trials to enroll to and for seeing what is accruing. Closed and completed trials stay in the database.
 
-This project does not modify the CTSU tracker. The CTSU rows here are a read of that project's public export. The repository is https://github.com/jryck3/worldwide-rt-trials.
+This project does not modify the CTSU tracker. The CTSU rows here are a read of that project's public export. The repository is https://github.com/jryck3/worldwide-rt-trials. The public page is https://jryck3.github.io/worldwide-rt-trials/.
 
-Open `dashboard/index.html` in a browser. The trial table is embedded in that file. `data/trials.json` is the same payload. There are 5,470 trials.
+Open `dashboard/index.html` in a browser, or use the public page. The trial table is embedded in that file, and the same file is published from `docs/index.html`. `data/trials.json` is the same payload. There are 5,470 trials.
 
 The opening view is phase 2, phase 2/3, and phase 3, status Recruiting, every RT role, every accrual quality, every disease site, and every source. Each filter row has an All box. My trials is saved in the browser. Sign in with Gmail works when the page is opened from localhost, and that list is stored separately from the CTSU tracker.
 

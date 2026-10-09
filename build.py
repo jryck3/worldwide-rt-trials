@@ -40,6 +40,10 @@ def write_dashboard(payload):
     data = json.dumps(payload, ensure_ascii=False).replace("<", "\\u003c")
     html = template.replace("__DATA__", data)
     (ROOT / "dashboard" / "index.html").write_text(html)
+    docs = ROOT / "docs"
+    docs.mkdir(exist_ok=True)
+    (docs / "index.html").write_text(html)
+    (docs / ".nojekyll").write_text("")
     (ROOT / "data").mkdir(exist_ok=True)
     (ROOT / "data" / "trials.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1))
 
