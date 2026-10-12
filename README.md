@@ -4,7 +4,7 @@ Local tracker of phase 2, phase 2/3, and phase 3 interventional trials in which 
 
 This project does not modify the CTSU tracker. The CTSU rows here are a read of that project's public export. The repository is https://github.com/jryck3/worldwide-rt-trials. The public page is https://jryck3.github.io/worldwide-rt-trials/.
 
-Open `dashboard/index.html` in a browser, or use the public page. The trial table is embedded in that file, and the same file is published from `docs/index.html`. `data/trials.json` is the same payload. There are 5,470 trials.
+Use the public page, or open the local build `dashboard/index.html` in a browser (not committed). The trial table is embedded in the page, which is published from `docs/index.html`. `data/trials.json` is the same payload. There are 5,470 trials.
 
 The opening view is phase 2, phase 2/3, phase 3, and cohorts, status Recruiting, every RT role, every accrual quality, every disease site, every country, and every source. Country is a searchable multi-select. A trial matches if any listed site is in a selected country. Trials with no country on the record are under Not listed. KROG's label Korea is counted with South Korea. The All box beside Search turns every filter on or off. Each filter row still has its own All box. My trials is saved in the browser. Sign in with Gmail works when the page is opened from localhost, and that list is stored separately from the CTSU tracker.
 
@@ -12,7 +12,7 @@ NRG, SWOG, and ECOG-ACRIN studies are named with the protocol number first, then
 
 An opened NCI study with a protocol on file shows the same kind of brief as the CTSU tracker: amendments, schema, eligibility, assessments, study calendar, specimens, and data submission, including TRIAD when that protocol requires it. Other trials show the ClinicalTrials.gov arm list. A full calendar, specimen table, or image-submission rule is included only when it was read from a protocol. It is not invented.
 
-Those protocol files stay in `Projects/CTSU Trials Workspace/protocols/`. This project reads `data/protocol_briefs.json` and, when a schema is still missing, the newest PDF in that folder. It does not download CTSU protocols, and it does not take the CTSU Chrome lock.
+Those protocol files stay in `Projects/CTSU Trials Workspace/protocols/`. This project reads the briefs through `Projects/CTSU Trials Workspace/scripts/protocol_library.py` and never reads the PDFs; schemas read from a protocol's schema page are filled into the brief in the CTSU project. It does not download CTSU protocols, and it does not take the CTSU Chrome lock. When the library changes, the CTSU project's `scripts/rebuild_consumers.sh` runs `build.py --briefs-only` here and pushes, so the public page carries the new briefs. The page footer gives the library date. In GitHub Actions the CTSU folder is absent, and the build keeps the briefs already in `data/trials.json`.
 
 When a paper names the trial, the opened study details include a Papers row with PubMed, PMC, and DOI links. Protocol papers are listed first. The weekly paper search is `.github/workflows/papers.yml` (Sunday 14:00 UTC, also runnable by hand). It refreshes those links. It does not commit manuscripts. Full-text files stay in local `sources/`, which is gitignored.
 
