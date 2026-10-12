@@ -11,6 +11,7 @@ from tracker.acceptance import run as acceptance
 from tracker.model import add_unique, apply_accrual, country_limit, set_snapshot_rate, tag_groups
 from tracker.present import annotate
 from tracker.pipelines import cctg, ctgov, ctsu, eortc, krog, rttqa, trog
+from tracker.pipelines.ctsu import protocol_library
 from tracker.store import TrialStore
 
 ROOT = Path(__file__).resolve().parent
@@ -48,11 +49,38 @@ def write_dashboard(payload):
     (ROOT / "data" / "trials.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1))
 
 
+def library_stamp():
+    lib = protocol_library()
+    return lib.library_stamp() if lib else None
+
+
+def rebuild_briefs():
+    """Reattach CTSU briefs and saved schemas to the published trial list without refetching sources."""
+    payload = json.loads((ROOT / "data" / "trials.json").read_text())
+    for trial in payload["trials"]:
+        trial.pop("brief", None)
+        trial.pop("registry_schema", None)
+    annotate(payload["trials"], ROOT)
+    payload["trials"].sort(key=lambda trial: (trial.get("name") or trial.get("title") or "").lower())
+    payload["briefs_rebuilt_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    payload["ctsu_library"] = library_stamp()
+    write_dashboard(payload)
+    failed, text = acceptance(payload["trials"], ROOT / "data" / "acceptance.md")
+    print(text)
+    print("trials", len(payload["trials"]))
+    if failed:
+        raise SystemExit(1)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--refresh", action="store_true", help="Ignore cached downloads")
     parser.add_argument("--only", default="", help="Comma-separated pipelines")
+    parser.add_argument("--briefs-only", action="store_true", help="Reattach CTSU protocol briefs to data/trials.json and republish")
     args = parser.parse_args()
+    if args.briefs_only:
+        rebuild_briefs()
+        return
     wanted = {part.strip() for part in args.only.split(",") if part.strip()}
     store = TrialStore()
     log = []
@@ -96,6 +124,7 @@ def main():
             "by_phase": {},
         },
         "build_log": log,
+        "ctsu_library": library_stamp(),
         "trials": store.trials,
     }
     for trial in store.trials:

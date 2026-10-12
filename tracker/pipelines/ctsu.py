@@ -2,12 +2,24 @@
 
 import json
 import re
+import sys
 from pathlib import Path
 
 from ..model import CTGOV_STATUS, blank_trial
 from ..textutil import today_iso
 
-CTSU_ROOT = Path("/Users/jeffryckman/AI Workspace/Projects/CTSU Trials Workspace")
+CTSU_ROOT = Path(__file__).resolve().parents[3] / "CTSU Trials Workspace"
+
+
+def protocol_library():
+    """The CTSU project's protocol_library module, or None where that project is absent (GitHub Actions)."""
+    scripts = CTSU_ROOT / "scripts"
+    if not (scripts / "protocol_library.py").exists():
+        return None
+    if str(scripts) not in sys.path:
+        sys.path.insert(0, str(scripts))
+    import protocol_library
+    return protocol_library
 
 STATUS_MAP = {
     "Active": "recruiting",
@@ -82,7 +94,7 @@ def _record(study, fetched_at, export_source):
         "pipeline": "ctsu",
         "url": "https://ctsu.cancer.gov/protocol",
         "checked": trial["status_checked"],
-        "export": str(CTSU_ROOT / export_source),
+        "export": "CTSU Trials Workspace/" + export_source,
     }]
     trial["checked_at"] = fetched_at
     return trial

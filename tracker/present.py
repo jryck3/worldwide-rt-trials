@@ -1,15 +1,16 @@
 """Display names, disease sites, source tags, and protocol details.
 
-Reads the CTSU protocol briefs. Does not write into the CTSU project.
+Reads CTSU protocol briefs through the CTSU project's protocol_library. Does
+not read protocol PDFs and does not write into the CTSU project.
 """
 
 import json
 import re
 from pathlib import Path
 
-from .pipelines.ctsu import CTSU_ROOT, load_export
+from .pipelines.ctsu import load_export, protocol_library
 from .papers import attach_publications
-from .schema_pdf import apply_saved_schemas, schemas_from_local_protocols
+from .schema_pdf import apply_saved_schemas
 from .textutil import clip
 
 NRG_ID = re.compile(r"\bNRG[-\s]?([A-Z]{2})[-\s]?(\d{3,4})\b", re.I)
@@ -19,7 +20,7 @@ ECOG_E = re.compile(r"\bE(\d{4})\b", re.I)
 RTOG_ID = re.compile(r"\bRTOG[-\s]?(\d{4})\b", re.I)
 
 BRIEF_FIELDS = (
-    "version_date", "posted", "amendments", "schema", "eligibility",
+    "version_date", "posted", "amendments", "schema", "schema_source", "eligibility",
     "pretreatment", "during", "followup", "calendar", "specimens", "submission",
 )
 
@@ -178,38 +179,6 @@ def source_tags(trial):
     return tags
 
 
-def _norm_keys(value):
-    text = (value or "").strip()
-    if not text:
-        return []
-    keys = {text.upper(), re.sub(r"[^A-Z0-9]", "", text.upper())}
-    for match in NRG_ID.finditer(text):
-        keys.add(f"NRG-{match.group(1).upper()}{match.group(2)}")
-    for match in SWOG_ID.finditer(text):
-        number = next(group for group in match.groups() if group)
-        keys.add(f"S{number}")
-    for match in ECOG_EA.finditer(text):
-        keys.add(match.group(1).upper())
-    for match in ECOG_E.finditer(text):
-        keys.add(f"E{match.group(1)}")
-    for match in RTOG_ID.finditer(text):
-        keys.add(f"RTOG-{match.group(1)}")
-        keys.add(f"RTOG{match.group(1)}")
-    return [key for key in keys if key]
-
-
-def _brief_index():
-    path = CTSU_ROOT / "data" / "protocol_briefs.json"
-    if not path.exists():
-        return {}
-    briefs = json.loads(path.read_text())
-    index = {}
-    for protocol, brief in briefs.items():
-        for key in _norm_keys(protocol):
-            index.setdefault(key, brief)
-    return index
-
-
 def _copy_brief(brief):
     copied = {}
     for field in BRIEF_FIELDS:
@@ -219,38 +188,35 @@ def _copy_brief(brief):
     return copied
 
 
-def _attach_briefs(trials, index):
+def _attach_briefs(trials):
+    lib = protocol_library()
+    if lib is None:
+        return False
     for trial in trials:
-        found = []
-        seen = set()
-        for protocol in trial.get("protocols") or []:
-            for key in _norm_keys(protocol):
-                brief = index.get(key)
-                if brief and id(brief) not in seen:
-                    seen.add(id(brief))
-                    found.append(brief)
-        if not found:
-            continue
-        found.sort(key=lambda brief: (bool(brief.get("schema")), len(brief.get("eligibility") or [])), reverse=True)
-        copied = _copy_brief(found[0])
+        _protocol, brief = lib.find_brief(trial.get("protocols") or [])
+        copied = _copy_brief(brief or {})
         if copied:
             trial["brief"] = copied
+    return True
 
 
 def _attach_ctsu_meta(trials):
+    lib = protocol_library()
+    if lib is None:
+        return
     payload, _source = load_export()
     by_nct = {}
     by_protocol = {}
     for study in payload.get("studies") or []:
         if study.get("nct"):
             by_nct[study["nct"]] = study
-        for key in _norm_keys(study.get("protocol")):
+        for key in lib.keys(study.get("protocol")):
             by_protocol.setdefault(key, study)
     for trial in trials:
         study = by_nct.get(trial.get("nct"))
         if study is None:
             for protocol in trial.get("protocols") or []:
-                for key in _norm_keys(protocol):
+                for key in lib.keys(protocol):
                     study = by_protocol.get(key)
                     if study:
                         break
@@ -352,23 +318,13 @@ def _load_saved_schemas(root):
     return json.loads(path.read_text())
 
 
-def _write_saved_schemas(root, filled):
-    if not filled:
-        return
-    path = Path(root) / "config" / "protocol_schemas.json"
-    saved = _load_saved_schemas(root)
-    saved.update(filled)
-    path.write_text(json.dumps(saved, indent=1, ensure_ascii=False) + "\n")
-
-
 def annotate(trials, root):
     """Fill display fields on an existing trial list. Safe to run more than once."""
     root = Path(root)
     _attach_ctsu_meta(trials)
-    _attach_briefs(trials, _brief_index())
+    _attach_briefs(trials)
     apply_saved_schemas(trials, _load_saved_schemas(root))
     attach_publications(trials, root)
-    _write_saved_schemas(root, schemas_from_local_protocols(trials))
     _attach_registry_schema(trials, root / "data" / "cache" / "ctgov")
     for trial in trials:
         trial["name"] = display_name(trial)

@@ -12,6 +12,8 @@ NRG, SWOG, and ECOG-ACRIN studies are named with the protocol number first, then
 
 An opened NCI study with a protocol on file shows the same kind of brief as the CTSU tracker: amendments, schema, eligibility, assessments, study calendar, specimens, and data submission, including TRIAD when that protocol requires it. Other trials show the ClinicalTrials.gov arm list. A full calendar, specimen table, or image-submission rule is included only when it was read from a protocol. It is not invented.
 
+Those protocol files stay in `Projects/CTSU Trials Workspace/protocols/`. This project reads `data/protocol_briefs.json` and, when a schema is still missing, the newest PDF in that folder. It does not download CTSU protocols, and it does not take the CTSU Chrome lock.
+
 When a paper names the trial, the opened study details include a Papers row with PubMed, PMC, and DOI links. Protocol papers are listed first. The weekly paper search is `.github/workflows/papers.yml` (Sunday 14:00 UTC, also runnable by hand). It refreshes those links. It does not commit manuscripts. Full-text files stay in local `sources/`, which is gitignored.
 
 ## Accrual quality

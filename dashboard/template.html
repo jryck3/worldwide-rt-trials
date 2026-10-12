@@ -135,6 +135,7 @@
     <div class="cards" id="mine"></div>
   </section>
   <div class="counts" id="counts"></div>
+  <p class="caveat" id="library"></p>
   <div class="filters" id="filters">
     <div class="filter-row">
       <span class="filter-name">Search</span>
@@ -368,6 +369,8 @@ function render() {
     [DATA.trials.length, "In the database"],
   ].map(([n, label]) => `<div><b>${n}</b><span>${label}</span></div>`).join("");
   $("empty").hidden = rows.length > 0;
+  const lib = DATA.ctsu_library;
+  $("library").textContent = lib && lib.as_of ? `NCI protocol briefs from the CTSU protocol library as of ${lib.as_of}.` : "";
   $("rows").innerHTML = rows.map(t => {
     const id = esc(t.id);
     const open = state.open === t.id;

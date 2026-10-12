@@ -31,7 +31,7 @@ jobs:
         if: always()
         run: |
           files=()
-          for f in config/publications.json data/trials.json docs/index.html dashboard/index.html; do
+          for f in config/publications.json data/trials.json docs/index.html; do
             if [ -f "$f" ]; then files+=("$f"); fi
           done
           if [ ${#files[@]} -eq 0 ]; then
