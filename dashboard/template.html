@@ -28,6 +28,9 @@
   .btn { background: #14304f; color: #fff; border: 1px solid #14304f; padding: 7px 12px; }
   .btn.ghost { background: #fff; color: var(--ink); border-color: var(--line); }
   .btn:disabled { opacity: .5; cursor: default; }
+  .digest-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 10px; }
+  .digest-btn { display: inline-block; margin: 0; border-radius: 8px; white-space: normal; text-align: left; max-width: 100%; }
+  .section-head { margin: 22px 0 10px; font-size: 18px; font-weight: 650; }
   main { padding: 16px 22px 48px; }
   .counts { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
   .counts div { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; min-width: 120px; }
@@ -123,6 +126,10 @@
 <main>
   <section class="mine-panel" aria-labelledby="mine-h">
     <h2 id="mine-h">My trials</h2>
+    <div class="digest-actions">
+      <button class="btn digest-btn" id="print-mine-brief" type="button">Print brief PDF of filtered studies displayed below</button>
+      <button class="btn digest-btn" id="print-mine-full" type="button">Print comprehensive PDF of filtered studies displayed below</button>
+    </div>
     <div class="mine-tools">
       <div class="combo">
         <input id="add-q" type="search" placeholder="Add a trial: name, NCT, ISRCTN, or group" autocomplete="off">
@@ -137,6 +144,12 @@
   <div class="counts" id="counts"></div>
   <p class="caveat" id="library"></p>
   <p class="caveat" id="papers"></p>
+  <h2 id="explore-h" class="section-head">Explore Worldwide RT Studies</h2>
+  <div class="digest-actions">
+    <button class="btn digest-btn" id="print-explore-brief" type="button">Print brief PDF of filtered studies displayed below</button>
+    <button class="btn digest-btn" id="print-explore-full" type="button">Print comprehensive PDF of filtered studies displayed below</button>
+  </div>
+  <button class="btn ghost" id="filter-toggle" type="button" aria-expanded="true" aria-controls="filters">Show/hide filters</button>
   <div class="filters" id="filters">
     <div class="filter-row">
       <span class="filter-name">Search</span>
@@ -362,7 +375,7 @@ function detail(t) {
   const papers = paperHtml(t);
   return `<div class="detail-grid">${rows.filter(([, v]) => v).map(([k, v]) => `<b>${esc(k)}</b><div>${esc(v)}</div>`).join("")}${papers ? `<b>Papers</b><div>${papers}</div>` : ""}${links ? `<b>Links</b><div>${links}</div>` : ""}</div>${briefHtml(t)}`;
 }
-function render() {
+function exploreRows() {
   let rows = DATA.trials.filter(match);
   const key = state.sort;
   rows.sort((a, b) => {
@@ -372,6 +385,10 @@ function render() {
     if (av > bv) return 1 * state.dir;
     return (a.name || "").localeCompare(b.name || "");
   });
+  return rows;
+}
+function render() {
+  const rows = exploreRows();
   const recruiting = rows.filter(t => t.status === "recruiting").length;
   const snap = rows.filter(t => t.accrual.quality === "snapshot").length;
   $("counts").innerHTML = [
@@ -382,6 +399,7 @@ function render() {
     [DATA.trials.filter(t => t.brief_source === "protocol" || t.brief_source === "paper").length, "With a protocol or paper brief"],
   ].map(([n, label]) => `<div><b>${n}</b><span>${label}</span></div>`).join("");
   $("empty").hidden = rows.length > 0;
+  $("print-explore-brief").disabled = $("print-explore-full").disabled = !rows.length;
   const lib = DATA.ctsu_library;
   $("library").textContent = lib && lib.as_of ? `NCI protocol briefs from the CTSU protocol library as of ${lib.as_of}.` : "";
   const papers = DATA.paper_library;
@@ -465,10 +483,16 @@ function card(t) {
   </article>`;
 }
 
+function mineTrials() {
+  return store.list.map(id => BY[id]).filter(Boolean).sort((a, b) =>
+    (a.name || a.title || "").localeCompare(b.name || b.title || "", undefined, {numeric: true}));
+}
 function renderMine() {
+  const list = mineTrials();
   $("share").disabled = $("clear").disabled = !store.list.length;
-  $("mine").innerHTML = store.list.length
-    ? store.list.map(id => card(BY[id])).join("")
+  $("print-mine-brief").disabled = $("print-mine-full").disabled = !list.length;
+  $("mine").innerHTML = list.length
+    ? list.map(card).join("")
     : `<div class="empty-mine"><b>No trials selected.</b> Search above, or click the star on a study in the table.</div>`;
   if (!$("save-state").classList.contains("err")) renderSaveState();
 }
@@ -701,6 +725,335 @@ $("filters").addEventListener("change", ev => {
 });
 syncMaster();
 $("q").oninput = () => { state.q = $("q").value; render(); };
+$("filter-toggle").onclick = () => {
+  const box = $("filters");
+  box.hidden = !box.hidden;
+  $("filter-toggle").setAttribute("aria-expanded", String(!box.hidden));
+};
+
+const DIGEST_LIMIT = 25;
+const DIGEST_CAVEAT = "Clinic rendition of the protocol brief on file. Confirm the current protocol before enrollment.";
+const DIGEST_CSS = `
+  @page { size: letter; margin: 0.45in 0.55in 0.4in; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; color: #1b2430; font: 11pt/1.45 Georgia, "Iowan Old Style", Palatino, "Palatino Linotype", serif; }
+  .measure { position: absolute; left: 0; top: 0; width: 7.4in; visibility: hidden; }
+  .probe-sheet { width: 7.4in; height: 10.15in; }
+  .sheet { width: 7.4in; min-height: 10.15in; display: flex; flex-direction: column; break-after: page; page-break-after: always; }
+  .sheet:last-child { break-after: auto; page-break-after: auto; }
+  .sheet > header.run, .sheet > footer.run { flex: none; }
+  .sheet-body { flex: 1 1 auto; }
+  header.run { border-bottom: 2.5px solid #1f3a5f; padding-bottom: 8px; margin-bottom: 6px; }
+  .tracker { margin: 0; font: 650 8.5pt/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #1f3a5f; }
+  .tracker-line { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin: 0; }
+  .loc { font: 700 8.5pt/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: .02em; color: #1f3a5f; }
+  .filters { margin: 7px 0 2px; font: 9.5pt/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #3d4756; }
+  header.run h1 { margin: 2px 0 0; font: 650 18pt/1.15 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f3a5f; }
+  .when { margin: 4px 0 0; color: #5b6676; font: 10pt/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  article.study { break-inside: avoid; page-break-inside: avoid; padding: 10px 0 12px; border-bottom: 1px solid #d5dde6; }
+  article.study h2 { margin: 0; font: 650 13pt/1.25 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f3a5f; }
+  .meta, .title, .accrual, .none { margin: 3px 0 0; }
+  .meta, .accrual, .none { font: 9.5pt/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #3d4756; }
+  .title { font-style: italic; color: #1b2430; }
+  .schema { margin-top: 6px; }
+  .step { margin: 4px 0; }
+  .step > b { color: #1f3a5f; }
+  .arms { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+  .arm { border: 1px solid #d5dde6; border-left: 3px solid #2b6cb0; border-radius: 4px; padding: 4px 8px; font-size: 10pt; background: #f7f9fc; }
+  .arm b { color: #1f3a5f; }
+  .toc-site { break-inside: avoid; page-break-inside: avoid; padding: 8px 0 10px; border-bottom: 1px solid #d5dde6; }
+  .toc-line { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+  .toc-line b { font: 650 13pt/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f3a5f; }
+  .toc-num { font: 650 12pt/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f3a5f; }
+  .toc-site ul { margin: 4px 0 0; padding-left: 18px; }
+  .toc-site li { margin: 1px 0; }
+  footer.run { display: flex; justify-content: space-between; gap: 16px; align-items: flex-end; border-top: 1px solid #d5dde6; padding-top: 6px; margin-top: auto; font: 8.5pt/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #5b6676; }
+  .pageno { font: 650 12pt/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f3a5f; }
+`;
+
+function armBlocks(arms) {
+  return (arms || []).map(arm => `<div class="arm"><b>${esc(arm.label || "Arm")}</b> ${esc(arm.text || "")}</div>`).join("");
+}
+
+function schemaBlocks(steps) {
+  return (steps || []).map(step => {
+    const arms = armBlocks(step.arms);
+    const label = step.label ? `<b>${esc(step.label)}.</b> ` : "";
+    return `<div class="step">${label}${esc(step.text || "")}${arms ? `<div class="arms">${arms}</div>` : ""}</div>`;
+  }).join("");
+}
+
+function briefSchema(steps) {
+  const arms = [];
+  const endpoints = [];
+  (steps || []).forEach(step => {
+    (step.arms || []).forEach(arm => arms.push(arm));
+    if (/primary endpoint/i.test(step.label || "")) endpoints.push(step);
+  });
+  const armHtml = armBlocks(arms);
+  const endHtml = endpoints.map(step => `<div class="step"><b>${esc(step.label)}.</b> ${esc(step.text || "")}</div>`).join("");
+  return `${armHtml ? `<div class="arms">${armHtml}</div>` : ""}${endHtml}`;
+}
+
+
+function digestDocument(meta) {
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>${esc(meta.fileTitle || meta.heading)}</title><style>${DIGEST_CSS}</style></head><body data-tracker="${esc(meta.tracker)}" data-mode="${esc(meta.mode)}" data-heading="${esc(meta.heading)}" data-when="${esc(meta.when)}" data-filters="${esc(meta.filters || "")}" data-places="${esc(meta.places || "")}"><div id="measure" class="measure">${meta.articles}</div><div id="out"></div><script>
+function packDigest() {
+  var measure = document.getElementById("measure");
+  var tracker = document.body.dataset.tracker;
+  var mode = document.body.dataset.mode;
+  var heading = document.body.dataset.heading;
+  var when = document.body.dataset.when;
+  var filters = document.body.dataset.filters || "";
+  var places = document.body.dataset.places || "";
+  var studies = Array.prototype.slice.call(measure.querySelectorAll("article.study"));
+  var whenText = mode + " · " + heading + " · " + studies.length + (studies.length === 1 ? " study" : " studies") + " · " + when;
+  var caveat = ${JSON.stringify(DIGEST_CAVEAT)};
+  function makeHeader(kind, title) {
+    var header = document.createElement("header");
+    header.className = "run " + kind;
+    header.innerHTML = '<p class="tracker-line"><span class="tracker"><\/span><\/p><h1><\/h1>' + (kind === "toc-head" ? '<p class="when"><\/p>' : "");
+    header.querySelector(".tracker").textContent = tracker;
+    if (places) {
+      var loc = document.createElement("b");
+      loc.className = "loc";
+      loc.textContent = places;
+      header.querySelector(".tracker-line").appendChild(loc);
+    }
+    if (kind === "toc-head" && filters) {
+      var line = document.createElement("p");
+      line.className = "filters";
+      line.textContent = filters;
+      header.insertBefore(line, header.querySelector("h1"));
+    }
+    header.querySelector("h1").textContent = title;
+    if (kind === "toc-head") header.querySelector(".when").textContent = whenText;
+    return header;
+  }
+  function makeFooter(pageNo) {
+    var footer = document.createElement("footer");
+    footer.className = "run";
+    footer.innerHTML = '<span class="caveat"><\/span><span class="pageno"><\/span>';
+    footer.querySelector(".caveat").textContent = caveat;
+    footer.querySelector(".pageno").textContent = String(pageNo);
+    return footer;
+  }
+  var probeSheet = document.createElement("div");
+  probeSheet.className = "probe-sheet";
+  var siteProbe = makeHeader("site-head", "Site");
+  var tocProbe = makeHeader("toc-head", "Contents");
+  var footProbe = makeFooter("00");
+  measure.insertBefore(footProbe, measure.firstChild);
+  measure.insertBefore(tocProbe, measure.firstChild);
+  measure.insertBefore(siteProbe, measure.firstChild);
+  measure.insertBefore(probeSheet, measure.firstChild);
+  function outerH(el) {
+    var s = getComputedStyle(el);
+    return el.offsetHeight + (parseFloat(s.marginTop) || 0) + (parseFloat(s.marginBottom) || 0);
+  }
+  var sheetH = probeSheet.offsetHeight;
+  var footH = outerH(footProbe);
+  var slack = 48;
+  function contentAvail(site) {
+    siteProbe.querySelector("h1").textContent = site || "Site";
+    return sheetH - outerH(siteProbe) - footH - slack;
+  }
+  var tocAvail = sheetH - outerH(tocProbe) - footH - slack;
+  var groups = [];
+  var seen = {};
+  studies.forEach(function(article) {
+    var site = article.dataset.site || "Site not stated";
+    if (!seen[site]) { seen[site] = {site: site, articles: []}; groups.push(seen[site]); }
+    seen[site].articles.push({el: article, h: outerH(article)});
+  });
+  groups.sort(function(a, b) { return a.site.localeCompare(b.site, undefined, {numeric: true}); });
+  function packStudies() {
+    var pages = [];
+    groups.forEach(function(group) {
+      var avail = contentAvail(group.site);
+      var bucket = [];
+      var used = 0;
+      function flush() {
+        if (!bucket.length) return;
+        pages.push({site: group.site, items: bucket});
+        bucket = [];
+        used = 0;
+      }
+      group.articles.forEach(function(item) {
+        if (bucket.length && used + item.h > avail) flush();
+        bucket.push(item);
+        used += item.h;
+        if (item.h > avail) flush();
+      });
+      flush();
+    });
+    return pages;
+  }
+  function tocBlocks(start) {
+    return groups.map(function(group) {
+      var block = document.createElement("section");
+      block.className = "toc-site";
+      var line = document.createElement("div");
+      line.className = "toc-line";
+      var name = document.createElement("b");
+      name.textContent = group.site;
+      var num = document.createElement("span");
+      num.className = "toc-num";
+      num.textContent = String(start[group.site] || "");
+      line.appendChild(name);
+      line.appendChild(num);
+      var list = document.createElement("ul");
+      group.articles.forEach(function(item) {
+        var li = document.createElement("li");
+        li.textContent = item.el.querySelector("h2").textContent;
+        list.appendChild(li);
+      });
+      block.appendChild(line);
+      block.appendChild(list);
+      measure.appendChild(block);
+      return {el: block, h: outerH(block)};
+    });
+  }
+  function packBlocks(blocks, avail) {
+    var pages = [];
+    var bucket = [];
+    var used = 0;
+    function flush() {
+      if (!bucket.length) return;
+      pages.push(bucket);
+      bucket = [];
+      used = 0;
+    }
+    blocks.forEach(function(block) {
+      if (bucket.length && used + block.h > avail) flush();
+      bucket.push(block);
+      used += block.h;
+      if (block.h > avail) flush();
+    });
+    flush();
+    return pages;
+  }
+  function makeSheet(title, pageNo, contents) {
+    var section = document.createElement("section");
+    section.className = "sheet";
+    var header = makeHeader(contents ? "toc-head" : "site-head", title);
+    var body = document.createElement("div");
+    body.className = "sheet-body";
+    section.appendChild(header);
+    section.appendChild(body);
+    section.appendChild(makeFooter(pageNo));
+    return section;
+  }
+  var tocPageCount = 1;
+  var contentPages = [];
+  var tocPages = [];
+  var pass;
+  for (pass = 0; pass < 5; pass++) {
+    Array.prototype.forEach.call(measure.querySelectorAll(".toc-site"), function(el) { el.remove(); });
+    contentPages = packStudies();
+    var start = {};
+    contentPages.forEach(function(page, i) {
+      if (start[page.site] == null) start[page.site] = tocPageCount + 1 + i;
+    });
+    tocPages = packBlocks(tocBlocks(start), tocAvail);
+    if (tocPages.length === tocPageCount) break;
+    tocPageCount = Math.max(1, tocPages.length);
+  }
+  var out = document.getElementById("out");
+  var pageNo = 1;
+  tocPages.forEach(function(bucket) {
+    var sheet = makeSheet("Contents", pageNo, true);
+    bucket.forEach(function(block) { sheet.querySelector(".sheet-body").appendChild(block.el); });
+    out.appendChild(sheet);
+    pageNo++;
+  });
+  contentPages.forEach(function(page) {
+    var sheet = makeSheet(page.site, pageNo, false);
+    page.items.forEach(function(item) { sheet.querySelector(".sheet-body").appendChild(item.el); });
+    out.appendChild(sheet);
+    pageNo++;
+  });
+  measure.remove();
+}
+packDigest();
+<\/script></body></html>`;
+}
+
+
+function worldwideName(t) {
+  const protocol = (t.protocols || [])[0] || "";
+  const raw = (t.name || "").trim();
+  const wrapped = /^(.*?)\s*\(([^)]+)\)\s*$/.exec(raw);
+  if (wrapped) {
+    const left = wrapped[1].trim();
+    const right = wrapped[2].trim();
+    if (!protocol || left === protocol) return `${left} (${right})`;
+    if (right === protocol) return `${protocol} (${left})`;
+  }
+  if (protocol && raw && raw !== protocol) return `${protocol} (${raw})`;
+  return raw || protocol || t.nct || t.id;
+}
+
+function trialArticle(t, mode) {
+  const name = worldwideName(t);
+  const meta = [phaseText(t), (t.groups || []).slice(0, 3).join(", "), t.status || "", t.nct || t.isrctn || ""].filter(Boolean).join(" · ");
+  const site = (t.disease_sites || []).filter(Boolean).join("; ") || "Site not stated";
+  const steps = (t.brief && t.brief.schema && t.brief.schema.length) ? t.brief.schema : (t.registry_schema || []);
+  const schema = steps.length ? (mode === "brief" ? briefSchema(steps) : schemaBlocks(steps)) : "";
+  const accrualValue = mode === "comprehensive" ? accrualText(t) : "";
+  const accrual = accrualValue && accrualValue !== "No number" ? accrualValue : "";
+  const none = schema ? "" : (mode === "brief" && (t.brief || steps.length) ? "" : `<p class="none">${t.brief ? "No schema is on file for this protocol brief." : "No protocol brief is on file."}</p>`);
+  const title = t.title && t.title !== name ? `<p class="title">${esc(t.title)}</p>` : "";
+  return `<article class="study" data-site="${esc(site)}"><h2>${esc(name)}</h2><p class="meta">${esc(meta)}</p>${title}${schema ? `<div class="schema">${schema}</div>` : none}${accrual ? `<p class="accrual">${esc(accrual)}</p>` : ""}</article>`;
+}
+
+function worldwideFilters() {
+  const parts = [];
+  if (state.q) parts.push(`Search: ${state.q}`);
+  document.querySelectorAll("#filters .filter-row").forEach(row => {
+    const name = row.querySelector(".filter-name");
+    const boxes = [...row.querySelectorAll('input[type="checkbox"]:not([data-all])')];
+    if (!name || !boxes.length) return;
+    const label = name.textContent.trim();
+    const on = boxes.filter(box => box.checked);
+    if (on.length === boxes.length) parts.push(`${label}: all`);
+    else if (!on.length) parts.push(`${label}: none`);
+    else if (on.length > 8) parts.push(`${label}: ${on.length} selected`);
+    else parts.push(`${label}: ${on.map(box => box.parentElement.textContent.replace(/\s+/g, " ").trim()).join(", ")}`);
+  });
+  return parts.join(" · ");
+}
+
+function openDigest(trials, heading, mode) {
+  if (!trials.length) return;
+  if (trials.length > DIGEST_LIMIT && !confirm("You have selected to print more than 25 studies. Are you sure?")) return;
+  const when = new Date().toLocaleString("en-US", {dateStyle: "long", timeStyle: "short"});
+  const kind = mode === "brief" ? "Brief" : "Comprehensive";
+  const now = new Date();
+  const stamp = String(now.getMonth() + 1).padStart(2, "0") + String(now.getDate()).padStart(2, "0") + now.getFullYear();
+  const html = digestDocument({
+    tracker: "Worldwide radiation oncology trials",
+    mode: kind,
+    fileTitle: `Worldwide RT Trials ${kind} ${stamp}`,
+    heading,
+    when,
+    filters: worldwideFilters(),
+    places: "",
+    articles: trials.map(t => trialArticle(t, mode)).join("")
+  });
+  const w = window.open("", "_blank");
+  if (!w) return;
+  w.document.open();
+  w.document.write(html);
+  w.document.close();
+  setTimeout(() => { try { w.focus(); w.print(); } catch (e) {} }, 250);
+}
+
+$("print-mine-brief").onclick = () => openDigest(mineTrials(), "My trials", "brief");
+$("print-mine-full").onclick = () => openDigest(mineTrials(), "My trials", "comprehensive");
+$("print-explore-brief").onclick = () => openDigest(exploreRows(), "Explore Worldwide RT Studies", "brief");
+$("print-explore-full").onclick = () => openDigest(exploreRows(), "Explore Worldwide RT Studies", "comprehensive");
+
 store.load();
 renderMine();
 initFirebase();
