@@ -3,6 +3,7 @@
 import json
 import subprocess
 import time
+from pathlib import Path
 from urllib.parse import urlencode
 
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 (worldwide RT trial tracker; research)"
@@ -62,6 +63,41 @@ def fetch_json(url, timeout=90, headers=None):
 def fetch_bytes(url, timeout=90):
     body, _status = fetch(url, timeout=timeout)
     return body
+
+
+def fetch_file(url, dest, timeout=90, retries=4):
+    """Write a URL to dest as bytes. Returns (status, bytes_written)."""
+    dest = Path(dest)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    tmp = dest.with_suffix(dest.suffix + ".part")
+    cmd = [
+        "curl", "-sS", "-L", "--compressed", "--max-time", str(timeout),
+        "-A", UA, "-o", str(tmp), "-w", "%{http_code}",
+    ]
+    cmd.append(url)
+    last = None
+    for attempt in range(retries):
+        try:
+            raw = subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+        except subprocess.CalledProcessError as exc:
+            last = exc
+            time.sleep(1.5 * (attempt + 1))
+            continue
+        status = int(raw.decode().strip() or "0")
+        if status in (429, 500, 502, 503, 504):
+            last = FetchError(url, status, "")
+            time.sleep(2.5 * (attempt + 1))
+            continue
+        if status >= 400:
+            tmp.unlink(missing_ok=True)
+            raise FetchError(url, status, "")
+        size = tmp.stat().st_size if tmp.exists() else 0
+        tmp.replace(dest)
+        return status, size
+    tmp.unlink(missing_ok=True)
+    if isinstance(last, Exception):
+        raise last
+    raise RuntimeError(f"download failed for {url}")
 
 
 def with_query(url, params):

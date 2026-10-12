@@ -14,7 +14,9 @@ An opened NCI study with a protocol on file shows the same kind of brief as the 
 
 Those protocol files stay in `Projects/CTSU Trials Workspace/protocols/`. This project reads the briefs through `Projects/CTSU Trials Workspace/scripts/protocol_library.py` and never reads the PDFs; schemas read from a protocol's schema page are filled into the brief in the CTSU project. It does not download CTSU protocols, and it does not take the CTSU Chrome lock. When the library changes, the CTSU project's `scripts/rebuild_consumers.sh` runs `build.py --briefs-only` here and pushes, so the public page carries the new briefs. The page footer gives the library date. In GitHub Actions the CTSU folder is absent, and the build keeps the briefs already in `data/trials.json`.
 
-When a paper names the trial, the opened study details include a Papers row with PubMed, PMC, and DOI links. Protocol papers are listed first. The weekly paper search is `.github/workflows/papers.yml` (Sunday 14:00 UTC, also runnable by hand). It refreshes those links. It does not commit manuscripts. Full-text files stay in local `sources/`, which is gitignored.
+When a paper names the trial, the opened study details include a Papers row with PubMed, PMC, and DOI links, and whether the full text is on file. Protocol papers are listed first. The weekly paper search is `.github/workflows/papers.yml` (Sunday 14:00 UTC, also runnable by hand). It refreshes those links. It does not commit manuscripts.
+
+Full texts stay in local `sources/manuscripts/`, which is gitignored, the same way CTSU protocols stay in that project's `protocols/` folder. `scripts/collect_papers.py --oa` downloads a paper only when PubMed Central or Europe PMC already has the full article. Publisher and WVU pages are never opened unless Jeff is asked first. Papers that still need access, or that could not be retrieved, are logged in `config/paper_access.json` and `logs/paper-access.md`. `scripts/briefs_from_manuscripts.py --write` reads those files into the same brief sections the CTSU tracker uses. The page footer gives the paper-library counts. The Brief filter selects NCI protocol, full paper, registry only, or none.
 
 ## Accrual quality
 
@@ -48,7 +50,7 @@ The EU CTIS public search API returned HTTP 403 (missing authentication). Countr
 
 ## RT classification
 
-RT-focused means radiotherapy is named in the title or is the randomized question. RT component means protocol-specified external-beam or brachytherapy radiotherapy that is not the randomized question. Radiopharmaceuticals are a separate role and are included when RT role All is selected. Imaging tracers are excluded. Phase 1 studies stay in the file and are hidden until that phase box is checked.
+RT-focused means radiotherapy is named in the title or is the randomized question. RT component means protocol-specified external-beam or brachytherapy radiotherapy that is not the randomized question. Radiopharmaceuticals are a separate role: a therapeutic isotope without protocol-specified external-beam or brachytherapy. A trial that combines Lu-177 or SIRT with EBRT stays RT-focused or RT component. Imaging tracers (Ga-68, F-18, FDG) are excluded. Phase 1 studies stay in the file and are hidden until that phase box is checked.
 
 When a registry field disagrees with a group page or with an earlier description, the registry phase, status, population, and primary endpoint are kept, and the disagreement is stored with the date checked.
 

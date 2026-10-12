@@ -136,6 +136,7 @@
   </section>
   <div class="counts" id="counts"></div>
   <p class="caveat" id="library"></p>
+  <p class="caveat" id="papers"></p>
   <div class="filters" id="filters">
     <div class="filter-row">
       <span class="filter-name">Search</span>
@@ -246,6 +247,7 @@ function match(t) {
   if (!((t.source_tags || [t.source_pipeline]).some(tag => state.source.has(tag)))) return false;
   if (state.disease && !(t.disease_sites || ["Other"]).some(site => state.disease.has(site))) return false;
   if (state.country && !countryKeys(t).some(country => state.country.has(country))) return false;
+  if (state.brief && !state.brief.has(t.brief_source || "none")) return false;
   if (state.q) {
     const blob = [t.name, t.title, t.nct, t.isrctn, (t.protocols || []).join(" "), (t.groups || []).join(" "), (t.conditions || []).join(" "), t.population, t.platform].join(" ").toLowerCase();
     if (!state.q.toLowerCase().split(/\s+/).every(w => blob.includes(w))) return false;
@@ -281,10 +283,10 @@ function briefHtml(t) {
     const calendar = assessRows(b.calendar);
     const specimens = assessRows(b.specimens);
     const steps = schemaHtml(b.schema);
-    const fromProtocolFile = !b.schema_source || /protocol on file|protocol page/i.test(b.schema_source);
+    const fromProtocolFile = !b.schema_source || /protocol on file|protocol page|CTSU/i.test(b.schema_source);
     const caveat = fromProtocolFile
       ? "Rendition of the current protocol on file, not a copy of the protocol page. Confirm the protocol before enrollment."
-      : "Taken from the cited paper. Confirm the current protocol before enrollment.";
+      : "Taken from the cited full paper on file. Confirm the current protocol before enrollment.";
     return `<div class="brief">
       <p class="caveat">${esc(caveat)}</p>
       ${amendments ? `<div><h4>Amendments</h4><ul>${amendments}</ul></div>` : ""}
@@ -299,7 +301,13 @@ function briefHtml(t) {
     </div>`;
   }
   const steps = schemaHtml(t.registry_schema);
-  return `<div class="brief"><p class="caveat">No protocol PDF is on file for this row. A published protocol paper has not been read into the schema. Amendments, assessment tables, the study calendar, specimens, and image submission are shown only when a protocol was read.</p>${steps ? `<div><h4>Schema</h4><p class="caveat">ClinicalTrials.gov study record. The arms and design text are the registry's.</p><ol class="flow">${steps}</ol></div>` : ""}</div>`;
+  return `<div class="brief"><p class="caveat">No protocol PDF or full paper is on file for this row. A published protocol paper has not been read into the schema. Amendments, assessment tables, the study calendar, specimens, and image submission are shown only when a protocol or full paper was read.</p>${steps ? `<div><h4>Schema</h4><p class="caveat">ClinicalTrials.gov study record. The arms and design text are the registry's.</p><ol class="flow">${steps}</ol></div>` : ""}</div>`;
+}
+function paperAccess(p) {
+  if (p.access === "on_file") return "On file";
+  if (p.access === "inaccessible") return "Not accessible";
+  if (p.access === "needs_access") return "Needs access";
+  return "";
 }
 function paperHtml(t) {
   const papers = t.publications || [];
@@ -311,7 +319,8 @@ function paperHtml(t) {
     if (p.doi_url) links.push(`<a href="${esc(p.doi_url)}" target="_blank" rel="noopener">DOI</a>`);
     const cite = [p.authors, p.journal, p.year].filter(Boolean).join(", ");
     const role = p.role === "protocol" ? "Protocol" : p.role === "results" ? "Results" : "Paper";
-    return `<div class="paper"><div class="sub">${esc(role)}${cite ? " · " + esc(cite) : ""}</div><div>${esc(p.title || "")}</div>${links.length ? `<div>${links.join(" · ")}</div>` : ""}</div>`;
+    const access = paperAccess(p);
+    return `<div class="paper"><div class="sub">${esc(role)}${access ? " · " + esc(access) : ""}${cite ? " · " + esc(cite) : ""}</div><div>${esc(p.title || "")}</div>${links.length ? `<div>${links.join(" · ")}</div>` : ""}</div>`;
   }).join("");
   const more = t.publications_more > 0 ? `<div class="sub">${t.publications_more} more papers name this trial.</div>` : "";
   return blocks + more;
@@ -341,6 +350,9 @@ function detail(t) {
     ["Status source", `${t.status_source || ""} ${t.status_checked || ""}`.trim()],
     ["Registry status", t.registry_status && t.registry_status !== t.status ? t.registry_status : ""],
     ["Enrollment geography", t.country_limit],
+    ["Brief source", ({protocol: "NCI protocol on file", paper: "Full paper on file", registry: "ClinicalTrials.gov only", none: "None"}[t.brief_source] || t.brief_source)],
+    ["Papers on file", t.paper_on_file ? String(t.paper_on_file) : ""],
+    ["Papers needing access", t.paper_needs_access ? String(t.paper_needs_access) : ""],
     ["Brought in by", t.source_pipeline],
     ["Also seen in", (t.pipelines || []).filter(p => p !== t.source_pipeline).join(", ")],
     ["Notes", (a.notes || []).join(" ")],
@@ -367,10 +379,15 @@ function render() {
     [recruiting, "Recruiting in this view"],
     [snap, "With a snapshot accrual"],
     [DATA.trials.length, "In the database"],
+    [DATA.trials.filter(t => t.brief_source === "protocol" || t.brief_source === "paper").length, "With a protocol or paper brief"],
   ].map(([n, label]) => `<div><b>${n}</b><span>${label}</span></div>`).join("");
   $("empty").hidden = rows.length > 0;
   const lib = DATA.ctsu_library;
   $("library").textContent = lib && lib.as_of ? `NCI protocol briefs from the CTSU protocol library as of ${lib.as_of}.` : "";
+  const papers = DATA.paper_library;
+  $("papers").textContent = papers
+    ? `Full papers on file ${papers.on_file || 0} of ${papers.cited || 0}. ${papers.needs_access || 0} still need access. ${papers.inaccessible || 0} could not be retrieved from an open source.`
+    : "";
   $("rows").innerHTML = rows.map(t => {
     const id = esc(t.id);
     const open = state.open === t.id;
@@ -585,6 +602,9 @@ addFilterRow("quality", "Accrual", [
 const sourceOrder = ["nrg", "swog", "ecog", "alliance", "cctg", "cog", "etctn", "pep-ctn", "eortc", "trog", "rttqa", "krog", "ctgov"];
 const sources = sourceOrder.filter(s => DATA.trials.some(t => (t.source_tags || []).includes(s)));
 addFilterRow("source", "Source", sources.map(s => [s, SOURCE_LABEL[s] || s]), sources);
+addFilterRow("brief", "Brief", [
+  ["protocol", "NCI protocol"], ["paper", "Full paper"], ["registry", "Registry only"], ["none", "None"],
+], ["protocol", "paper", "registry", "none"]);
 function syncMaster() {
   const filtersComplete = Object.entries(FILTERS).every(([key, values]) => values.every(value => state[key].has(value)));
   const filtersAny = Object.entries(FILTERS).some(([key, values]) => values.some(value => state[key].has(value)));

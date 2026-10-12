@@ -99,6 +99,20 @@ def pdf_text(path):
     return clean_text("\n".join(chunks))
 
 
+def xml_text(path):
+    raw = path.read_text(errors="ignore")
+    raw = re.sub(r"<script[\s\S]*?</script>", " ", raw, flags=re.I)
+    raw = re.sub(r"<style[\s\S]*?</style>", " ", raw, flags=re.I)
+    raw = re.sub(r"<[^>]+>", " ", raw)
+    return clean_text(raw)
+
+
+def manuscript_text(path):
+    if path.suffix.lower() == ".xml":
+        return xml_text(path)
+    return pdf_text(path)
+
+
 def clip(text, limit=420):
     text = SPACE.sub(" ", text).strip()
     if len(text) <= limit:
@@ -215,17 +229,35 @@ def brief_from_text(text, row):
 
 
 def load_targets(schemas):
-    needed = json.loads(NEEDED.read_text())
+    needed = json.loads(NEEDED.read_text()) if NEEDED.exists() else []
+    pubs = json.loads((ROOT / "config" / "publications.json").read_text())
+    for trial_id, record in pubs.items():
+        for paper in record.get("papers") or []:
+            needed.append({
+                "pmid": paper.get("pmid"),
+                "trial_id": trial_id if str(trial_id).startswith("NCT") else (paper.get("nct") or trial_id),
+                "paper_title": paper.get("title") or "",
+                "authors": paper.get("authors") or "",
+                "journal": paper.get("journal") or "",
+                "year": str(paper.get("year") or "")[:4],
+            })
     cited = set()
     for record in schemas.values():
         if isinstance(record, dict):
             cited.update(re.findall(r"PMID\s*(\d+)", record.get("schema_source") or ""))
     grouped = {}
+    seen = set()
     for row in needed:
         pmid = str(row.get("pmid") or "")
         trial = row.get("trial_id") or ""
+        key = (trial, pmid)
+        if key in seen:
+            continue
+        seen.add(key)
         path = MANUSCRIPTS / f"{pmid}.pdf"
-        if not pmid.isdigit() or not trial or not path.exists() or path.stat().st_size < 20000:
+        if not path.exists():
+            path = MANUSCRIPTS / f"{pmid}.xml"
+        if not pmid.isdigit() or not trial or not path.exists() or path.stat().st_size < 8000:
             continue
         if pmid in cited:
             continue
@@ -264,8 +296,10 @@ def main():
             if SECONDARY.search(row.get("paper_title") or "") and len(rows) > 1:
                 continue
             path = MANUSCRIPTS / f"{row['pmid']}.pdf"
+            if not path.exists():
+                path = MANUSCRIPTS / f"{row['pmid']}.xml"
             try:
-                text = pdf_text(path)
+                text = manuscript_text(path)
             except Exception:
                 continue
             record = brief_from_text(text, row)

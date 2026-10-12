@@ -3,6 +3,7 @@
 
 import argparse
 import json
+import sys
 import traceback
 from datetime import datetime, timezone
 from pathlib import Path
@@ -16,6 +17,11 @@ from tracker.store import TrialStore
 
 ROOT = Path(__file__).resolve().parent
 NOTES = ROOT / "config" / "external_notes.json"
+sys.path.insert(0, str(ROOT / "scripts"))
+try:
+    import paper_library as paper_lib
+except Exception:  # noqa: BLE001
+    paper_lib = None
 
 
 def apply_notes(store):
@@ -54,6 +60,12 @@ def library_stamp():
     return lib.library_stamp() if lib else None
 
 
+def paper_stamp():
+    if paper_lib is None:
+        return None
+    return paper_lib.write_stamp()
+
+
 def rebuild_briefs():
     """Reattach CTSU briefs and saved schemas to the published trial list without refetching sources."""
     payload = json.loads((ROOT / "data" / "trials.json").read_text())
@@ -64,6 +76,7 @@ def rebuild_briefs():
     payload["trials"].sort(key=lambda trial: (trial.get("name") or trial.get("title") or "").lower())
     payload["briefs_rebuilt_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     payload["ctsu_library"] = library_stamp()
+    payload["paper_library"] = paper_stamp()
     write_dashboard(payload)
     failed, text = acceptance(payload["trials"], ROOT / "data" / "acceptance.md")
     print(text)
@@ -125,6 +138,7 @@ def main():
         },
         "build_log": log,
         "ctsu_library": library_stamp(),
+        "paper_library": paper_stamp(),
         "trials": store.trials,
     }
     for trial in store.trials:

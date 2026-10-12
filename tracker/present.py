@@ -6,12 +6,21 @@ not read protocol PDFs and does not write into the CTSU project.
 
 import json
 import re
+import sys
 from pathlib import Path
 
 from .pipelines.ctsu import load_export, protocol_library
 from .papers import attach_publications
 from .schema_pdf import apply_saved_schemas
 from .textutil import clip
+
+try:
+    _SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
+    if str(_SCRIPTS) not in sys.path:
+        sys.path.insert(0, str(_SCRIPTS))
+    import paper_library as paper_lib
+except Exception:  # noqa: BLE001
+    paper_lib = None
 
 NRG_ID = re.compile(r"\bNRG[-\s]?([A-Z]{2})[-\s]?(\d{3,4})\b", re.I)
 SWOG_ID = re.compile(r"\bSWOG[-\s]*S?(\d{4})\b|\bS(\d{4})\b", re.I)
@@ -318,6 +327,44 @@ def _load_saved_schemas(root):
     return json.loads(path.read_text())
 
 
+def _attach_paper_status(trials):
+    if paper_lib is None:
+        return
+    access = paper_lib.load_access()
+    for trial in trials:
+        on_file = 0
+        needs = 0
+        for paper in trial.get("publications") or []:
+            pmid = str(paper.get("pmid") or "")
+            row = ((access.get("papers") or {}).get(pmid) or {})
+            if paper_lib.current_file(pmid):
+                paper["access"] = "on_file"
+                on_file += 1
+            elif row.get("status") == "inaccessible":
+                paper["access"] = "inaccessible"
+            else:
+                paper["access"] = "needs_access"
+                needs += 1
+            if row.get("wvu_url"):
+                paper["wvu_url"] = row["wvu_url"]
+        if on_file:
+            trial["paper_on_file"] = on_file
+        if needs:
+            trial["paper_needs_access"] = needs
+
+
+def _brief_source(trial):
+    brief = trial.get("brief") or {}
+    if brief.get("schema") or brief.get("eligibility"):
+        source = brief.get("schema_source") or ""
+        if not source or re.search(r"protocol on file|protocol page|CTSU", source, re.I):
+            return "protocol"
+        return "paper"
+    if trial.get("registry_schema"):
+        return "registry"
+    return "none"
+
+
 def annotate(trials, root):
     """Fill display fields on an existing trial list. Safe to run more than once."""
     root = Path(root)
@@ -325,9 +372,11 @@ def annotate(trials, root):
     _attach_briefs(trials)
     apply_saved_schemas(trials, _load_saved_schemas(root))
     attach_publications(trials, root)
+    _attach_paper_status(trials)
     _attach_registry_schema(trials, root / "data" / "cache" / "ctgov")
     for trial in trials:
         trial["name"] = display_name(trial)
         trial["disease_sites"] = disease_sites(trial)
         trial["source_tags"] = source_tags(trial)
+        trial["brief_source"] = _brief_source(trial)
     return trials
