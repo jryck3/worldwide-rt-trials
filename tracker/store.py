@@ -8,6 +8,27 @@ from .model import (
 )
 
 
+_RT_ROLES = {"RT-focused", "RT component", "Radiopharmaceutical"}
+_NON_RT_ROLES = {
+    "Systemic therapy",
+    "Cancer control",
+    "Transplant / cellular therapy",
+    "Surgery",
+    "Imaging",
+    "Registry / biospecimen",
+}
+
+
+def _later_rt_upgrade(trial, record):
+    """A later pipeline found radiotherapy after CTSU stored a non-RT role."""
+    if trial.get("rt_role") not in _NON_RT_ROLES or record.get("rt_role") not in _RT_ROLES:
+        return False
+    # A manual CTSU classification already rejected a misleading registry mention.
+    if any(str(item).startswith("manual:") for item in (trial.get("rt_evidence") or [])):
+        return False
+    return True
+
+
 def _registry_name_wins(current, incoming):
     if not incoming:
         return False
@@ -110,14 +131,18 @@ class TrialStore:
                     trial["primary_endpoints"] = record["primary_endpoints"]
             elif not trial.get("primary_endpoints"):
                 trial["primary_endpoints"] = list(record["primary_endpoints"])
+        took_role = False
         if record.get("rt_role") and (initial or pipeline == "ctsu" or not trial.get("rt_role")):
-            if trial.get("rt_role") and record["rt_role"] != trial["rt_role"] and pipeline != "ctsu" and not initial:
-                pass
-            else:
-                trial["rt_role"] = record["rt_role"]
+            trial["rt_role"] = record["rt_role"]
+            took_role = True
+        elif _later_rt_upgrade(trial, record):
+            # CTSU stored a non-RT role first. A later pipeline can still mark the
+            # trial RT-focused, an RT component, or a radiopharmaceutical.
+            trial["rt_role"] = record["rt_role"]
+            took_role = True
         for item in record.get("rt_evidence") or []:
             add_unique(trial["rt_evidence"], item)
-        if record.get("modality") and (initial or not trial.get("modality")):
+        if record.get("modality") and (initial or not trial.get("modality")) and (took_role or trial.get("rt_role") in _RT_ROLES):
             trial["modality"] = record["modality"]
         if record.get("record_kind") and record["record_kind"] != "trial":
             trial["record_kind"] = record["record_kind"]

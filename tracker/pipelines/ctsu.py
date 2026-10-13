@@ -1,4 +1,4 @@
-"""Read the RT-related rows from the existing CTSU export. Does not write to that project."""
+"""Read every row from the existing CTSU export. Does not write to that project."""
 
 import json
 import re
@@ -23,11 +23,17 @@ def protocol_library():
 
 STATUS_MAP = {
     "Active": "recruiting",
+    "Approved": "not yet recruiting",
     "Temporarily Closed to Accrual": "suspended",
     "Temporarily Closed to Accrual &Treatment": "suspended",
     "Closed to Accrual": "closed to accrual",
     "Closed to Accrual and Treatment": "closed to accrual",
     "Completed": "completed",
+}
+RT_MODALITY = {
+    "RT-focused": "external beam",
+    "RT component": "external beam",
+    "Radiopharmaceutical": "radiopharmaceutical",
 }
 
 
@@ -72,7 +78,8 @@ def _record(study, fetched_at, export_source):
     trial["conditions"] = [study["disease"]] if study.get("disease") else []
     trial["rt_role"] = study.get("rt_role")
     trial["rt_evidence"] = list(study.get("rt_evidence") or [])
-    trial["modality"] = "radiopharmaceutical" if study.get("rt_role") == "Radiopharmaceutical" else "external beam"
+    if study.get("rt_role") in RT_MODALITY:
+        trial["modality"] = RT_MODALITY[study["rt_role"]]
     trial["study_type"] = "interventional"
     trial["start_date"] = study.get("start_date")
     trial["accrual"] = {
@@ -102,7 +109,7 @@ def _record(study, fetched_at, export_source):
 
 def load(store, log):
     payload, export_source = load_export()
-    studies = [s for s in payload.get("studies") or [] if s.get("rt_related")]
+    studies = list(payload.get("studies") or [])
     for study in studies:
         store.upsert(_record(study, payload.get("snapshot_fetched_at") or payload.get("generated_at"), export_source), "ctsu")
     log.append({
@@ -110,7 +117,8 @@ def load(store, log):
         "export": export_source,
         "generated_at": payload.get("generated_at"),
         "snapshot_fetched_at": payload.get("snapshot_fetched_at"),
-        "rt_rows": len(studies),
+        "rows": len(studies),
+        "rt_rows": sum(1 for study in studies if study.get("rt_related")),
         "feed_counts": payload.get("counts"),
     })
     return len(studies)

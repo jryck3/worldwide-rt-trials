@@ -1352,32 +1352,14 @@
   "schema": [
    {
     "label": "Design",
-    "text": "Open-label multicenter phase III trial comparing fractionated proton therapy with fractionated photon radiotherapy for cavernous sinus benign meningioma. The primary endpoint is cognitive or functional deterioration at 5 years. Planned enrollment is 160 patients, 80 per arm."
+    "text": "Thus, according to its ballistic advantage, an improvement of patient functional outcomes and a reduction of neurocognitive long-term toxicity are expected if tissue sparing proton-therapy is used .Randomized trial seems crucial to further assess proton-therapy indication for patients with cavernous sinus meningioma."
    },
    {
-    "label": "Entry",
-    "text": "Adults older than 18 and younger than 60 years with a grade 1 cavernous sinus meningioma, or an anterior skull-base meningioma invading the cavernous sinus, whose clinical target volume is larger than 3 cm. Adjuvant or exclusive irradiation is allowed. Radiosurgery and hypofractionated regimens are excluded. WHO performance status 0-1."
-   },
-   {
-    "label": "Stratify",
-    "text": "Randomization is stratified by age, sex, and Montreal Cognitive Assessment score."
-   },
-   {
-    "label": "Randomize",
-    "text": "Eligible patients are randomized 1:1. Both arms use conventional fractionation of 1.8 Gy (RBE) per fraction. The protocol does not assign a different total dose by arm.",
-    "arms": [
-     {
-      "label": "Proton therapy",
-      "text": "Fractionated proton therapy at 1.8 Gy (RBE) per fraction."
-     },
-     {
-      "label": "Photon radiotherapy",
-      "text": "Fractionated photon radiotherapy at 1.8 Gy (RBE) per fraction."
-     }
-    ]
+    "label": "Radiotherapy",
+    "text": "Most of the time, fractionated photonic irradiation (1.8–2 Gy per fraction, for a total dose of 50.4–54 Gy), with or without stereotactic deliverance, according to tumoral volume and distances from organs at risk, is used."
    }
   ],
-  "schema_source": "Open-access COG-PROTON-01 protocol (BMC Cancer, 2024) states the 1:1 proton versus photon randomization, stratification, and 1.8 Gy per fraction requirement."
+  "schema_source": "Lesueur et al., BMC cancer 2024 (PMID 39736544). The full text was read."
  },
  "NCT04550104": {
   "schema": [
@@ -1801,59 +1783,31 @@
   "schema": [
    {
     "label": "Design",
-    "text": "Multicenter open-label randomized phase III non-inferiority trial of one-week versus three-week adjuvant breast radiotherapy. The primary comparison is 5-year locoregional recurrence. The sample size is 2100 patients, accrued over 5 years."
+    "text": "We are reporting the design of randomized controlled trial testing the hypothesis that a 1-week (5 fractions) regimen of radiotherapy will be non-inferior to a standard 3-week (15 fractions) schedule."
    },
    {
-    "label": "Entry",
-    "text": "Non-metastatic invasive breast cancer after mastectomy or breast conservation with clear margins. Breast conservation and neoadjuvant chemotherapy are eligible. Post-mastectomy eligibility is T3-T4, more than 3 positive nodes, or T0-T2 with 0-3 nodes and a Cambridge score of 3 or more. In situ disease, non-epithelial and metaplastic primaries, residual internal-mammary or supraclavicular nodes, prior breast radiotherapy, and concurrent chemotherapy are excluded."
+    "label": "Radiotherapy",
+    "text": "Patients in the control arm will receive adjuvant radiotherapy to the breast or chest wall (with/without regional nodes) to a dose of 40 Gy/ 15 fractions/3 weeks, while those in theexperimental arm will receive a dose of26 Gy/5 fractions/1 week (to the same volume)."
    },
    {
-    "label": "Stratify",
-    "text": "Permuted-block randomization is stratified by mastectomy versus breast conservation, regional nodal radiotherapy required or not, triple-negative disease yes or no, and institution."
-   },
-   {
-    "label": "Randomize",
-    "text": "Patients are randomized 1:1 to the same breast or chest-wall volume, with or without regional nodes. A simultaneous integrated boost is allowed after breast conservation.",
-    "arms": [
-     {
-      "label": "Three-week radiotherapy",
-      "text": "40 Gy in 15 fractions over 3 weeks. The allowed simultaneous integrated boost is 8 Gy."
-     },
-     {
-      "label": "One-week radiotherapy",
-      "text": "26 Gy in 5 fractions over 1 week. The allowed simultaneous integrated boost is 6 Gy."
-     }
-    ]
+    "label": "Radiotherapy",
+    "text": "The use of a simultaneous integrated boost (dose of 8 Gy and 6 Gy, respectively) is allowed in patients who have undergone breast conservation."
    }
   ],
-  "schema_source": "Open-access HYPORT-Adjuvant protocol (Trials, 2020) states the stratification factors, the 40 Gy and 26 Gy schedules, and the boost doses."
+  "schema_source": "Chatterjee et al., Trials 2020 (PMID 32998747). The full text was read."
  },
  "NCT04472845": {
   "schema": [
    {
     "label": "Design",
-    "text": "Open-label randomized phase III non-inferiority trial of 1 week versus 2 weeks of adjuvant whole-breast or chest-wall radiotherapy, with or without regional nodes, after surgery for breast cancer. The primary endpoint is locoregional control. The sample size is 1018 patients."
+    "text": "Patients with highrisk breast cancer after mastectomy or breast conserving surgery were randomized to receive an RT dose of 26 Gy in 5 fractions over 1 week or 34 Gy in 10 fractions over 2 weeks."
    },
    {
-    "label": "Entry",
-    "text": "Age 18 to 75 years with invasive breast carcinoma after breast conservation or total mastectomy, with axillary staging or clearance and complete microscopic excision. Implant reconstruction is not allowed. Tissue expanders with distant metal ports are allowed. Concurrent trastuzumab and hormone therapy are allowed."
-   },
-   {
-    "label": "Randomize",
-    "text": "Simple 1:1 randomization without stratification. Allocation is not masked. Patients who change schedule are treated with 34 Gy in 10 fractions or 40 Gy in 15 fractions.",
-    "arms": [
-     {
-      "label": "One-week radiotherapy",
-      "text": "26 Gy in 5 fractions over 1 week to the breast or chest wall and, when treated, axilla level III and the supraclavicular fossa. After breast conservation, a sequential boost of 8 Gy in 2 fractions or a simultaneous integrated boost to a total of 32 Gy."
-     },
-     {
-      "label": "Two-week radiotherapy",
-      "text": "34 Gy in 10 fractions over 2 weeks to the same volumes. After breast conservation, the boost total is 40 Gy."
-     }
-    ]
+    "label": "Radiotherapy",
+    "text": "Patients who underwent breast conserving surgery received a sequential or simultaneous integrated boost with a dose of 8 Gy/2#/2 days."
    }
   ],
-  "schema_source": "Open-access HYPART protocol (Trials, 2024) states unstratified 1:1 randomization and the 26 Gy and 34 Gy schedules with boost totals."
+  "schema_source": "Yadav et al., International journal of radiation oncology, biology, physics 2026 (PMID 40780546). The full text was read."
  },
  "NCT03829553": {
   "schema": [
@@ -4008,29 +3962,24 @@
  "NCT00287196": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Patients at high risk of lymph-node field relapse after therapeutic lymphadenectomy for melanoma, judged by number of involved nodes, extranodal spread, and maximum involved-node size."
-   },
-   {
-    "label": "Stratify",
-    "text": "Institution; lymph-node field (parotid and cervical, axilla, or groin); number of involved nodes (3 or fewer versus more than 3); maximum involved-node diameter (4 cm or less versus more than 4 cm); extracapsular extension (none, limited, or extensive)."
+    "label": "Design",
+    "text": "Decisions for radiotherapy in this setting are made on the basis of retrospective, non-randomised studies."
    },
    {
     "label": "Randomize",
-    "text": "1:1 to adjuvant radiotherapy or observation.",
     "arms": [
      {
-      "label": "Adjuvant radiotherapy",
-      "text": "48 Gy in 20 fractions, given over a maximum of 30 days."
-     },
-     {
-      "label": "Observation",
-      "text": "Observation only."
+      "label": "Assignment",
+      "text": "Findings 123 patients were randomly allocated to the adjuvant radiotherapy group and 127 to the observation group between March 20, 2002, and Sept 21, 2007."
      }
     ]
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "After lymphadenectomy, randomisation was done centrally by computer and patients assigned by telephone in a ratio of 1:1 to receive adjuvant radiotherapy of 48 Gy in 20 fractions or observation, with institution, lymph-node fi eld, number of involved nodes, maximum node diameter, and extent of extranodal spread as minimisation factors."
    }
   ],
-  "schema_source": "The 6-year Lancet Oncology report of ANZMTG 01.02/TROG 02.01 states the dose, allocation ratio, and stratification factors."
+  "schema_source": "Burmeister et al., The Lancet. Oncology 2012 (PMID 22575589). The full text was read."
  },
  "NCT00392327": {
   "schema": [
@@ -4501,50 +4450,29 @@
  "NCT02104895": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Women older than 40 years with early breast cancer and pathologic tumor size up to 25 mm, after breast-conserving surgery, at the University of Florence."
+    "label": "Design",
+    "text": "We recently published the 5-year results of the APBI-IMRT-Florence phase 3 randomised trial (NCT02104895), showing a very low rate of disease failure, with acute and early elate toxicity in favour of APBI."
    },
    {
-    "label": "Randomize",
-    "text": "1:1 to whole-breast irradiation or accelerated partial-breast irradiation with intensity-modulated radiotherapy.",
-    "arms": [
-     {
-      "label": "Whole-breast irradiation",
-      "text": "50 Gy in 25 fractions, then a tumor-bed boost of 10 Gy in 5 fractions."
-     },
-     {
-      "label": "Accelerated partial-breast irradiation",
-      "text": "30 Gy to the tumor bed in 5 daily fractions."
-     }
-    ],
-    "note": "260 patients in each arm."
+    "label": "Radiotherapy",
+    "text": "Standard whole breast irradiation (WBI) consisted of 50 Gy in 25 fractions plus a 10 Gy in five fractions boost on tumour bed."
    }
   ],
-  "schema_source": "The European Journal of Cancer abstract states the Florence trial randomization and both dose schedules."
+  "schema_source": "Meattini et al., European journal of cancer (Oxford, England 2017 (PMID 28262584). The full text was read."
  },
  "NCT02112916": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Newly diagnosed T-cell acute lymphoblastic leukemia or T-cell lymphoblastic lymphoma."
-   },
-   {
     "label": "Randomize",
-    "text": "Children and young adults were randomized on a modified augmented Berlin-Frankfurt-Munster backbone.",
     "arms": [
      {
-      "label": "Arm A",
-      "text": "Standard therapy."
-     },
-     {
-      "label": "Arm B",
-      "text": "Standard therapy plus bortezomib."
+      "label": "Assignment",
+      "text": "Children and young adults with T-ALL/T-LL were randomly assigned to a modi fied augmented Berlin-Frankfurt-M ¨unster chemotherapy regimen with/without bortezomib during induction and delayed intensi fication."
      }
-    ],
-    "note": "This minimal-residual-disease report does not state the bortezomib dose or the radiotherapy schedule."
+    ]
    }
   ],
-  "schema_source": "The Blood abstract of AALL1231 states randomization to a modified augmented Berlin-Frankfurt-Munster backbone with or without bortezomib."
+  "schema_source": "Teachey et al., Journal of clinical oncology 2022 (PMID 35271306). The full text was read."
  },
  "NCT02115464": {
   "schema": [
@@ -5639,46 +5567,27 @@
  "NCT03819985": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Adults with localized soft tissue sarcoma of the extremity or superficial trunk.",
-    "arms": [],
-    "note": ""
-   },
-   {
-    "label": "Design",
-    "text": "Single-arm phase 2 preoperative radiotherapy, then surgery 4-8 weeks later.",
-    "arms": [
-     {
-      "label": "Preoperative RT",
-      "text": "15 fractions of 2.85 Gy over 3 weeks."
-     }
-    ],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": "We administered preoperative radiotherapy to a dose of 42·75 Gy in 15 fractions of 2·85 Gy/day for 3 weeks (five fractions per week) to adults (aged ≥18 years) with non-metastatic soft tissue sarcomas of the extremities or superficial trunk and an Eastern Cooperative Oncology Group performance status of 0–3."
    }
   ],
-  "schema_source": "Open abstract of HYPORT-STS (PMID 39192597)."
+  "schema_source": "Guadagnolo et al., The Lancet. Oncology 2022 (PMID 36343656). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "This trial is registered with ClinicalTrials.gov, NCT03819985, recruitment is complete, and follow-up continues.",
+    "note": ""
+   }
+  ]
  },
  "NCT02635256": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Localized low- and intermediate-risk prostate cancer.",
-    "arms": [],
-    "note": ""
-   },
-   {
-    "label": "Design",
-    "text": "Single-group CyberKnife SBRT. The target is the prostate, with or without the base of the seminal vesicles by risk group, and 3-5 mm margins.",
-    "arms": [
-     {
-      "label": "SBRT",
-      "text": "Five fractions of 7 Gy."
-     }
-    ],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": "The treatment consisted of 35 Gy delivered in 5 fractions to the prostate and for intermediateor high-risk patients, also to the proximal seminal vesicles using the CyberKnife system (Accuray Inc., Sunnyvale, CA, USA)."
    }
   ],
-  "schema_source": "Open-access protocol abstract of HYPOSTAT (PMID 28821268)."
+  "schema_source": "Krug et al., Strahlentherapie und Onkologie 2023 (PMID 36757424). The full text was read."
  },
  "NCT02375581": {
   "schema": [
@@ -5857,32 +5766,16 @@
  "NCT00045032": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "HER2-positive early breast cancer after completion of primary therapy, including surgery, chemotherapy, and radiotherapy as indicated.",
-    "arms": [],
-    "note": ""
-   },
-   {
     "label": "Randomize",
-    "text": "Randomized 1:1:1 to 1 year of trastuzumab, 2 years of trastuzumab, or observation. Trastuzumab was 8 mg/kg intravenously once, then 6 mg/kg every 3 weeks.",
     "arms": [
      {
-      "label": "1 year",
-      "text": "Trastuzumab for 1 year."
-     },
-     {
-      "label": "2 years",
-      "text": "Trastuzumab for 2 years."
-     },
-     {
-      "label": "Observation",
-      "text": "Observation."
+      "label": "Assignment",
+      "text": "The HERA trial included 5102 female patients with HER2-positive invasive breast cancer who were randomly assigned 1:1:1 to observation (without trastuzumab), trastuzumab for 1 year, or trastuzumab for 2 year 17 , 28 ."
      }
-    ],
-    "note": ""
+    ]
    }
   ],
-  "schema_source": "Open abstract of the HERA trial (PMID 28215665)."
+  "schema_source": "Bae et al., NPJ breast cancer 2025 (PMID 40175431). The full text was read."
  },
  "NCT00066690": {
   "schema": [
@@ -9709,26 +9602,35 @@
  "protocol:EORTC-10853": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Women with completely excised ductal carcinoma in situ smaller than 5 cm were eligible."
+    "label": "Design",
+    "text": "The reasons for not entering patients were evaluated and treatment results of the randomised patients were compared to those not entered."
    },
    {
     "label": "Randomize",
-    "text": "Local excision alone was compared with local excision plus radiotherapy.",
     "arms": [
      {
-      "label": "Local excision",
-      "text": "No further treatment after complete local excision."
-     },
-     {
-      "label": "Local excision plus radiotherapy",
-      "text": "Radiotherapy after complete local excision. The dose is not stated in this abstract."
+      "label": "Assignment",
+      "text": "Between 1986 and 1996 1010 patients were randomised by 46 institutes from 13 different countries."
      }
-    ],
-    "note": "1010 women were assigned (503 excision alone, 507 excision plus radiotherapy)."
+    ]
    }
   ],
-  "schema_source": "The 15-year EORTC 10853 abstract (PMID 24043739) states randomization to local excision alone or local excision plus radiotherapy."
+  "schema_source": "Bijker et al., 2002 (PMID 12237770). The full text was read.",
+  "eligibility": [
+   "Exclusion criteria were age over 70 years, a prior or concomitant malignancy other than basal cell carcinoma of the skin or cone biopsied carcinoma in situ of the cervix, WHO performance status 52 or mental conditions or social circumstances precluding long-term follow-up, and patients with Paget’s disease of the nipple."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Exclusion criteria were age over 70 years, a prior or concomitant malignancy other than basal cell carcinoma of the skin or cone biopsied carcinoma in situ of the cervix, WHO performance status 52 or mental conditions or social circumstances precluding long-term follow-up, and patients with Paget’s disease of the nipple.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "Reasons for non-entry, as well as data on method of detection, treatment, follow-up and outcome were obtained by review of the medical records.",
+    "note": ""
+   }
+  ]
  },
  "NCT00005062": {
   "schema": [
@@ -9819,26 +9721,15 @@
  "protocol:EORTC-22851": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Patients with T2, T3, or T4 head and neck cancer, excluding hypopharynx, were treated with curative radiotherapy."
+    "label": "Design",
+    "text": "doi:10.1016/S0360-3016(02)03790-2 CLINICAL INVESTIGATION Head and Neck COMPLIANCE TO THE PRESCRIBED DOSE AND OVERALL TREATMENT TIME IN FIVE RANDOMIZED CLINICAL TRIALS OF ALTERED FRACTIONATION IN RADIOTHERAPY FOR HEAD-AND-NECK CARCINOMAS AZZA A."
    },
    {
-    "label": "Randomize",
-    "text": "Accelerated hyperfractionation was compared with conventional fractionation.",
-    "arms": [
-     {
-      "label": "Accelerated fractionation",
-      "text": "72 Gy in 45 fractions over 5 weeks."
-     },
-     {
-      "label": "Conventional fractionation",
-      "text": "70 Gy in 35 fractions over 7 weeks."
-     }
-    ],
-    "note": "512 patients were accrued."
+    "label": "Radiotherapy",
+    "text": "An overall measure of compliance in an individual patient, the total dose lost (TDL), was calculated as the dose lost due to prolongation of therapy (assuming a D prolif of 0.64 Gy/day) plus the difference between the prescribed and the actual dose given."
    }
   ],
-  "schema_source": "The EORTC 22851 abstract (PMID 9288839) states 72 Gy in 45 fractions over 5 weeks versus 70 Gy in 35 fractions over 7 weeks."
+  "schema_source": "Khalil et al., 2003 (PMID 12573743). The full text was read."
  },
  "NCT00849082": {
   "schema": [
@@ -10955,34 +10846,11 @@
  "NCT02189967": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Non-small cell lung cancer with a postoperative radiotherapy indication (more than pN1 and/or R1). Photons or protons are allowed in both arms.",
-    "arms": [],
-    "note": ""
-   },
-   {
-    "label": "Stratify",
-    "text": "Randomization is stratified by staging with or without PET-CT, resection status R1 or R0, and study center.",
-    "arms": [],
-    "note": ""
-   },
-   {
-    "label": "Randomize",
-    "text": "Patients with R0 or R1 resection are randomized 1:1. The mediastinal target is treated to 50 Gy in 2 Gy fractions. A 10 Gy boost (total 60 Gy) is added for R1 resection or extracapsular extension. The randomized comparison is fractions per week, not total dose.",
-    "arms": [
-     {
-      "label": "Accelerated",
-      "text": "Seven fractions per week, 2 Gy per fraction (50 Gy, or 60 Gy with the R1 or extracapsular boost)."
-     },
-     {
-      "label": "Conventional",
-      "text": "Five fractions per week, 2 Gy per fraction, using the same total-dose rules."
-     }
-    ],
-    "note": "Patients with R2 resection or postoperative recurrence are a separate stratum and receive 66 Gy in 2 Gy fractions at five fractions per week, not the accelerated schedule."
+    "label": "Design",
+    "text": "The multicenter prospective randomized phase II trial i n patients with NSCLC investigated whether an accelerated schedule of PORT (7 fractions per week, 2 Gy per fr action, OTT 3.5–4 weeks) improved outcome compared to conventional fractionation (5 fractions per week, 2 Gy per fr action, OTT 5–6 weeks)."
    }
   ],
-  "schema_source": "The open-access PORTAF protocol (PMID 29262836) states accelerated versus conventional postoperative radiotherapy and the risk-based doses."
+  "schema_source": "Bütof et al., Strahlentherapie und Onkologie 2026 (PMID 40663146). The full text was read."
  },
  "NCT02243878": {
   "schema": [
@@ -11027,107 +10895,25 @@
  "NCT02945566": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Biopsy-proven rectal adenocarcinoma staged by CT and MRI as cT3b or less (up to 5 mm of extramural spread), N0 M0.",
-    "arms": [],
-    "note": ""
-   },
-   {
-    "label": "Randomize",
-    "text": "Three-arm feasibility randomization. In both organ-saving arms, a complete clinical response goes to active surveillance and an incomplete response goes to local excision (transanal endoscopic microsurgery or another transanal technique).",
-    "arms": [
-     {
-      "label": "TME",
-      "text": "Standard total mesorectal excision."
-     },
-     {
-      "label": "Long-course chemoradiation",
-      "text": "Capecitabine 825 mg/m2 twice daily on radiotherapy days and 50 Gy in 25 fractions of 2 Gy to the primary tumor and surrounding mesorectum, then surveillance or local excision by response."
-     },
-     {
-      "label": "Short-course radiotherapy",
-      "text": "25 Gy in five fractions of 5 Gy to the primary tumor and surrounding mesorectum, then surveillance or local excision by response."
-     }
-    ],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": "Each institution produced plans for short course (SCRT, 5 /C2 5 Gy) and long course (LCRT, 25 /C2 2 Gy) treatment, using volumetric modulated arc therapy on different dose planning systems."
    }
   ],
-  "schema_source": "The open-access STAR-TREC feasibility protocol (PMID 29288190) states the three-arm randomization and the radiotherapy schedules.",
-  "eligibility": [
-   "Biopsy-proven rectal adenocarcinoma, staged by CT and MRI as cT3b or lower (up to 5 mm of extramural spread), N0 M0.",
-   "The multidisciplinary meeting must judge TME, chemoradiation, and short-course radiotherapy all reasonable, and transanal endoscopic microsurgery feasible.",
-   "Excluded: regional or distant metastases."
-  ],
-  "pretreatment": [
-   {
-    "item": "Staging and radiotherapy quality assurance",
-    "window": "Before randomization",
-    "note": "CT and MRI staging confirmed at the multidisciplinary meeting. Centers need an approved radiotherapy standard operating procedure and a successful mesorectal contouring case."
-   }
-  ],
-  "followup": [
-   {
-    "item": "Response and function",
-    "window": "11 to 13 weeks and 16 to 20 weeks, then 12 and 24 months",
-    "note": "Organ-saving arms: MRI and endoscopy at 11 to 13 weeks, endoscopy at 16 to 20 weeks, with central review of endoscopic images during feasibility. Bowel, bladder, and sexual function are collected at baseline and at 12 and 24 months. Stoma status is recorded at 30 days and 1 year."
-   }
-  ]
+  "schema_source": "Appelt et al., Technical innovations & patient support in radiation oncology 2019 (PMID 32095545). The full text was read."
  },
  "NCT02979691": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Patients older than 70 years with stage IIA-IVB (UICC 2002; stage IVB only if spread is limited to supraclavicular or celiac nodes) squamous cell carcinoma or adenocarcinoma of the esophagus or gastroesophageal junction.",
-    "arms": [],
-    "note": ""
-   },
-   {
-    "label": "Stratify",
-    "text": "Randomization is 1:1, stratified by disease stage and study site.",
-    "arms": [],
-    "note": ""
-   },
-   {
     "label": "Randomize",
-    "text": "Both arms use definitive simultaneous integrated boost radiotherapy: 50.4 Gy to the planning target volume and 59.92 Gy to the planning gross tumor volume in 28 fractions.",
     "arms": [
      {
-      "label": "SIB alone",
-      "text": "Radiotherapy without S-1."
-     },
-     {
-      "label": "SIB plus S-1",
-      "text": "The same radiotherapy concurrent with S-1 (40, 50, or 60 mg twice daily by body surface area), then four consolidation cycles of S-1 on days 1-14 of each 21-day cycle."
+      "label": "Assignment",
+      "text": "The patients were randomly assigned to either the training group (N = 161) or the test group (N = 68) in a 7:3 ratio."
      }
-    ],
-    "note": ""
+    ]
    }
   ],
-  "schema_source": "The open-access 3JECROG P-01 protocol (PMID 31036088) states SIB radiotherapy with or without S-1 and the stratification.",
-  "eligibility": [
-   "Older than 70 years. Histologically proven stage IIA to IVB (UICC 2002) squamous cell carcinoma or adenocarcinoma of the esophagus or gastroesophageal junction. Stage IVB is limited to supraclavicular or celiac lymph nodes. Inoperable.",
-   "Karnofsky performance status at least 70 or ECOG 0 or 1, and Charlson comorbidity index 3 or lower.",
-   "Excluded: prior malignancy within 5 years other than curable non-melanoma skin cancer or in situ cervical cancer, distant nodes beyond the supraclavicular or celiac stations, visceral metastasis, uncontrolled infection, or obvious esophageal perforation or deep ulcer."
-  ],
-  "pretreatment": [
-   {
-    "item": "Comprehensive geriatric assessment",
-    "window": "Before treatment",
-    "note": "Listed instruments include EORTC QLQ-C30 and QLQ-OES-18, ECOG, Karnofsky, Barthel index, Lawton instrumental activities, Charlson index, Mini-Mental State Examination, and the 5-item geriatric depression scale. The published score-range grid is garbled and is not restated."
-   },
-   {
-    "item": "Target definition",
-    "window": "Planning",
-    "note": "GTV-T uses examination, upper gastrointestinal contrast, endoscopy, endoscopic ultrasound, CT, MRI, and PET-CT when available. Involved-field CTV adds a 0.6 to 0.8 cm circumferential and 3 cm craniocaudal margin around GTV-T, plus 0.5 cm around GTV-N."
-   }
-  ],
-  "during": [
-   {
-    "item": "SIB delivery",
-    "window": "Five fractions per week",
-    "note": "PGTV expands GTV-T by 1.0 cm craniocaudally and 0.5 cm radially and GTV-N by 0.5 cm. PTV is CTV plus 0.5 cm. Lungs, heart, spinal cord, and spinal cord PRV are contoured."
-   }
-  ]
+  "schema_source": "Zheng et al., Physics and imaging in radiation oncology 2025 (PMID 41333544). The full text was read."
  },
  "NCT02984566": {
   "schema": [
@@ -11512,28 +11298,15 @@
  "protocol:TROG 18.01": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Biopsy-proven unfavourable intermediate-risk or favourable high-risk prostate cancer (ISUP 3-5 and/or cT2b-T3a N0 and/or PSA 10-20, without T3b/T4 or PSA above 20). ECOG 0-1. High-risk patients need PSMA PET showing N0 M0. Prostate volume under 100 cc.",
-    "arms": [],
-    "note": ""
+    "label": "Design",
+    "text": "This approach is being compared with prostate ultrahypofractionated radiotherapy in the TROG 18.01 NINJA randomised trial (ACTRN12618001806257)."
    },
    {
-    "label": "Randomize",
-    "text": "Every patient receives 6 months of androgen deprivation. Randomization is between two stereotactic schedules.",
-    "arms": [
-     {
-      "label": "SBRT monotherapy",
-      "text": "40 Gy in five fractions on alternating days."
-     },
-     {
-      "label": "Virtual HDR boost",
-      "text": "20 Gy in two fractions given 1 week apart, then 2 weeks later 36 Gy in 12 fractions, five fractions per week."
-     }
-    ],
-    "note": "Stratification factors are not stated in the protocol abstract or the extracted methods text."
+    "label": "Radiotherapy",
+    "text": ": Patients with intermediate-risk PC or selected patients with high-risk PC were eligible for inclusion. vHDRB was given as 19–20 Gy in two fractions, delivered 1 wk apart, followed by conventionally fractionated external beam radiotherapy (EBRT) at 46 Gy in 23 fractions or 36 Gy in 12 fractions."
    }
   ],
-  "schema_source": "The open-access TROG 18.01 NINJA protocol (PMID 31434782) states randomization between two prostate SBRT schedules, both with 6 months of androgen deprivation."
+  "schema_source": "Wegener et al., 2024 (PMID 38302321). The full text was read."
  },
  "NCT02741856": {
   "schema": [
@@ -11793,34 +11566,15 @@
  "NCT00085202": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Children and young adults aged 3-21 years with newly diagnosed medulloblastoma.",
-    "arms": [],
-    "note": ""
-   },
-   {
-    "label": "Stratify",
-    "text": "Patients were assigned to average-risk or high-risk treatment by metastatic status and extent of resection. This is risk-adapted therapy, not a randomization between the two craniospinal doses.",
-    "arms": [],
-    "note": ""
-   },
-   {
     "label": "Design",
-    "text": "Risk-adapted craniospinal photon irradiation, a tumor-bed boost, then four cycles of high-dose chemotherapy with stem-cell rescue. The chemotherapy drug names are not stated in these open abstracts.",
-    "arms": [
-     {
-      "label": "Average risk",
-      "text": "Craniospinal irradiation 23.4 Gy and a boost to 55.8 Gy to the tumor bed."
-     },
-     {
-      "label": "High risk",
-      "text": "Craniospinal irradiation 36-39.6 Gy and a boost to 55.8 Gy to the tumor bed."
-     }
-    ],
-    "note": ""
+    "text": "One hundred and fifty-five pediatric patients with newly diagnosed MB were treated on a prospective, multi-center phase III trial of adjuvant radiotherapy (RT) and dose-intense chemotherapy with autologous stem cell transplant."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Craniospinal radiotherapy to 23.4 Gy (average risk, AR) or 36-39.6 Gy (high risk, HR) was followed by conformal RT with a 1 cm clinical target volume to a cumulative dose of 55.8 Gy."
    }
   ],
-  "schema_source": "Open SJMB03 reports (PMID 33405951 and PMID 34714708) state risk-adapted craniospinal doses, a 55.8 Gy tumor-bed boost, and four cycles of high-dose chemotherapy with stem-cell rescue."
+  "schema_source": "Lucas et al., 2022 (PMID 34894262). The full text was read."
  },
  "NCT05963490": {
   "schema": [
@@ -12018,28 +11772,20 @@
  "NCT00041197": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Complete gross resection of a primary gastrointestinal stromal tumor at least 3 cm and KIT positive by immunohistochemistry.",
-    "arms": [],
-    "note": ""
+    "label": "Design",
+    "text": "The findings were validated in the imatinib arm of the American College of Surgeons Oncology Group Z9001 trial, where 359 patients with GIST were randomized to receive imatinib and 354 were to receive placebo for 12 months."
    },
    {
     "label": "Randomize",
-    "text": "Double-blind phase III assignment by a stratified biased-coin design to 1 year of adjuvant therapy. The stratification factors are not listed in the open report.",
     "arms": [
      {
-      "label": "Imatinib",
-      "text": "Imatinib 400 mg daily for 1 year."
-     },
-     {
-      "label": "Placebo",
-      "text": "Placebo daily for 1 year. Crossover to imatinib was allowed at recurrence."
+      "label": "Assignment",
+      "text": ": Risk factors for GIST recurrence were identified, and 2 risk stratification scores were developed using the database of the Scandinavian Sarcoma Group (SSG) XVIII trial, where 358 patients with high-risk GIST with no overt metastases were randomly assigned to adjuvant imatinib 400 mg/day either for 12 or 36 months after surgery."
      }
-    ],
-    "note": ""
+    ]
    }
   ],
-  "schema_source": "The open ACOSOG Z9001 report (PMID 19303137) states 1 year of imatinib 400 mg daily versus placebo after resection of primary GIST."
+  "schema_source": "Joensuu et al., 2014 (PMID 24737415). The full text was read."
  },
  "NCT02180867": {
   "schema": [
@@ -13106,24 +12852,15 @@
  "NCT01024829": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Stage II-III non-small-cell lung cancer with a primary tumour at least 4 cm. 107 patients were randomised."
+    "label": "Design",
+    "text": "Keywords: Dose-escalation Non-small cell lung cancer PET-boost Toxicity Dose painting abstract Background and purpose: The PET-boost randomized phase II trial (NCT01024829) investigated doseescalation to the entire primary tumour or redistributed to regions of high pre-treatment FDG-uptake in inoperable non-small cell lung cancer (NSCLC) patients."
    },
    {
-    "label": "Randomize",
-    "arms": [
-     {
-      "label": "Whole primary tumour",
-      "text": "Individualised escalated fraction dose to the primary tumour as a whole, described as 24 fractions of 3.0-5.4 Gy."
-     },
-     {
-      "label": "FDG-avid subvolume",
-      "text": "The same individualised escalated approach directed to the most FDG-avid subvolume of the primary tumour."
-     }
-    ]
+    "label": "Radiotherapy",
+    "text": ": Patients with stage II–III NSCLC were treated with an isotoxic integrated boost of /C2172 Gy in 24 fractions, with/without chemotherapy and strict dose limits."
    }
   ],
-  "schema_source": "Open abstract of the ARTFORCE PET-Boost patient-reported outcome report (PMID 38663582)."
+  "schema_source": "van et al., Radiotherapy and oncology 2019 (PMID 30327236). The full text was read."
  },
  "NCT01248585": {
   "schema": [
@@ -14383,34 +14120,22 @@
  "NCT03469674": {
   "schema": [
    {
-    "label": "Entry",
-    "text": "Women aged at least 18 with WHO performance score 0-2 and early-stage high-intermediate risk endometrial cancer, assigned after surgery."
+    "label": "Radiotherapy",
+    "text": "An estimated 40% of patients have an intermediate profile and will receive vaginal brachytherapy (21 Gy in three fractions of 7 Gy each within an overall time of 2 weeks)."
    },
    {
-    "label": "Stratify",
-    "text": "Participating centre, grade, and lymphadenectomy. Biased-coin minimisation."
-   },
-   {
-    "label": "Design",
-    "text": "In the molecular-profile group, favourable profile (POLE-mutated or NSMP with CTNNB1 wild type) was observation; intermediate profile (mismatch-repair deficient or NSMP with CTNNB1 mutation) was vaginal brachytherapy 21 Gy in three fractions of 7 Gy at 5-7 day intervals; unfavourable profile (p53 abnormal, substantial lymphovascular invasion, or L1CAM overexpression) was pelvic radiotherapy 45.0-48.6 Gy in 1.8-2.0 Gy fractions."
-   },
-   {
-    "label": "Randomize",
-    "arms": [
-     {
-      "label": "Molecular profile",
-      "text": "Adjuvant treatment selected from observation, vaginal brachytherapy, or pelvic radiotherapy according to the molecular integrated risk profile."
-     },
-     {
-      "label": "Standard",
-      "text": "Standard vaginal brachytherapy. The abstract does not restate the standard-arm dose."
-     }
-    ],
-    "text": "Randomized 2:1.",
-    "note": "Final combined cohort 564 eligible patients: 367 molecular and 197 standard, after addition of 23 favourable patients from PORTEC-4."
+    "label": "Radiotherapy",
+    "text": "About 5%–10% will have an unfavorable profile and receive pelvic radiotherapy (45–48.6 Gy in 1.8–2 Gy fractions) (see Figure 1 ). 11 Patients are clinically evaluated during alternating follow-up visits to their gynecologist and radiation oncologist every 3 months for the first 3 years for early detection of local recurrence, and at 6-month intervals until 5 years."
    }
   ],
-  "schema_source": "Open abstract of PORTEC-4a (PMID 41449145)."
+  "schema_source": "van et al., International journal of gynecological cancer 2020 (PMID 33046573). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "About 5%–10% will have an unfavorable profile and receive pelvic radiotherapy (45–48.6 Gy in 1.8–2 Gy fractions) (see Figure 1 ). 11 Patients are clinically evaluated during alternating follow-up visits to their gynecologist and radiation oncologist every 3 months for the first 3 years for early detection of local recurrence, and at 6-month intervals until 5 years.",
+    "note": ""
+   }
+  ]
  },
  "NCT03525288": {
   "schema": [
@@ -15265,28 +14990,24 @@
  "NCT03511391": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Patients with locally advanced or metastatic melanoma, renal cell carcinoma, urothelial carcinoma, head and neck squamous cell carcinoma, or non-small cell lung cancer are randomized 1:1.",
-    "arms": [
-     {
-      "label": "A",
-      "text": "Checkpoint inhibitor therapy plus stereotactic body radiotherapy, 24 Gy in 3 fractions, to a maximum of 3 lesions, completed before the second or third checkpoint-inhibitor cycle."
-     },
-     {
-      "label": "B",
-      "text": "Checkpoint inhibitor monotherapy."
-     }
-    ],
-    "note": ""
+    "label": "Design",
+    "text": "Though SBRT administered concurrently with CPIs has been shown to be safe, evidence of its efficacy from large randomized trials is still lacking."
    },
    {
-    "label": "Stratify",
-    "text": "Randomization is stratified by tumor histology and by disease burden (3 or fewer versus more than 3 cancer lesions).",
-    "arms": [],
-    "note": ""
+    "label": "Randomize",
+    "arms": [
+     {
+      "label": "Assignment",
+      "text": "/design: Ninety-eight patients with locally advanced or metastatic disease will be randomized in a 1:1 fashion to receive CPI treatment combined with SBRT (Arm A) or CPI monotherapy (Arm B)."
+     }
+    ]
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "The recommended SBRT dose is 24Gy in 3 fractions, which will be administered to a maximum of 3 lesions and is to be completed prior to the second or third CPI cycle (depending on CPI treatment schedule)."
    }
   ],
-  "schema_source": "The CHEERS protocol abstract states the 1:1 arms, the 24 Gy stereotactic schedule, and the stratification factors."
+  "schema_source": "Spaas et al., BMC cancer 2021 (PMID 33962592). The full text was read."
  },
  "NCT00626990": {
   "schema": [
@@ -15325,152 +15046,133 @@
  "NCT03808662": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Adults with oligoprogressive metastatic breast cancer or non-small cell lung cancer, defined as five or fewer progressive lesions after at least first-line systemic therapy, were randomized 1:1.",
-    "arms": [
-     {
-      "label": "Standard of care",
-      "text": "Continuation of standard systemic therapy."
-     },
-     {
-      "label": "SBRT + standard of care",
-      "text": "Stereotactic body radiotherapy to oligoprogressive sites plus standard systemic therapy."
-     }
-    ],
-    "note": "The abstract does not state the stereotactic dose."
+    "label": "Design",
+    "text": "We did a phase 2, open-label, randomised controlled trial of SBRT in patients with oligoprogressive metastatic breast cancer or non-small-cell lung cancer (NSCLC) after having received at least first-line systemic therapy, with oligoprogression defined as five or less progressive lesions on PET-CT or CT."
    },
    {
-    "label": "Stratify",
-    "text": "Stratified by number of progressive metastatic sites, receptor or driver alteration status, primary site, and type of prior systemic therapy.",
-    "arms": [],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": "In most instances, regimens ranged from 27–30 Gy in three fractions to 30–50 Gy in five fractions."
    }
   ],
-  "schema_source": "The CURB trial report states the 1:1 randomization to standard systemic therapy with or without stereotactic body radiotherapy and the stratification factors."
+  "schema_source": "Tsai et al., Lancet (London, England) 2024 (PMID 38104577). The full text was read.",
+  "eligibility": [
+   "The exclusion criteria included pregnancy, lepto - meningeal disease, and serious medical comorbidities precluding radiotherapy.",
+   "Additional inclusion and exclusion criteria are given in the appendix (pp 28–30; pp 14–16 of the protocol)."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "The median follow-up was 11·6 months for patients in the standard-of-care group and 12 ·1 months for patients in the SBRT group.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "The first follow-up assessment occurred at 8 weeks after randomisation (with an allowed time window of 2 weeks before or after 8 weeks), then every 12 weeks (with a 2-week time window before or after) until 12 months after randomisation.",
+    "note": ""
+   }
+  ]
  },
  "NCT00433563": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Adults with limited-stage small cell lung cancer and ECOG performance status 0-2 were randomized to one of two concurrent chemoradiotherapy schedules. Radiotherapy started on day 22 of cisplatin-etoposide, given for four to six cycles every 3 weeks in both groups.",
-    "arms": [
-     {
-      "label": "Twice daily",
-      "text": "45 Gy in 30 twice-daily fractions of 1.5 Gy over 19 days, with concurrent cisplatin-etoposide."
-     },
-     {
-      "label": "Once daily",
-      "text": "66 Gy in 33 once-daily fractions of 2 Gy over 45 days, with concurrent cisplatin-etoposide."
-     }
-    ],
-    "note": ""
+    "label": "Design",
+    "text": "Methods: Patients with limited-stage small-cell lung cancer in the CONVERT trial were randomized to receive 45 Gy in 30# twice daily or 66 Gy in 33# once daily radiotherapy, with concurrent chemotherapy in both arms."
    },
    {
-    "label": "Stratify",
-    "text": "Minimization with a random element, stratified by institution, planned number of chemotherapy cycles, and performance status.",
-    "arms": [],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": ": Patients with limited-stage small-cell lung cancer in the CONVERT trial were randomized to receive 45 Gy in 30# twice daily or 66 Gy in 33# once daily radiotherapy, with concurrent chemotherapy in both arms."
    }
   ],
-  "schema_source": "The CONVERT trial report states both radiotherapy schedules, the shared cisplatin-etoposide chemotherapy, and the stratification factors."
+  "schema_source": "Groom et al., The British journal of radiology 2017 (PMID 28362511). The full text was read."
  },
  "NCT00880971": {
   "schema": [
    {
     "label": "Randomize",
-    "text": "Patients with pIIIA-N2 non-small cell lung cancer after complete resection and four cycles of platinum-based chemotherapy were randomized 1:1.",
     "arms": [
      {
-      "label": "PORT",
-      "text": "Postoperative radiotherapy, 2 Gy per fraction to 50 Gy over 5 weeks, using 3D conformal radiotherapy or intensity-modulated radiotherapy."
+      "label": "Assignment",
+      "text": "Patients with pIIIA-N2 NSCLC treated with complete resection followed by four cycles of platinum-based chemotherapy between January 1, 2009 and December 31, 2017 were randomly assigned in a 1:1 ratio to PORT or observation."
      },
      {
-      "label": "Observation",
-      "text": "No postoperative radiotherapy."
+      "label": "Assignment",
+      "text": "Findings Overall, 394 patients were randomly allocated to the PORT (n = 184) or observation (n = 180) arms."
      }
-    ],
-    "note": ""
+    ]
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Radiotherapy was delivered using a 6 MV-X ray linear accelerator via 3D-CRT or IMRT, with 2 Gy per fraction up to 50 Gy over 5 weeks."
    }
   ],
-  "schema_source": "The long-term PORT-C report states the 1:1 randomization and the 50 Gy postoperative radiotherapy schedule."
+  "schema_source": "Men et al., EClinicalMedicine 2025 (PMID 41146922). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "The median follow-up time was 87.9 months (interquartile range [IQR] 72.2–113.8).",
+    "note": ""
+   }
+  ]
  },
  "NCT00003893": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Patients with early invasive breast cancer were randomized to synchronous or sequential adjuvant chemotherapy and radiotherapy. Permitted chemotherapy was CMF or anthracycline-CMF. Radiotherapy was 40 Gy in 15 fractions over 3 weeks or 50 Gy in 25 fractions over 5 weeks.",
-    "arms": [
-     {
-      "label": "Synchronous",
-      "text": "Radiotherapy between cycles 2 and 3 of CMF, or between cycles 5 and 6 of anthracycline-CMF."
-     },
-     {
-      "label": "Sequential",
-      "text": "Radiotherapy after chemotherapy was completed."
-     }
-    ],
-    "note": ""
+    "label": "Design",
+    "text": "Radiother Oncol Radiother Oncol 445 elsevierwt 8407192 Radiotherapy and Oncology 0167-8140 1879-0887 pmc-is-collection-domain yes pmc-collection-title Elsevier Sponsored Documents PMC7005671 PMC7005671.1 7005671 7005671 31785830 10.1016/j.radonc.2019.10.014 S0167-8140(19)33450-4 1 Article Synchronous versus sequential chemo-radiotherapy in patients with early stage breast cancer (SECRAB): A randomised, phase III,"
    },
    {
-    "label": "Stratify",
-    "text": "Permuted-block randomization stratified by centre, axillary surgery, chemotherapy, and radiotherapy boost.",
-    "arms": [],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": "Radiotherapy schedules included 40 Gy/15F over three weeks, and 50 Gy/25F over five weeks."
    }
   ],
-  "schema_source": "The SECRAB report states the synchronous versus sequential randomization, allowed chemotherapy and radiotherapy schedules, and stratification factors."
+  "schema_source": "Fernando et al., Radiotherapy and oncology 2020 (PMID 31785830). The full text was read."
  },
  "NCT00689221": {
   "schema": [
    {
     "label": "Randomize",
-    "text": "Adults with newly diagnosed supratentorial glioblastoma and a methylated MGMT promoter were randomized 1:1. Maintenance temozolomide was given for up to six cycles. Cilengitide, if assigned, continued for up to 18 months.",
     "arms": [
      {
-      "label": "Cilengitide",
-      "text": "Temozolomide chemoradiotherapy plus cilengitide 2000 mg intravenously twice weekly."
-     },
-     {
-      "label": "Control",
-      "text": "Temozolomide chemoradiotherapy alone."
+      "label": "Assignment",
+      "text": "Of these patients, 3060 had tumour MGMT status tested; 926 patients had a methylated MGMT promoter , and 545 were randomly assigned to the cilengitide (n=272) or control groups (n=273) between Oct 31, 2008, and May 12, 2011."
      }
-    ],
-    "note": "The abstract does not state the radiotherapy dose or the temozolomide milligram schedule."
-   },
-   {
-    "label": "Stratify",
-    "text": "Stratified by RTOG recursive partitioning analysis class and geographic region.",
-    "arms": [],
-    "note": ""
+    ]
    }
   ],
-  "schema_source": "The CENTRIC report states the 1:1 randomization, the cilengitide dose, and the stratification factors."
+  "schema_source": "Stupp et al., The Lancet. Oncology 2014 (PMID 25163906). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Progression-free survival was assessed locally by investigators on the basis of gadolinium-enhanced MRI and according to the Macdonald criteria at 4 weeks after radiotherapy , then at 18, 26, and 34 weeks af ter randomisation, and every 12 weeks thereafter during the follow-up phase.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "All statistical analyses were independently done on mature data with a median followup of 29 months (IQR 25–35) by statisticians both at Merck KGaA, Darmstadt, Germany, and at the European Organisation for Research and Treatment of Cancer (EORTC) using SAS software version 9.2.",
+    "note": ""
+   }
+  ]
  },
  "NCT02512965": {
   "schema": [
    {
     "label": "Randomize",
-    "text": "Adults with painful MRI-confirmed spinal metastasis involving no more than three consecutive vertebrae, ECOG performance status 0-2, and Spinal Instability Neoplastic Score below 12, without symptomatic cord compression, were randomized 1:1.",
     "arms": [
      {
-      "label": "SBRT",
-      "text": "Stereotactic body radiotherapy, 24 Gy in two daily fractions."
-     },
-     {
-      "label": "Conventional radiotherapy",
-      "text": "External beam radiotherapy, 20 Gy in five daily fractions."
+      "label": "Assignment",
+      "text": "Patients were randomly assigned (1:1) with a web-based, computer-generated allocation sequence to receive either stereotactic body radiotherapy at a dose of 24 Gy in two daily fractions or conventional external beam radiotherapy at a dose of 20 Gy in five daily fractions using standard techniques."
      }
-    ],
-    "note": ""
+    ]
    },
    {
-    "label": "Stratify",
-    "text": "Minimization balanced radiosensitivity, mass-type extraosseous or epidural tumor, and centre.",
-    "arms": [],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": "Interpretation Stereotactic body radiotherapy at a dose of 24 Gy in two daily fractions was superior to conventional external beam radiotherapy at a dose of 20 Gy in five daily fractions in improving the complete response rate for pain."
    }
   ],
-  "schema_source": "The spinal metastasis trial report states both radiotherapy doses and the stratification factors."
+  "schema_source": "Sahgal et al., The Lancet. Oncology 2021 (PMID 34126044). The full text was read.",
+  "eligibility": [
+   "Patients were eligible if they were aged 18 years and older, and had painful (defined as ≥2 points with the Brief Pain Inventory) MRI-confirmed spinal metastasis, no more than three consecutive vertebral segments to be included in the treatment volume, an Eastern Cooperative Oncology Group performance status of 0–2, a Spinal Instability Neoplasia Score of less than 12, and no neurologically symptomatic spinal cord"
+  ]
  },
  "NCT01413269": {
   "schema": [
@@ -15495,37 +15197,26 @@
  "NCT00278408": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Patients aged 18-60 years with aggressive B-cell lymphoma and age-adjusted IPI 0 plus bulk of at least 7.5 cm, or age-adjusted IPI 1, were randomized between two R-CHOP schedules. R-CHOP is rituximab, cyclophosphamide, doxorubicin, vincristine, and prednisone or prednisolone.",
-    "arms": [
-     {
-      "label": "R-CHOP-14",
-      "text": "Six cycles every 14 days."
-     },
-     {
-      "label": "R-CHOP-21",
-      "text": "Six cycles every 21 days."
-     }
-    ],
+    "label": "Radiotherapy",
+    "text": "Radiotherapy was administered at a total dose of 39.6 Gy involved-field with 1.8 Gy/fraction 5 times a week."
+   }
+  ],
+  "schema_source": "Held et al., HemaSphere 2023 (PMID 37427145). The full text was read.",
+  "eligibility": [
+   "A complete list of exclusion criteria are provided in the protocol in the appendix."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Final response was assessed after end of radiotherapy simultaneously with first follow-up in the radiotherapy arm.",
     "note": ""
    },
    {
-    "label": "Randomize",
-    "text": "Patients who qualified for radiotherapy to extralymphatic or bulky disease were also randomized to consolidation radiotherapy or observation. Patients who did not qualify were randomized only between the chemotherapy schedules.",
-    "arms": [
-     {
-      "label": "Radiotherapy",
-      "text": "Consolidation radiotherapy to extralymphatic and bulky disease."
-     },
-     {
-      "label": "Observation",
-      "text": "No consolidation radiotherapy."
-     }
-    ],
+    "item": "Follow-up",
+    "window": "First follow-up examination was done 3 months after the restaging after 6 cycles of R-CHOP.",
     "note": ""
    }
-  ],
-  "schema_source": "The UNFOLDER report states the 2 x 2 randomization of R-CHOP interval and consolidation radiotherapy."
+  ]
  },
  "NCT00262821": {
   "schema": [
@@ -15550,28 +15241,24 @@
  "NCT01372774": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Adults with one resected brain metastasis and a cavity smaller than 5.0 cm were randomized 1:1.",
-    "arms": [
-     {
-      "label": "Postoperative SRS",
-      "text": "Single-fraction stereotactic radiosurgery, 12-20 Gy, with dose determined by surgical cavity volume."
-     },
-     {
-      "label": "WBRT",
-      "text": "Whole-brain radiotherapy, 30 Gy in 10 fractions or 37.5 Gy in 15 fractions of 2.5 Gy, with the schedule set by the treating centre."
-     }
-    ],
-    "note": ""
+    "label": "Design",
+    "text": "We randomised patients using a dynamic allocation strategy with stratification factors of age, duration of extracranial disease control, number of brain metastases, histology, maximal resection cavity diameter, and treatment centre."
    },
    {
-    "label": "Stratify",
-    "text": "Dynamic allocation stratified by age, duration of extracranial disease control, number of brain metastases, histology, maximal resection cavity diameter, and centre.",
-    "arms": [],
-    "note": ""
+    "label": "Randomize",
+    "arms": [
+     {
+      "label": "Assignment",
+      "text": "Randomisation and masking Patients were randomly assigned (1:1) to either SRS to the surgical cavity or WBRT."
+     }
+    ]
    }
   ],
-  "schema_source": "The N107C/CEC.3 report states the postoperative radiosurgery and whole-brain radiotherapy arms and the stratification factors."
+  "schema_source": "Brown et al., The Lancet. Oncology 2017 (PMID 28687377). The full text was read.",
+  "eligibility": [
+   "Eligibility criteria included Eastern Cooperative Oncology Group performance status 0–2 and pathology from the resected brain metastasis consistent with a non-CNS primary site.",
+   "The full inclusion and exclusion criteria are given in the protocol (appendix pp 30–122)."
+  ]
  },
  "NCT02931890": {
   "schema": [
@@ -15600,22 +15287,11 @@
  "NCT02605265": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Patients with clinical T3-4 and/or node-positive rectal adenocarcinoma and UGT1A1 genotype *1/*1 or *1/*28 were randomized to capecitabine chemoradiotherapy or UGT1A1-guided capecitabine and irinotecan chemoradiotherapy.",
-    "arms": [
-     {
-      "label": "CapRT",
-      "text": "Pelvic radiotherapy 50 Gy in 25 fractions with concurrent capecitabine, followed by oxaliplatin and capecitabine."
-     },
-     {
-      "label": "CapIriRT",
-      "text": "Radiotherapy with capecitabine and weekly irinotecan, 80 mg/m2 for UGT1A1 *1/*1 or 65 mg/m2 for *1/*28, followed by irinotecan and capecitabine."
-     }
-    ],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": "Whole-pelvic intensity-modulated radiation therapy was given in 50 Gy/25 fractions."
    }
   ],
-  "schema_source": "The CinClare report states both neoadjuvant chemoradiotherapy arms, the 50 Gy schedule, and the genotype-guided irinotecan doses."
+  "schema_source": "Guan et al., Therapeutic advances in gastroenterology 2019 (PMID 31217818). The full text was read."
  },
  "NCT02667587": {
   "schema": [
@@ -15661,21 +15337,35 @@
   "schema": [
    {
     "label": "Randomize",
-    "text": "Patients with FIGO 2009 cervical cancer stage IB2, II, IIIB, or IVA without para-aortic nodes, or stage II-IV vaginal cancer, were randomized to cisplatin chemoradiotherapy or the same treatment plus triapine. Radiotherapy was 3D conformal or image-guided intensity-modulated radiotherapy followed by intracavitary brachytherapy.",
     "arms": [
      {
-      "label": "Chemoradiotherapy",
-      "text": "Cisplatin chemoradiotherapy and brachytherapy."
-     },
-     {
-      "label": "Chemoradiotherapy + triapine",
-      "text": "The same radiotherapy and cisplatin plus thrice-weekly triapine."
+      "label": "Assignment",
+      "text": "Four-hundredfifty patients were randomized including 448 eligible (224 in CRT and 224 in CRT + T)."
      }
-    ],
-    "note": "This phase 3 abstract does not state the triapine or cisplatin milligram doses."
+    ]
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Radiation therapy techn iques Conventional (4field) 3D conformal external beam RT (3DCRT) consisted of 45 Gy in 25 fractions over five weeks, with an optional parametrial boost of 4 –9G yi n3 –5 fractions."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "IG-IMRT was permitted with the same prescription or, optionally, using a simultaneous integrated boost (SIB) scheme with 47.6 Gy to the elective planning target volume (PTV) and 54.0 –59.4 Gy to the gross nodal PTV in 28 fractions."
    }
   ],
-  "schema_source": "The NRG-GY006 report states randomization to cisplatin chemoradiotherapy with or without thrice-weekly triapine."
+  "schema_source": "Leath et al., Gynecologic oncology 2025 (PMID 40101606). The full text was read.",
+  "eligibility": [
+   "Key eligibility criteria included: ≥ 18 years of age with a new diagnosis of untreated cervical (FIGO Stage IB2, II, IIIB or IVA) or vaginal cancer (FIGO Stage II-IVA).",
+   "Key exclusion criteria included patients with other histologic subtypes, a prior hysterectomy for treatment of their cervical cancer, positive para-aortic lymph nodes, as were those with known glucose-6-phosphatase dehydrogenase (G6PD) de ficiency as this would interfere with methylene blue which is the antidote of triapine.",
+   "Moreover, the median follow-up time was calculated using reverse Kaplan-Meier method with all eligible patients included."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Moreover, the median follow-up time was calculated using reverse Kaplan-Meier method with all eligible patients included.",
+    "note": ""
+   }
+  ]
  },
  "NCT02025036": {
   "schema": [
@@ -15768,22 +15458,20 @@
  "NCT00006721": {
   "schema": [
    {
+    "label": "Design",
+    "text": "Purpose SWOG S0016 was a phase III randomized study that compared the safety and ef ficacy of R-CHOP (rituximab plus cyclophosphamide, doxorubicin, vincristine, and prednisone) with CHOP-RIT (CHOP followed by consolidation with iodine-133 –tositumomab radioimmunotherapy) for previously untreated patients with follicular lymphoma."
+   },
+   {
     "label": "Randomize",
-    "text": "Patients with previously untreated bulky stage II, stage III, or stage IV follicular lymphoma of any grade were randomized to R-CHOP or CHOP followed by radioimmunotherapy.",
     "arms": [
      {
-      "label": "CHOP-R",
-      "text": "Six cycles of CHOP every 3 weeks with six doses of rituximab."
-     },
-     {
-      "label": "CHOP-RIT",
-      "text": "Six cycles of CHOP followed by tositumomab and iodine-131 tositumomab."
+      "label": "Assignment",
+      "text": "Between 2001 and 2008, 531 previously untreated patients with FL were randomly assigned to receive either six cycles of R-CHOP or six cycles of CHOP-RIT."
      }
-    ],
-    "note": ""
+    ]
    }
   ],
-  "schema_source": "The SWOG S0016 report states the two immunochemotherapy arms for advanced follicular lymphoma."
+  "schema_source": "Shadman et al., Journal of clinical oncology 2018 (PMID 29356608). The full text was read."
  },
  "NCT00047112": {
   "schema": [
@@ -15809,56 +15497,57 @@
   "schema": [
    {
     "label": "Design",
-    "text": "Patients with recurrent glioma are reirradiated to the contrast-enhancing high-grade region. Phase I escalates carbon ion radiotherapy to a recommended dose. The randomized phase II then compares that dose with photon stereotactic radiotherapy.",
-    "arms": [
-     {
-      "label": "Carbon ions",
-      "text": "Carbon ion radiotherapy at the recommended dose from phase I."
-     },
-     {
-      "label": "Fractionated stereotactic radiotherapy",
-      "text": "36 Gy in fractions of 2 Gy."
-     }
-    ],
-    "note": "The carbon ion gray dose is not fixed in the protocol abstract because it is chosen in phase I."
+    "text": "In the subsequent randomized Phase II part, the RD will be evaluated in the experimental arm, compared to the standard arm, FSRT with a total dose of 36 Gy in single doses of 2 Gy."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Therefore, in general, standard radiation therapy is applied up to a total dose of 60 Gy."
    }
   ],
-  "schema_source": "The CINDERELLA protocol abstract states the planned phase II comparison and the 36 Gy photon arm."
+  "schema_source": "Combs et al., BMC cancer 2010 (PMID 20925951). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "During follow-up, patients develop not only low grade tumor progression, but also high-grade malignant tumor lesions.",
+    "note": ""
+   }
+  ]
  },
  "NCT00052936": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Patients aged 61-80 years with aggressive B-cell lymphoma were randomized to six or eight cycles of CHOP every 14 days. CHOP is cyclophosphamide, doxorubicin, vincristine, and prednisone.",
-    "arms": [
-     {
-      "label": "Six cycles",
-      "text": "Six cycles of CHOP-14."
-     },
-     {
-      "label": "Eight cycles",
-      "text": "Eight cycles of CHOP-14."
-     }
-    ],
-    "note": ""
+    "label": "Design",
+    "text": "This randomised trial assessed whether six or eight cycles of R-CHOP-14 can improve outcome of these patients compared with six or eight cycles of CHOP-14."
    },
    {
     "label": "Randomize",
-    "text": "The same patients were randomized to receive CHOP-14 with or without rituximab.",
     "arms": [
      {
-      "label": "Rituximab",
-      "text": "Rituximab added to the assigned CHOP-14 schedule."
+      "label": "Assignment",
+      "text": "1222 elderly patients (aged 61–80 years) were randomly assigned to six or eight cycles of CHOP-14 with or without rituximab."
      },
      {
-      "label": "No rituximab",
-      "text": "CHOP-14 without rituximab."
+      "label": "Assignment",
+      "text": "To compare six cycles with eight cycles of chemotherapy and to address the question whether further improvement could be achieved by adding rituximab to the dose-dense CHOP-14 regimen, the DSHNHL designed the rituximab with CHOP over age 60 years (RICOVER-60) trial, in which elderly patients with diﬀ use large B-cell lymphoma (DLBCL) were randomly assigned to receive six or eight cycles of chemotherapy, both with"
      }
-    ],
-    "note": ""
+    ]
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Patients with initial bulky disease (defi ned as lymphoma masses or conglomerates with a diameter ≥7·5 cm) or extranodal involvement received radiotherapy (36 Gy) to these areas irrespective of the result of chemotherapy."
    }
   ],
-  "schema_source": "A prospective analysis of the RICOVER-60 cohort states randomization to six or eight cycles of CHOP-14 with or without rituximab."
+  "schema_source": "Pfreundschuh et al., The Lancet. Oncology 2008 (PMID 18226581). The full text was read.",
+  "eligibility": [
+   "Patients Patients were eligible if they had previously untreated, biopsy-confi rmed aggressive non-Hodgkin lymphoma of the B-cell type according to the Revised European– American Lymphoma Classifi cation5 (translated into the WHO classifi cation6) and were aged between 61 years and 80 years."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Follow-up assessments were done every 3 months during the fi rst 2 years, and every 6 months during the third to fi fth year by use of physical examination, relevant laboratory tests (the same as those done for staging) and CT of the chest and abdomen.",
+    "note": ""
+   }
+  ]
  },
  "NCT02959385": {
   "schema": [
@@ -15904,21 +15593,27 @@
   "schema": [
    {
     "label": "Randomize",
-    "text": "Children aged 1-17 years with standard-risk B-precursor or T-cell acute lymphoblastic leukemia, defined as no high-risk cytogenetics and undetectable minimal residual disease on days 33 and 78, were randomized between two delayed-intensification regimens.",
     "arms": [
      {
-      "label": "Protocol III",
-      "text": "Reduced-intensity delayed intensification lasting 29 days, with cumulative doses reduced by 30% for dexamethasone and 50% for vincristine, doxorubicin, and cyclophosphamide."
-     },
-     {
-      "label": "Protocol II",
-      "text": "Standard delayed intensification lasting 49 days."
+      "label": "Assignment",
+      "text": "Randomization and treatment In this open-label study, patients were randomly assigned to receive the standard glucocorticoid therapy with prednisone or the experimental therapy with dexamethasone as part of the 4-drug induction therapy phase Protocol IA."
      }
-    ],
-    "note": ""
+    ]
    }
   ],
-  "schema_source": "The AIEOP-BFM ALL 2000 report states the standard-risk randomization and the dose reductions in protocol III."
+  "schema_source": "Möricke et al., Blood 2016 (PMID 26888258). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Event-free survival was defined as the time from diagnosis to the date of last follow-up orfirst event.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "Overall survival was defined as the time from diagnosis to death from any cause or last follow-up.",
+    "note": ""
+   }
+  ]
  },
  "NCT02617589": {
   "schema": [
@@ -16007,58 +15702,82 @@
  "NCT00033436": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Patients with muscle-invasive or high-grade non-muscle-invasive bladder cancer were randomized to radical radiotherapy alone or radiotherapy plus hypoxia modification.",
-    "arms": [
-     {
-      "label": "Radiotherapy",
-      "text": "Radical radiotherapy alone."
-     },
-     {
-      "label": "Radiotherapy + CON",
-      "text": "Radical radiotherapy plus carbogen (98% oxygen and 2% carbon dioxide) and nicotinamide."
-     }
-    ],
-    "note": "This follow-up abstract does not state the radiotherapy dose or the nicotinamide dose."
+    "label": "Radiotherapy",
+    "text": "Interpretation A hypofractionated schedule of 55 Gy in 20 fractions is non-inferior to 64 Gy in 32 fractions with regard to both invasive locoregional control and toxicity, and is superior with regard to invasive locoregional control. 55 Gy in 20 fractions should be adopted as a standard of care for bladder preservation in patients with locally advanced bladder cancer."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Both trials permitted two commonly used radiotherapy fractionation schedules, 64 Gy in 32 fractions over 6·5 weeks and a hypofractionated schedule of 55 Gy in 20 fractions over 4 weeks."
    }
   ],
-  "schema_source": "The BCON 10-year report states randomization to radical radiotherapy alone or radiotherapy with carbogen and nicotinamide."
+  "schema_source": "Choudhury et al., The Lancet. Oncology 2021 (PMID 33539743). The full text was read.",
+  "eligibility": [
+   "Study design and participants We did a meta-analysis of individual patient data from patients with invasive bladder cancer enrolled in the multicentre, randomised, controlled, phase 3 trials BC2001 3 , 5 and BCON. 1 The trials, including full eligibility criteria, procedures, and statistical analysis plans, have been previously reported.",
+   "Inclusion and exclusion criteria were similar between the trials ( appendix p 1 )."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "In BC2001, annual follow-up for disease events (recurrence of local or distant disease) and patient status was prospectively collected up to July 11, 2016.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "To account for the difference in length of disease follow-up assessments between trials, the period of observation was set at 5 years.",
+    "note": ""
+   }
+  ]
  },
  "NCT00003211": {
   "schema": [
    {
-    "label": "Design",
-    "text": "After resection, children with medulloblastoma were assigned by risk, not randomized, to craniospinal radiotherapy followed by four cycles of cyclophosphamide-based dose-intensive chemotherapy.",
-    "arms": [
-     {
-      "label": "Average risk",
-      "text": "Craniospinal radiotherapy 23.4 Gy for residual tumor no larger than 1.5 cm2 and no metastatic disease, then four cycles of cyclophosphamide-based chemotherapy."
-     },
-     {
-      "label": "High risk",
-      "text": "Craniospinal radiotherapy 36.0-39.6 Gy for larger residual disease or neuraxis metastases, then the same four chemotherapy cycles."
-     }
-    ],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": "All patients received risk-adapted craniospinal radiotherapy (23·4 Gy for average-risk disease and 36·0–39·6 Gy for high-risk disease) followed by four cycles of cyclophosphamide-based, dose-intensive chemotherapy."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Those with average-risk disease received 23·4 Gy craniospinal radiotherapy, 36 Gy radiotherapy to the posterior fossa, and 55·8 Gy to the primary tumour bed."
    }
   ],
-  "schema_source": "The St Jude Medulloblastoma-96 report states the risk-assigned craniospinal doses and the shared chemotherapy."
+  "schema_source": "Gajjar et al., The Lancet. Oncology 2006 (PMID 17012043). The full text was read.",
+  "eligibility": [
+   "However, these patients were not eligible for the study if they did not meet the other eligibility criteria (eg, blood variables)."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "After completion of treatment, follow-up examinations were done every 3 months for the fi rst 18 months, every 6 months for the next 5 years, and every year thereafter.",
+    "note": ""
+   }
+  ]
  },
  "NCT05543070": {
   "schema": [
    {
-    "label": "Design",
-    "text": "The CLCG-iNHL-01 protocol assigns patients with indolent non-Hodgkin lymphoma to one involved-site radiotherapy schedule. It is a single-arm phase 2 study.",
-    "arms": [
-     {
-      "label": "Involved-site radiotherapy",
-      "text": "12 Gy in four fractions."
-     }
-    ],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": "Patients underwent involved-site radiotherapy at a dose of 12 Gy in four fractions."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Interpretation The regimen of 12 Gy in four fractions is safe and shows promising activity as a local treatment for patients with indolent non-Hodgkin lymphoma."
    }
   ],
-  "schema_source": "The CLCG-iNHL-01 protocol abstract states involved-site radiotherapy of 12 Gy in four fractions."
+  "schema_source": "Wang et al., The Lancet. Haematology 2025 (PMID 40324445). The full text was read.",
+  "eligibility": [
+   "The exclusion criteria were a history of radiotherapy at the same site and a predicted life expectancy of less than 3 months."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "This trial was registered with ClinicalTrials.gov, NCT05543070, with a four-month delay due to the COVID-19 pandemic; recruitment is complete and follow-up is ongoing.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "With a median follow-up of 19 months (IQR 16–22), the 6-month complete response was 95% (95% CI 87–98; 69 of 73 sites).",
+    "note": ""
+   }
+  ]
  },
  "NCT02000050": {
   "schema": [
@@ -16202,76 +15921,50 @@
  "NCT00407186": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Adults with stage IB-IVA resectable gastric or gastro-oesophageal adenocarcinoma and WHO performance status 0-1 were randomized 1:1 before preoperative chemotherapy. Surgery was a radical resection with at least a D1+ dissection. Both arms received the same preoperative chemotherapy.",
-    "arms": [
-     {
-      "label": "Perioperative chemotherapy",
-      "text": "Three preoperative and three postoperative 21-day cycles of epirubicin 50 mg/m2, cisplatin 60 mg/m2 or oxaliplatin 130 mg/m2, and capecitabine."
-     },
-     {
-      "label": "Postoperative chemoradiotherapy",
-      "text": "The same preoperative chemotherapy, then 45 Gy in 25 fractions of 1.8 Gy with capecitabine 575 mg/m2 twice daily on radiotherapy days and cisplatin 20 mg/m2 weekly during radiotherapy."
-     }
-    ],
-    "note": ""
-   },
-   {
-    "label": "Stratify",
-    "text": "Stratified by histological subtype, tumor localization, and hospital.",
-    "arms": [],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": "/design: In this phase III multicentre study, patients with resectable gastric cancer are treated with three cycles of preoperative ECC (epirubicin, cisplatin and capecitabine), followed by surgery with adequate lymph node dissection, and then either another three cycles of ECC or concurrent chemoradiation (45 Gy, cisplatin and capecitabine)."
    }
   ],
-  "schema_source": "The CRITICS report states the perioperative chemotherapy arm, the postoperative chemoradiotherapy doses, and the stratification factors."
+  "schema_source": "Dikken et al., BMC cancer 2011 (PMID 21810227). The full text was read."
  },
  "NCT00909818": {
   "schema": [
    {
     "label": "Randomize",
-    "text": "Patients older than 40 years with node-negative breast cancer or ductal carcinoma in situ treated by breast-conserving surgery were randomized to two whole-breast radiotherapy schedules.",
     "arms": [
      {
-      "label": "Standard fractionation",
-      "text": "50 Gy in 25 fractions."
-     },
-     {
-      "label": "Hypofractionation",
-      "text": "40 Gy in 15 fractions."
+      "label": "Assignment",
+      "text": "One thousand eight hundred eighty-two patients . 40 years of age who underwent breast-conserving surgery for node-negative breast cancer or ductal carcinoma in situ (DCIS) were randomly assigned to radiotherapy at a dose of either 50 Gy in 25 fr or 40 Gy in 15 fr."
      }
-    ],
-    "note": ""
+    ]
    }
   ],
-  "schema_source": "The DBCG HYPO report states randomization to 50 Gy in 25 fractions or 40 Gy in 15 fractions."
+  "schema_source": "Offersen et al., Journal of clinical oncology 2020 (PMID 32910709). The full text was read."
  },
  "NCT00470236": {
   "schema": [
    {
     "label": "Randomize",
-    "text": "Women 18 years or older with unilateral non-low-risk ductal carcinoma in situ excised with at least 1 mm radial margins were randomized to boost or no boost, and, where the centre did not prespecify fractionation, to conventional or hypofractionated whole-breast irradiation. Centres could instead prespecify one whole-breast schedule and randomize only the boost.",
     "arms": [
      {
-      "label": "No boost",
-      "text": "Whole-breast irradiation without a tumor-bed boost."
-     },
-     {
-      "label": "Boost",
-      "text": "A tumor-bed boost of 16 Gy in eight fractions after whole-breast irradiation."
-     },
-     {
-      "label": "Conventional whole breast",
-      "text": "50 Gy in 25 fractions."
-     },
-     {
-      "label": "Hypofractionated whole breast",
-      "text": "42.5 Gy in 16 fractions."
+      "label": "Assignment",
+      "text": "Women aged 18 years or older with completely excised non-low-risk ductal carcinoma in situ were randomly assigned, by use of a minimisation algorithm, to tumour bed boost or no tumour bed boost, following conventional whole breast radiotherapy or hypofractionated whole breast radiotherapy using one of three randomisation categories."
      }
-    ],
-    "note": ""
+    ]
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Category A was a 4-arm randomisation of tumour bed boost versus no boost following conventional whole breast radiotherapy (50 Gy in 25 fractions over 5 weeks) versus hypofractionated whole breast radiotherapy (42·5 Gy in 16 fractions over 3·5 weeks)."
    }
   ],
-  "schema_source": "The BIG 3-07/TROG 07.01 report states the boost randomization and the two whole-breast fractionation schedules."
+  "schema_source": "King et al., The Lancet. Oncology 2020 (PMID 32203696). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "The primary endpoint, time to local recurrence, will be reported when participants have completed 5 years of follow-up.",
+    "note": ""
+   }
+  ]
  },
  "NCT00003607": {
   "schema": [
@@ -16500,78 +16193,64 @@
  "protocol:TROG 02.02": {
   "schema": [
    {
+    "label": "Design",
+    "text": "Purpose To determine the prognostic importance of p16 and human papillomavirus (HPV) in patients with oropharyngeal cancer treated on a phase III concurrent chemoradiotherapy trial."
+   },
+   {
     "label": "Randomize",
-    "text": "Patients with previously untreated stage III or IV squamous cell carcinoma of the oral cavity, oropharynx, hypopharynx, or larynx, excluding T1-2 N1 and M1 disease, were randomized to definitive radiotherapy with cisplatin or with cisplatin plus tirapazamine. Radiotherapy was 70 Gy in 7 weeks.",
     "arms": [
      {
-      "label": "Cisplatin",
-      "text": "Cisplatin 100 mg/m2 on day 1 of weeks 1, 4, and 7, with radiotherapy."
-     },
-     {
-      "label": "Cisplatin + tirapazamine",
-      "text": "Cisplatin 75 mg/m2 plus tirapazamine 290 mg/m2 on day 1 of weeks 1, 4, and 7, plus tirapazamine 160 mg/m2 on days 1, 3, and 5 of weeks 2 and 3, with radiotherapy."
+      "label": "Assignment",
+      "text": "Patients with stage III or IV head and neck squamous cell cancer were randomly assigned to concurrent radiotherapy and cisplatin with or without tirapazamine."
      }
-    ],
-    "note": ""
+    ]
    }
   ],
-  "schema_source": "The TROG 02.02 HeadSTART report states the 70 Gy radiotherapy and both concurrent drug schedules."
+  "schema_source": "Rischin et al., 2010 (PMID 20697079). The full text was read."
  },
  "ISRCTN18574865": {
   "schema": [
    {
     "label": "Design",
-    "text": "CRAIN is a phase 1b time-to-event continual reassessment dose escalation of tolinapant added to one fixed chemoradiotherapy backbone for newly diagnosed cervical cancer. Tolinapant is taken orally for seven consecutive days in weeks 1, 3, and 5.",
-    "arms": [
-     {
-      "label": "Chemoradiotherapy backbone",
-      "text": "45 Gy in 25 fractions over 5 weeks with weekly cisplatin 40 mg/m2, then brachytherapy, commonly 28 Gy in 4 high-dose-rate fractions or 34 Gy in 2 pulsed-dose-rate fractions."
-     },
-     {
-      "label": "Tolinapant 60 mg",
-      "text": "60 mg daily on the dosing weeks."
-     },
-     {
-      "label": "Tolinapant 90 mg",
-      "text": "90 mg daily, the starting level."
-     },
-     {
-      "label": "Tolinapant 120 mg",
-      "text": "120 mg daily."
-     },
-     {
-      "label": "Tolinapant 150 mg",
-      "text": "150 mg daily."
-     },
-     {
-      "label": "Tolinapant 180 mg",
-      "text": "180 mg daily."
-     }
-    ],
-    "note": ""
+    "text": "Discussion If this trial determines a recommended phase II dose and shows tolinapant to be safe and effective in combination with CRT, it would warrant future phase trials."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Treatment will constist of standard of care CRT with 45 Gy external beam radiotherapy given in 25 daily fractions over 5 weeks with weekly cisplatin 40mg/m2."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "This is followed by brachytherapy for which common schedules will be 28 Gy in 4 fractions high-dose-rate or 34 Gy in 2 fractions pulsed-dose-rate."
    }
   ],
-  "schema_source": "The CRAIN protocol abstract states the chemoradiotherapy backbone and the five tolinapant dose levels."
+  "schema_source": "Hoskin et al., 2024 (PMID 38849715). The full text was read.",
+  "eligibility": [
+   "Sections will be cut by histology for the follow - ing analyses: H&E stain for pathology reporting, RNA extraction for transcriptomics, Immunohistochemistry (IHC) for IAP and hypoxia status and DNA extraction for Table 1 CRAIN trial eligibility criteria Inclusion criteria 1."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Where possible, participants who have withdrawn from trial treatment should remain in followup as per the trial schedule.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "Treatment and follow-up visits Treatment will consist of standard of care CRT with 45 Gy external beam radiotherapy administered in 25 daily fractions over 5 weeks with once weekly cispla - tin 40 mg/m2.",
+    "note": ""
+   }
+  ]
  },
  "NCT00227747": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Patients with rectal adenocarcinoma accessible to digital examination, staged T3-T4 Nx M0 or T2 Nx of the distal anterior rectum, were randomized to two neoadjuvant chemoradiotherapy regimens.",
-    "arms": [
-     {
-      "label": "CAP45",
-      "text": "Radiotherapy 45 Gy with capecitabine."
-     },
-     {
-      "label": "CAPOX50",
-      "text": "Radiotherapy 50 Gy with capecitabine and oxaliplatin."
-     }
-    ],
-    "note": "This late-effects report does not state the capecitabine or oxaliplatin milligram doses."
+    "label": "Design",
+    "text": "Two neoadjuvant chemoradiotherapy regimens were randomized: CAP45 (RT 45 Gy þ capecitabine) and CAPOX50 (RT 50 Gy þ capecitabine and oxaliplatin)."
    }
   ],
-  "schema_source": "The ACCORD 12 report states randomization to 45 Gy with capecitabine or 50 Gy with capecitabine and oxaliplatin."
+  "schema_source": "Azria et al., Annals of oncology 2017 (PMID 28961836). The full text was read.",
+  "eligibility": [
+   ": Inclusion criteria were as follows: rectal adenocarcinoma accessible to digital examination staged T3-T4 Nx M0 (or T2 Nx distal anterior rectum)."
+  ]
  },
  "NCT00767286": {
   "schema": [
@@ -16666,22 +16345,15 @@
  "NCT00875355": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Patients with newly diagnosed intraparenchymal brain metastases from breast cancer, unsuitable for surgery or radiosurgery, were randomized to whole-brain radiotherapy with or without concurrent temozolomide.",
-    "arms": [
-     {
-      "label": "WBRT",
-      "text": "Conformal whole-brain radiotherapy, 30 Gy in 10 fractions of 3 Gy."
-     },
-     {
-      "label": "WBRT + temozolomide",
-      "text": "The same radiotherapy plus temozolomide 75 mg/m2 per day during irradiation."
-     }
-    ],
-    "note": ""
+    "label": "Design",
+    "text": "Annals of Oncology 26: 89–94, 2015 doi:10.1093/annonc/mdu488 Published online 29 October 2014 Phase II randomized study of whole-brain radiation therapy with or without concurrent temozolomide for brain metastases from breast cancer K."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "All patients received conformal WBRT (3 Gy × 10–30 Gy), with or without concomitant TMZ administered at a dosage of 75 mg/m 2/day during the irradiation period."
    }
   ],
-  "schema_source": "The breast-cancer brain metastasis trial states 30 Gy in 10 fractions with or without concurrent temozolomide 75 mg/m2 daily."
+  "schema_source": "Cao et al., Annals of oncology 2015 (PMID 25355723). The full text was read."
  },
  "NCT00002569": {
   "schema": [
@@ -16726,26 +16398,39 @@
  "NCT00929591": {
   "schema": [
    {
+    "label": "Design",
+    "text": "Findings Of 1558 randomised women, 1477 (95%) were eligible for inclusion in the analysis."
+   },
+   {
     "label": "Randomize",
-    "text": "Postmenopausal women with hormone-receptor-positive, node-positive breast cancer were randomized in a 2:3:3 ratio. CAF was cyclophosphamide, doxorubicin, and fluorouracil every 4 weeks for six cycles. Tamoxifen was given daily for 5 years.",
     "arms": [
      {
-      "label": "Tamoxifen",
-      "text": "Tamoxifen alone."
+      "label": "Assignment",
+      "text": "Patients in this open-label trial were randomly assigned by a computer algorithm in a 2:3:3 ratio (tamoxifen:CAF-T:CAFT) and analysis was by intention to treat of eligible patients."
      },
      {
-      "label": "CAF-T",
-      "text": "CAF followed by tamoxifen."
-     },
-     {
-      "label": "CAFT",
-      "text": "CAF with concurrent tamoxifen."
+      "label": "Assignment",
+      "text": "Randomisation and masking Patients were randomly assigned in a 2:3:3 ratio to receive tamoxifen alone, CAF followed by tamoxifen (CAF-T), or CAF with concurrent tamoxifen (CAFT)."
      }
-    ],
-    "note": ""
+    ]
    }
   ],
-  "schema_source": "The SWOG-8814 report states the 2:3:3 randomization to tamoxifen alone, CAF followed by tamoxifen, or concurrent CAF and tamoxifen."
+  "schema_source": "Albain et al., Lancet (London, England) 2009 (PMID 20004966). The full text was read.",
+  "eligibility": [
+   "Patients who did not meet eligibility criteria after fi nal review were excluded from the analysis."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "After a maximum of 13 years of follow-up (median 8·94 years), 637 women had a disease-free survival event (tamoxifen, 179 events in 361 patients; CAF-T, 216 events in 566 patients; CAFT, 242 events in 550 patients).",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "Follow-up for late recurrence was terminated because of fi nancial constraints, but mortality information is still obtained where possible.",
+    "note": ""
+   }
+  ]
  },
  "NCT00003577": {
   "schema": [
@@ -16770,28 +16455,24 @@
  "NCT00861094": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Adults with stage I-IVA esophageal carcinoma selected for definitive chemoradiotherapy and ECOG performance status 0-2 were randomized 1:1. Both groups received 50 Gy in 25 fractions, five fractions per week.",
-    "arms": [
-     {
-      "label": "FOLFOX",
-      "text": "Six cycles, three concomitant with radiotherapy, of oxaliplatin 85 mg/m2, leucovorin 200 mg/m2, bolus fluorouracil 400 mg/m2, and infusional fluorouracil 1600 mg/m2 over 46 hours."
-     },
-     {
-      "label": "Fluorouracil and cisplatin",
-      "text": "Four cycles, two concomitant with radiotherapy, of fluorouracil 1000 mg/m2 per day for 4 days and cisplatin 75 mg/m2 on day 1."
-     }
-    ],
-    "note": ""
+    "label": "Design",
+    "text": "We did a multicentre, randomised, open-label, parallel-group, phase 2/3 trial of patients aged 18 years or older enrolled from 24 centres in F rance between Oct 15, 2004, and A ug 25, 2011."
    },
    {
-    "label": "Stratify",
-    "text": "Minimization stratified by centre, histology, weight loss, and ECOG status.",
-    "arms": [],
-    "note": ""
+    "label": "Randomize",
+    "arms": [
+     {
+      "label": "Assignment",
+      "text": "Findings 134 participants were randomly allocated to the FOLFOX group and 133 to the fl uorouracil and cisplatin group (intention-to-treat population), and 131 patients in the FOLFOX group and 128 in the fl uorouracil and cisplatin group actually received the study drugs (safety population)."
+     }
+    ]
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Both groups also received 50 Gy radiotherapy in 25 fractions (fi ve fractions per week)."
    }
   ],
-  "schema_source": "The PRODIGE 5/ACCORD 17 report states the FOLFOX and fluorouracil-cisplatin schedules, the shared 50 Gy radiotherapy, and stratification."
+  "schema_source": "Conroy et al., The Lancet. Oncology 2014 (PMID 24556041). The full text was read."
  },
  "NCT00112697": {
   "schema": [
@@ -16816,28 +16497,19 @@
  "NCT00967863": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Men with high-risk prostate cancer, defined as PSA at least 20 ng/mL, Gleason score at least 8, or clinical stage T3-T4, were randomized 1:1 to two prostate radiotherapy doses, both with long-term androgen deprivation.",
-    "arms": [
-     {
-      "label": "80 Gy",
-      "text": "80 Gy in 2 Gy fractions over 8 weeks."
-     },
-     {
-      "label": "70 Gy",
-      "text": "70 Gy in 2 Gy fractions over 7 weeks."
-     }
-    ],
-    "note": ""
+    "label": "Design",
+    "text": "In this multicentre, open-label, randomised, phase 3 trial, we enrolled patients with high-risk prostate cancer, defined as prostate-specific antigen of 20 ng/mL or more, Gleason score of at least 8, or clinical stage T3–T4, from 25 centres in France."
    },
    {
-    "label": "Stratify",
-    "text": "Minimization stratified by centre and previous pelvic lymph node dissection.",
-    "arms": [],
-    "note": ""
+    "label": "Radiotherapy",
+    "text": "Findings Between April 6, 2009, and Jan 24, 2013, 505 patients with high-risk prostate cancer were enrolled; 250 were assigned to receive dose-escalated radiotherapy (80 Gy) and 255 to receive standard dose radiotherapy (70 Gy)."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Interpretation For patients with high-risk prostate cancer, radiotherapy at a total dose of 80 Gy, in combination with long-term ADT, improved progression-free survival and could be a potential option in this situation."
    }
   ],
-  "schema_source": "The GETUG-AFU 18 report states 80 Gy versus 70 Gy, both with long-term androgen deprivation, and the stratification factors."
+  "schema_source": "Hennequin et al., The Lancet. Oncology 2026 (PMID 42636837). The full text was read."
  },
  "NCT00433459": {
   "schema": [
@@ -16891,21 +16563,15 @@
   "schema": [
    {
     "label": "Randomize",
-    "text": "Patients with metastatic pancreatic cancer in the randomized phase 2 CheckPAC study received checkpoint inhibition plus stereotactic body radiotherapy.",
     "arms": [
      {
-      "label": "Nivolumab + SBRT",
-      "text": "Nivolumab with a single fraction of stereotactic body radiotherapy."
-     },
-     {
-      "label": "Nivolumab + ipilimumab + SBRT",
-      "text": "Nivolumab and ipilimumab with a single fraction of stereotactic body radiotherapy."
+      "label": "Assignment",
+      "text": "Between November 2016 and December 2019, patients with refractory mPC were randomly assigned 1:1 to SBRT of 15 Gy with nivolumab or nivolumab/ipilimumab strati fied by performance status (Clinical- Trials.gov identifier: NCT02866383)."
      }
-    ],
-    "note": "This biomarker report does not state drug or radiotherapy doses."
+    ]
    }
   ],
-  "schema_source": "A CheckPAC biomarker report states nivolumab with or without ipilimumab, each combined with a single fraction of stereotactic body radiotherapy."
+  "schema_source": "Chen et al., Journal of clinical oncology 2022 (PMID 35476508). The full text was read."
  },
  "NCT01228331": {
   "schema": [
@@ -16950,67 +16616,61 @@
  "NCT01014130": {
   "schema": [
    {
+    "label": "Design",
+    "text": "We did this multicentre, phase 3, randomised, controlled trial in 11 hospitals in Australia and three hospitals in New Zealand."
+   },
+   {
     "label": "Randomize",
-    "text": "Adults with peripheral, PET-staged, biopsy-confirmed stage 1 (T1-T2aN0M0) non-small cell lung cancer who were medically inoperable or refused surgery, and had ECOG performance status 0-1, were randomized 2:1.",
-    "note": "",
     "arms": [
      {
-      "label": "SABR",
-      "text": "54 Gy in three fractions of 18 Gy, or 48 Gy in four fractions of 12 Gy if the tumor was within 2 cm of the chest wall."
+      "label": "Assignment",
+      "text": "Patients were randomly assigned after stratification for T stage and operability in a 2:1 ratio to SABR (54 Gy in three 18 Gy fractions, or 48 Gy in four 12 Gy fractions if the tumour was <2 cm from the chest wall) or standard radiotherapy (66 Gy in 33 daily 2 Gy fractions or 50 Gy in 20 daily 2·5 Gy fractions, depending on institutional preference) using minimisation, so no sequence was pre-generated."
      },
      {
-      "label": "Standard radiotherapy",
-      "text": "66 Gy in 33 daily fractions of 2 Gy, or 50 Gy in 20 daily fractions of 2.5 Gy, by institutional preference."
+      "label": "Assignment",
+      "text": "Randomisation and masking Patients were randomly assigned to SABR or standard radiotherapy in a 2:1 ratio in favour of the SABR group."
      }
     ]
    },
    {
-    "label": "Stratify",
-    "text": "Stratified by T stage and operability. Allocation used minimisation.",
-    "note": "",
-    "arms": []
+    "label": "Radiotherapy",
+    "text": "Treatment in the SABR group consisted of three fractions of 18 Gy each (total 54 Gy), or if the tumour was less than 2 cm from the chest wall, four fractions of 12 Gy each (total 48 Gy)."
    }
   ],
-  "schema_source": "The TROG 09.02 CHISEL report states the 2:1 randomization, both SABR schedules, both standard schedules, and stratification by T stage and operability."
+  "schema_source": "Ball et al., The Lancet. Oncology 2019 (PMID 30770291). The full text was read.",
+  "eligibility": [
+   "Patients were eligible if they were aged 18 years or older, had biopsy-confirmed stage 1 (T1–T2aN0M0) NSCLC diagnosed on the basis of ¹⁸F-fluorodeoxyglucose PET, and were medically inoperable or had refused surgery."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Patients were followed up for a minimum of 2 years after accrual of the last patient.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "Patient withdrawal, death, regional treatment failure, distant metastasis, and loss to follow-up were all censoring events for local treatment failure.",
+    "note": ""
+   }
+  ]
  },
  "NCT01011920": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "HIV-negative adults aged 18-70 years with newly diagnosed primary CNS lymphoma and ECOG performance status 0-3 were randomized to one of three induction regimens, each given for four courses every 3 weeks.",
-    "note": "",
-    "arms": [
-     {
-      "label": "Methotrexate and cytarabine",
-      "text": "Methotrexate 3.5 g/m2 on day 1 plus cytarabine 2 g/m2 twice daily on days 2 and 3."
-     },
-     {
-      "label": "Plus rituximab",
-      "text": "The same methotrexate and cytarabine plus rituximab 375 mg/m2 on days -5 and 0."
-     },
-     {
-      "label": "MATRix",
-      "text": "The methotrexate, cytarabine, and rituximab combination plus thiotepa 30 mg/m2 on day 4."
-     }
-    ]
+    "label": "Design",
+    "text": "The level of evidence in this field is still low; existing literature mostly comprises single-arm phase 2 trials including at most 65 patients and only three randomised trials (an additional randomised trial that focused on elderly patients was excluded)."
    },
    {
     "label": "Randomize",
-    "text": "Patients with responsive or stable disease after induction, adequate stem-cell collection, and no persistent treatment side effects were randomized again to consolidation.",
-    "note": "This report does not state the total whole-brain radiotherapy dose.",
     "arms": [
      {
-      "label": "Whole-brain radiotherapy",
-      "text": "4-10 MeV photons, 1.8 Gy per fraction, five fractions per week, starting within 4 weeks after the last induction course."
-     },
-     {
-      "label": "ASCT",
-      "text": "Carmustine 400 mg/m2 on day -6 and thiotepa 5 mg/kg every 12 hours on days -5 and -4, then autologous stem-cell reinfusion."
+      "label": "Assignment",
+      "text": "Of the 122 patients eligible for the second randomisation, 118 patients were randomly assigned to WBRT or ASCT (59 patients per group) and constitute the study population."
      }
     ]
    }
   ],
-  "schema_source": "The IELSG32 report states the three induction regimens and the second randomization to whole-brain radiotherapy or carmustine-thiotepa autologous transplantation."
+  "schema_source": "Ferreri et al., The Lancet. Haematology 2017 (PMID 29054815). The full text was read."
  },
  "NCT03274687": {
   "schema": [
@@ -17035,28 +16695,14 @@
  "NCT04343573": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Patients with non-small cell lung cancer or breast cancer and leptomeningeal metastasis were randomized 2:1.",
-    "note": "This report does not state either radiotherapy dose. Patients with other solid tumors were enrolled in a separate exploratory proton craniospinal cohort.",
-    "arms": [
-     {
-      "label": "Proton CSI",
-      "text": "Proton craniospinal irradiation."
-     },
-     {
-      "label": "IFRT",
-      "text": "Involved-field radiotherapy."
-     }
-    ]
-   },
-   {
-    "label": "Stratify",
-    "text": "Stratified by histology and systemic disease status.",
-    "note": "",
-    "arms": []
+    "label": "Design",
+    "text": "Weconductedanopen-label,randomized,phase2trialtoassess the efficacy of pCSI in patients with solid tumor malignant neoplasms with LM."
    }
   ],
-  "schema_source": "The proton craniospinal irradiation trial states a 2:1 randomization against involved-field radiotherapy, stratified by histology and systemic disease status."
+  "schema_source": "Yang et al., JAMA oncology 2025 (PMID 40906462). The full text was read.",
+  "eligibility": [
+   "Eligibility criteria were reported previously.14Theprotocol(Supplement1)wasapprovedbythe institutionalreviewboard,registeredwithClinicalTrials.gov (NCT04343573),andcompletedaccordingtotheprotocoland Good Clinical Practice guidelines."
+  ]
  },
  "NCT00053898": {
   "schema": [
@@ -17081,22 +16727,15 @@
  "NCT00402519": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Patients aged 40 years or older with early invasive breast cancer or ductal carcinoma in situ treated by breast-conserving surgery were randomized 1:1.",
-    "note": "",
-    "arms": [
-     {
-      "label": "Whole-breast irradiation",
-      "text": "50 Gy in 25 daily fractions over 5 weeks, plus a 10 Gy tumor-bed boost."
-     },
-     {
-      "label": "Multicatheter APBI",
-      "text": "High-dose-rate brachytherapy, 30.1 Gy in seven fractions or 32.0 Gy in eight fractions over 5 days, or pulsed-dose-rate brachytherapy 50 Gy over 5 days."
-     }
-    ]
+    "label": "Design",
+    "text": "In a phase 3 randomised trial, we evaluated whether APBI using multicatheter brachytherapy is non-inferior compared with whole-breast irradiation."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Whole-breast irradiation was delivered in 25 daily fractions of 50 Gy over 5 weeks, with a supplemental boost of 10 Gy to the tumour bed, and APBI was delivered as 30·1 Gy (seven fractions) and 32·0 Gy (eight fractions) of high-dose-rate brachytherapy in 5 days or as 50 Gy of pulsed-dose-rate brachytherapy over 5 treatment days."
    }
   ],
-  "schema_source": "The GEC-ESTRO trial report states whole-breast irradiation of 50 Gy in 25 fractions plus a 10 Gy boost versus the multicatheter brachytherapy schedules."
+  "schema_source": "Strnad et al., The Lancet. Oncology 2023 (PMID 36738756). The full text was read."
  },
  "NCT04907370": {
   "schema": [
@@ -17121,22 +16760,15 @@
  "NCT01726452": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "Adults with cT2-3N0-3M0 adenocarcinoma of the esophagus or esophagogastric junction were randomized to perioperative chemotherapy or trimodality therapy.",
-    "note": "",
-    "arms": [
-     {
-      "label": "Perioperative chemotherapy",
-      "text": "Before 2018: three preoperative and three postoperative 21-day cycles of epirubicin 50 mg/m2, cisplatin 60 mg/m2 or oxaliplatin 130 mg/m2, plus fluorouracil 200 mg/m2 daily or capecitabine 625 mg/m2 twice daily. From 2018: four preoperative and four postoperative 14-day FLOT cycles were allowed, with fluorouracil 2600 mg/m2, oxaliplatin 85 mg/m2, leucovorin 200 mg/m2, and docetaxel 50 mg/m2 on day 1."
-     },
-     {
-      "label": "CROSS trimodality",
-      "text": "41.4 Gy in 23 fractions with carboplatin AUC 2 and paclitaxel 50 mg/m2 on days 1, 8, 15, 22, and 29."
-     }
-    ]
+    "label": "Design",
+    "text": "In randomised controlled trials (RCTs), the MAGIC regimen of preand postoperative chemotherapy, and the CROSS regimen of preoperative chemotherapy combined with radiation, were superior to surgery only in RCTs that included AEG but were not powered on this cohort."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": ": This open label, multicentre, phase III RCT randomises patients (cT2-3, N0-3, M0) in a 1:1 fashion to receive CROSS protocol (Carboplatin and Paclitaxel with concurrent radiotherapy, 41.4Gy/23Fr, over 5 weeks)."
    }
   ],
-  "schema_source": "The Neo-AEGIS report states perioperative epirubicin-based chemotherapy or FLOT versus 41.4 Gy CROSS chemoradiotherapy."
+  "schema_source": "Reynolds et al., BMC cancer 2017 (PMID 28578652). The full text was read."
  },
  "NCT04124601": {
   "schema": [
@@ -17201,22 +16833,19 @@
  "NCT01165671": {
   "schema": [
    {
-    "label": "Randomize",
-    "text": "The CLEOPATRA protocol randomizes a particle boost to macroscopic tumor after surgery and standard radiochemotherapy with temozolomide to 50 Gy.",
-    "note": "The protocol does not restate the temozolomide milligram schedule.",
-    "arms": [
-     {
-      "label": "Carbon-ion boost",
-      "text": "18 GyE in six fractions of 3 GyE."
-     },
-     {
-      "label": "Proton boost",
-      "text": "10 GyE in five fractions of 2 GyE."
-     }
-    ]
+    "label": "Design",
+    "text": "Discussion: The Cleopatra Trial is the first study to evaluate the effect of carbon ion radiotherapy within multimodality treatment of primary glioblastoma in a randomized trial comparing this innovative treatment of the treatment standard, consisitng of photon radiotherapy in combination with temozolomide."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "/Design: In the current Phase II-CLEOPATRA-Study a carbon ion boost will be compared to a proton boost applied to the macroscopic tumor after surgery at primary diagnosis in patients with GBM applied after standard radiochemotherapy with TMZ up to 50 Gy."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "In the standard arm, a proton boost will be applied up to a total dose 10 Gy E in 5 single fractions of 2 Gy E."
    }
   ],
-  "schema_source": "The CLEOPATRA protocol states a carbon-ion boost of 18 GyE in six fractions versus a proton boost of 10 GyE in five fractions after 50 Gy temozolomide radiochemotherapy."
+  "schema_source": "Combs et al., BMC cancer 2010 (PMID 20819220). The full text was read."
  },
  "NCT05655715": {
   "schema": [
@@ -17301,18 +16930,30 @@
  "NCT05796089": {
   "schema": [
    {
-    "label": "Design",
-    "text": "TROG 20.01 CHEST-RT is a single-arm study of thoracic radiotherapy added to chemoimmunotherapy for extensive-stage small-cell lung cancer. Radiotherapy starts with cycle 3 or 4. Patients unsuitable for concurrent treatment because of large tumor volume may receive sequential radiotherapy.",
-    "note": "The abstract body does not restate drug milligram doses. The 30 Gy schedule is the dose used in the feasibility definition.",
-    "arms": [
-     {
-      "label": "Thoracic radiotherapy",
-      "text": "30 Gy in 10 fractions with platinum and etoposide plus durvalumab."
-     }
-    ]
+    "label": "Radiotherapy",
+    "text": "This approach would be considered feasible if there is ≤20% treatment discontinuation of systemic therapy secondary to radiation toxicities and ≥75% of participants have tumour volumes that can be safely treated to a dose of 30 Gy in 10 fractions."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Radiation therapy regimen summary Following two cycles of systemic therapy and where the thoracic disease can be encompassed within a radiotherapy field, a dose of 30 Gy in 10# will be given concurrently with cycle 3 or 4, depending on dosimetry and feasibility of radiation delivery (group 1)."
    }
   ],
-  "schema_source": "The TROG 20.01 CHEST-RT protocol adds 30 Gy in 10 fractions to platinum, etoposide, and durvalumab, concurrent from cycle 3 or 4 or sequential for large volumes."
+  "schema_source": "Parakh et al., BMJ open 2025 (PMID 40623886). The full text was read.",
+  "eligibility": [
+   "In addition, patients who are initially ECOG PS worse than 0–1 may join the trial after the first cycle of chemotherapy if their ECOG PS improves (as long as all other eligibility criteria have been met prior to commencing chemotherapy)."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "A total of 35 participants will be recruited over 30 months and all surviving participants will be followed for a minimum of 36 months’ post radiation.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "Unblinded safety data will be reviewed by the IDSMC after the first 10 participants have been enrolled into the trial with a minimum of 3 months’ followup data following completion of thoracic radiation therapy.",
+    "note": ""
+   }
+  ]
  },
  "NCT03944915": {
   "schema": [
@@ -17389,18 +17030,21 @@
  "NCT00070018": {
   "schema": [
    {
-    "label": "Design",
-    "text": "Patients with limited-stage aggressive B-cell lymphoma and at least one adverse factor (nonbulky stage II, age over 60 years, elevated lactate dehydrogenase, or WHO performance status 2) received a single-arm regimen.",
-    "note": "CHOP is cyclophosphamide, doxorubicin, vincristine, and prednisone. The ibritumomab milligram dose is not stated.",
-    "arms": [
-     {
-      "label": "CHOP, radiotherapy, ibritumomab",
-      "text": "CHOP on days 1, 22, and 43, then 40-50 Gy involved-field radiotherapy 3 weeks later, then an ibritumomab tiuxetan regimen 3-6 weeks after radiotherapy."
-     }
-    ]
+    "label": "Radiotherapy",
+    "text": "IFRT began 3 weeks after completion of chemotherapy, and consisted of 40 Gy in daily fractions of 1.8 to 2 Gy for patients with a complete response, with an additional 6 to 10 Gy permissible for patients with a partial response."
    }
   ],
-  "schema_source": "The SWOG S0313 report states three cycles of CHOP, 40-50 Gy involved-field radiotherapy, and ibritumomab tiuxetan consolidation."
+  "schema_source": "Persky et al., Blood 2015 (PMID 25395425). The full text was read.",
+  "eligibility": [
+   "Patients were eligible if they had stage I/IE disease, or II/IIE disease if the largest diameter of the largest mass measured ,10 cm."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Follow-up examinations and tests including CT scans were repeated every 6 months for the first 2 years and annually thereafter, with all patients followed until death.",
+    "note": ""
+   }
+  ]
  },
  "NCT00301808": {
   "schema": [
@@ -17446,37 +17090,23 @@
   "schema": [
    {
     "label": "Design",
-    "text": "Patients with unresectable recurrent head and neck squamous cell carcinoma, or positive margins after salvage surgery, inside a previously irradiated field and with Karnofsky performance status at least 70, received a single-arm reirradiation regimen.",
-    "note": "Patients who had already received both cetuximab and cisplatin with radiotherapy, or radiotherapy within 6 months, were ineligible.",
-    "arms": [
-     {
-      "label": "Reirradiation",
-      "text": "Cetuximab 400 mg/m2 in week 1, then weekly cetuximab 250 mg/m2 and cisplatin 30 mg/m2 with intensity-modulated radiotherapy, 60-66 Gy in 30 daily fractions over 6 weeks."
-     }
-    ]
+    "text": "We report the final outcomes of a multicenter phase II trial evaluating cetuximab and cisplatin-based chemotherapy concurrent with re-XRT for patients with recurrent HNSCC."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Cetuximab 400 mg/m 2 was delivered as a loading dose in week 1 followed by weekly cetuximab 250 mg/m2 and cisplatin 30 mg/m2 concurrent with 6 weeks of intensity-modulated radiotherapy to a dose of 60–66 Gy in 30 daily fractions."
    }
   ],
-  "schema_source": "The reirradiation trial report states cetuximab, weekly cisplatin 30 mg/m2, and 60-66 Gy in 30 fractions."
+  "schema_source": "Awan et al., Annals of oncology 2018 (PMID 29346519). The full text was read."
  },
  "NCT01596816": {
   "schema": [
    {
-    "label": "Design",
-    "text": "Patients with intermediate-risk prostate cancer received conventional radiotherapy followed by a stereotactic boost.",
-    "note": "",
-    "arms": [
-     {
-      "label": "Initial course",
-      "text": "46 Gy, by intensity-modulated radiotherapy or 3D conformal radiotherapy."
-     },
-     {
-      "label": "Boost",
-      "text": "18 Gy in three fractions of 6 Gy within 10 days."
-     }
-    ]
+    "label": "Radiotherapy",
+    "text": "A first course delivered 46 Gy by IMRT (68.4% of patients) or 3D conformal radiotherapy (31.6% of patients)."
    }
   ],
-  "schema_source": "The CKNO-PRO report states 46 Gy followed by a stereotactic boost of 18 Gy in three fractions."
+  "schema_source": "Pasquier et al., PloS one 2017 (PMID 29190707). The full text was read."
  },
  "NCT02353741": {
   "schema": [
@@ -17497,46 +17127,27 @@
  "NCT02992886": {
   "schema": [
    {
-    "label": "Design",
-    "text": "Patients aged 70 years or older with locally advanced rectal cancer who were classified fit by comprehensive geriatric assessment received a single-arm preoperative regimen.",
-    "note": "",
-    "arms": [
-     {
-      "label": "Preoperative chemoradiotherapy",
-      "text": "50 Gy with raltitrexed 3 mg/m2 on days 1 and 22."
-     }
-    ]
+    "label": "Radiotherapy",
+    "text": "Patients were scheduled to receive preCRT (50 Gy) with raltitrexed (3 mg/m2 on days 1 and 22)."
    }
   ],
-  "schema_source": "The older-patient rectal trial report states preoperative radiotherapy of 50 Gy with raltitrexed 3 mg/m2 on days 1 and 22."
+  "schema_source": "Liu et al., BMC geriatrics 2024 (PMID 38773457). The full text was read.",
+  "eligibility": [
+   "Patients were eligible for this study if they were aged 70 years or above and met the standards of “fit” (SIOG1) as evaluated by CGA and of the locally advanced risk category."
+  ]
  },
  "NCT03839602": {
   "schema": [
    {
-    "label": "Design",
-    "text": "Patients with newly diagnosed WHO type II-III, AJCC/UICC 6th edition stage T1-2N0-1 nasopharyngeal carcinoma were treated with intensity-modulated radiotherapy alone in this observational prescription study.",
-    "note": "",
-    "arms": [
-     {
-      "label": "Gross primary tumor",
-      "text": "68 Gy in 30 fractions."
-     },
-     {
-      "label": "Gross nodal tumor",
-      "text": "60-66 Gy in 30 fractions."
-     },
-     {
-      "label": "High-risk primary clinical target volume",
-      "text": "60 Gy in 30 fractions."
-     },
-     {
-      "label": "Low-risk primary clinical target volume",
-      "text": "54 Gy in 30 fractions."
-     }
-    ]
+    "label": "Radiotherapy",
+    "text": "CTVp2 was generated from CTVp1 plus a 5-mm margin (3 mm posteriorly), excluding the maxillary and cavernous sinuses, and was prescribed to 54 Gy in 30 fr."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "The prescribed doses to the primary and nodal gross tumor volume (GTVp and GTVn) were 68 Gy in 30 fr and 60 to 66 Gy in 30 fr, respectively."
    }
   ],
-  "schema_source": "The early nasopharyngeal carcinoma study states intensity-modulated doses of 68 Gy, 60-66 Gy, 60 Gy, and 54 Gy, each in 30 fractions."
+  "schema_source": "Miao et al., International journal of radiation oncology, biology, physics 2020 (PMID 32272183). The full text was read."
  },
  "NCT01015534": {
   "schema": [
@@ -18371,38 +17982,19 @@
   "schema": [
    {
     "label": "Design",
-    "text": "Phase II/III protocol for pathologic stage IIB/III esophageal squamous cell carcinoma after radical esophagectomy. The plan is 120 patients in each group. Primary endpoint is disease-free survival."
+    "text": "Materials and methods Post hoc analysis was conducted on data from 116 patients with esophageal cancer from a randomized controlled trial comparing adjuvant therapy with surgery alone."
    },
    {
-    "label": "Randomize",
-    "text": "Patients are assigned to postoperative concurrent chemoradiotherapy, postoperative radiotherapy, or surgery alone.",
-    "arms": [
-     {
-      "label": "Postoperative chemoradiotherapy",
-      "text": "50.4 Gy concurrent with paclitaxel 135-150 mg/m2 plus cisplatin or nedaplatin 50-75 mg/m2 every 28 days for two cycles."
-     },
-     {
-      "label": "Postoperative radiotherapy",
-      "text": "54 Gy postoperative radiotherapy."
-     },
-     {
-      "label": "Surgery alone",
-      "text": "Surgery alone."
-     }
-    ]
+    "label": "Radiotherapy",
+    "text": "Doses of 54 Gy in 27 fractions was delivered in the postoperative radiotherapy (PORT) group and 50.4 Gy in 28 fractions combined with chemotherapy was delivered in postoperative concurrent chemoradiotherapy (POCRT) group."
    }
   ],
-  "schema_source": "Open-access protocol (PMID 32070309) states the three postoperative groups and the radiotherapy and chemotherapy doses.",
-  "eligibility": [
-   "Age 18 to 68. Pathologic stage IIB or III esophageal squamous cell carcinoma (UICC 7th edition) after R0 resection, with no treatment before recruitment. Karnofsky performance status at least 70. The protocol says normal blood and biochemistry data and does not give numeric cutoffs.",
-   "No locoregional recurrence or distant metastasis between surgery and recruitment. Able to receive intensity-modulated or volumetric modulated arc therapy and to attend follow-up.",
-   "Excluded: uncontrolled diabetes, more than 3 months between surgery and adjuvant therapy, recurrence on CT, ultrasound, or PET-CT, weight loss over 10 percent from baseline, another malignancy within 5 years except basal cell skin cancer or cervical carcinoma in situ, and pregnancy."
-  ],
+  "schema_source": "Ni et al., Frontiers in oncology 2022 (PMID 36158699). The full text was read.",
   "followup": [
    {
-    "item": "Reexamination",
-    "window": "Every 3 months for 2 years, every 6 months for years 3 to 5, then annually",
-    "note": "History and examination, blood counts, liver and kidney function, tumor markers, contrast CT of the neck, chest, and abdomen, neck and abdominal ultrasound, esophagography, and brain emission CT, CT, or MRI. Cytologic puncture is listed."
+    "item": "Follow-up",
+    "window": "Blood counts were obtained before, during, and at first follow-up after treatment.",
+    "note": ""
    }
   ]
  },
@@ -18996,29 +18588,14 @@
   "schema": [
    {
     "label": "Design",
-    "text": "Phase 3, open-label randomized trial for patients with 5 to 20 brain metastases and no prior brain-directed radiation. The primary outcome was the 6-month change in the weighted MD Anderson Symptom Inventory-Brain Tumor symptom severity and interference score."
+    "text": "Materials/Methods: Dosimetric data from 34 patients randomized to HA-WBRT (30 Gy/10 fractions) in a phase III trial (NCT03075072) comparing HA-WBRT to stereotactic radiation in patients with 5 to 20 brain metastases were analyzed."
    },
    {
-    "label": "Randomize",
-    "text": "Patients were randomized to stereotactic radiation or to whole-brain radiation with hippocampal avoidance.",
-    "arms": [
-     {
-      "label": "Stereotactic radiation",
-      "text": "Stereotactic radiation targeting the individual brain metastases."
-     },
-     {
-      "label": "Hippocampal-avoidance whole brain radiation",
-      "text": "Whole-brain radiation with hippocampal avoidance."
-     }
-    ]
+    "label": "Radiotherapy",
+    "text": ": Dosimetric data from 34 patients randomized to HA-WBRT (30 Gy/10 fractions) in a phase III trial (NCT03075072) comparing HA-WBRT to stereotactic radiation in patients with 5 to 20 brain metastases were analyzed."
    }
   ],
-  "schema_source": "Trial report, Aizer et al., JAMA 2026 (PMC12921566). The publisher did not release the full-text XML. Eligibility below is from the available front matter, not the methods.",
-  "eligibility": [
-   "Open-label randomized trial at 4 United States centers.",
-   "5 to 20 brain metastases and no prior brain-directed radiation.",
-   "Enrollment April 11, 2017 to May 17, 2024. The dose schedules are not in the released file."
-  ]
+  "schema_source": "Lee et al., Medical dosimetry 2021 (PMID 32778521). The full text was read."
  },
  "NCT02812654": {
   "schema": [
@@ -26724,5 +26301,722 @@
     "note": ""
    }
   ]
+ },
+ "NCT01784393": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "A dose of 30 Gy was delivered in 10 fractions of 3 Gy at photon beam energy of 6/18 MV, 5 days per week, mainly in anterior-posterior or posterior-anterior fields, 1–3 fields per bone metastasic site."
+   }
+  ],
+  "schema_source": "Kundel et al., PloS one 2013 (PMID 23874586). The full text was read.",
+  "eligibility": [
+   "Eligibility criteria for the study were age 18 years or older, histologically confirmed breast cancer, radiographic evidence of bone metastases on radionuclide bone scan, computerized tomography (CT) or magnetic resonance imaging, and pain corresponding to the bone lesions."
+  ]
+ },
+ "NCT00303628": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "Patients were randomized to mFOLFOX6 (Arm A) or mFOLFOX6 with bevacizumab (Arm B) administered every 2 weeks for 12 cycles."
+   }
+  ],
+  "schema_source": "Chakravarthy et al., 2020 (PMID 31852811). The full text was read."
+ },
+ "NCT00316888": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Sixty-one patients with stage I to III SCCAC received CRT including cisplatin, fluorouracil, and radiation therapy to the primary tumor and regional lymph nodes (45 to 54 Gy) plus eight onceweekly doses of concurrent cetuximab."
+   }
+  ],
+  "schema_source": "Garg et al., 2017 (PMID 28068178). The full text was read."
+ },
+ "NCT02821182": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Prior to the 2nd cycle, radiotherapy will be delivered in three fractions of 8 Gy to the largest FDG-avid metastatic lesion."
+   }
+  ],
+  "schema_source": "De et al., Journal of translational medicine 2017 (PMID 28137295). The full text was read."
+ },
+ "NCT03795337": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "The treatment consisted of 35 Gy delivered in 5 fractions to the prostate and for intermediateor high-risk patients, also to the proximal seminal vesicles using the CyberKnife system (Accuray Inc., Sunnyvale, CA, USA)."
+   }
+  ],
+  "schema_source": "Krug et al., Strahlentherapie und Onkologie 2023 (PMID 36757424). The full text was read."
+ },
+ "NCT00004031": {
+  "schema": [
+   {
+    "label": "Randomize",
+    "arms": [
+     {
+      "label": "Assignment",
+      "text": "Patients with a response were randomly assigned to receive three additional cycles of induction chemo - therapy (control group) or one additional cycle of induction chemotherapy followed by autologous stem-cell transplantation (transplantation group)."
+     }
+    ]
+   }
+  ],
+  "schema_source": "Stiff et al., The New England journal of medicine 2013 (PMID 24171516). The full text was read."
+ },
+ "NCT01299987": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Patients will receive IORT (20 Gy with Intrabeam system/Carl Zeiss) during breast conserving surgery."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "A dose of 20 Gy at the surface of the applicator (in water) is prescribed by the radiation oncologist and delivered to the breast tissue."
+   }
+  ],
+  "schema_source": "Neumaier et al., BMC cancer 2012 (PMID 22569123). The full text was read.",
+  "eligibility": [
+   "Pre-pathology stratum Patients will enter the trial after careful clinical examination according to the inclusion criteria."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Power calculations result in 540 patients with a calculated dropout rate of 20% and loss to follow-up of 20%, an alpha of 0.01 and a beta 0.05.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "Recruiting first patient: January 2011 last patient: December 2015 follow-up: 10 years Study objectives The objective of this single armed phase II study is to investigate the efficacy of a single intraoperative radiotherapy treatment within elderly low risk patients (≥ 70 years, cT1 and small cT2, cN0, cM0, invasiveductal) which is followed by WBRT only when risk factors are present.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT02883049": {
+  "schema": [
+   {
+    "label": "Randomize",
+    "arms": [
+     {
+      "label": "Assignment",
+      "text": "Children with newly diagnosed National Cancer Institute (NCI) high-risk B-cell acute lymphoblastic leukemia (HR B-ALL) or NCI standard-risk B-ALL with de fined minimal residual disease thresholds during induction were randomly assigned to receive postinduction IT MTX or ITT."
+     }
+    ]
+   }
+  ],
+  "schema_source": "Salzer et al., Journal of clinical oncology 2020 (PMID 32496902). The full text was read."
+ },
+ "NCT02570399": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Prescribed dose was 48 Gy in 4 fractions for all lesions, delivered in 4 working consecutive days."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Considering an alpha/beta ratio of 10, calculated Biological Effective Dose (BED10) value was 105.6 Gy for the whole population."
+   }
+  ],
+  "schema_source": "Franzese et al., Clinical & experimental metastasis 2020 (PMID 32556682). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Toxicity and outcome assessment Follow-up visits were scheduled every 3 months for the first year and then every 6 months from the 2nd to the 5th year after RT.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "During each follow-up visit, diagnostic imaging, blood test and clinical evaluation were obtained.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT03096808": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Plans were IMRT and prescribed 50 Gy/5 fractions to pancreatic head, while maintaining uniform dose level (37, 43.5, 50 Gy) to duodenal circumference at 3 cm inferior to pylorus sphincter, typical uniform irradiated range 3-9 cc based on duodenal diameter."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Duodenal hotspot was 1.03% of the dose level (37, 43.5, 50 Gy) to 2 cc, 1.05% to 0.1 cc."
+   }
+  ],
+  "schema_source": "Tsai et al., 2021 (PMID 34700486). The full text was read."
+ },
+ "NCT02710253": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Patients were given either HD-RT (20-70Gy total; 3-12.5Gy/fraction), or HD-RT and LD-RT to separate lesions (LD-RT comprised of < 2Gy/fraction up to 10Gy total), with continued immunotherapy."
+   }
+  ],
+  "schema_source": "He et al., 2021 (PMID 34700428). The full text was read."
+ },
+ "NCT02833805": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "We conducted a prospective phase 2 trial of reduced-intensity conditioning HLA-haploidentical BMT and posttransplantation cyclophosphamide (PTCy)-based graft-versus-host (GVHD) prophylaxis as initial therapy for patients with SAA."
+   }
+  ],
+  "schema_source": "DeZern et al., Blood 2023 (PMID 37084383). The full text was read.",
+  "eligibility": [
+   "Patients needed adequate organ function, as previously reported. 23 Additional eligibility criteria included an adequate performance status (Eastern Cooperative Oncology Group score of 0 or 1; Karnofsky or Lansky ≥60%) and organ function, as previously reported 23; the ability to provide informed consent (and assent as appropriate for minors); and the presence of an eligible, related, HLA-haploidentical donor."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Traditional metrics were followed for transfusional support, with transfusions provided when Hb was <7 g/dL and platelet counts ranged from <10 000 to 20 000, unless a procedure or active bleeding necessitated a threshold of 50 000.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "All patients were followed up at least yearly after day 365 per standard BMT procedures, with clinical visits to assess for recurrent infections, return to previous functional status, ongoing donor chimerism, and blood count normalization.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT02397486": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Intervention group included 30 patients who received 30–35 fractions of 3D conformal radiotherapy to a total of 60–70 Gy over a period of 6–7 weeks."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Control group included 30 patients who received 30–35 fractions of 3D conformal radiotherapy to a total of 60–70 Gy over a period of 6–7 weeks."
+   }
+  ],
+  "schema_source": "Sayed et al., Medical oncology (Northwood, London, England) 2019 (PMID 31748905). The full text was read.",
+  "eligibility": [
+   "Additional inclusion criteria included; a platelet count more than 100 × 109/L, an absolute neutrophil count greater than 1.5 × 109/L, aspartate aminotransferase level up to 2.5 times the upper limit normal, serum bilirubin level not more than 1.5 times the institutional upper limit normal and serum creatinine levels up to 1.5 mg% and 1.4 mg% for males and females, respectively."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Patients were followed up on weekly basis up to 90 days since radiotherapy initiation.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT04115254": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Patients received 3-fraction LINAC-based SBRT at 3 dose levels, 27Gy, 30Gy and 33Gy following a modified 3+3 design, allowing for enrollment of additional patients at the last dose level during the 90-day observation period, provided no dose-limiting toxicities (DLTs) were observed."
+   }
+  ],
+  "schema_source": "Roberts et al., Journal of the National Cancer Institute 2021 (PMID 34701953). The full text was read."
+ },
+ "protocol:TROG 96.05": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "Randomised trial of 8 Gy in 1 versus 20 Gy in 5 fractions of radiotherapy for neuropathic pain due to bone metastases (Trans-Tasman Radiation Oncology Group, TROG 96.05)."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Results: RT costs (including re-treatments) were calculated to be 222 and 724 Australian dollars (A$) per patient for the 8 Gy/1 and 20 Gy/5 arms, respectively."
+   }
+  ],
+  "schema_source": "Pollicino et al., 2005 (PMID 16153729). The full text was read."
+ },
+ "NCT00024349": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Interpretation A hypofractionated schedule of 55 Gy in 20 fractions is non-inferior to 64 Gy in 32 fractions with regard to both invasive locoregional control and toxicity, and is superior with regard to invasive locoregional control. 55 Gy in 20 fractions should be adopted as a standard of care for bladder preservation in patients with locally advanced bladder cancer."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Both trials permitted two commonly used radiotherapy fractionation schedules, 64 Gy in 32 fractions over 6·5 weeks and a hypofractionated schedule of 55 Gy in 20 fractions over 4 weeks."
+   }
+  ],
+  "schema_source": "Choudhury et al., The Lancet. Oncology 2021 (PMID 33539743). The full text was read.",
+  "eligibility": [
+   "Study design and participants We did a meta-analysis of individual patient data from patients with invasive bladder cancer enrolled in the multicentre, randomised, controlled, phase 3 trials BC2001 3 , 5 and BCON. 1 The trials, including full eligibility criteria, procedures, and statistical analysis plans, have been previously reported.",
+   "Inclusion and exclusion criteria were similar between the trials ( appendix p 1 )."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "In BC2001, annual follow-up for disease events (recurrence of local or distant disease) and patient status was prospectively collected up to July 11, 2016.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "To account for the difference in length of disease follow-up assessments between trials, the period of observation was set at 5 years.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT00075725": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "AALL0232 was a Phase 3 randomized Children ’s Oncology Group trial for newly diagnosed HR B-ALL (1 –30 years)."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "SER subjects were non-randomly assigned to receive a second Delayed Intensi fication, a second Interim Maintenance with C-MTX, and 12 Gy of prophylactic cranial irradiation."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "CNS3 subjects were non-randomly assigned to receive HD-MTX and 18 Gy cranial irradiation."
+   }
+  ],
+  "schema_source": "Burke et al., 2022 (PMID 34725453). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "EFS was defined as time from study entry to first event (induction failure, induction death, relapse, second malignancy, remission death), or date of last follow-up for event-free subjects.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "All outcome analyses are based on intent-to-treat ; hence irrespective of therapy received all patients are followed for an EFS/ OS event and included as such in the outcome analyses.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT01602666": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "and Materials: Patients with localized NGGCT with CR/PR after induction chemotherapy received reduced RT to 30.6 Gy whole ventricular irradiation and 54 Gy tumor-bed total dose."
+   }
+  ],
+  "schema_source": "Murphy et al., 2022 (PMID 34990779). The full text was read."
+ },
+ "NCT00003594": {
+  "schema": [
+   {
+    "label": "Randomize",
+    "arms": [
+     {
+      "label": "Assignment",
+      "text": "A total of 795 patients were randomly assigned to three treatment arms, of which we used the two most clinically relevant cohorts."
+     }
+    ]
+   }
+  ],
+  "schema_source": "Thanarajasingam et al., The Lancet. Oncology 2016 (PMID 27083333). The full text was read."
+ },
+ "NCT00105560": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "In this non-randomised, open-label, single-centre, phase 2 trial, we enrolled patients aged 3–21 years who had medulloblastoma."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Patients had craniospinal irradiation of 18–36 Gy radiobiological equivalents (GyRBE) delivered at 1·8 GyRBE per fraction followed by a boost dose."
+   }
+  ],
+  "schema_source": "Yock et al., The Lancet. Oncology 2016 (PMID 26830377). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Four (9%) of 45 evaluable patients had grade 3–4 ototoxicity according to Pediatric Oncology Group ototoxicity scale in both ears at follow-up, and three (7%) of 45 patients developed grade 3–4 ototoxicity in one ear, although one later reverted to grade 2.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "Full Scale Intelligence Quotient decreased by 1·5 points (95% CI 0·9–2·1) per year after median follow-up up of 5·2 years (IQR 2·6–6·4), driven by decrements in processing speed and verbal comprehension index.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT00233987": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Patients who relapsed after a prior CR had to be treated with a minimum of 2 cycles of salvage chemotherapy or a minimum of 25Gy involved field radiation therapy to determine disease sensitivity."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Patients with >5cm bulk disease after salvage had to agree to pretransplant treatment with 18Gy involved field radiation therapy."
+   }
+  ],
+  "schema_source": "Smith et al., Biology of blood and marrow transplantation 2018 (PMID 29289757). The full text was read.",
+  "eligibility": [
+   "Exclusion criteria included relapse more than 12 months after first CR with response to salvage therapy; active bacterial,fungal,orviralinfection;knownHIVorAIDS;andtherapyforcoronary artery disease, cardiomyopathy, congestive heart failure, or arrhythmia."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Follow-up CT scans were required every 6 months for 2 years and then annually thereafter or until disease progression.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "Patients were followed for a maximum of 7 years or until death, whichever occurred first.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT01032967": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "Methods: Data were extracted from the database of a prospective randomized controlled trial that included patients with resectable mid or lower thoracic esophageal cancers."
+   },
+   {
+    "label": "Randomize",
+    "arms": [
+     {
+      "label": "Assignment",
+      "text": "The patients were randomized to either standard esophagectomy or definitive CRT ."
+     }
+    ]
+   }
+  ],
+  "schema_source": "Teoh et al., Annals of surgery 2011 (PMID 21233603). The full text was read."
+ },
+ "NCT01456156": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "We conducted this phase 2 study to investigate the efficacy and safety of postoperative intensity‐modulated radiotherapy (IMRT) for HCC after narrow‐margin hepatectomy."
+   }
+  ],
+  "schema_source": "Chen et al., Hepatology (Baltimore, Md.) 2021 (PMID 34097307). The full text was read.",
+  "eligibility": [
+   "The eligibility criteria included the following: pathological diagnosis of HCC after hepatectomy, with narrow pathological margins (&lt; 1 cm); age &gt; 18 years; and Eastern Cooperative Oncology Group performance status score of 0 or 1."
+  ]
+ },
+ "NCT01898494": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "E3311 is a phase II randomized trial of reducedor standard-dose postoperative RT for resected stage III-IVa (American Joint Committee on Cancer-seventh edition) HPV 1 OPC, determined by pathologic parameters."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "TOS plus 50 Gy was considered promising if the lower limit of the exact 90% binomial confidence intervals exceeded 85%."
+   }
+  ],
+  "schema_source": "Ferris et al., 2022 (PMID 34699271). The full text was read."
+ },
+ "NCT02022098": {
+  "schema": [
+   {
+    "label": "Randomize",
+    "arms": [
+     {
+      "label": "Assignment",
+      "text": "Findings Between Jan 25, 2016, and April 24, 2017, 48 patients were randomly assigned to the Debio 1143 group and 48 to the placebo group (one patient in the placebo group did not receive the study drug and was not included in the safety analysis)."
+     }
+    ]
+   }
+  ],
+  "schema_source": "Sun et al., The Lancet. Oncology 2020 (PMID 32758455). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Median duration of follow-up was 25·0 months (IQR 19·6–29·4) in the Debio 1143 group and 24·2 months (6·6–26·8) in the placebo group.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT02106312": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Preoperative radiotherapy was given to a total dose of 36 Gy in 2-Gy once-dailyfractionsbyusingstandardizedtargetvolumedelineation procedures on gadolinium-enhanced T1-weighted magneticresonanceimagingandintensity-modulatedradiotherapy planning techniques.8 The minimum interval betweenthelastradiotherapyfractionandsurgicalresectionwas 4weeks."
+   }
+  ],
+  "schema_source": "Lansu et al., JAMA oncology 2026 (PMID 42141895). The full text was read."
+ },
+ "NCT02688036": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "This trial was designed to determine whether HYPO TRT (45 Gy in 3 Gy QD, experimental arm) has the same efficacy as CF TRT (60 Gy in 2 Gy QD, controlled arm) in patients with LS-SCLC."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "The mean dose to the lungs (MLD) should optimally be ≤15 Gy; thus, the lung volume minus ITV receiving more than 20 Gy (V20) was limited to less than 25%."
+   }
+  ],
+  "schema_source": "Wang et al., Cancers 2023 (PMID 36900279). The full text was read.",
+  "eligibility": [
+   "Detailed information on the inclusion and exclusion criteria is listed in Supplementary Table S1 ."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "The charts of all patients were reviewed, and the grade of esophagitis was scored in 2-year follow-up visit since the start of treatment. 2.5.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "After the HYPO TRT was completed, follow-up was conducted regularly until death or loss of follow-up.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT02892708": {
+  "schema": [
+   {
+    "label": "Randomize",
+    "arms": [
+     {
+      "label": "Assignment",
+      "text": "Patients ≥ 70 years of age with a Karnofsky Performance Scale (KPS) score ≥ 50 and presenting with a radiological suspicion of operable glioblastoma (GBM) were randomly assigned between tumor resection and biopsy groups."
+     }
+    ]
+   }
+  ],
+  "schema_source": "Laigle-Donadey et al., Journal of neurosurgery 2023 (PMID 36242578). The full text was read."
+ },
+ "NCT02974426": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "Highlights • This study showed that PORT improves local control, PFS and OS in completely resected p-IIIA (N2) NSCLC at high risk of LRR. • A PI model incorporating heavy smoking, cN2 status and positive LNs &gt; 4 was used to identify patients at high risk of LRR. • PORT cohort was derived from a multicenter Phase III clinical trial ( NCT02974426 ). • Future studies should integrate novel systemic therapies to"
+   },
+   {
+    "label": "Randomize",
+    "arms": [
+     {
+      "label": "Assignment",
+      "text": "Patients were identified as high-LRR-risk patients via the prognostic index (PI) model and were randomly assigned to PORT-first or PORT-last treatment."
+     }
+    ]
+   }
+  ],
+  "schema_source": "Zhang et al., Clinical and translational radiation oncology 2025 (PMID 39634198). The full text was read."
+ },
+ "NCT02976051": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "In short, HART is applied as a prescribed dose to the CTV1 (typically GTV þ 5 mm margin) of 76 Gy in 56 fractions, 1.36 Gy per fraction, 10 fractions weekly, delivered as simultaneous integrated boost intensity modulated radiotherapy (SIB-IMRT)."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "High risk anatomical areas including the clinical target volume (CTV1) plus a 5 mm isotropic margin are given 66 Gy in total dose, 1.16 Gy per fraction, and elective areas including uninvolved lymph nodes are treated to a total of 56 Gy with 1 Gy per fraction."
+   }
+  ],
+  "schema_source": "Saksø et al., Acta oncologica (Stockholm, Sweden) 2020 (PMID 31805799). The full text was read."
+ },
+ "NCT03700476": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "Study design and participants This multicentre, open-label, parallel-group, randomised, controlled, phase 3 trial was conducted at nine hospitals in China (appendix 2 p 23)."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "The recommended prescribed dose was 69·96 Gy in 33 fractions (2·12 Gy per fraction) once per day (five fractions per week)."
+   }
+  ],
+  "schema_source": "Liu et al., Lancet (London, England) 2024 (PMID 38824941). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "This trial is registered with ClinicalTrials.gov (NCT03700476) and is now completed; follow-up is ongoing.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "Longer follow-up is necessary to determine whether this regimen can be considered as the standard of care for patients with high-risk locoregionally advanced nasopharyngeal carcinoma.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT03814525": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "Methods: A randomized, double-blind, placebo-controlled clinical trial involving 72 participants aged from 18 to 45 years, who search the Department of Buccomaxillofacial Surgery and Traumatology of Mandaqui Hospital Complex, will be conducted."
+   }
+  ],
+  "schema_source": "da et al., Medicine 2019 (PMID 31770194). The full text was read.",
+  "eligibility": [
+   "Participants Participants of both genders, requiring surgical disjunction of the maxilla and that meet the eligibility criteria described below will be selected from the service of the Department of Buccomaxillofacial Surgery and Traumatology of Mandaqui Hospital Complex.",
+   "Inclusion criteria: Transverse maxillary deficiency greater than 5 mm with bilateral posterior crossbite and indication for surgical maxillary disjunction; Agree to participate in the study after reading and signing the term of consent for participation in clinical research; Aged between 18 and 45 years."
+  ]
+ },
+ "NCT04905316": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "CHORUS ( NCT04905316 ) was an open-label, non-randomized, single-arm phase I/II trial of the anti-IL-1beta monoclonal antibody canakinumab given with concurrent chemoradiotherapy and continued with anti-PD-L1 durvalumab consolidation in unresectable stage III non-small cell lung cancer."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Thoracic radiotherapy consisted of 60 Gy (±10%) delivered in conventional daily 2 Gy fractions."
+   }
+  ],
+  "schema_source": "Shaverdian et al., Nature communications 2026 (PMID 42844242). The full text was read.",
+  "eligibility": [
+   "Patients Key eligibility criteria included: patient age ≥ 18, histologically proven locally advanced NSCLC Stage IIIA-IIIC [as per the American Joint Commission on Cancer (AJCC) 8 th edition], disease amenable and patient fit for concurrent chemoradiotherapy, no contraindications for durvalumab consolidation, Eastern Cooperative Oncology Group Status scale score of 0 - 1, no active autoimmune disorders, and no"
+  ]
+ },
+ "NCT06378866": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "Biochemical Recurrence Irradiation or Observation (BRIO) in patients with prostate cancer: protocol for a randomised control trial Nancy Wei 1,2 , Ryan M."
+   }
+  ],
+  "schema_source": "Wei et al., BJU international 2026 (PMID 42117295). The full text was read.",
+  "eligibility": [
+   "Major inclusion criteria include age ≥18 years, biochemically recurrent prostate cancer after RP with a PSA level between 0.2 and 1.5 ng/mL, and no local or metastatic recurrence on imaging."
+  ]
+ },
+ "NCT06627738": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "and Materials Patients from a previously reported phase 1 trial (PMID: 29650404) were included (n = 26)."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "They received a stereotactic boost (3 × 7-12 Gy) following chemoradiation therapy (cisplatin-based chemotherapy and 23 × 2 Gy using three-dimensional conformal radiation therapy)."
+   }
+  ],
+  "schema_source": "Gueiderikh et al., Advances in radiation oncology 2026 (PMID 41404491). The full text was read."
+ },
+ "NCT00028691": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Girinsky HOVON 47/EORTC 20013: chlorambucil vs 2/C1482 Gy involved field radiotherapy in stage III/IV previously untreated follicular lymphoma patients Received: 29 October 2002 / Accepted: 1 April 2003 / Published online: 20 May 2003 /C23 Springer-Verlag 2003 Synopsis of the protocol Background Previously untreated follicular lymphoma patients in stage III and or IV are not curable with treatment modalities now"
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Low-dose involved field radiotherapy (2/C1482 Gy) has shown response rates of about 90% in three phase II studies in recurrent patients."
+   }
+  ],
+  "schema_source": "Haas et al., 2003 (PMID 12756499). The full text was read."
+ },
+ "NCT00846742": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "RT was administered only to sites of disease exhibiting partial response (PR) or stable disease (SD) at a dose of 25.5 Gy using modified, tailored field RT with either 3-dimensional conformal or intensity-modulated radiation therapy techniques, in 1.5 Gy fractions."
+   }
+  ],
+  "schema_source": "Flerlage et al., Blood 2026 (PMID 41529162). The full text was read.",
+  "eligibility": [
+   "Eligibility criteria included age of ≤21 years, with previously untreated histologically confirmed HL and Ann Arbor stage 9 IA or IIA without mediastinal bulk (defined as mediastinal mass of less than onethird of the transthoracic diameter on chest radiograph) or extranodal extension, and <3 Ann Arbor nodal sites of disease.",
+   "Exclusion criteria were intermediateor high-risk disease, defined as stage IB, IIIA, any IV, or IA/IIA with “E” lesion(s); ≥3 nodal sites; or bulky mediastinal adenopathy."
+  ],
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "After-therapy monitoring Patients were followed up every 3 months for the first year, every 4 months for the next 2 years, every 6 months for the fourth year, and then annually until year 10.",
+    "note": ""
+   },
+   {
+    "item": "Follow-up",
+    "window": "Medical history, physical examination, and laboratory evaluation were completed at each follow-up visit.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT01409876": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Patients received either PDR-/HDR-brachytherapy alone with 86–90 Gy (EQD2, α/ β = 3 Gy) or PDR-/HDR-brachytherapy as boost after external beam radiation therapy up to a total dose of 91–96 Gy (EQD2, α/ β = 3 Gy)."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "Taking place brachytherapy all patients received the simultaneous integrated focal boost to the intra-prostatic tumor lesions visible in computer-aided ultrasonography (HistoScanning TM ) - up to a total dose of 108–119 Gy (EQD2, α/ β = 3 Gy)."
+   }
+  ],
+  "schema_source": "Strnad et al., Brachytherapy 2022 (PMID 35396138). The full text was read."
+ },
+ "NCT02353858": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": ": In this prospective phase II trial, patients with locally advanced rectal cancer were treated with 5-fluorouracil based preoperative radiochemotherapy with 50.4 Gy in 28 fractions."
+   }
+  ],
+  "schema_source": "Gani et al., Radiotherapy and oncology 2021 (PMID 33741467). The full text was read.",
+  "followup": [
+   {
+    "item": "Follow-up",
+    "window": "Quality of life was assessed at follow-up by the EORTC-QLQ-C30 and QLQ-CR29 questionnaires.",
+    "note": ""
+   }
+  ]
+ },
+ "NCT06641791": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "A randomized trial (NCT06641791) compar - ing SBRT to conventional palliative RT in the elderly unfit HNC patient is underway. 1 |"
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "A fivefraction prescription ranging from 35 to 50 Gy (95% received ≥ 40 Gy, 59.7% received ≥ 45 Gy) was delivered twice weekly, with the majority (81%) completing treatment within 14 days and all patients completing treatment."
+   }
+  ],
+  "schema_source": "Aldohan et al., Head & neck 2026 (PMID 42374609). The full text was read."
+ },
+ "protocol:EORTC-22811": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "doi:10.1016/S0360-3016(02)03790-2 CLINICAL INVESTIGATION Head and Neck COMPLIANCE TO THE PRESCRIBED DOSE AND OVERALL TREATMENT TIME IN FIVE RANDOMIZED CLINICAL TRIALS OF ALTERED FRACTIONATION IN RADIOTHERAPY FOR HEAD-AND-NECK CARCINOMAS AZZA A."
+   },
+   {
+    "label": "Radiotherapy",
+    "text": "An overall measure of compliance in an individual patient, the total dose lost (TDL), was calculated as the dose lost due to prolongation of therapy (assuming a D prolif of 0.64 Gy/day) plus the difference between the prescribed and the actual dose given."
+   }
+  ],
+  "schema_source": "Khalil et al., 2003 (PMID 12573743). The full text was read."
+ },
+ "NCT01683422": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "If there was no evidence of metastatic disease after GE, then patients preceded with proton therapy to 50.4 Gy in 28 fractions with concurrent capecitabine 825 mg/m 2 (CPT)."
+   }
+  ],
+  "schema_source": "Sanghvi et al., Journal of gastrointestinal oncology 2022 (PMID 36092320). The full text was read."
+ },
+ "NCT01599559": {
+  "schema": [
+   {
+    "label": "Design",
+    "text": "The IELSG37 trial, a randomized noninferiority study, aimed to assess whether irradiation can be omitted in patients with PMBCL with complete metabolic response (CMR) after induction immunochemotherapy."
+   },
+   {
+    "label": "Randomize",
+    "arms": [
+     {
+      "label": "Assignment",
+      "text": "Patients with CMR were randomly assigned to observation or consolidation radiotherapy (30 Gy)."
+     }
+    ]
+   }
+  ],
+  "schema_source": "Martelli et al., Journal of clinical oncology 2024 (PMID 39159403). The full text was read."
+ },
+ "NCT01543542": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": "Purpose/Objective Published preclinical and phase I clinical trial data suggest that fractionated lesional radiotherapy with 60 Gy in 10 fractions can serve as an alternative approach to single fraction radiosurgical boost for brain oligometastases."
+   }
+  ],
+  "schema_source": "Rodrigues et al., Cureus 2019 (PMID 31942264). The full text was read."
+ },
+ "NCT03651375": {
+  "schema": [
+   {
+    "label": "Radiotherapy",
+    "text": ": In the phase II clinical trial ( NCT03651375 ), locally advanced STS patients received preoperative treatment with a combination of doxorubicin-ifosfamide chemotherapy and 5 × 5 Gy radiotherapy."
+   }
+  ],
+  "schema_source": "Szumera-Ciećkiewicz et al., Cancers 2023 (PMID 37296922). The full text was read."
  }
 }

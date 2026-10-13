@@ -1,8 +1,8 @@
 {
  "as_of": "2026-10-12",
- "on_file": 1169,
- "needs_access": 767,
- "inaccessible": 0,
+ "on_file": 1805,
+ "needs_access": 115,
+ "inaccessible": 16,
  "cited": 1936,
- "hash": "25c15715aad5fd7a"
+ "hash": "38fe7771a1f1c1f0"
 }

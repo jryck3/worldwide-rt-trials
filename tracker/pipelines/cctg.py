@@ -80,6 +80,13 @@ def load(store, log, cache_dir):
                 existing["groups"].append("CCTG")
             if "cctg" not in existing["pipelines"]:
                 existing["pipelines"].append("cctg")
+            store.upsert({
+                "nct": nct,
+                "protocols": [protocol],
+                "rt_role": role,
+                "rt_evidence": evidence,
+                "modality": modality,
+            }, "cctg")
             skipped_existing += 1
             continue
         objectives = ""

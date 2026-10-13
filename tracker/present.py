@@ -180,9 +180,13 @@ def source_tags(trial):
     for key, pattern in GROUP_TAGS:
         if pattern.search(blob):
             tags.append(key)
+    grouped = list(tags)
     for pipe in [trial.get("source_pipeline"), *(trial.get("pipelines") or [])]:
         if pipe in PIPELINE_TAGS and pipe not in tags:
             tags.append(pipe)
+    pipelines = [trial.get("source_pipeline"), *(trial.get("pipelines") or [])]
+    if not grouped and "ctsu" in pipelines and "nci" not in tags:
+        tags.append("nci")
     if not tags:
         tags.append(trial.get("source_pipeline") or "ctgov")
     return tags

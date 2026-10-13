@@ -152,4 +152,14 @@
 - Note: ClinicalTrials.gov marks this enrollment as Estimated. It is a target, not an accrued headcount.
 - Disagreement (phase): registry value: Not applicable ClinicalTrials.gov title or design text: The same ClinicalTrials.gov record describes the study as phase 2/3 in the title or design text.
 
-All eleven sample trials are present as their own rows.
+## EAA173
+- Name: EAA173
+- Registry: NCT03937635
+- Group: ECOG-ACRIN, ECOG-ACRIN Cancer Research Group
+- Phase: 3
+- Status: recruiting
+- Accrual: 267 (snapshot) target 288
+- Primary endpoint: Overall survival (OS); Functional Assessment of Cancer Therapy-General (FACT-G) score
+- Source pipeline: ctsu (also ctsu, ctgov)
+
+All twelve sample trials are present as their own rows.

@@ -2,14 +2,16 @@
  {
   "pipeline": "ctsu",
   "export": "docs/index.html",
-  "generated_at": "2026-10-08T17:53:16+00:00",
-  "snapshot_fetched_at": "2026-10-08T17:53:14+00:00",
-  "rt_rows": 57,
+  "generated_at": "2026-10-12T17:51:16+00:00",
+  "snapshot_fetched_at": "2026-10-12T17:51:13+00:00",
+  "rows": 286,
+  "rt_rows": 76,
   "feed_counts": {
    "all": 254,
    "active": 232,
-   "rt_related": 57,
-   "rt_open": 50
+   "approved": 32,
+   "rt_related": 76,
+   "rt_open": 57
   }
  },
  {
@@ -29,8 +31,8 @@
  },
  {
   "pipeline": "cctg",
-  "added": 127,
-  "merged_into_existing": 24,
+  "added": 125,
+  "merged_into_existing": 26,
   "not_rt": 487
  },
  {
@@ -40,8 +42,8 @@
  },
  {
   "pipeline": "ctgov",
-  "added": 4926,
-  "enriched": 297,
-  "nct_seen": 6724
+  "added": 4918,
+  "enriched": 523,
+  "nct_seen": 6940
  }
 ]

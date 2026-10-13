@@ -158,7 +158,9 @@
     "journal": "Blood",
     "year": "2008",
     "pmid": "18048644",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/18048644/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/18048644/",
+    "doi": "10.1182/blood-2007-10-116582",
+    "doi_url": "https://doi.org/10.1182/blood-2007-10-116582"
    }
   ]
  },
@@ -226,7 +228,9 @@
     "journal": "Annals of hematology",
     "year": "2018",
     "pmid": "29926156",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29926156/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29926156/",
+    "doi": "10.1007/s00277-018-3396-4",
+    "doi_url": "https://doi.org/10.1007/s00277-018-3396-4"
    }
   ]
  },
@@ -364,7 +368,9 @@
     "journal": "",
     "year": "2002",
     "pmid": "11823705",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/11823705/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/11823705/",
+    "doi": "10.1097/00000421-200202000-00019",
+    "doi_url": "https://doi.org/10.1097/00000421-200202000-00019"
    }
   ]
  },
@@ -661,7 +667,9 @@
     "journal": "",
     "year": "2007",
     "pmid": "17938330",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/17938330/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/17938330/",
+    "doi": "10.1001/archotol.133.10.1044",
+    "doi_url": "https://doi.org/10.1001/archotol.133.10.1044"
    }
   ]
  },
@@ -765,7 +773,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2006",
     "pmid": "17012043",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/17012043/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/17012043/",
+    "doi": "10.1016/S1470-2045(06)70867-1",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(06)70867-1"
    }
   ]
  },
@@ -795,7 +805,9 @@
     "journal": "",
     "year": "2012",
     "pmid": "22119373",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22119373/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22119373/",
+    "doi": "10.1016/j.radonc.2011.10.022",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2011.10.022"
    }
   ]
  },
@@ -941,7 +953,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2015",
     "pmid": "25897014",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25897014/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25897014/",
+    "doi": "10.1093/annonc/mdv192",
+    "doi_url": "https://doi.org/10.1093/annonc/mdv192"
    },
    {
     "role": "results",
@@ -950,7 +964,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2014",
     "pmid": "24915873",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24915873/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24915873/",
+    "doi": "10.1093/annonc/mdu191",
+    "doi_url": "https://doi.org/10.1093/annonc/mdu191"
    },
    {
     "role": "paper",
@@ -959,7 +975,9 @@
     "journal": "The New England journal of medicine",
     "year": "2006",
     "pmid": "17079759",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/17079759/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/17079759/",
+    "doi": "10.1056/NEJMoa052084",
+    "doi_url": "https://doi.org/10.1056/NEJMoa052084"
    }
   ]
  },
@@ -1072,7 +1090,9 @@
     "journal": "",
     "year": "2006",
     "pmid": "16896003",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/16896003/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/16896003/",
+    "doi": "10.1200/JCO.2006.05.8198",
+    "doi_url": "https://doi.org/10.1200/JCO.2006.05.8198"
    },
    {
     "role": "paper",
@@ -1081,7 +1101,9 @@
     "journal": "",
     "year": "2003",
     "pmid": "12738671",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/12738671/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/12738671/",
+    "doi": "10.1182/blood-2003-01-0287",
+    "doi_url": "https://doi.org/10.1182/blood-2003-01-0287"
    }
   ]
  },
@@ -1358,7 +1380,9 @@
     "journal": "Annals of hematology",
     "year": "2018",
     "pmid": "29926156",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29926156/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29926156/",
+    "doi": "10.1007/s00277-018-3396-4",
+    "doi_url": "https://doi.org/10.1007/s00277-018-3396-4"
    },
    {
     "role": "paper",
@@ -1367,7 +1391,9 @@
     "journal": "Blood",
     "year": "2014",
     "pmid": "24986689",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24986689/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24986689/",
+    "doi": "10.1182/blood-2013-08-518514",
+    "doi_url": "https://doi.org/10.1182/blood-2013-08-518514"
    }
   ]
  },
@@ -1456,7 +1482,9 @@
     "journal": "The New England journal of medicine",
     "year": "2006",
     "pmid": "16467544",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/16467544/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/16467544/",
+    "doi": "10.1056/NEJMoa053422",
+    "doi_url": "https://doi.org/10.1056/NEJMoa053422"
    }
   ]
  },
@@ -1919,7 +1947,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2013",
     "pmid": "23522754",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/23522754/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/23522754/",
+    "doi": "10.1016/j.ejca.2013.02.017",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2013.02.017"
    }
   ]
  },
@@ -1999,7 +2029,9 @@
     "journal": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "year": "2014",
     "pmid": "24982464",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24982464/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24982464/",
+    "doi": "10.1200/JCO.2013.54.4833",
+    "doi_url": "https://doi.org/10.1200/JCO.2013.54.4833"
    }
   ]
  },
@@ -2498,7 +2530,9 @@
     "journal": "Annals of surgery",
     "year": "2015",
     "pmid": "25361220",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25361220/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25361220/",
+    "doi": "10.1097/SLA.0000000000000991",
+    "doi_url": "https://doi.org/10.1097/SLA.0000000000000991"
    }
   ]
  },
@@ -3357,7 +3391,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2016",
     "pmid": "27165613",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27165613/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27165613/",
+    "doi": "10.1016/j.radonc.2016.02.023",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2016.02.023"
    },
    {
     "role": "results",
@@ -3626,7 +3662,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2012",
     "pmid": "22575589",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22575589/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22575589/",
+    "doi": "10.1016/S1470-2045(12)70138-9",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(12)70138-9"
    }
   ]
  },
@@ -3716,7 +3754,9 @@
     "journal": "Blood",
     "year": "2009",
     "pmid": "19179301",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/19179301/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/19179301/",
+    "doi": "10.1182/blood-2008-10-184093",
+    "doi_url": "https://doi.org/10.1182/blood-2008-10-184093"
    }
   ]
  },
@@ -3757,7 +3797,9 @@
     "journal": "Blood",
     "year": "2009",
     "pmid": "19179301",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/19179301/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/19179301/",
+    "doi": "10.1182/blood-2008-10-184093",
+    "doi_url": "https://doi.org/10.1182/blood-2008-10-184093"
    }
   ]
  },
@@ -4112,7 +4154,9 @@
     "journal": "Pediatric blood & cancer",
     "year": "2022",
     "pmid": "35841307",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35841307/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35841307/",
+    "doi": "10.1002/pbc.29882",
+    "doi_url": "https://doi.org/10.1002/pbc.29882"
    }
   ]
  },
@@ -4277,7 +4321,9 @@
     "journal": "Pediatric blood & cancer",
     "year": "2017",
     "pmid": "27957785",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27957785/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27957785/",
+    "doi": "10.1002/pbc.26393",
+    "doi_url": "https://doi.org/10.1002/pbc.26393"
    },
    {
     "role": "paper",
@@ -4319,7 +4365,9 @@
     "journal": "Blood",
     "year": "2026",
     "pmid": "41592282",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41592282/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41592282/",
+    "doi": "10.1182/blood.2025030626",
+    "doi_url": "https://doi.org/10.1182/blood.2025030626"
    },
    {
     "role": "paper",
@@ -5008,7 +5056,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2018",
     "pmid": "30219886",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30219886/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30219886/",
+    "doi": "10.1093/annonc/mdy414",
+    "doi_url": "https://doi.org/10.1093/annonc/mdy414"
    }
   ]
  },
@@ -5496,7 +5546,9 @@
     "journal": "International journal of radiation oncology, biology, physics",
     "year": "2026",
     "pmid": "40752655",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40752655/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40752655/",
+    "doi": "10.1016/j.ijrobp.2025.07.1442",
+    "doi_url": "https://doi.org/10.1016/j.ijrobp.2025.07.1442"
    },
    {
     "role": "paper",
@@ -6024,7 +6076,9 @@
     "journal": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "year": "2025",
     "pmid": "41213101",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41213101/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41213101/",
+    "doi": "10.1200/JCO-25-01357",
+    "doi_url": "https://doi.org/10.1200/JCO-25-01357"
    },
    {
     "role": "results",
@@ -6033,7 +6087,9 @@
     "journal": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "year": "2024",
     "pmid": "38096462",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38096462/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38096462/",
+    "doi": "10.1200/JCO.23.01388",
+    "doi_url": "https://doi.org/10.1200/JCO.23.01388"
    },
    {
     "role": "paper",
@@ -6068,7 +6124,9 @@
     "journal": "European journal of drug metabolism and pharmacokinetics",
     "year": "2017",
     "pmid": "28349335",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28349335/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28349335/",
+    "doi": "10.1007/s13318-017-0410-5",
+    "doi_url": "https://doi.org/10.1007/s13318-017-0410-5"
    }
   ]
  },
@@ -6737,7 +6795,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2025",
     "pmid": "39522824",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39522824/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39522824/",
+    "doi": "10.1016/j.radonc.2024.110612",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2024.110612"
    },
    {
     "role": "results",
@@ -6746,7 +6806,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2025",
     "pmid": "40651596",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40651596/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40651596/",
+    "doi": "10.1016/j.radonc.2025.111044",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2025.111044"
    },
    {
     "role": "results",
@@ -7034,7 +7096,9 @@
     "journal": "Oncology",
     "year": "2017",
     "pmid": "28869931",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28869931/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28869931/",
+    "doi": "10.1159/000479230",
+    "doi_url": "https://doi.org/10.1159/000479230"
    }
   ]
  },
@@ -7108,7 +7172,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2018",
     "pmid": "30104008",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30104008/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30104008/",
+    "doi": "10.1016/j.radonc.2018.07.017",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2018.07.017"
    },
    {
     "role": "paper",
@@ -7422,7 +7488,9 @@
     "journal": "Nature medicine",
     "year": "2023",
     "pmid": "37280275",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37280275/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37280275/",
+    "doi": "10.1038/s41591-023-02369-6",
+    "doi_url": "https://doi.org/10.1038/s41591-023-02369-6"
    },
    {
     "role": "paper",
@@ -7598,7 +7666,9 @@
     "journal": "Current treatment options in oncology",
     "year": "2021",
     "pmid": "34213636",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34213636/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34213636/",
+    "doi": "10.1007/s11864-021-00879-4",
+    "doi_url": "https://doi.org/10.1007/s11864-021-00879-4"
    }
   ]
  },
@@ -7647,7 +7717,9 @@
     "journal": "Blood",
     "year": "2026",
     "pmid": "41259231",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41259231/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41259231/",
+    "doi": "10.1182/blood.2025030951",
+    "doi_url": "https://doi.org/10.1182/blood.2025030951"
    },
    {
     "role": "results",
@@ -7883,7 +7955,9 @@
     "journal": "Practical radiation oncology",
     "year": "2023",
     "pmid": "35659597",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35659597/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35659597/",
+    "doi": "10.1016/j.prro.2022.05.010",
+    "doi_url": "https://doi.org/10.1016/j.prro.2022.05.010"
    },
    {
     "role": "paper",
@@ -7892,7 +7966,9 @@
     "journal": "Tumori",
     "year": "2019",
     "pmid": "30474504",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30474504/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30474504/",
+    "doi": "10.1177/0300891618811278",
+    "doi_url": "https://doi.org/10.1177/0300891618811278"
    },
    {
     "role": "results",
@@ -7901,7 +7977,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2017",
     "pmid": "28262584",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28262584/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28262584/",
+    "doi": "10.1016/j.ejca.2017.01.023",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2017.01.023"
    },
    {
     "role": "results",
@@ -7910,7 +7988,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2015",
     "pmid": "25605582",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25605582/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25605582/",
+    "doi": "10.1016/j.ejca.2014.12.013",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2014.12.013"
    },
    {
     "role": "paper",
@@ -7919,7 +7999,9 @@
     "journal": "Breast cancer research and treatment",
     "year": "2015",
     "pmid": "26350524",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26350524/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26350524/",
+    "doi": "10.1007/s10549-015-3565-2",
+    "doi_url": "https://doi.org/10.1007/s10549-015-3565-2"
    }
   ]
  },
@@ -8093,7 +8175,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2022",
     "pmid": "35427469",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35427469/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35427469/",
+    "doi": "10.1016/S1470-2045(22)00190-5",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(22)00190-5"
    },
    {
     "role": "paper",
@@ -8493,7 +8577,9 @@
     "journal": "International journal of radiation oncology, biology, physics",
     "year": "2018",
     "pmid": "29485066",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29485066/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29485066/",
+    "doi": "10.1016/j.ijrobp.2017.12.015",
+    "doi_url": "https://doi.org/10.1016/j.ijrobp.2017.12.015"
    }
   ]
  },
@@ -8622,7 +8708,9 @@
     "journal": "Clinical & experimental metastasis",
     "year": "2020",
     "pmid": "32556682",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32556682/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32556682/",
+    "doi": "10.1007/s10585-020-10047-x",
+    "doi_url": "https://doi.org/10.1007/s10585-020-10047-x"
    }
   ]
  },
@@ -9177,7 +9265,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2021",
     "pmid": "33798613",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33798613/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33798613/",
+    "doi": "10.1016/j.radonc.2021.03.033",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2021.03.033"
    }
   ]
  },
@@ -9533,7 +9623,9 @@
     "journal": "The lancet. Gastroenterology & hepatology",
     "year": "2021",
     "pmid": "34695377",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34695377/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34695377/",
+    "doi": "10.1016/S2468-1253(21)00305-8",
+    "doi_url": "https://doi.org/10.1016/S2468-1253(21)00305-8"
    }
   ]
  },
@@ -9624,7 +9716,9 @@
     "journal": "Medical dosimetry : official journal of the American Association of Medical Dosimetrists",
     "year": "2021",
     "pmid": "32778521",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32778521/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32778521/",
+    "doi": "10.1016/j.meddos.2020.06.004",
+    "doi_url": "https://doi.org/10.1016/j.meddos.2020.06.004"
    }
   ]
  },
@@ -10138,7 +10232,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2026",
     "pmid": "42372744",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42372744/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42372744/",
+    "doi": "10.1016/S1470-2045(26)00178-6",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(26)00178-6"
    },
    {
     "role": "paper",
@@ -10147,7 +10243,9 @@
     "journal": "Prostate cancer and prostatic diseases",
     "year": "2025",
     "pmid": "39972049",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39972049/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39972049/",
+    "doi": "10.1038/s41391-025-00950-3",
+    "doi_url": "https://doi.org/10.1038/s41391-025-00950-3"
    },
    {
     "role": "paper",
@@ -10156,7 +10254,9 @@
     "journal": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "year": "2023",
     "pmid": "37733977",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37733977/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37733977/",
+    "doi": "10.1200/JCO.23.00985",
+    "doi_url": "https://doi.org/10.1200/JCO.23.00985"
    },
    {
     "role": "paper",
@@ -10165,7 +10265,9 @@
     "journal": "Clinical & experimental metastasis",
     "year": "2021",
     "pmid": "33471291",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33471291/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33471291/",
+    "doi": "10.1007/s10585-021-10072-4",
+    "doi_url": "https://doi.org/10.1007/s10585-021-10072-4"
    }
   ]
  },
@@ -10358,7 +10460,9 @@
     "journal": "European urology",
     "year": "2026",
     "pmid": "41765697",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41765697/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41765697/",
+    "doi": "10.1016/j.eururo.2026.01.004",
+    "doi_url": "https://doi.org/10.1016/j.eururo.2026.01.004"
    },
    {
     "role": "paper",
@@ -10367,7 +10471,9 @@
     "journal": "European urology",
     "year": "2026",
     "pmid": "42049596",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42049596/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42049596/",
+    "doi": "10.1016/j.eururo.2026.03.024",
+    "doi_url": "https://doi.org/10.1016/j.eururo.2026.03.024"
    },
    {
     "role": "paper",
@@ -10376,7 +10482,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2025",
     "pmid": "40915303",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40915303/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40915303/",
+    "doi": "10.1016/S1470-2045(25)00380-8",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(25)00380-8"
    },
    {
     "role": "paper",
@@ -10439,7 +10547,9 @@
     "journal": "Blood",
     "year": "2026",
     "pmid": "42825495",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42825495/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42825495/",
+    "doi": "10.1182/blood.2026035115",
+    "doi_url": "https://doi.org/10.1182/blood.2026035115"
    },
    {
     "role": "paper",
@@ -11040,7 +11150,9 @@
     "journal": "Current opinion in oncology",
     "year": "2023",
     "pmid": "37222204",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37222204/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37222204/",
+    "doi": "10.1097/CCO.0000000000000956",
+    "doi_url": "https://doi.org/10.1097/CCO.0000000000000956"
    },
    {
     "role": "paper",
@@ -11781,7 +11893,9 @@
     "journal": "Blood advances",
     "year": "2026",
     "pmid": "42616616",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42616616/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42616616/",
+    "doi": "10.1182/bloodadvances.2026021081",
+    "doi_url": "https://doi.org/10.1182/bloodadvances.2026021081"
    },
    {
     "role": "paper",
@@ -13924,7 +14038,9 @@
     "journal": "",
     "year": "2019",
     "pmid": "30553941",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30553941/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30553941/",
+    "doi": "10.1016/j.ijrobp.2018.12.006",
+    "doi_url": "https://doi.org/10.1016/j.ijrobp.2018.12.006"
    }
   ]
  },
@@ -13948,7 +14064,9 @@
     "journal": "",
     "year": "2021",
     "pmid": "34967318",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34967318/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34967318/",
+    "doi": "10.21614/chirurgia.116.5.suppl.S105",
+    "doi_url": "https://doi.org/10.21614/chirurgia.116.5.suppl.S105"
    },
    {
     "role": "results",
@@ -13957,7 +14075,9 @@
     "journal": "",
     "year": "2020",
     "pmid": "32203696",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32203696/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32203696/",
+    "doi": "10.1016/S1470-2045(20)30085-1",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(20)30085-1"
    }
   ]
  },
@@ -13972,7 +14092,9 @@
     "journal": "",
     "year": "2024",
     "pmid": "38878632",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38878632/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38878632/",
+    "doi": "10.1016/j.compmedimag.2024.102403",
+    "doi_url": "https://doi.org/10.1016/j.compmedimag.2024.102403"
    }
   ]
  },
@@ -14745,7 +14867,9 @@
     "journal": "Blood",
     "year": "2008",
     "pmid": "18077791",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/18077791/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/18077791/",
+    "doi": "10.1182/blood-2007-10-117010",
+    "doi_url": "https://doi.org/10.1182/blood-2007-10-117010"
    }
   ]
  },
@@ -14950,7 +15074,9 @@
     "journal": "The Lancet. Haematology",
     "year": "2022",
     "pmid": "35114151",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35114151/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35114151/",
+    "doi": "10.1016/S2352-3026(21)00369-0",
+    "doi_url": "https://doi.org/10.1016/S2352-3026(21)00369-0"
    },
    {
     "role": "results",
@@ -14985,7 +15111,9 @@
     "journal": "International journal of cancer",
     "year": "2017",
     "pmid": "28614910",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28614910/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28614910/",
+    "doi": "10.1002/ijc.30838",
+    "doi_url": "https://doi.org/10.1002/ijc.30838"
    },
    {
     "role": "paper",
@@ -14994,7 +15122,9 @@
     "journal": "Blood",
     "year": "2012",
     "pmid": "22337718",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22337718/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22337718/",
+    "doi": "10.1182/blood-2011-09-380949",
+    "doi_url": "https://doi.org/10.1182/blood-2011-09-380949"
    },
    {
     "role": "paper",
@@ -15003,7 +15133,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2008",
     "pmid": "18226581",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/18226581/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/18226581/",
+    "doi": "10.1016/S1470-2045(08)70002-0",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(08)70002-0"
    }
   ]
  },
@@ -15214,7 +15346,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2016",
     "pmid": "26830377",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26830377/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26830377/",
+    "doi": "10.1016/S1470-2045(15)00167-9",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(15)00167-9"
    }
   ]
  },
@@ -15352,7 +15486,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2017",
     "pmid": "28961836",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28961836/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28961836/",
+    "doi": "10.1093/annonc/mdx351",
+    "doi_url": "https://doi.org/10.1093/annonc/mdx351"
    }
   ]
  },
@@ -15436,7 +15572,9 @@
     "journal": "Blood",
     "year": "2012",
     "pmid": "22490331",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22490331/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22490331/",
+    "doi": "10.1182/blood-2011-09-378505",
+    "doi_url": "https://doi.org/10.1182/blood-2011-09-378505"
    }
   ]
  },
@@ -15642,7 +15780,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2023",
     "pmid": "36738756",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36738756/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36738756/",
+    "doi": "10.1016/S1470-2045(23)00018-9",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(23)00018-9"
    },
    {
     "role": "results",
@@ -15651,7 +15791,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2018",
     "pmid": "29695348",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29695348/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29695348/",
+    "doi": "10.1016/S1470-2045(18)30195-5",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(18)30195-5"
    },
    {
     "role": "results",
@@ -15660,7 +15802,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2017",
     "pmid": "28094198",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28094198/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28094198/",
+    "doi": "10.1016/S1470-2045(17)30011-6",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(17)30011-6"
    },
    {
     "role": "results",
@@ -15669,7 +15813,9 @@
     "journal": "Lancet (London, England)",
     "year": "2016",
     "pmid": "26494415",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26494415/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26494415/",
+    "doi": "10.1016/S0140-6736(15)00471-7",
+    "doi_url": "https://doi.org/10.1016/S0140-6736(15)00471-7"
    },
    {
     "role": "paper",
@@ -15678,7 +15824,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2016",
     "pmid": "27422584",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27422584/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27422584/",
+    "doi": "10.1016/j.radonc.2016.06.019",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2016.06.019"
    }
   ]
  },
@@ -15698,7 +15846,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2025",
     "pmid": "40818318",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40818318/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40818318/",
+    "doi": "10.1016/j.ejca.2025.115672",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2025.115672"
    },
    {
     "role": "results",
@@ -15720,7 +15870,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2022",
     "pmid": "35863110",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35863110/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35863110/",
+    "doi": "10.1016/j.ejca.2022.06.025",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2022.06.025"
    },
    {
     "role": "paper",
@@ -15729,7 +15881,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2021",
     "pmid": "33227408",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33227408/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33227408/",
+    "doi": "10.1016/j.annonc.2020.11.004",
+    "doi_url": "https://doi.org/10.1016/j.annonc.2020.11.004"
    },
    {
     "role": "results",
@@ -15751,7 +15905,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2020",
     "pmid": "32208351",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32208351/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32208351/",
+    "doi": "10.1016/j.ejca.2020.02.008",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2020.02.008"
    },
    {
     "role": "paper",
@@ -15812,7 +15968,9 @@
     "journal": "",
     "year": "2019",
     "pmid": "30426671",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30426671/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30426671/",
+    "doi": "10.1002/pbc.27539",
+    "doi_url": "https://doi.org/10.1002/pbc.27539"
    },
    {
     "role": "paper",
@@ -15821,7 +15979,9 @@
     "journal": "",
     "year": "2018",
     "pmid": "29790693",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29790693/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29790693/",
+    "doi": "10.17219/acem/68990",
+    "doi_url": "https://doi.org/10.17219/acem/68990"
    },
    {
     "role": "results",
@@ -15830,7 +15990,9 @@
     "journal": "",
     "year": "2015",
     "pmid": "25204374",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25204374/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25204374/",
+    "doi": "10.3109/10428194.2014.961011",
+    "doi_url": "https://doi.org/10.3109/10428194.2014.961011"
    },
    {
     "role": "paper",
@@ -15839,7 +16001,9 @@
     "journal": "",
     "year": "2012",
     "pmid": "23047832",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/23047832/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/23047832/",
+    "doi": "10.1055/s-0032-1323824",
+    "doi_url": "https://doi.org/10.1055/s-0032-1323824"
    }
   ]
  },
@@ -15890,7 +16054,9 @@
     "journal": "Blood",
     "year": "2016",
     "pmid": "26888258",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26888258/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26888258/",
+    "doi": "10.1182/blood-2015-09-670729",
+    "doi_url": "https://doi.org/10.1182/blood-2015-09-670729"
    },
    {
     "role": "paper",
@@ -15938,7 +16104,9 @@
     "journal": "Blood",
     "year": "2011",
     "pmid": "21719599",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/21719599/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/21719599/",
+    "doi": "10.1182/blood-2011-03-338707",
+    "doi_url": "https://doi.org/10.1182/blood-2011-03-338707"
    },
    {
     "role": "results",
@@ -15947,7 +16115,9 @@
     "journal": "Blood",
     "year": "2010",
     "pmid": "20154213",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/20154213/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/20154213/",
+    "doi": "10.1182/blood-2009-10-248146",
+    "doi_url": "https://doi.org/10.1182/blood-2009-10-248146"
    }
   ]
  },
@@ -15999,7 +16169,9 @@
     "journal": "International journal of radiation oncology, biology, physics",
     "year": "2024",
     "pmid": "38521132",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38521132/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38521132/",
+    "doi": "10.1016/j.ijrobp.2024.02.063",
+    "doi_url": "https://doi.org/10.1016/j.ijrobp.2024.02.063"
    },
    {
     "role": "paper",
@@ -16034,7 +16206,9 @@
     "journal": "Lung cancer (Amsterdam, Netherlands)",
     "year": "2012",
     "pmid": "22014897",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22014897/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22014897/",
+    "doi": "10.1016/j.lungcan.2011.09.015",
+    "doi_url": "https://doi.org/10.1016/j.lungcan.2011.09.015"
    },
    {
     "role": "paper",
@@ -16043,7 +16217,9 @@
     "journal": "Lung cancer (Amsterdam, Netherlands)",
     "year": "2011",
     "pmid": "21353720",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/21353720/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/21353720/",
+    "doi": "10.1016/j.lungcan.2011.01.020",
+    "doi_url": "https://doi.org/10.1016/j.lungcan.2011.01.020"
    }
   ]
  },
@@ -16092,7 +16268,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2020",
     "pmid": "32203696",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32203696/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32203696/",
+    "doi": "10.1016/S1470-2045(20)30085-1",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(20)30085-1"
    }
   ]
  },
@@ -16120,7 +16298,9 @@
     "journal": "Journal of neuro-oncology",
     "year": "2020",
     "pmid": "32632894",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32632894/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32632894/",
+    "doi": "10.1007/s11060-020-03573-x",
+    "doi_url": "https://doi.org/10.1007/s11060-020-03573-x"
    },
    {
     "role": "paper",
@@ -16194,7 +16374,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2018",
     "pmid": "30412221",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30412221/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30412221/",
+    "doi": "10.1093/annonc/mdy332",
+    "doi_url": "https://doi.org/10.1093/annonc/mdy332"
    }
   ]
  },
@@ -16350,7 +16532,9 @@
     "journal": "British journal of haematology",
     "year": "2016",
     "pmid": "26849853",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26849853/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26849853/",
+    "doi": "10.1111/bjh.13954",
+    "doi_url": "https://doi.org/10.1111/bjh.13954"
    }
   ]
  },
@@ -16411,7 +16595,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2014",
     "pmid": "25163906",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25163906/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25163906/",
+    "doi": "10.1016/S1470-2045(14)70379-1",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(14)70379-1"
    }
   ]
  },
@@ -16483,7 +16669,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2016",
     "pmid": "26655558",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26655558/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26655558/",
+    "doi": "10.1016/j.ejca.2015.09.024",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2015.09.024"
    }
   ]
  },
@@ -16566,7 +16754,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2018",
     "pmid": "29346519",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29346519/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29346519/",
+    "doi": "10.1093/annonc/mdy018",
+    "doi_url": "https://doi.org/10.1093/annonc/mdy018"
    }
   ]
  },
@@ -16606,7 +16796,9 @@
     "journal": "Quality of life research : an international journal of quality of life aspects of treatment, care and rehabilitation",
     "year": "2023",
     "pmid": "36115002",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36115002/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36115002/",
+    "doi": "10.1007/s11136-022-03252-6",
+    "doi_url": "https://doi.org/10.1007/s11136-022-03252-6"
    },
    {
     "role": "paper",
@@ -16615,7 +16807,9 @@
     "journal": "Quality of life research : an international journal of quality of life aspects of treatment, care and rehabilitation",
     "year": "2022",
     "pmid": "34817733",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34817733/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34817733/",
+    "doi": "10.1007/s11136-021-03040-8",
+    "doi_url": "https://doi.org/10.1007/s11136-021-03040-8"
    },
    {
     "role": "paper",
@@ -16637,7 +16831,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2014",
     "pmid": "24556041",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24556041/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24556041/",
+    "doi": "10.1016/S1470-2045(14)70028-2",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(14)70028-2"
    }
   ]
  },
@@ -16652,7 +16848,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2015",
     "pmid": "26163093",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26163093/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26163093/",
+    "doi": "10.1016/j.radonc.2015.06.017",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2015.06.017"
    }
   ]
  },
@@ -16687,7 +16885,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2015",
     "pmid": "25355723",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25355723/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25355723/",
+    "doi": "10.1093/annonc/mdu488",
+    "doi_url": "https://doi.org/10.1093/annonc/mdu488"
    }
   ]
  },
@@ -16728,7 +16928,9 @@
     "journal": "The Annals of thoracic surgery",
     "year": "2019",
     "pmid": "31400325",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31400325/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31400325/",
+    "doi": "10.1016/j.athoracsur.2019.06.035",
+    "doi_url": "https://doi.org/10.1016/j.athoracsur.2019.06.035"
    }
   ]
  },
@@ -16756,7 +16958,9 @@
     "journal": "Progress in neurological surgery",
     "year": "2018",
     "pmid": "29393183",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29393183/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29393183/",
+    "doi": "10.1159/000467376",
+    "doi_url": "https://doi.org/10.1159/000467376"
    }
   ]
  },
@@ -16781,7 +16985,9 @@
     "journal": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "year": "2020",
     "pmid": "32910709",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32910709/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32910709/",
+    "doi": "10.1200/JCO.20.01363",
+    "doi_url": "https://doi.org/10.1200/JCO.20.01363"
    }
   ]
  },
@@ -16859,7 +17065,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2026",
     "pmid": "42636837",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42636837/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42636837/",
+    "doi": "10.1016/S1470-2045(26)00277-9",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(26)00277-9"
    }
   ]
  },
@@ -16913,7 +17121,9 @@
     "journal": "The Lancet. Haematology",
     "year": "2017",
     "pmid": "29054815",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29054815/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29054815/",
+    "doi": "10.1016/S2352-3026(17)30174-6",
+    "doi_url": "https://doi.org/10.1016/S2352-3026(17)30174-6"
    },
    {
     "role": "results",
@@ -16922,7 +17132,9 @@
     "journal": "The Lancet. Haematology",
     "year": "2016",
     "pmid": "27132696",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27132696/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27132696/",
+    "doi": "10.1016/S2352-3026(16)00036-3",
+    "doi_url": "https://doi.org/10.1016/S2352-3026(16)00036-3"
    }
   ]
  },
@@ -16950,7 +17162,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2019",
     "pmid": "30770291",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30770291/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30770291/",
+    "doi": "10.1016/S1470-2045(18)30896-9",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(18)30896-9"
    }
   ]
  },
@@ -16975,7 +17189,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2013",
     "pmid": "22887465",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22887465/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22887465/",
+    "doi": "10.1093/annonc/mds206",
+    "doi_url": "https://doi.org/10.1093/annonc/mds206"
    },
    {
     "role": "results",
@@ -16984,7 +17200,9 @@
     "journal": "Annals of surgery",
     "year": "2011",
     "pmid": "21233603",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/21233603/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/21233603/",
+    "doi": "10.1097/SLA.0b013e3181fcd991",
+    "doi_url": "https://doi.org/10.1097/SLA.0b013e3181fcd991"
    }
   ]
  },
@@ -17434,7 +17652,9 @@
     "journal": "Annals of surgical oncology",
     "year": "2026",
     "pmid": "41379261",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41379261/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41379261/",
+    "doi": "10.1245/s10434-025-18802-8",
+    "doi_url": "https://doi.org/10.1245/s10434-025-18802-8"
    },
    {
     "role": "results",
@@ -17667,7 +17887,9 @@
     "journal": "The lancet. Healthy longevity",
     "year": "2026",
     "pmid": "41713468",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41713468/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41713468/",
+    "doi": "10.1016/j.lanhl.2025.100812",
+    "doi_url": "https://doi.org/10.1016/j.lanhl.2025.100812"
    }
   ]
  },
@@ -17842,7 +18064,9 @@
     "journal": "Clinical pharmacology and therapeutics",
     "year": "2024",
     "pmid": "37777832",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37777832/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37777832/",
+    "doi": "10.1002/cpt.3065",
+    "doi_url": "https://doi.org/10.1002/cpt.3065"
    },
    {
     "role": "paper",
@@ -17851,7 +18075,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2023",
     "pmid": "36796234",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36796234/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36796234/",
+    "doi": "10.1016/j.ejca.2022.12.015",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2022.12.015"
    },
    {
     "role": "paper",
@@ -17860,7 +18086,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2020",
     "pmid": "32758455",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32758455/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32758455/",
+    "doi": "10.1016/S1470-2045(20)30327-2",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(20)30327-2"
    }
   ]
  },
@@ -17997,7 +18225,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2022",
     "pmid": "36184997",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36184997/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36184997/",
+    "doi": "10.1016/j.radonc.2022.09.008",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2022.09.008"
    }
   ]
  },
@@ -18180,7 +18410,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2021",
     "pmid": "34126044",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34126044/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34126044/",
+    "doi": "10.1016/S1470-2045(21)00196-0",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(21)00196-0"
    },
    {
     "role": "results",
@@ -18189,7 +18421,9 @@
     "journal": "International journal of radiation oncology, biology, physics",
     "year": "2018",
     "pmid": "30003994",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30003994/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30003994/",
+    "doi": "10.1016/j.ijrobp.2018.06.047",
+    "doi_url": "https://doi.org/10.1016/j.ijrobp.2018.06.047"
    }
   ]
  },
@@ -18230,7 +18464,9 @@
     "journal": "Strahlentherapie und Onkologie : Organ der Deutschen Rontgengesellschaft ... [et al]",
     "year": "2019",
     "pmid": "30610355",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30610355/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30610355/",
+    "doi": "10.1007/s00066-018-1415-y",
+    "doi_url": "https://doi.org/10.1007/s00066-018-1415-y"
    },
    {
     "role": "paper",
@@ -18322,7 +18558,9 @@
     "journal": "Clinical colorectal cancer",
     "year": "2020",
     "pmid": "32265117",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32265117/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32265117/",
+    "doi": "10.1016/j.clcc.2020.01.004",
+    "doi_url": "https://doi.org/10.1016/j.clcc.2020.01.004"
    },
    {
     "role": "paper",
@@ -18657,7 +18895,9 @@
     "journal": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "year": "2022",
     "pmid": "35476508",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35476508/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35476508/",
+    "doi": "10.1200/JCO.21.02511",
+    "doi_url": "https://doi.org/10.1200/JCO.21.02511"
    }
   ]
  },
@@ -18682,7 +18922,9 @@
     "journal": "Journal of neurosurgery",
     "year": "2023",
     "pmid": "36242578",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36242578/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36242578/",
+    "doi": "10.3171/2022.8.JNS221068",
+    "doi_url": "https://doi.org/10.3171/2022.8.JNS221068"
    }
   ]
  },
@@ -18807,7 +19049,9 @@
     "journal": "Acta oncologica (Stockholm, Sweden)",
     "year": "2020",
     "pmid": "31805799",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31805799/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31805799/",
+    "doi": "10.1080/0284186X.2019.1695065",
+    "doi_url": "https://doi.org/10.1080/0284186X.2019.1695065"
    }
   ]
  },
@@ -19000,7 +19244,9 @@
     "journal": "",
     "year": "2024",
     "pmid": "38768714",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38768714/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38768714/",
+    "doi": "10.1016/j.radonc.2024.110329",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2024.110329"
    }
   ]
  },
@@ -19015,7 +19261,9 @@
     "journal": "Lasers in medical science",
     "year": "2022",
     "pmid": "35499744",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35499744/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35499744/",
+    "doi": "10.1007/s10103-022-03567-3",
+    "doi_url": "https://doi.org/10.1007/s10103-022-03567-3"
    },
    {
     "role": "paper",
@@ -19156,7 +19404,9 @@
     "journal": "Lasers in medical science",
     "year": "2022",
     "pmid": "35751005",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35751005/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35751005/",
+    "doi": "10.1007/s10103-022-03600-5",
+    "doi_url": "https://doi.org/10.1007/s10103-022-03600-5"
    }
   ]
  },
@@ -19184,7 +19434,9 @@
     "journal": "Med (New York, N.Y.)",
     "year": "2025",
     "pmid": "40651471",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40651471/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40651471/",
+    "doi": "10.1016/j.medj.2025.100770",
+    "doi_url": "https://doi.org/10.1016/j.medj.2025.100770"
    },
    {
     "role": "paper",
@@ -19193,7 +19445,9 @@
     "journal": "Lancet (London, England)",
     "year": "2024",
     "pmid": "38824941",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38824941/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38824941/",
+    "doi": "10.1016/S0140-6736(24)00594-4",
+    "doi_url": "https://doi.org/10.1016/S0140-6736(24)00594-4"
    },
    {
     "role": "paper",
@@ -19236,7 +19490,9 @@
     "journal": "Journal of thoracic oncology : official publication of the International Association for the Study of Lung Cancer",
     "year": "2026",
     "pmid": "41534788",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41534788/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41534788/",
+    "doi": "10.1016/j.jtho.2026.01.001",
+    "doi_url": "https://doi.org/10.1016/j.jtho.2026.01.001"
    }
   ]
  },
@@ -19318,7 +19574,9 @@
     "journal": "International journal of radiation oncology, biology, physics",
     "year": "2020",
     "pmid": "32272183",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32272183/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32272183/",
+    "doi": "10.1016/j.ijrobp.2020.03.029",
+    "doi_url": "https://doi.org/10.1016/j.ijrobp.2020.03.029"
    }
   ]
  },
@@ -19560,7 +19818,9 @@
     "journal": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "year": "2026",
     "pmid": "42623567",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42623567/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42623567/",
+    "doi": "10.1200/JCO-25-02255",
+    "doi_url": "https://doi.org/10.1200/JCO-25-02255"
    },
    {
     "role": "paper",
@@ -19569,7 +19829,9 @@
     "journal": "Current treatment options in oncology",
     "year": "2021",
     "pmid": "34213636",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34213636/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34213636/",
+    "doi": "10.1007/s11864-021-00879-4",
+    "doi_url": "https://doi.org/10.1007/s11864-021-00879-4"
    }
   ]
  },
@@ -19858,7 +20120,9 @@
     "journal": "International journal of gynecological cancer : official journal of the International Gynecological Cancer Society",
     "year": "2022",
     "pmid": "36100282",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36100282/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36100282/",
+    "doi": "10.1136/ijgc-2022-003918",
+    "doi_url": "https://doi.org/10.1136/ijgc-2022-003918"
    }
   ]
  },
@@ -20043,7 +20307,9 @@
     "journal": "Clinical cancer research : an official journal of the American Association for Cancer Research",
     "year": "2025",
     "pmid": "39495175",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39495175/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39495175/",
+    "doi": "10.1158/1078-0432.CCR-24-2436",
+    "doi_url": "https://doi.org/10.1158/1078-0432.CCR-24-2436"
    }
   ]
  },
@@ -20058,7 +20324,9 @@
     "journal": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "year": "2026",
     "pmid": "41962116",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41962116/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41962116/",
+    "doi": "10.1200/JCO-25-03044",
+    "doi_url": "https://doi.org/10.1200/JCO-25-03044"
    }
   ]
  },
@@ -20083,7 +20351,9 @@
     "journal": "The Lancet. Haematology",
     "year": "2025",
     "pmid": "40324445",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40324445/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40324445/",
+    "doi": "10.1016/S2352-3026(25)00071-7",
+    "doi_url": "https://doi.org/10.1016/S2352-3026(25)00071-7"
    },
    {
     "role": "paper",
@@ -20092,7 +20362,9 @@
     "journal": "Future oncology (London, England)",
     "year": "2024",
     "pmid": "38179936",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38179936/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38179936/",
+    "doi": "10.2217/fon-2023-0761",
+    "doi_url": "https://doi.org/10.2217/fon-2023-0761"
    }
   ]
  },
@@ -20144,7 +20416,9 @@
     "journal": "Clinical cancer research : an official journal of the American Association for Cancer Research",
     "year": "2026",
     "pmid": "41324566",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41324566/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41324566/",
+    "doi": "10.1158/1078-0432.CCR-25-2461",
+    "doi_url": "https://doi.org/10.1158/1078-0432.CCR-25-2461"
    }
   ]
  },
@@ -20221,7 +20495,9 @@
     "journal": "European journal of nuclear medicine and molecular imaging",
     "year": "2026",
     "pmid": "42252348",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42252348/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42252348/",
+    "doi": "10.1007/s00259-026-07982-4",
+    "doi_url": "https://doi.org/10.1007/s00259-026-07982-4"
    },
    {
     "role": "paper",
@@ -20721,7 +20997,9 @@
     "journal": "",
     "year": "2026",
     "pmid": "41758259",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41758259/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41758259/",
+    "doi": "10.1245/s10434-026-19324-7",
+    "doi_url": "https://doi.org/10.1245/s10434-026-19324-7"
    },
    {
     "role": "results",
@@ -20730,7 +21008,9 @@
     "journal": "",
     "year": "2026",
     "pmid": "41764126",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41764126/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41764126/",
+    "doi": "10.1245/s10434-026-19196-x",
+    "doi_url": "https://doi.org/10.1245/s10434-026-19196-x"
    }
   ]
  },
@@ -21024,7 +21304,9 @@
     "journal": "",
     "year": "2017",
     "pmid": "27209505",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27209505/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27209505/",
+    "doi": "10.1016/j.ijrobp.2016.03.017",
+    "doi_url": "https://doi.org/10.1016/j.ijrobp.2016.03.017"
    },
    {
     "role": "results",
@@ -21059,7 +21341,9 @@
     "journal": "",
     "year": "2010",
     "pmid": "20479390",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/20479390/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/20479390/",
+    "doi": "10.1200/JCO.2009.27.4498",
+    "doi_url": "https://doi.org/10.1200/JCO.2009.27.4498"
    },
    {
     "role": "paper",
@@ -21068,7 +21352,9 @@
     "journal": "",
     "year": "2010",
     "pmid": "20479425",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/20479425/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/20479425/",
+    "doi": "10.1200/JCO.2009.27.4449",
+    "doi_url": "https://doi.org/10.1200/JCO.2009.27.4449"
    },
    {
     "role": "paper",
@@ -21096,7 +21382,9 @@
     "journal": "",
     "year": "2022",
     "pmid": "34903431",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34903431/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34903431/",
+    "doi": "10.1016/j.clon.2021.11.015",
+    "doi_url": "https://doi.org/10.1016/j.clon.2021.11.015"
    }
   ]
  },
@@ -21327,7 +21615,9 @@
     "journal": "",
     "year": "2003",
     "pmid": "12756499",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/12756499/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/12756499/",
+    "doi": "10.1007/s00277-003-0655-8",
+    "doi_url": "https://doi.org/10.1007/s00277-003-0655-8"
    }
   ]
  },
@@ -21510,7 +21800,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2017",
     "pmid": "28327958",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28327958/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28327958/",
+    "doi": "10.1093/annonc/mdx072",
+    "doi_url": "https://doi.org/10.1093/annonc/mdx072"
    },
    {
     "role": "paper",
@@ -21534,7 +21826,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2017",
     "pmid": "28327958",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28327958/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28327958/",
+    "doi": "10.1093/annonc/mdx072",
+    "doi_url": "https://doi.org/10.1093/annonc/mdx072"
    },
    {
     "role": "paper",
@@ -21543,7 +21837,9 @@
     "journal": "Blood",
     "year": "2016",
     "pmid": "26834240",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26834240/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26834240/",
+    "doi": "10.1182/blood-2015-11-681064",
+    "doi_url": "https://doi.org/10.1182/blood-2015-11-681064"
    },
    {
     "role": "paper",
@@ -21723,7 +22019,9 @@
     "journal": "The New England journal of medicine",
     "year": "2012",
     "pmid": "22551128",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22551128/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22551128/",
+    "doi": "10.1056/NEJMoa1109589",
+    "doi_url": "https://doi.org/10.1056/NEJMoa1109589"
    }
   ]
  },
@@ -22019,7 +22317,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2017",
     "pmid": "28040660",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28040660/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/28040660/",
+    "doi": "10.1016/j.ejca.2016.11.008",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2016.11.008"
    }
   ]
  },
@@ -22522,7 +22822,9 @@
     "journal": "Brachytherapy",
     "year": "2022",
     "pmid": "35396138",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35396138/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35396138/",
+    "doi": "10.1016/j.brachy.2022.02.003",
+    "doi_url": "https://doi.org/10.1016/j.brachy.2022.02.003"
    }
   ]
  },
@@ -22592,7 +22894,9 @@
     "journal": "Clinical oncology (Royal College of Radiologists (Great Britain))",
     "year": "2019",
     "pmid": "31147146",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31147146/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31147146/",
+    "doi": "10.1016/j.clon.2019.05.007",
+    "doi_url": "https://doi.org/10.1016/j.clon.2019.05.007"
    }
   ]
  },
@@ -22890,7 +23194,9 @@
     "journal": "Future oncology (London, England)",
     "year": "2014",
     "pmid": "24947255",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24947255/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24947255/",
+    "doi": "10.2217/fon.14.75",
+    "doi_url": "https://doi.org/10.2217/fon.14.75"
    }
   ]
  },
@@ -22968,7 +23274,9 @@
     "journal": "Radiology",
     "year": "2021",
     "pmid": "33289613",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33289613/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33289613/",
+    "doi": "10.1148/radiol.2020202861",
+    "doi_url": "https://doi.org/10.1148/radiol.2020202861"
    }
   ]
  },
@@ -23008,7 +23316,9 @@
     "journal": "The Lancet. Haematology",
     "year": "2026",
     "pmid": "42150590",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42150590/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42150590/",
+    "doi": "10.1016/S2352-3026(26)00014-1",
+    "doi_url": "https://doi.org/10.1016/S2352-3026(26)00014-1"
    }
   ]
  },
@@ -23132,7 +23442,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2021",
     "pmid": "33741467",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33741467/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33741467/",
+    "doi": "10.1016/j.radonc.2021.03.011",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2021.03.011"
    }
   ]
  },
@@ -23147,7 +23459,9 @@
     "journal": "Strahlentherapie und Onkologie : Organ der Deutschen Rontgengesellschaft ... [et al]",
     "year": "2019",
     "pmid": "30390114",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30390114/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30390114/",
+    "doi": "10.1007/s00066-018-1396-x",
+    "doi_url": "https://doi.org/10.1007/s00066-018-1396-x"
    }
   ]
  },
@@ -23578,7 +23892,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2025",
     "pmid": "40907518",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40907518/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40907518/",
+    "doi": "10.1016/S1470-2045(25)00324-9",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(25)00324-9"
    }
   ]
  },
@@ -23872,7 +24188,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2023",
     "pmid": "36410207",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36410207/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36410207/",
+    "doi": "10.1016/j.ejca.2022.09.024",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2022.09.024"
    },
    {
     "role": "paper",
@@ -24017,7 +24335,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2026",
     "pmid": "42142535",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42142535/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42142535/",
+    "doi": "10.1016/j.radonc.2026.111576",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2026.111576"
    }
   ]
  },
@@ -24426,7 +24746,9 @@
     "journal": "International journal of radiation oncology, biology, physics",
     "year": "2026",
     "pmid": "40780546",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40780546/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40780546/",
+    "doi": "10.1016/j.ijrobp.2025.07.1447",
+    "doi_url": "https://doi.org/10.1016/j.ijrobp.2025.07.1447"
    }
   ]
  },
@@ -25211,7 +25533,9 @@
     "journal": "Head & neck",
     "year": "2026",
     "pmid": "42374609",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42374609/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42374609/",
+    "doi": "10.1002/hed.70360",
+    "doi_url": "https://doi.org/10.1002/hed.70360"
    }
   ]
  },
@@ -25627,7 +25951,9 @@
     "journal": "",
     "year": "2013",
     "pmid": "24043739",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24043739/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24043739/",
+    "doi": "10.1200/JCO.2013.49.5077",
+    "doi_url": "https://doi.org/10.1200/JCO.2013.49.5077"
    },
    {
     "role": "paper",
@@ -25636,7 +25962,9 @@
     "journal": "",
     "year": "2008",
     "pmid": "18438723",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/18438723/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/18438723/",
+    "doi": "10.1007/s12253-008-9044-x",
+    "doi_url": "https://doi.org/10.1007/s12253-008-9044-x"
    },
    {
     "role": "paper",
@@ -25645,7 +25973,9 @@
     "journal": "",
     "year": "2004",
     "pmid": "15026697",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/15026697/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/15026697/",
+    "doi": "10.1016/s0755-4982(04)98490-4",
+    "doi_url": "https://doi.org/10.1016/s0755-4982(04)98490-4"
    },
    {
     "role": "paper",
@@ -25676,7 +26006,9 @@
     "journal": "",
     "year": "2001",
     "pmid": "11289747",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/11289747/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/11289747/",
+    "doi": "10.1053/ejso.2000.1062",
+    "doi_url": "https://doi.org/10.1053/ejso.2000.1062"
    },
    {
     "role": "paper",
@@ -25685,7 +26017,9 @@
     "journal": "",
     "year": "1998",
     "pmid": "9928553",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/9928553/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/9928553/",
+    "doi": "10.1007/978-3-642-45769-2_12",
+    "doi_url": "https://doi.org/10.1007/978-3-642-45769-2_12"
    },
    {
     "role": "paper",
@@ -25774,7 +26108,9 @@
     "journal": "",
     "year": "1999",
     "pmid": "10660202",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/10660202/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/10660202/",
+    "doi": "10.1016/s0167-8140(99)00151-6",
+    "doi_url": "https://doi.org/10.1016/s0167-8140(99)00151-6"
    }
   ]
  },
@@ -25819,7 +26155,9 @@
     "journal": "",
     "year": "2003",
     "pmid": "12573743",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/12573743/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/12573743/",
+    "doi": "10.1016/s0360-3016(02)03790-2",
+    "doi_url": "https://doi.org/10.1016/s0360-3016(02)03790-2"
    }
   ]
  },
@@ -25869,7 +26207,9 @@
     "journal": "",
     "year": "2003",
     "pmid": "12573743",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/12573743/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/12573743/",
+    "doi": "10.1016/s0360-3016(02)03790-2",
+    "doi_url": "https://doi.org/10.1016/s0360-3016(02)03790-2"
    },
    {
     "role": "results",
@@ -25878,7 +26218,9 @@
     "journal": "",
     "year": "1997",
     "pmid": "9288839",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/9288839/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/9288839/",
+    "doi": "10.1016/s0167-8140(97)00079-0",
+    "doi_url": "https://doi.org/10.1016/s0167-8140(97)00079-0"
    }
   ]
  },
@@ -25893,7 +26235,9 @@
     "journal": "",
     "year": "2013",
     "pmid": "23011911",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/23011911/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/23011911/",
+    "doi": "10.1002/cncr.27825",
+    "doi_url": "https://doi.org/10.1002/cncr.27825"
    }
   ]
  },
@@ -26038,7 +26382,9 @@
     "journal": "",
     "year": "2012",
     "pmid": "23129367",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/23129367/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/23129367/",
+    "doi": "10.1007/978-3-642-31629-6_5",
+    "doi_url": "https://doi.org/10.1007/978-3-642-31629-6_5"
    }
   ]
  },
@@ -26073,7 +26419,9 @@
     "journal": "",
     "year": "2020",
     "pmid": "31837008",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31837008/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31837008/",
+    "doi": "10.1111/bjh.16337",
+    "doi_url": "https://doi.org/10.1111/bjh.16337"
    }
   ]
  },
@@ -26377,7 +26725,9 @@
     "journal": "Journal of the National Comprehensive Cancer Network : JNCCN",
     "year": "2025",
     "pmid": "41671466",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41671466/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41671466/",
+    "doi": "10.6004/jnccn.2025.7080",
+    "doi_url": "https://doi.org/10.6004/jnccn.2025.7080"
    },
    {
     "role": "results",
@@ -26490,7 +26840,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2018",
     "pmid": "29274617",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29274617/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29274617/",
+    "doi": "10.1016/j.ejca.2017.11.014",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2017.11.014"
    },
    {
     "role": "paper",
@@ -26531,7 +26883,9 @@
     "journal": "Cancer",
     "year": "2025",
     "pmid": "40986647",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40986647/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40986647/",
+    "doi": "10.1002/cncr.70094",
+    "doi_url": "https://doi.org/10.1002/cncr.70094"
    },
    {
     "role": "paper",
@@ -26784,7 +27138,9 @@
     "journal": "Critical reviews in oncology/hematology",
     "year": "2015",
     "pmid": "25624177",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25624177/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/25624177/",
+    "doi": "10.1016/j.critrevonc.2015.01.003",
+    "doi_url": "https://doi.org/10.1016/j.critrevonc.2015.01.003"
    },
    {
     "role": "results",
@@ -27107,7 +27463,9 @@
     "journal": "Journal of nuclear cardiology : official publication of the American Society of Nuclear Cardiology",
     "year": "2011",
     "pmid": "21082298",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/21082298/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/21082298/",
+    "doi": "10.1007/s12350-010-9311-6",
+    "doi_url": "https://doi.org/10.1007/s12350-010-9311-6"
    }
   ]
  },
@@ -27230,7 +27588,9 @@
     "journal": "Oncology",
     "year": "2020",
     "pmid": "32629446",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32629446/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32629446/",
+    "doi": "10.1159/000507733",
+    "doi_url": "https://doi.org/10.1159/000507733"
    }
   ]
  },
@@ -27480,7 +27840,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2021",
     "pmid": "34480960",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34480960/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34480960/",
+    "doi": "10.1016/j.radonc.2021.08.019",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2021.08.019"
    },
    {
     "role": "results",
@@ -27765,7 +28127,9 @@
     "journal": "Zhonghua zhong liu za zhi [Chinese journal of oncology]",
     "year": "2016",
     "pmid": "26796806",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26796806/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26796806/",
+    "doi": "10.3760/cma.j.issn.0253-3766.2016.01.009",
+    "doi_url": "https://doi.org/10.3760/cma.j.issn.0253-3766.2016.01.009"
    }
   ]
  },
@@ -28185,7 +28549,9 @@
     "journal": "HNO",
     "year": "2019",
     "pmid": "31701169",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31701169/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31701169/",
+    "doi": "10.1007/s00106-019-00766-3",
+    "doi_url": "https://doi.org/10.1007/s00106-019-00766-3"
    }
   ]
  },
@@ -28426,7 +28792,9 @@
     "journal": "Neurosurgical review",
     "year": "2024",
     "pmid": "38221545",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38221545/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38221545/",
+    "doi": "10.1007/s10143-024-02279-2",
+    "doi_url": "https://doi.org/10.1007/s10143-024-02279-2"
    },
    {
     "role": "paper",
@@ -29393,7 +29761,9 @@
     "journal": "Future oncology (London, England)",
     "year": "2020",
     "pmid": "32902312",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32902312/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32902312/",
+    "doi": "10.2217/fon-2020-0595",
+    "doi_url": "https://doi.org/10.2217/fon-2020-0595"
    }
   ]
  },
@@ -29445,7 +29815,9 @@
     "journal": "Expert opinion on biological therapy",
     "year": "2024",
     "pmid": "38913933",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38913933/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38913933/",
+    "doi": "10.1080/14712598.2024.2370395",
+    "doi_url": "https://doi.org/10.1080/14712598.2024.2370395"
    }
   ]
  },
@@ -32141,7 +32513,9 @@
     "journal": "",
     "year": "2025",
     "pmid": "40334666",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40334666/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40334666/",
+    "doi": "10.1016/S1470-2045(25)00213-X",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(25)00213-X"
    },
    {
     "role": "paper",
@@ -32150,7 +32524,9 @@
     "journal": "Clinical oncology (Royal College of Radiologists (Great Britain))",
     "year": "2021",
     "pmid": "34024700",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34024700/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34024700/",
+    "doi": "10.1016/j.clon.2021.04.015",
+    "doi_url": "https://doi.org/10.1016/j.clon.2021.04.015"
    }
   ]
  },
@@ -33175,7 +33551,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2024",
     "pmid": "38761889",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38761889/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38761889/",
+    "doi": "10.1016/j.annonc.2024.05.001",
+    "doi_url": "https://doi.org/10.1016/j.annonc.2024.05.001"
    },
    {
     "role": "paper",
@@ -33210,7 +33588,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2024",
     "pmid": "38834389",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38834389/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38834389/",
+    "doi": "10.1016/j.annonc.2024.04.010",
+    "doi_url": "https://doi.org/10.1016/j.annonc.2024.04.010"
    },
    {
     "role": "results",
@@ -33439,7 +33819,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2016",
     "pmid": "26884592",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26884592/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26884592/",
+    "doi": "10.1093/annonc/mdw062",
+    "doi_url": "https://doi.org/10.1093/annonc/mdw062"
    }
   ]
  },
@@ -33696,7 +34078,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2019",
     "pmid": "30327236",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30327236/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30327236/",
+    "doi": "10.1016/j.radonc.2018.09.019",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2018.09.019"
    },
    {
     "role": "paper",
@@ -33714,7 +34098,9 @@
     "journal": "International journal of radiation oncology, biology, physics",
     "year": "2018",
     "pmid": "30244882",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30244882/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30244882/",
+    "doi": "10.1016/j.ijrobp.2018.06.038",
+    "doi_url": "https://doi.org/10.1016/j.ijrobp.2018.06.038"
    },
    {
     "role": "paper",
@@ -33955,7 +34341,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2026",
     "pmid": "41698508",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41698508/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41698508/",
+    "doi": "10.1016/j.radonc.2026.111444",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2026.111444"
    },
    {
     "role": "paper",
@@ -33964,7 +34352,9 @@
     "journal": "International journal of radiation oncology, biology, physics",
     "year": "2022",
     "pmid": "35157993",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35157993/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/35157993/",
+    "doi": "10.1016/j.ijrobp.2022.02.007",
+    "doi_url": "https://doi.org/10.1016/j.ijrobp.2022.02.007"
    },
    {
     "role": "paper",
@@ -34308,7 +34698,9 @@
     "journal": "American journal of clinical oncology",
     "year": "2025",
     "pmid": "39716881",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39716881/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39716881/",
+    "doi": "10.1097/COC.0000000000001145",
+    "doi_url": "https://doi.org/10.1097/COC.0000000000001145"
    },
    {
     "role": "results",
@@ -34343,7 +34735,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2022",
     "pmid": "36113498",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36113498/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36113498/",
+    "doi": "10.1016/S1470-2045(22)00517-4",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(22)00517-4"
    },
    {
     "role": "paper",
@@ -34406,7 +34800,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2019",
     "pmid": "31416685",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31416685/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31416685/",
+    "doi": "10.1016/S1470-2045(19)30410-3",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(19)30410-3"
    }
   ]
  },
@@ -34439,7 +34835,9 @@
     "journal": "Blood",
     "year": "2025",
     "pmid": "40939190",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40939190/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40939190/",
+    "doi": "10.1182/blood.2025028823",
+    "doi_url": "https://doi.org/10.1182/blood.2025028823"
    },
    {
     "role": "results",
@@ -34448,7 +34846,9 @@
     "journal": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "year": "2024",
     "pmid": "39159403",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39159403/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39159403/",
+    "doi": "10.1200/JCO-24-01373",
+    "doi_url": "https://doi.org/10.1200/JCO-24-01373"
    }
   ]
  },
@@ -34659,7 +35059,9 @@
     "journal": "Neoplasma",
     "year": "2021",
     "pmid": "33618522",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33618522/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33618522/",
+    "doi": "10.4149/neo_2021_201217N1366",
+    "doi_url": "https://doi.org/10.4149/neo_2021_201217N1366"
    },
    {
     "role": "paper",
@@ -34804,7 +35206,9 @@
     "journal": "Current treatment options in oncology",
     "year": "2021",
     "pmid": "34213636",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34213636/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34213636/",
+    "doi": "10.1007/s11864-021-00879-4",
+    "doi_url": "https://doi.org/10.1007/s11864-021-00879-4"
    }
   ]
  },
@@ -34910,7 +35314,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2025",
     "pmid": "39924002",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39924002/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39924002/",
+    "doi": "10.1016/j.radonc.2025.110780",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2025.110780"
    },
    {
     "role": "paper",
@@ -34919,7 +35325,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2025",
     "pmid": "39923274",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39923274/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39923274/",
+    "doi": "10.1016/j.ejca.2025.115293",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2025.115293"
    },
    {
     "role": "paper",
@@ -35117,7 +35525,9 @@
     "journal": "European urology",
     "year": "2025",
     "pmid": "39827019",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39827019/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39827019/",
+    "doi": "10.1016/j.eururo.2024.11.027",
+    "doi_url": "https://doi.org/10.1016/j.eururo.2024.11.027"
    },
    {
     "role": "paper",
@@ -35286,7 +35696,9 @@
     "journal": "Magnetic resonance imaging",
     "year": "2026",
     "pmid": "42208702",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42208702/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42208702/",
+    "doi": "10.1016/j.mri.2026.110706",
+    "doi_url": "https://doi.org/10.1016/j.mri.2026.110706"
    },
    {
     "role": "paper",
@@ -35357,7 +35769,9 @@
     "journal": "Medical oncology (Northwood, London, England)",
     "year": "2019",
     "pmid": "31748905",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31748905/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31748905/",
+    "doi": "10.1007/s12032-019-1334-5",
+    "doi_url": "https://doi.org/10.1007/s12032-019-1334-5"
    }
   ]
  },
@@ -35471,7 +35885,9 @@
     "journal": "The Lancet. Respiratory medicine",
     "year": "2021",
     "pmid": "33096027",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33096027/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33096027/",
+    "doi": "10.1016/S2213-2600(20)30391-X",
+    "doi_url": "https://doi.org/10.1016/S2213-2600(20)30391-X"
    }
   ]
  },
@@ -35610,7 +36026,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2021",
     "pmid": "33242536",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33242536/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33242536/",
+    "doi": "10.1016/j.annonc.2020.11.009",
+    "doi_url": "https://doi.org/10.1016/j.annonc.2020.11.009"
    }
   ]
  },
@@ -35625,7 +36043,9 @@
     "journal": "",
     "year": "2026",
     "pmid": "41324205",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41324205/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41324205/",
+    "doi": "10.1002/bip.70066",
+    "doi_url": "https://doi.org/10.1002/bip.70066"
    },
    {
     "role": "paper",
@@ -35699,7 +36119,9 @@
     "journal": "",
     "year": "2026",
     "pmid": "41787979",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41787979/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41787979/",
+    "doi": "10.1093/bjr/tqaf295",
+    "doi_url": "https://doi.org/10.1093/bjr/tqaf295"
    },
    {
     "role": "paper",
@@ -35975,7 +36397,9 @@
     "journal": "Blood",
     "year": "2023",
     "pmid": "37084383",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37084383/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37084383/",
+    "doi": "10.1182/blood.2023020435",
+    "doi_url": "https://doi.org/10.1182/blood.2023020435"
    },
    {
     "role": "paper",
@@ -36393,7 +36817,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2025",
     "pmid": "40121836",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40121836/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40121836/",
+    "doi": "10.1016/j.ejca.2025.115343",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2025.115343"
    },
    {
     "role": "results",
@@ -36591,7 +37017,9 @@
     "journal": "The Prostate",
     "year": "2025",
     "pmid": "40719443",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40719443/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40719443/",
+    "doi": "10.1002/pros.70023",
+    "doi_url": "https://doi.org/10.1002/pros.70023"
    }
   ]
  },
@@ -36695,7 +37123,9 @@
     "journal": "Journal of thoracic oncology : official publication of the International Association for the Study of Lung Cancer",
     "year": "2026",
     "pmid": "41534788",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41534788/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41534788/",
+    "doi": "10.1016/j.jtho.2026.01.001",
+    "doi_url": "https://doi.org/10.1016/j.jtho.2026.01.001"
    }
   ]
  },
@@ -36973,7 +37403,9 @@
     "journal": "Tumori",
     "year": "2024",
     "pmid": "39462835",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39462835/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39462835/",
+    "doi": "10.1177/03008916241291341",
+    "doi_url": "https://doi.org/10.1177/03008916241291341"
    },
    {
     "role": "paper",
@@ -37096,7 +37528,9 @@
     "journal": "Seminars in hematology",
     "year": "2024",
     "pmid": "38945791",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38945791/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38945791/",
+    "doi": "10.1053/j.seminhematol.2024.05.004",
+    "doi_url": "https://doi.org/10.1053/j.seminhematol.2024.05.004"
    },
    {
     "role": "paper",
@@ -38078,7 +38512,9 @@
     "journal": "Colorectal disease : the official journal of the Association of Coloproctology of Great Britain and Ireland",
     "year": "2024",
     "pmid": "39020518",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39020518/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39020518/",
+    "doi": "10.1111/codi.17090",
+    "doi_url": "https://doi.org/10.1111/codi.17090"
    },
    {
     "role": "results",
@@ -38087,7 +38523,9 @@
     "journal": "Med (New York, N.Y.)",
     "year": "2025",
     "pmid": "40845854",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40845854/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40845854/",
+    "doi": "10.1016/j.medj.2025.100807",
+    "doi_url": "https://doi.org/10.1016/j.medj.2025.100807"
    }
   ]
  },
@@ -38715,7 +39153,9 @@
     "journal": "Cancer radiotherapie : journal de la Societe francaise de radiotherapie oncologique",
     "year": "2025",
     "pmid": "40411928",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40411928/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40411928/",
+    "doi": "10.1016/j.canrad.2025.104642",
+    "doi_url": "https://doi.org/10.1016/j.canrad.2025.104642"
    }
   ]
  },
@@ -40187,7 +40627,9 @@
     "journal": "",
     "year": "2010",
     "pmid": "20502056",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/20502056/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/20502056/",
+    "doi": "10.1159/000305094",
+    "doi_url": "https://doi.org/10.1159/000305094"
    }
   ]
  },
@@ -40286,7 +40728,9 @@
     "journal": "Future oncology (London, England)",
     "year": "2019",
     "pmid": "30887820",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30887820/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30887820/",
+    "doi": "10.2217/fon-2018-0539",
+    "doi_url": "https://doi.org/10.2217/fon-2018-0539"
    },
    {
     "role": "paper",
@@ -42579,7 +43023,9 @@
     "journal": "Clinical nuclear medicine",
     "year": "2020",
     "pmid": "31693621",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31693621/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31693621/",
+    "doi": "10.1097/RLU.0000000000002813",
+    "doi_url": "https://doi.org/10.1097/RLU.0000000000002813"
    }
   ]
  },
@@ -43209,7 +43655,9 @@
     "journal": "American journal of clinical oncology",
     "year": "2026",
     "pmid": "41850328",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41850328/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41850328/",
+    "doi": "10.1097/COC.0000000000001296",
+    "doi_url": "https://doi.org/10.1097/COC.0000000000001296"
    }
   ]
  },
@@ -44562,7 +45010,9 @@
     "journal": "Future oncology (London, England)",
     "year": "2023",
     "pmid": "37937444",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37937444/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37937444/",
+    "doi": "10.2217/fon-2023-0674",
+    "doi_url": "https://doi.org/10.2217/fon-2023-0674"
    }
   ]
  },
@@ -45586,7 +46036,9 @@
     "journal": "",
     "year": "2026",
     "pmid": "42517815",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42517815/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42517815/",
+    "doi": "10.1093/bjr/tqag168",
+    "doi_url": "https://doi.org/10.1093/bjr/tqag168"
    }
   ]
  },
@@ -45773,7 +46225,9 @@
     "journal": "Future oncology (London, England)",
     "year": "2019",
     "pmid": "30887820",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30887820/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30887820/",
+    "doi": "10.2217/fon-2018-0539",
+    "doi_url": "https://doi.org/10.2217/fon-2018-0539"
    }
   ]
  },
@@ -46140,7 +46594,9 @@
     "journal": "The lancet. Gastroenterology & hepatology",
     "year": "2018",
     "pmid": "29248399",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29248399/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29248399/",
+    "doi": "10.1016/S2468-1253(17)30363-1",
+    "doi_url": "https://doi.org/10.1016/S2468-1253(17)30363-1"
    }
   ]
  },
@@ -46208,7 +46664,9 @@
     "journal": "The New England journal of medicine",
     "year": "2026",
     "pmid": "41880608",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41880608/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41880608/",
+    "doi": "10.1056/NEJMoa2511781",
+    "doi_url": "https://doi.org/10.1056/NEJMoa2511781"
    },
    {
     "role": "results",
@@ -46217,7 +46675,9 @@
     "journal": "The Lancet. Oncology",
     "year": "2026",
     "pmid": "42061373",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42061373/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42061373/",
+    "doi": "10.1016/S1470-2045(26)00066-5",
+    "doi_url": "https://doi.org/10.1016/S1470-2045(26)00066-5"
    },
    {
     "role": "paper",
@@ -46226,7 +46686,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2026",
     "pmid": "42250604",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42250604/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42250604/",
+    "doi": "10.1016/j.annonc.2026.05.708",
+    "doi_url": "https://doi.org/10.1016/j.annonc.2026.05.708"
    },
    {
     "role": "paper",
@@ -46235,7 +46697,9 @@
     "journal": "The Lancet. Digital health",
     "year": "2025",
     "pmid": "40467357",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40467357/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40467357/",
+    "doi": "10.1016/j.landig.2025.100885",
+    "doi_url": "https://doi.org/10.1016/j.landig.2025.100885"
    },
    {
     "role": "paper",
@@ -46814,7 +47278,9 @@
     "journal": "Lancet (London, England)",
     "year": "2014",
     "pmid": "24224997",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24224997/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/24224997/",
+    "doi": "10.1016/S0140-6736(13)61950-9",
+    "doi_url": "https://doi.org/10.1016/S0140-6736(13)61950-9"
    },
    {
     "role": "paper",
@@ -46823,7 +47289,9 @@
     "journal": "Lancet (London, England)",
     "year": "2010",
     "pmid": "20570343",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/20570343/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/20570343/",
+    "doi": "10.1016/S0140-6736(10)60837-9",
+    "doi_url": "https://doi.org/10.1016/S0140-6736(10)60837-9"
    }
   ]
  },
@@ -47007,7 +47475,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2018",
     "pmid": "29258695",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29258695/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29258695/",
+    "doi": "10.1016/j.radonc.2017.12.002",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2017.12.002"
    },
    {
     "role": "paper",
@@ -47104,7 +47574,9 @@
     "journal": "Annals of oncology : official journal of the European Society for Medical Oncology",
     "year": "2023",
     "pmid": "36220461",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36220461/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36220461/",
+    "doi": "10.1016/j.annonc.2022.09.160",
+    "doi_url": "https://doi.org/10.1016/j.annonc.2022.09.160"
    }
   ]
  },
@@ -47288,7 +47760,9 @@
     "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
     "year": "2023",
     "pmid": "36706959",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36706959/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36706959/",
+    "doi": "10.1016/j.radonc.2023.109486",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2023.109486"
    },
    {
     "role": "paper",
@@ -47310,7 +47784,9 @@
     "journal": "Journal of neuro-oncology",
     "year": "2016",
     "pmid": "27502603",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27502603/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/27502603/",
+    "doi": "10.1007/s11060-016-2232-8",
+    "doi_url": "https://doi.org/10.1007/s11060-016-2232-8"
    }
   ]
  },
@@ -47502,7 +47978,9 @@
     "journal": "Brachytherapy",
     "year": "2020",
     "pmid": "31767533",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31767533/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31767533/",
+    "doi": "10.1016/j.brachy.2019.10.007",
+    "doi_url": "https://doi.org/10.1016/j.brachy.2019.10.007"
    },
    {
     "role": "results",
@@ -47511,7 +47989,9 @@
     "journal": "Brachytherapy",
     "year": "2018",
     "pmid": "29254856",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29254856/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29254856/",
+    "doi": "10.1016/j.brachy.2017.11.008",
+    "doi_url": "https://doi.org/10.1016/j.brachy.2017.11.008"
    }
   ]
  },
@@ -47526,7 +48006,9 @@
     "journal": "American journal of clinical oncology",
     "year": "2021",
     "pmid": "33979100",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33979100/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/33979100/",
+    "doi": "10.1097/COC.0000000000000825",
+    "doi_url": "https://doi.org/10.1097/COC.0000000000000825"
    }
   ]
  },
@@ -48481,7 +48963,9 @@
     "journal": "Molecular imaging and biology",
     "year": "2019",
     "pmid": "29916117",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29916117/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29916117/",
+    "doi": "10.1007/s11307-018-1226-7",
+    "doi_url": "https://doi.org/10.1007/s11307-018-1226-7"
    }
   ]
  },
@@ -48868,7 +49352,9 @@
     "journal": "International journal of clinical oncology",
     "year": "2024",
     "pmid": "38530569",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38530569/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38530569/",
+    "doi": "10.1007/s10147-024-02490-7",
+    "doi_url": "https://doi.org/10.1007/s10147-024-02490-7"
    },
    {
     "role": "paper",
@@ -49193,7 +49679,9 @@
     "journal": "European journal of cancer (Oxford, England : 1990)",
     "year": "2025",
     "pmid": "40580811",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40580811/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40580811/",
+    "doi": "10.1016/j.ejca.2025.115585",
+    "doi_url": "https://doi.org/10.1016/j.ejca.2025.115585"
    },
    {
     "role": "paper",
@@ -49295,7 +49783,9 @@
     "journal": "European urology oncology",
     "year": "2026",
     "pmid": "41565552",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41565552/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41565552/",
+    "doi": "10.1016/j.euo.2026.01.001",
+    "doi_url": "https://doi.org/10.1016/j.euo.2026.01.001"
    },
    {
     "role": "paper",
@@ -49313,7 +49803,9 @@
     "journal": "European urology oncology",
     "year": "2024",
     "pmid": "37821242",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37821242/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37821242/",
+    "doi": "10.1016/j.euo.2023.09.007",
+    "doi_url": "https://doi.org/10.1016/j.euo.2023.09.007"
    }
   ]
  },
@@ -49527,7 +50019,9 @@
     "journal": "The lancet. Gastroenterology & hepatology",
     "year": "2023",
     "pmid": "36529152",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36529152/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/36529152/",
+    "doi": "10.1016/S2468-1253(22)00339-9",
+    "doi_url": "https://doi.org/10.1016/S2468-1253(22)00339-9"
    }
   ]
  },
@@ -49906,7 +50400,9 @@
     "journal": "Oncology (Williston Park, N.Y.)",
     "year": "2021",
     "pmid": "34398588",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34398588/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/34398588/",
+    "doi": "10.46883/ONC.2021.3508.0495",
+    "doi_url": "https://doi.org/10.46883/ONC.2021.3508.0495"
    }
   ]
  },
@@ -50377,7 +50873,9 @@
     "journal": "Asia-Pacific journal of clinical oncology",
     "year": "2026",
     "pmid": "40983872",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40983872/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/40983872/",
+    "doi": "10.1111/ajco.70029",
+    "doi_url": "https://doi.org/10.1111/ajco.70029"
    }
   ]
  },
@@ -50661,7 +51159,9 @@
     "journal": "American journal of clinical oncology",
     "year": "2026",
     "pmid": "42302152",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42302152/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42302152/",
+    "doi": "10.1097/COC.0000000000001346",
+    "doi_url": "https://doi.org/10.1097/COC.0000000000001346"
    },
    {
     "role": "paper",
@@ -50670,7 +51170,9 @@
     "journal": "American journal of clinical oncology",
     "year": "2025",
     "pmid": "39930584",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39930584/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39930584/",
+    "doi": "10.1097/COC.0000000000001174",
+    "doi_url": "https://doi.org/10.1097/COC.0000000000001174"
    }
   ]
  },
@@ -51880,7 +52382,9 @@
     "journal": "",
     "year": "2019",
     "pmid": "30267561",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30267561/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/30267561/",
+    "doi": "10.1111/1754-9485.12804",
+    "doi_url": "https://doi.org/10.1111/1754-9485.12804"
    }
   ]
  },
@@ -51940,7 +52444,9 @@
     "journal": "",
     "year": "2020",
     "pmid": "32828839",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32828839/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/32828839/",
+    "doi": "10.1016/j.radonc.2020.08.010",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2020.08.010"
    },
    {
     "role": "paper",
@@ -51949,7 +52455,9 @@
     "journal": "",
     "year": "2019",
     "pmid": "31015116",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31015116/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/31015116/",
+    "doi": "10.1016/j.radonc.2019.04.013",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2019.04.013"
    },
    {
     "role": "paper",
@@ -51995,7 +52503,9 @@
     "journal": "",
     "year": "2026",
     "pmid": "41207633",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41207633/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/41207633/",
+    "doi": "10.1016/j.radonc.2025.111269",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2025.111269"
    },
    {
     "role": "results",
@@ -52004,7 +52514,9 @@
     "journal": "",
     "year": "2024",
     "pmid": "38302321",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38302321/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38302321/",
+    "doi": "10.1016/j.euo.2024.01.008",
+    "doi_url": "https://doi.org/10.1016/j.euo.2024.01.008"
    }
   ]
  },
@@ -52063,7 +52575,9 @@
     "journal": "",
     "year": "2002",
     "pmid": "11872306",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/11872306/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/11872306/",
+    "doi": "10.1016/s0360-3016(01)02682-7",
+    "doi_url": "https://doi.org/10.1016/s0360-3016(01)02682-7"
    },
    {
     "role": "paper",
@@ -52072,7 +52586,9 @@
     "journal": "",
     "year": "2000",
     "pmid": "10761262",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/10761262/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/10761262/",
+    "doi": "10.1046/j.1440-1673.2000.00774.x",
+    "doi_url": "https://doi.org/10.1046/j.1440-1673.2000.00774.x"
    },
    {
     "role": "paper",
@@ -52134,7 +52650,9 @@
     "journal": "",
     "year": "2013",
     "pmid": "23618502",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/23618502/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/23618502/",
+    "doi": "10.1016/j.radonc.2013.03.025",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2013.03.025"
    },
    {
     "role": "paper",
@@ -52143,7 +52661,9 @@
     "journal": "",
     "year": "2012",
     "pmid": "22310055",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22310055/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/22310055/",
+    "doi": "10.1159/000334999",
+    "doi_url": "https://doi.org/10.1159/000334999"
    },
    {
     "role": "paper",
@@ -52183,7 +52703,9 @@
     "journal": "",
     "year": "2009",
     "pmid": "18952309",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/18952309/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/18952309/",
+    "doi": "10.1016/j.radonc.2008.09.019",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2008.09.019"
    },
    {
     "role": "paper",
@@ -52192,7 +52714,9 @@
     "journal": "",
     "year": "2009",
     "pmid": "19577859",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/19577859/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/19577859/",
+    "doi": "10.1016/j.ijrobp.2008.12.085",
+    "doi_url": "https://doi.org/10.1016/j.ijrobp.2008.12.085"
    }
   ]
  },
@@ -52222,7 +52746,9 @@
     "journal": "",
     "year": "2015",
     "pmid": "26541402",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26541402/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/26541402/",
+    "doi": "10.3978/j.issn.2224-5820.2015.08.03",
+    "doi_url": "https://doi.org/10.3978/j.issn.2224-5820.2015.08.03"
    },
    {
     "role": "paper",
@@ -52240,7 +52766,9 @@
     "journal": "",
     "year": "2005",
     "pmid": "16153729",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/16153729/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/16153729/",
+    "doi": "10.1016/j.radonc.2005.07.003",
+    "doi_url": "https://doi.org/10.1016/j.radonc.2005.07.003"
    },
    {
     "role": "paper",
@@ -52249,7 +52777,9 @@
     "journal": "",
     "year": "2000",
     "pmid": "10705020",
-    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/10705020/"
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/10705020/",
+    "doi": "10.1016/s0360-3016(99)00521-0",
+    "doi_url": "https://doi.org/10.1016/s0360-3016(99)00521-0"
    },
    {
     "role": "paper",

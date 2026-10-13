@@ -1,14 +1,14 @@
 # Worldwide RT Trials
 
-Local tracker of phase 2, phase 2/3, and phase 3 interventional trials in which radiotherapy is a randomized or protocol-specified treatment. It is for finding trials to enroll to and for seeing what is accruing. Closed and completed trials stay in the database.
+Local tracker of phase 2, phase 2/3, and phase 3 interventional trials in which radiotherapy is a randomized or protocol-specified treatment. The same file includes every study on the CTSU list. It is for finding trials to enroll to and for seeing what is accruing. Closed and completed trials stay in the database.
 
 This project does not modify the CTSU tracker. The CTSU rows here are a read of that project's public export. The repository is https://github.com/jryck3/worldwide-rt-trials. The public page is https://jryck3.github.io/worldwide-rt-trials/.
 
-Use the public page, or open the local build `dashboard/index.html` in a browser (not committed). The trial table is embedded in the page, which is published from `docs/index.html`. `data/trials.json` is the same payload. There are 5,470 trials.
+Use the public page, or open the local build `dashboard/index.html` in a browser (not committed). The trial table is embedded in the page, which is published from `docs/index.html`. `data/trials.json` is the same payload. There are 5,689 trials.
 
-The opening view is phase 2, phase 2/3, phase 3, and cohorts, status Recruiting, every RT role, every accrual quality, every disease site, every country, and every source. Country is a searchable multi-select. A trial matches if any listed site is in a selected country. Trials with no country on the record are under Not listed. KROG's label Korea is counted with South Korea. The All box beside Search turns every filter on or off. Each filter row still has its own All box. My trials is saved in the browser. Sign in with Gmail works when the page is opened from localhost, and that list is stored separately from the CTSU tracker.
+The opening view is phase 2, phase 2/3, phase 3, and cohorts, status Recruiting, the radiotherapy roles, every accrual quality, every disease site, every country, and every source. Systemic therapy, cancer control, transplant or cellular therapy, surgery, imaging, and registry or biospecimen start unchecked. Country is a searchable multi-select. A trial matches if any listed site is in a selected country. Trials with no country on the record are under Not listed. KROG's label Korea is counted with South Korea. The All box beside Search turns every filter on or off. Each filter row still has its own All box. My trials is saved in the browser. Sign in with Gmail works when the page is opened from localhost, and that list is stored separately from the CTSU tracker.
 
-NRG, SWOG, and ECOG-ACRIN studies are named with the protocol number first, then the acronym: NRG-GU015 (ARCHER), S2427 (BRIGHT), EA2182 (DECREASE). The source row is the cooperative group or the pipeline that is not already covered by a group. CTSU is not a source checkbox. Every CTSU radiotherapy study is NRG, SWOG, ECOG-ACRIN, ALLIANCE, CCTG, COG, ETCTN, or PEP-CTN. The table column Brought in by still says which pipeline created the row.
+NRG, SWOG, and ECOG-ACRIN studies are named with the protocol number first, then the acronym: NRG-GU015 (ARCHER), S2427 (BRIGHT), EA2182 (DECREASE). The source row is the cooperative group or the pipeline that is not already covered by a group. CTSU is not a source checkbox. A CTSU study from NRG, SWOG, ECOG-ACRIN, ALLIANCE, CCTG, COG, ETCTN, or PEP-CTN keeps that group's box. A CTSU study that is not one of those groups is Other NCI. The table column Brought in by still says which pipeline created the row.
 
 An opened NCI study with a protocol on file shows the same kind of brief as the CTSU tracker: amendments, schema, eligibility, assessments, study calendar, specimens, and data submission, including TRIAD when that protocol requires it. Other trials show the ClinicalTrials.gov arm list. A full calendar, specimen table, or image-submission rule is included only when it was read from a protocol. It is not invented.
 
@@ -36,7 +36,7 @@ ISRCTN `totalFinalEnrolment` is not stored as accrual. EORTC does not publish a 
 
 The first pipeline that creates a row is the source. Later pipelines add registry fields to that row instead of making a second one.
 
-1. CTSU public export. RT-related studies only, including the RT role, protocol number, NCT, lead group, phase, status, actual accrual, and target. The 8 October 2026 export had 254 studies, of which 57 were RT-related.
+1. CTSU public export. Every study on the list, including the role, protocol number, NCT, lead group, phase, status, actual accrual, and target. The 12 October 2026 export had 286 studies, of which 76 were RT-related. The opening view stays the radiotherapy roles.
 2. EORTC Prisma API, including E2-RADIatE. OligoCare (EORTC 1822) and ReCare (EORTC 2011) are cohort rows. SPRINT (EORTC 2387) is its own trial, linked to OligoCare.
 3. UK RTTQA portfolio, resolved in the ISRCTN API. SARON has no ISRCTN record, so that page is resolved by a ClinicalTrials.gov acronym search.
 4. TROG trial pages. ANZCTR is kept when a TROG study has no NCT.
@@ -62,4 +62,4 @@ From this directory:
 python3 build.py
 ```
 
-`--refresh` ignores cached downloads. Cached pages live in `data/cache/`. The build reads the CTSU export and does not write into that project. `data/acceptance.md` checks eleven metastatic and oligometastatic trials after each build.
+`--refresh` ignores cached downloads. Cached pages live in `data/cache/`. The build reads the CTSU export and does not write into that project. `data/acceptance.md` checks twelve sample trials after each build.

@@ -129,7 +129,7 @@ def main():
     generated = datetime.now(timezone.utc).isoformat(timespec="seconds")
     payload = {
         "generated_at": generated,
-        "purpose": "Phase 2, phase 2/3, and phase 3 interventional trials in which radiotherapy is randomized or protocol-specified.",
+        "purpose": "Phase 2, phase 2/3, and phase 3 interventional trials in which radiotherapy is randomized or protocol-specified. The file also includes every study on the CTSU list. The opening view stays the radiotherapy roles.",
         "counts": {
             "trials": len(store.trials),
             "by_pipeline": {},

@@ -118,7 +118,7 @@
   <div class="head-row">
     <div>
       <h1>Worldwide radiation oncology trials</h1>
-      <p>Phase 2, phase 2/3, and phase 3 trials in which radiotherapy is a randomized or protocol-specified treatment. Accrual is labeled by how the number was obtained. An estimated registry enrollment is a target. A patients-per-month figure is shown only when the numerator is a snapshot actual.</p>
+      <p>Phase 2, phase 2/3, and phase 3 trials in which radiotherapy is a randomized or protocol-specified treatment. The same file includes every study on the CTSU list. The opening view stays the radiotherapy roles. Accrual is labeled by how the number was obtained. An estimated registry enrollment is a target. A patients-per-month figure is shown only when the numerator is a snapshot actual.</p>
     </div>
     <div class="account" id="account"></div>
   </div>
@@ -184,7 +184,7 @@ const state = { q: "", sort: "name", dir: 1, open: null };
 const QUALITY = { snapshot: "Snapshot", "target-only": "Target only", "reported-once": "Reported once", "status-only": "Status only", "sponsor-posted": "Sponsor-posted actual" };
 const SOURCE_LABEL = {
   nrg: "NRG", swog: "SWOG", ecog: "ECOG-ACRIN", alliance: "ALLIANCE", cctg: "CCTG", cog: "COG",
-  etctn: "ETCTN", "pep-ctn": "PEP-CTN", eortc: "EORTC", trog: "TROG", rttqa: "RTTQA", krog: "KROG",
+  etctn: "ETCTN", "pep-ctn": "PEP-CTN", nci: "Other NCI", eortc: "EORTC", trog: "TROG", rttqa: "RTTQA", krog: "KROG",
   ctgov: "CLINICALTRIALS.GOV", ctsu: "CTSU",
 };
 const FIREBASE = {"apiKey":"AIzaSyDhA_pFubhAvRyQSEPWA-hboG82osBl9Vc","authDomain":"ctsu-dashboard.firebaseapp.com","projectId":"ctsu-dashboard","storageBucket":"ctsu-dashboard.firebasestorage.app","messagingSenderId":"631112593123","appId":"1:631112593123:web:96ee150fdda5475a959fd6"};
@@ -268,7 +268,7 @@ function match(t) {
   return true;
 }
 function roleChip(role) {
-  const cls = role === "RT-focused" ? "focused" : role === "RT component" ? "component" : "radio";
+  const cls = role === "RT-focused" ? "focused" : role === "RT component" ? "component" : role === "Radiopharmaceutical" ? "radio" : "";
   return `<span class="chip ${cls}">${esc(role || "")}</span>`;
 }
 function qChip(q) {
@@ -611,6 +611,9 @@ addFilterRow("status", "Status", [
 addFilterRow("role", "RT role", [
   ["beam", "External beam and brachytherapy"],
   ["RT-focused", "RT-focused"], ["RT component", "RT component"], ["Radiopharmaceutical", "Radiopharmaceutical"],
+  ["Systemic therapy", "Systemic therapy"], ["Cancer control", "Cancer control"],
+  ["Transplant / cellular therapy", "Transplant / cellular therapy"], ["Surgery", "Surgery"],
+  ["Imaging", "Imaging"], ["Registry / biospecimen", "Registry / biospecimen"],
 ], ["beam", "RT-focused", "RT component", "Radiopharmaceutical"]);
 const diseaseOrder = ["Breast", "GU", "NSCLC", "SCLC", "Lung, other", "Head and neck", "CNS", "GI", "Gynecologic", "Lymphoma", "Hematologic", "Sarcoma", "Skin", "Oligometastatic", "Mixed histology", "Other"];
 const diseases = diseaseOrder.filter(site => DATA.trials.some(t => (t.disease_sites || []).includes(site)));
@@ -623,7 +626,7 @@ addFilterRow("quality", "Accrual", [
   ["snapshot", "Snapshot"], ["sponsor-posted", "Sponsor-posted actual"], ["target-only", "Target only"],
   ["reported-once", "Reported once"], ["status-only", "Status only"],
 ], ["snapshot", "sponsor-posted", "target-only", "reported-once", "status-only"]);
-const sourceOrder = ["nrg", "swog", "ecog", "alliance", "cctg", "cog", "etctn", "pep-ctn", "eortc", "trog", "rttqa", "krog", "ctgov"];
+const sourceOrder = ["nrg", "swog", "ecog", "alliance", "cctg", "cog", "etctn", "pep-ctn", "nci", "eortc", "trog", "rttqa", "krog", "ctgov"];
 const sources = sourceOrder.filter(s => DATA.trials.some(t => (t.source_tags || []).includes(s)));
 addFilterRow("source", "Source", sources.map(s => [s, SOURCE_LABEL[s] || s]), sources);
 addFilterRow("brief", "Brief", [

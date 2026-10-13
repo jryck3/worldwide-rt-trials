@@ -1,4 +1,4 @@
-"""Check the eleven-trial acceptance sample and write the result."""
+"""Check the twelve-trial acceptance sample and write the result."""
 
 import json
 from pathlib import Path
@@ -71,6 +71,12 @@ CHECKS = [
         "nct": "NCT05508464",
         "pipeline": "ctgov",
         "why": "ClinicalTrials.gov. Structured phase is not applicable and the title says phase II/III, so the phase-NA query has to keep it.",
+    },
+    {
+        "label": "EAA173",
+        "nct": "NCT03937635",
+        "pipeline": "ctsu",
+        "why": "A non-RT CTSU study. The CTSU import keeps every study on the list, and the protocol brief comes from the CTSU library.",
     },
 ]
 
@@ -174,6 +180,6 @@ def run(trials, out_path):
     if failed:
         text += "\nFailed: " + ", ".join(dict.fromkeys(failed)) + "\n"
     else:
-        text += "\nAll eleven sample trials are present as their own rows.\n"
+        text += "\nAll twelve sample trials are present as their own rows.\n"
     Path(out_path).write_text(text)
     return failed, text
