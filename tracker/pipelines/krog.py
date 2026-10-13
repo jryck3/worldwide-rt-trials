@@ -24,9 +24,9 @@ def _phase(title):
     return None
 
 
-def _pages(cache_dir):
+def _pages(cache_dir, refresh=False):
     cache = cache_dir / "board.json"
-    if cache.exists():
+    if cache.exists() and not refresh:
         return json.loads(cache.read_text())
     seen = {}
     for suffix in ("", "&sca=진행", "&sca=종료"):
@@ -72,18 +72,18 @@ def html_unescape(text):
     return text.replace("&amp;", "&").replace("&#039;", "'")
 
 
-def _nct(wr_id, cache_dir):
+def _nct(wr_id, cache_dir, refresh=False):
     path = cache_dir / "details" / f"{wr_id}.html"
     path.parent.mkdir(parents=True, exist_ok=True)
-    if not path.exists():
+    if refresh or not path.exists():
         html, _status = fetch(f"{BOARD}&wr_id={wr_id}", timeout=40)
         path.write_text(html)
     return norm_nct(path.read_text(errors="replace"))
 
 
-def load(store, log, cache_dir):
+def load(store, log, cache_dir, refresh=False):
     cache_dir.mkdir(parents=True, exist_ok=True)
-    rows = _pages(cache_dir)
+    rows = _pages(cache_dir, refresh=refresh)
     kept = []
     for row in rows:
         phase = _phase(row.get("title") or "")
@@ -98,7 +98,7 @@ def load(store, log, cache_dir):
     def attach(row):
         if row.get("wr_id"):
             try:
-                row["nct"] = _nct(row["wr_id"], cache_dir)
+                row["nct"] = _nct(row["wr_id"], cache_dir, refresh=refresh)
             except Exception:
                 row["nct"] = None
         return row

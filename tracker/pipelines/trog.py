@@ -134,10 +134,10 @@ def _parse(url, html):
     return trial
 
 
-def load(store, log, cache_dir):
+def load(store, log, cache_dir, refresh=False):
     cache_dir.mkdir(parents=True, exist_ok=True)
     index_cache = cache_dir / "index_urls.json"
-    if index_cache.exists():
+    if index_cache.exists() and not refresh:
         urls = json.loads(index_cache.read_text())
     else:
         urls = []
@@ -153,7 +153,7 @@ def load(store, log, cache_dir):
     def one(url):
         slug = url.rstrip("/").rsplit("/", 1)[-1]
         path = page_dir / f"{slug}.html"
-        if not path.exists():
+        if refresh or not path.exists():
             body, _status = fetch(url, timeout=60)
             path.write_text(body)
         return _parse(url, path.read_text(errors="replace"))

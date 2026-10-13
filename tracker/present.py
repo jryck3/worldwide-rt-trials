@@ -245,23 +245,33 @@ def _attach_briefs(trials):
     return True
 
 
+def _spellings(value, lib):
+    if lib is not None:
+        return lib.keys(value)
+    text = str(value or "").strip().upper()
+    if not text:
+        return []
+    found = [text]
+    if text.startswith("COG-"):
+        found.append(text[4:])
+    return found
+
+
 def _attach_ctsu_meta(trials):
     lib = protocol_library()
-    if lib is None:
-        return
     payload, _source = load_export()
     by_nct = {}
     by_protocol = {}
     for study in payload.get("studies") or []:
         if study.get("nct"):
             by_nct[study["nct"]] = study
-        for key in lib.keys(study.get("protocol")):
+        for key in _spellings(study.get("protocol"), lib):
             by_protocol.setdefault(key, study)
     for trial in trials:
         study = by_nct.get(trial.get("nct"))
         if study is None:
             for protocol in trial.get("protocols") or []:
-                for key in lib.keys(protocol):
+                for key in _spellings(protocol, lib):
                     study = by_protocol.get(key)
                     if study:
                         break
@@ -399,6 +409,66 @@ def _brief_source(trial):
     if trial.get("registry_schema"):
         return "registry"
     return "none"
+
+
+def _prior_match(index, trial):
+    if trial.get("nct") and trial["nct"] in index["nct"]:
+        return index["nct"][trial["nct"]]
+    if trial.get("isrctn") and trial["isrctn"] in index["isrctn"]:
+        return index["isrctn"][trial["isrctn"]]
+    for protocol in trial.get("protocols") or []:
+        found = index["protocol"].get(str(protocol).upper())
+        if found:
+            return found
+    return None
+
+
+def keep_prior_details(trials, prior_trials, export_studies=None, library_present=False):
+    """Keep protocol briefs across a full rebuild.
+
+    A cloud build has no protocol library, so briefs and patient materials are
+    copied from the previous trial file. A brief that is still empty is filled
+    from the CTSU export when that export carries one.
+    """
+    index = {"nct": {}, "isrctn": {}, "protocol": {}}
+    if not library_present:
+        for old in prior_trials or []:
+            if old.get("nct"):
+                index["nct"].setdefault(old["nct"], old)
+            if old.get("isrctn"):
+                index["isrctn"].setdefault(old["isrctn"], old)
+            for protocol in old.get("protocols") or []:
+                index["protocol"].setdefault(str(protocol).upper(), old)
+        for trial in trials:
+            old = _prior_match(index, trial)
+            if not old:
+                continue
+            if not trial.get("brief") and old.get("brief"):
+                trial["brief"] = old["brief"]
+            if not trial.get("patient_materials") and old.get("patient_materials"):
+                trial["patient_materials"] = old["patient_materials"]
+
+    export_by_nct = {}
+    export_by_protocol = {}
+    for study in export_studies or []:
+        if study.get("nct"):
+            export_by_nct.setdefault(study["nct"], study)
+        if study.get("protocol"):
+            export_by_protocol.setdefault(str(study["protocol"]).upper(), study)
+    for trial in trials:
+        if trial.get("brief"):
+            trial["brief_source"] = _brief_source(trial)
+            continue
+        study = export_by_nct.get(trial.get("nct")) if trial.get("nct") else None
+        if study is None:
+            for protocol in trial.get("protocols") or []:
+                study = export_by_protocol.get(str(protocol).upper())
+                if study:
+                    break
+        copied = _copy_brief((study or {}).get("brief") or {})
+        if copied:
+            trial["brief"] = copied
+        trial["brief_source"] = _brief_source(trial)
 
 
 def annotate(trials, root):

@@ -37,24 +37,55 @@ RT_MODALITY = {
 }
 
 
-def _load_embedded(path):
-    text = path.read_text(errors="replace")
+PUBLIC_PAGE = "https://jryck3.github.io/CTSU-Tracker/"
+_PUBLIC_EXPORT = None
+
+
+def _load_embedded_text(text):
     match = re.search(r"const DATA = (\{.*?\});\n", text)
     if not match:
         return None
     return json.loads(match.group(1))
 
 
+def _load_embedded(path):
+    if not path.is_file():
+        return None
+    return _load_embedded_text(path.read_text(errors="replace"))
+
+
+def _fetch_public():
+    """The published CTSU page. Used when this checkout has no sibling CTSU folder."""
+    global _PUBLIC_EXPORT
+    if _PUBLIC_EXPORT is not None:
+        return _PUBLIC_EXPORT
+    from ..http_client import fetch
+    body, _status = fetch(PUBLIC_PAGE, timeout=180)
+    payload = _load_embedded_text(body)
+    if not payload or not payload.get("studies"):
+        raise RuntimeError("Public CTSU page had no study list")
+    _PUBLIC_EXPORT = payload
+    return payload
+
+
 def load_export():
-    """Use the newer of studies.json and the public dashboard payload."""
-    structured = json.loads((CTSU_ROOT / "data" / "studies.json").read_text())
+    """Use the newer of studies.json and the local dashboard, or the published page."""
+    structured = None
+    structured_path = CTSU_ROOT / "data" / "studies.json"
+    if structured_path.is_file():
+        structured = json.loads(structured_path.read_text())
     embedded = _load_embedded(CTSU_ROOT / "docs" / "index.html")
-    chosen = structured
-    source = "data/studies.json"
-    if embedded and (embedded.get("generated_at") or "") > (structured.get("generated_at") or ""):
+    chosen = None
+    source = None
+    if structured and structured.get("studies"):
+        chosen = structured
+        source = "data/studies.json"
+    if embedded and embedded.get("studies") and (embedded.get("generated_at") or "") > ((chosen or {}).get("generated_at") or ""):
         chosen = embedded
         source = "docs/index.html"
-    return chosen, source
+    if chosen:
+        return chosen, source
+    return _fetch_public(), PUBLIC_PAGE
 
 
 def _record(study, fetched_at, export_source):

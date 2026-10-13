@@ -10,7 +10,7 @@ from pathlib import Path
 
 from tracker.acceptance import run as acceptance
 from tracker.model import add_unique, apply_accrual, country_limit, set_snapshot_rate, tag_groups
-from tracker.present import annotate
+from tracker.present import annotate, keep_prior_details
 from tracker.pipelines import cctg, ctgov, ctsu, eortc, krog, rttqa, trog
 from tracker.pipelines.ctsu import protocol_library
 from tracker.store import TrialStore
@@ -95,15 +95,19 @@ def main():
         rebuild_briefs()
         return
     wanted = {part.strip() for part in args.only.split(",") if part.strip()}
+    prior_path = ROOT / "data" / "trials.json"
+    saved_trials = []
+    if prior_path.is_file():
+        saved_trials = json.loads(prior_path.read_text()).get("trials") or []
     store = TrialStore()
     log = []
     steps = [
         ("ctsu", lambda: ctsu.load(store, log)),
-        ("eortc", lambda: eortc.load(store, log, ROOT / "data" / "cache" / "eortc")),
-        ("rttqa", lambda: rttqa.load(store, log, ROOT / "data" / "cache" / "rttqa")),
-        ("trog", lambda: trog.load(store, log, ROOT / "data" / "cache" / "trog")),
-        ("cctg", lambda: cctg.load(store, log, ROOT / "data" / "cache" / "cctg")),
-        ("krog", lambda: krog.load(store, log, ROOT / "data" / "cache" / "krog")),
+        ("eortc", lambda: eortc.load(store, log, ROOT / "data" / "cache" / "eortc", refresh=args.refresh)),
+        ("rttqa", lambda: rttqa.load(store, log, ROOT / "data" / "cache" / "rttqa", refresh=args.refresh)),
+        ("trog", lambda: trog.load(store, log, ROOT / "data" / "cache" / "trog", refresh=args.refresh)),
+        ("cctg", lambda: cctg.load(store, log, ROOT / "data" / "cache" / "cctg", refresh=args.refresh)),
+        ("krog", lambda: krog.load(store, log, ROOT / "data" / "cache" / "krog", refresh=args.refresh)),
         ("ctgov", lambda: ctgov.load(store, log, ROOT / "data" / "cache" / "ctgov", refresh=args.refresh)),
     ]
     for name, fn in steps:
@@ -125,6 +129,13 @@ def main():
         trial.pop("registry", None)
         trial.pop("_keep_phase", None)
     annotate(store.trials, ROOT)
+    export_payload, _export_source = ctsu.load_export()
+    keep_prior_details(
+        store.trials,
+        saved_trials,
+        export_payload.get("studies"),
+        library_present=protocol_library() is not None,
+    )
     store.trials.sort(key=lambda trial: (trial.get("name") or trial.get("title") or "").lower())
     generated = datetime.now(timezone.utc).isoformat(timespec="seconds")
     payload = {

@@ -298,10 +298,10 @@ def _one(name, text, platform, page_url, sponsor=None, extra_groups=None):
     return trial
 
 
-def load(store, log, cache_dir):
+def load(store, log, cache_dir, refresh=False):
     cache_dir.mkdir(parents=True, exist_ok=True)
     cache = cache_dir / "pages.json"
-    if cache.exists():
+    if cache.exists() and not refresh:
         pages = json.loads(cache.read_text())
     else:
         body, _status = fetch(PAGES, timeout=60, headers={"Accept": "application/json"})

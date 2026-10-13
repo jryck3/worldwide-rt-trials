@@ -62,4 +62,6 @@ From this directory:
 python3 build.py
 ```
 
-`--refresh` ignores cached downloads. Cached pages live in `data/cache/`. The build reads the CTSU export and does not write into that project. `data/acceptance.md` checks twelve sample trials after each build.
+`--refresh` ignores cached downloads for every pipeline, not only ClinicalTrials.gov. Cached pages live in `data/cache/`. The build reads the CTSU export and does not write into that project. When that folder is absent, as it is on GitHub Actions, the build reads the published CTSU page at https://jryck3.github.io/CTSU-Tracker/. A full rebuild keeps protocol briefs and patient materials from the previous `data/trials.json` when the protocol library is not on that machine, and fills a still-empty brief from the CTSU export. `data/acceptance.md` checks twelve sample trials after each build.
+
+New studies are added by `.github/workflows/refresh.yml` (Monday 15:00 UTC, also runnable by hand). It runs `python build.py --refresh` and commits `data/trials.json`, `docs/index.html`, and `data/acceptance.md` when the acceptance check passes. The Sunday paper-link workflow is a different job and does not add trials.

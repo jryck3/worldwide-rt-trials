@@ -49,10 +49,10 @@ def _status(text):
     return "unknown"
 
 
-def load(store, log, cache_dir):
+def load(store, log, cache_dir, refresh=False):
     cache_dir.mkdir(parents=True, exist_ok=True)
     path = cache_dir / "all.html"
-    if path.exists():
+    if path.exists() and not refresh:
         html = path.read_text(errors="replace")
     else:
         html, _ = fetch(URL, timeout=90)

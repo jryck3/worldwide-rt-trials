@@ -13,9 +13,9 @@ KEEP_PHASES = {"2", "2/3", "3", "cohort"}
 ALWAYS = {"1811", "1822", "2011", "2387"}
 
 
-def _odata(path, params, cache_dir, name):
+def _odata(path, params, cache_dir, name, refresh=False):
     cache = cache_dir / name
-    if cache.exists():
+    if cache.exists() and not refresh:
         return json.loads(cache.read_text())
     rows = []
     skip = 0
@@ -202,10 +202,10 @@ def _record_from_project(project, countries, child_names):
     return trial
 
 
-def load(store, log, cache_dir):
+def load(store, log, cache_dir, refresh=False):
     cache_dir.mkdir(parents=True, exist_ok=True)
-    studies = _odata("/Studies", {}, cache_dir, "studies.json")
-    projects = _odata("/ResearchProjects", {}, cache_dir, "research_projects.json")
+    studies = _odata("/Studies", {}, cache_dir, "studies.json", refresh=refresh)
+    projects = _odata("/ResearchProjects", {}, cache_dir, "research_projects.json", refresh=refresh)
     linked = {}
     for project in projects:
         if str(project.get("Number")) in {"1822", "2011"}:
@@ -225,7 +225,10 @@ def load(store, log, cache_dir):
             candidates.append(study)
 
     treatment_cache = cache_dir / "treatments.json"
-    treatments = json.loads(treatment_cache.read_text()) if treatment_cache.exists() else {}
+    if treatment_cache.exists() and not refresh:
+        treatments = json.loads(treatment_cache.read_text())
+    else:
+        treatments = {}
 
     def ensure_treatment(study):
         key = str(study.get("Id"))
