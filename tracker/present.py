@@ -9,7 +9,7 @@ import re
 import sys
 from pathlib import Path
 
-from .pipelines.ctsu import load_export, protocol_library
+from .pipelines.ctsu import CTSU_ROOT, load_export, protocol_library
 from .papers import attach_publications
 from .schema_pdf import apply_saved_schemas
 from .textutil import clip
@@ -201,6 +201,38 @@ def _copy_brief(brief):
     return copied
 
 
+def _attach_patient_materials(trials):
+    """Match NRG patient pages and brochures onto a trial's protocol ids.
+
+    The file lives in the CTSU project. When that checkout is absent, leave any
+    materials already stored on the trial in place.
+    """
+    path = CTSU_ROOT / "data" / "patient_materials.json"
+    if not path.is_file():
+        return
+    materials = json.loads(path.read_text())
+    lib = protocol_library()
+    index = {}
+    for protocol, record in materials.items():
+        spellings = lib.keys(protocol) if lib else [str(protocol).upper()]
+        for key in spellings:
+            index.setdefault(key, record)
+    for trial in trials:
+        record = None
+        for value in trial.get("protocols") or []:
+            spellings = lib.keys(value) if lib else [str(value).upper()]
+            for key in spellings:
+                if key in index:
+                    record = index[key]
+                    break
+            if record:
+                break
+        if record:
+            trial["patient_materials"] = record
+        else:
+            trial.pop("patient_materials", None)
+
+
 def _attach_briefs(trials):
     lib = protocol_library()
     if lib is None:
@@ -374,6 +406,7 @@ def annotate(trials, root):
     root = Path(root)
     _attach_ctsu_meta(trials)
     _attach_briefs(trials)
+    _attach_patient_materials(trials)
     apply_saved_schemas(trials, _load_saved_schemas(root))
     attach_publications(trials, root)
     _attach_paper_status(trials)
