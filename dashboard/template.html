@@ -123,7 +123,7 @@
   <div class="head-row">
     <div>
       <h1>Worldwide radiation oncology trials</h1>
-      <p>Phase 2, phase 2/3, and phase 3 trials in which radiotherapy is a randomized or protocol-specified treatment. The same file includes every study on the CTSU list. The opening view stays the radiotherapy roles. Accrual is labeled by how the number was obtained. An estimated registry enrollment is a target. A patients-per-month figure is shown only when the numerator is a snapshot actual.</p>
+      <p>Phase 2, phase 2/3, and phase 3 trials in which radiotherapy is a randomized or protocol-specified treatment. The same file includes every study on the CTSU list, and those studies are pulled from the CTSU tracker. The opening view stays the radiotherapy roles. Accrual is labeled by how the number was obtained. An estimated registry enrollment is a target. A patients-per-month figure is shown only when the numerator is a snapshot actual.</p>
     </div>
     <div class="account" id="account"></div>
   </div>
@@ -190,8 +190,23 @@ const QUALITY = { snapshot: "Snapshot", "target-only": "Target only", "reported-
 const SOURCE_LABEL = {
   nrg: "NRG", swog: "SWOG", ecog: "ECOG-ACRIN", alliance: "ALLIANCE", cctg: "CCTG", cog: "COG",
   etctn: "ETCTN", "pep-ctn": "PEP-CTN", nci: "Other NCI", eortc: "EORTC", trog: "TROG", rttqa: "RTTQA", krog: "KROG",
-  ctgov: "CLINICALTRIALS.GOV", ctsu: "CTSU",
+  ctgov: "CLINICALTRIALS.GOV", ctsu: "Pulled from the CTSU tracker",
 };
+const CTSU_TRACKER = "https://jryck3.github.io/CTSU-Tracker/";
+function onCtsuList(t) {
+  return t.source_pipeline === "ctsu" || (t.pipelines || []).includes("ctsu");
+}
+function broughtIn(t) {
+  if (t.source_pipeline === "ctsu") return "Pulled from the CTSU tracker";
+  return SOURCE_LABEL[t.source_pipeline] || t.source_pipeline || "";
+}
+function ctsuSourceHtml(t) {
+  const protocolBrief = t.brief_source === "protocol" || (t.brief && (!t.brief.schema_source || /protocol on file|protocol page|CTSU/i.test(t.brief.schema_source)));
+  const sentence = protocolBrief
+    ? "Status, accrual, and the protocol brief are the CTSU tracker's copy."
+    : "Status and accrual are the CTSU tracker's copy.";
+  return `<p class="caveat">Pulled from the CTSU tracker. <a href="${CTSU_TRACKER}" target="_blank" rel="noopener">${sentence}</a></p>`;
+}
 const FIREBASE = {"apiKey":"AIzaSyDhA_pFubhAvRyQSEPWA-hboG82osBl9Vc","authDomain":"ctsu-dashboard.firebaseapp.com","projectId":"ctsu-dashboard","storageBucket":"ctsu-dashboard.firebasestorage.app","messagingSenderId":"631112593123","appId":"1:631112593123:web:96ee150fdda5475a959fd6"};
 const FIREBASE_SDK = "https://www.gstatic.com/firebasejs/13.0.0";
 const STORE_KEY = "worldwide-rt:my-trials";
@@ -381,14 +396,15 @@ function detail(t) {
     ["Brief source", ({protocol: "NCI protocol on file", paper: "Full paper on file", registry: "ClinicalTrials.gov only", none: "None"}[t.brief_source] || t.brief_source)],
     ["Papers on file", t.paper_on_file ? String(t.paper_on_file) : ""],
     ["Papers needing access", t.paper_needs_access ? String(t.paper_needs_access) : ""],
-    ["Brought in by", t.source_pipeline],
+    ["Brought in by", broughtIn(t)],
     ["Also seen in", (t.pipelines || []).filter(p => p !== t.source_pipeline).join(", ")],
     ["Notes", (a.notes || []).join(" ")],
     ["Disagreements", (t.disagreements || []).map(d => `${d.field}: registry ${d.registry_value}. ${d.other_source}: ${d.other_value}`).join(" ")],
   ];
   const links = Object.entries(t.urls || {}).filter(([, url]) => url).map(([k, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(k)}</a>`).join(" · ");
   const papers = paperHtml(t);
-  return `${patientMaterialsHtml(t.patient_materials)}<div class="detail-grid">${rows.filter(([, v]) => v).map(([k, v]) => `<b>${esc(k)}</b><div>${esc(v)}</div>`).join("")}${papers ? `<b>Papers</b><div>${papers}</div>` : ""}${links ? `<b>Links</b><div>${links}</div>` : ""}</div>${briefHtml(t)}`;
+  const source = onCtsuList(t) ? ctsuSourceHtml(t) : "";
+  return `${source}${patientMaterialsHtml(t.patient_materials)}<div class="detail-grid">${rows.filter(([, v]) => v).map(([k, v]) => `<b>${esc(k)}</b><div>${esc(v)}</div>`).join("")}${papers ? `<b>Papers</b><div>${papers}</div>` : ""}${links ? `<b>Links</b><div>${links}</div>` : ""}</div>${briefHtml(t)}`;
 }
 function exploreRows() {
   let rows = DATA.trials.filter(match);
@@ -424,7 +440,7 @@ function render() {
   $("rows").innerHTML = rows.map(t => {
     const id = esc(t.id);
     const open = state.open === t.id;
-    return `<tr class="data" data-id="${id}"><td><div class="name">${starBtn(t.id)} ${esc(t.name || t.title)}</div><div class="sub">${esc(t.nct || t.isrctn || "")} ${roleChip(t.rt_role)}</div></td><td>${esc((t.groups || []).slice(0, 3).join(", "))}</td><td>${esc(phaseText(t))}</td><td>${esc(t.status || "")}</td><td>${esc(accrualText(t))}<div>${qChip(t.accrual.quality)}</div></td><td>${esc((t.primary_endpoints || [])[0] || "")}</td><td>${esc(whereText(t))}</td><td>${esc(t.source_pipeline || "")}</td></tr>${open ? `<tr class="detail"><td colspan="8">${detail(t)}</td></tr>` : ""}`;
+    return `<tr class="data" data-id="${id}"><td><div class="name">${starBtn(t.id)} ${esc(t.name || t.title)}</div><div class="sub">${esc(t.nct || t.isrctn || "")} ${roleChip(t.rt_role)}</div></td><td>${esc((t.groups || []).slice(0, 3).join(", "))}</td><td>${esc(phaseText(t))}</td><td>${esc(t.status || "")}</td><td>${esc(accrualText(t))}<div>${qChip(t.accrual.quality)}</div></td><td>${esc((t.primary_endpoints || [])[0] || "")}</td><td>${esc(whereText(t))}</td><td>${esc(broughtIn(t))}${onCtsuList(t) && t.source_pipeline !== "ctsu" ? `<div class="sub">Pulled from the CTSU tracker</div>` : ""}</td></tr>${open ? `<tr class="detail"><td colspan="8">${detail(t)}</td></tr>` : ""}`;
   }).join("");
 }
 document.querySelector("thead").onclick = ev => {
@@ -494,7 +510,7 @@ function card(t) {
       <div class="metric"><div class="mv">${esc(t.status || "")}</div><div class="ml">Status</div></div>
       <div class="metric"><div class="mv">${esc((t.primary_endpoints || [])[0] || "Not stated")}</div><div class="ml">Primary endpoint</div></div>
     </div>
-    <div>${roleChip(t.rt_role)} <span class="chip">${esc(SOURCE_LABEL[t.source_pipeline] || t.source_pipeline || "")}</span></div>
+    <div>${roleChip(t.rt_role)} <span class="chip">${esc(broughtIn(t))}</span>${onCtsuList(t) && t.source_pipeline !== "ctsu" ? ` <span class="chip">Pulled from the CTSU tracker</span>` : ""}</div>
   </article>`;
 }
 
@@ -1014,7 +1030,7 @@ function worldwideName(t) {
 
 function trialArticle(t, mode) {
   const name = worldwideName(t);
-  const meta = [phaseText(t), (t.groups || []).slice(0, 3).join(", "), t.status || "", t.nct || t.isrctn || ""].filter(Boolean).join(" · ");
+  const meta = [phaseText(t), (t.groups || []).slice(0, 3).join(", "), t.status || "", t.nct || t.isrctn || "", onCtsuList(t) ? "Pulled from the CTSU tracker" : ""].filter(Boolean).join(" · ");
   const site = (t.disease_sites || []).filter(Boolean).join("; ") || "Site not stated";
   const steps = (t.brief && t.brief.schema && t.brief.schema.length) ? t.brief.schema : (t.registry_schema || []);
   const schema = steps.length ? (mode === "brief" ? briefSchema(steps) : schemaBlocks(steps)) : "";
