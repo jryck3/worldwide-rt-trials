@@ -48,13 +48,48 @@ def apply_notes(store):
                     trial["disagreements"].append(item)
 
 
+DETAIL_FIELDS = {
+    "brief", "patient_materials", "publications", "registry_schema",
+    "disagreements", "locations", "registry",
+}
+PAGE_ROWS = 50
+
+
+def summary_payload(payload):
+    """Keep search fields in the page and write opened-study details as static JSON."""
+    shards = {}
+    summaries = []
+    for index, trial in enumerate(payload.get("trials") or []):
+        shard = index // 200
+        detail = {"id": trial.get("id")}
+        summary = {}
+        for key, value in trial.items():
+            if key in DETAIL_FIELDS and value:
+                detail[key] = value
+            else:
+                summary[key] = value
+        summary["detail_shard"] = shard
+        shards.setdefault(shard, []).append(detail)
+        summaries.append(summary)
+    page = dict(payload)
+    page["trials"] = summaries
+    page["detail_shards"] = len(shards)
+    page["page_rows"] = PAGE_ROWS
+    return page, shards
+
+
 def write_dashboard(payload):
+    page, shards = summary_payload(payload)
     template = (ROOT / "dashboard" / "template.html").read_text()
-    data = json.dumps(payload, ensure_ascii=False).replace("<", "\\u003c")
+    data = json.dumps(page, ensure_ascii=False).replace("<", "\\u003c")
     html = template.replace("__DATA__", data)
     (ROOT / "dashboard" / "index.html").write_text(html)
     docs = ROOT / "docs"
     docs.mkdir(exist_ok=True)
+    detail_dir = docs / "details"
+    detail_dir.mkdir(exist_ok=True)
+    for shard, rows in shards.items():
+        (detail_dir / f"{shard}.json").write_text(json.dumps(rows, ensure_ascii=False))
     (docs / "index.html").write_text(html)
     (docs / ".nojekyll").write_text("")
     (ROOT / "data").mkdir(exist_ok=True)
@@ -81,7 +116,7 @@ def rebuild_briefs():
     annotate(payload["trials"], ROOT)
     payload["trials"].sort(key=lambda trial: (trial.get("name") or trial.get("title") or "").lower())
     payload["briefs_rebuilt_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    payload["ctsu_library"] = library_stamp()
+    payload["ctsu_library"] = library_stamp() or payload.get("ctsu_library")
     payload["paper_library"] = paper_stamp()
     write_dashboard(payload)
     failed, text = acceptance(payload["trials"], ROOT / "data" / "acceptance.md")
@@ -95,16 +130,25 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--refresh", action="store_true", help="Ignore cached downloads")
     parser.add_argument("--only", default="", help="Comma-separated pipelines")
+    parser.add_argument("--allow-partial", action="store_true", help="Allow --only to omit other sources")
     parser.add_argument("--briefs-only", action="store_true", help="Reattach CTSU protocol briefs to data/trials.json and republish")
     args = parser.parse_args()
     if args.briefs_only:
         rebuild_briefs()
         return
     wanted = {part.strip() for part in args.only.split(",") if part.strip()}
+    if wanted and not args.allow_partial:
+        raise SystemExit("--only would discard sources that are not named. The CTSU sync does not use --only.")
     prior_path = ROOT / "data" / "trials.json"
+    saved_payload = {}
     saved_trials = []
     if prior_path.is_file():
-        saved_trials = json.loads(prior_path.read_text()).get("trials") or []
+        saved_payload = json.loads(prior_path.read_text())
+        saved_trials = saved_payload.get("trials") or []
+    prior_counts = {}
+    for trial in saved_trials:
+        name = trial.get("source_pipeline") or ""
+        prior_counts[name] = prior_counts.get(name, 0) + 1
     store = TrialStore()
     log = []
     steps = [
@@ -126,6 +170,18 @@ def main():
         except Exception:
             traceback.print_exc()
             log.append({"pipeline": name, "error": traceback.format_exc()})
+            store.trials = [trial for trial in store.trials if trial.get("source_pipeline") != name]
+            restored = 0
+            for trial in saved_trials:
+                if trial.get("source_pipeline") == name:
+                    store.trials.append(trial)
+                    restored += 1
+            store.reindex()
+            print(f"  {name}: kept {restored} prior rows", flush=True)
+            count = restored
+        previous = prior_counts.get(name, 0)
+        if previous and count < previous * 0.95:
+            raise SystemExit(f"{name} fell from {previous} to {count}, more than 5 percent")
     apply_notes(store)
     today = datetime.now(timezone.utc).date()
     for trial in store.trials:
@@ -154,7 +210,7 @@ def main():
             "by_phase": {},
         },
         "build_log": log,
-        "ctsu_library": library_stamp(),
+        "ctsu_library": library_stamp() or saved_payload.get("ctsu_library"),
         "paper_library": paper_stamp(),
         "trials": store.trials,
     }

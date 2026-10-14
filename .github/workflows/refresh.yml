@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: trial-refresh
+  group: worldwide-publish
   cancel-in-progress: false
 
 jobs:
@@ -42,5 +42,6 @@ jobs:
             echo "No trial-list changes"
           else
             git -c user.name="worldwide-rt-refresh" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Refresh trial list $(date -u +%F)"
+            git pull --rebase --no-autostash
             git push
           fi

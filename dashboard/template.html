@@ -45,13 +45,21 @@
   .search-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .country-wrap { position: relative; }
   .country-btn { font: 14px/1.3 sans-serif; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; min-width: 220px; text-align: left; cursor: pointer; }
-  .country-panel { position: absolute; z-index: 6; top: calc(100% + 4px); left: 0; width: min(360px, 86vw); background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; }
+  .country-panel { position: absolute; z-index: 6; top: calc(100% + 4px); left: 0; width: min(360px, calc(100vw - 24px)); max-height: min(420px, 70vh); overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; }
+  .pager { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+  .type-btn { font: inherit; font-size: 13px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 2px 8px; cursor: pointer; }
+  .type-popover { position: absolute; z-index: 8; max-width: calc(100vw - 24px); max-height: 50vh; overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+  @media (max-width: 760px) {
+    thead { display: none; }
+    table, tbody, tr.data, tr.data td { display: block; width: auto; max-width: none; }
+    tr.data { border: 1px solid var(--line); border-radius: 10px; margin: 0 0 10px; padding: 8px; background: #fff; }
+  }
   .country-panel input[type="search"] { width: 100%; min-width: 0; margin: 0 0 6px; }
   .country-list { max-height: 260px; overflow: auto; display: flex; flex-direction: column; gap: 4px; padding-top: 4px; }
   .choice-wrap { position: relative; }
   .choice-btn { position: relative; font: 14px/1.3 sans-serif; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 28px 6px 10px; min-width: 160px; max-width: 280px; text-align: left; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .choice-btn::after { content: ""; position: absolute; right: 10px; top: 50%; margin-top: -2px; border: 5px solid transparent; border-top-color: #5c6b7a; }
-  .choice-panel { position: absolute; z-index: 7; top: calc(100% + 4px); left: 0; min-width: 260px; max-width: min(420px, 86vw); max-height: 320px; overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+  .choice-panel { position: absolute; z-index: 7; top: calc(100% + 4px); left: 0; min-width: 220px; max-width: calc(100vw - 24px); max-height: min(320px, 70vh); overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; display: flex; flex-direction: column; gap: 4px; }
   .choice-panel[hidden] { display: none; }
   input[type="checkbox"] { margin: 0; }
   table { width: 100%; border-collapse: collapse; background: var(--card); margin-top: 12px; font-size: 14px; }
@@ -157,8 +165,8 @@
   <p class="caveat" id="papers"></p>
   <h2 id="explore-h" class="section-head">Explore Worldwide RT Studies</h2>
   <div class="digest-actions">
-    <button class="btn digest-btn" id="print-explore-brief" type="button">Print brief PDF of filtered studies displayed below</button>
-    <button class="btn digest-btn" id="print-explore-full" type="button">Print comprehensive PDF of filtered studies displayed below</button>
+    <button class="btn digest-btn" id="print-explore-brief" type="button">Print brief PDF of the filtered studies, including later pages</button>
+    <button class="btn digest-btn" id="print-explore-full" type="button">Print comprehensive PDF of the filtered studies, including later pages</button>
   </div>
   <button class="btn ghost" id="filter-toggle" type="button" aria-expanded="true" aria-controls="filters">Show/hide filters</button>
   <div class="filters" id="filters">
@@ -174,7 +182,7 @@
     <thead>
       <tr>
         <th data-k="name">Trial</th>
-        <th class="site-col" data-k="site">Site</th>
+        <th class="site-col" data-k="site">Cancer type</th>
         <th data-k="lead_group">Group</th>
         <th data-k="phase">Phase</th>
         <th data-k="status">Status</th>
@@ -186,6 +194,8 @@
     </thead>
     <tbody id="rows"></tbody>
   </table>
+  <div class="pager" id="pager" hidden></div>
+  <p class="sub">Select Multiple cancer types to see the full list. Print uses the filtered trials, including rows on later pages.</p>
   <p class="empty" id="empty" hidden>No trials match these filters.</p>
 </main>
 <script id="payload" type="application/json">__DATA__</script>
@@ -324,14 +334,31 @@ function whereText(t) {
   if (t.countries_listed && t.countries_listed.length) return "Sites listed";
   return "";
 }
+const COUNTRY_ALIASES = {
+  "Korea": "South Korea", "Czech Republic": "Czechia", "Turkey": "Türkiye",
+  "USA": "United States", "US": "United States", "United States of America": "United States",
+};
+function canonicalCountry(name) {
+  return COUNTRY_ALIASES[name] || name;
+}
 function countryKeys(t) {
   const raw = (t.countries_listed && t.countries_listed.length) ? t.countries_listed : (t.countries_open || []);
   if (!raw.length) return ["Not listed"];
-  return raw.map(country => country === "Korea" ? "South Korea" : country);
+  return [...new Set(raw.map(canonicalCountry))];
+}
+function countryQueryMatch(country, query) {
+  if (!query) return true;
+  const names = [country].concat(Object.entries(COUNTRY_ALIASES).filter(([, canon]) => canon === country).map(([alias]) => alias));
+  const q = query.toLowerCase();
+  return names.some(name => {
+    const text = name.toLowerCase();
+    return text === q || text.startsWith(q);
+  });
 }
 function phaseKey(t) {
   const stated = statedPhase(t);
   if ((t.phase === "NA" || t.phase === "Not Applicable" || !t.phase) && stated) return stated;
+  if (!t.phase || t.phase === "null" || t.phase === "Not Specified") return "unstated";
   if (["2", "2/3", "3", "NA", "1", "1/2"].includes(t.phase)) return t.phase;
   if (t.phase === "cohort" || t.record_kind === "platform" || t.record_kind === "cohort") return "cohort";
   return "other";
@@ -422,9 +449,16 @@ function siteBrief(t) {
   const text = [t.title || "", ...(t.conditions || []), t.ctsu_disease || ""].join(" ");
   return siteSummary(text, t.disease_sites || []);
 }
-function siteCell(brief) {
-  const hover = brief.text === "Variety" && brief.title ? ` title="${esc(brief.title)}"` : "";
-  return `<td class="site-cell"${hover}>${esc(brief.text)}</td>`;
+function cancerTypeHtml(labels, id) {
+  const clean = (labels || []).filter(Boolean);
+  if (!clean.length) return "Not classified";
+  if (clean.length <= 2 && clean.join("").length <= 40) return esc(clean.join(", "));
+  const pop = `type-pop-${id}`;
+  return `<button type="button" class="type-btn" aria-expanded="false" aria-controls="${pop}">Multiple cancer types (${clean.length})</button><div class="type-popover" id="${pop}" hidden><ul>${clean.map(label => `<li>${esc(label)}</li>`).join("")}</ul></div>`;
+}
+function siteCell(t) {
+  const labels = (t.cancer_types && t.cancer_types.length) ? t.cancer_types : [siteBrief(t).text];
+  return `<td class="site-cell">${cancerTypeHtml(labels, String(t.id).replace(/[^A-Za-z0-9_-]/g, ""))}</td>`;
 }
 function diseaseMatch(t) {
   const sites = (t.disease_sites && t.disease_sites.length) ? t.disease_sites : ["Other"];
@@ -437,13 +471,13 @@ function burdenMatch(t) {
   const selected = state.burden;
   if (!selected || !selected.size) return false;
   if (selected.size === FILTERS.burden.length) return true;
-  return (t.disease_burden || []).some(label => selected.has(label));
+  const labels = (t.disease_burden && t.disease_burden.length) ? t.disease_burden : ["Not classified"];
+  return labels.some(label => selected.has(label));
 }
 function match(t) {
   if (!state.phase.has(phaseKey(t))) return false;
   if (!state.status.has(t.status || "unknown")) return false;
-  const beam = t.rt_role === "RT-focused" || t.rt_role === "RT component";
-  if (!(state.role.has(t.rt_role) || (state.role.has("beam") && beam))) return false;
+  if (!state.role.has(t.rt_role)) return false;
   const accrual = t.accrual || {};
   if (!state.quality.has(accrual.quality) && !(state.quality.has("reported-once") && accrual.reported)) return false;
   if (!((t.source_tags || [t.source_pipeline]).some(tag => state.source.has(tag)))) return false;
@@ -580,7 +614,7 @@ function exploreRows() {
   let rows = DATA.trials.filter(match);
   const key = state.sort;
   rows.sort((a, b) => {
-    const shown = (trial) => key === "accrual" ? (trial.accrual.actual ?? trial.accrual.target ?? -1) : key === "endpoint" ? (trial.primary_endpoints || [""])[0] : key === "site" ? siteBrief(trial).text : (trial[key] || "");
+    const shown = (trial) => key === "accrual" ? (trial.accrual.actual ?? trial.accrual.target ?? -1) : key === "endpoint" ? (trial.primary_endpoints || [""])[0] : key === "where" ? whereText(trial) : key === "site" ? ((trial.cancer_types || []).join(", ") || siteBrief(trial).text) : (trial[key] || "");
     const av = shown(a);
     const bv = shown(b);
     if (av < bv) return -1 * state.dir;
@@ -589,8 +623,31 @@ function exploreRows() {
   });
   return rows;
 }
+const PAGE_SIZE = 50;
+let pageIndex = 0;
+const detailCache = {};
+async function loadShard(shard) {
+  if (shard == null) return [];
+  if (!detailCache[shard]) {
+    const response = await fetch(`details/${shard}.json`);
+    detailCache[shard] = response.ok ? await response.json() : [];
+    for (const row of detailCache[shard]) {
+      const trial = DATA.trials.find(item => item.id === row.id);
+      if (trial) Object.assign(trial, row);
+    }
+  }
+  return detailCache[shard];
+}
+async function ensureDetail(t) {
+  if (!t || t.detail_shard == null) return t;
+  await loadShard(t.detail_shard);
+  return t;
+}
 function render() {
   const rows = exploreRows();
+  const pages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+  if (pageIndex >= pages) pageIndex = 0;
+  const shown = rows.slice(pageIndex * PAGE_SIZE, (pageIndex + 1) * PAGE_SIZE);
   const recruiting = rows.filter(t => t.status === "recruiting").length;
   const snap = rows.filter(t => t.accrual.quality === "snapshot").length;
   $("counts").innerHTML = [
@@ -608,11 +665,28 @@ function render() {
   $("papers").textContent = papers
     ? `Full papers on file ${papers.on_file || 0} of ${papers.cited || 0}. ${papers.needs_access || 0} still need access. ${papers.inaccessible || 0} could not be retrieved from an open source.`
     : "";
-  $("rows").innerHTML = rows.map(t => {
+  $("rows").innerHTML = shown.map(t => {
     const id = esc(t.id);
     const open = state.open === t.id;
-    return `<tr class="data" data-id="${id}"><td><div class="name">${starBtn(t.id)} ${esc(t.name || t.title)}</div><div class="sub">${esc(t.nct || t.isrctn || "")} ${roleChip(t.rt_role)}</div></td>${siteCell(siteBrief(t))}<td>${esc((t.groups || []).slice(0, 3).join(", "))}</td><td>${esc(phaseText(t))}</td><td>${esc(t.status || "")}</td><td>${esc(accrualText(t))}<div>${qChip(t.accrual.quality)}</div></td><td>${esc((t.primary_endpoints || [])[0] || "")}</td><td>${esc(whereText(t))}</td><td>${esc(broughtIn(t))}${onCtsuList(t) && t.source_pipeline !== "ctsu" ? `<div class="sub">Pulled from the CTSU tracker</div>` : ""}</td></tr>${open ? `<tr class="detail"><td colspan="9">${detail(t)}</td></tr>` : ""}`;
+    return `<tr class="data" data-id="${id}"><td><div class="name">${starBtn(t.id)} ${esc(t.name || t.title)}</div><div class="sub">${esc(t.nct || t.isrctn || "")} ${roleChip(t.rt_role)}</div></td>${siteCell(t)}<td>${esc((t.groups || []).slice(0, 3).join(", "))}</td><td>${esc(phaseText(t))}</td><td>${esc(t.status || "")}</td><td>${esc(accrualText(t))}<div>${qChip(t.accrual.quality)}</div></td><td>${esc((t.primary_endpoints || [])[0] || "")}</td><td>${esc(whereText(t))}</td><td>${esc(broughtIn(t))}${onCtsuList(t) && t.source_pipeline !== "ctsu" ? `<div class="sub">Pulled from the CTSU tracker</div>` : ""}</td></tr>${open ? `<tr class="detail"><td colspan="9">${detail(t)}</td></tr>` : ""}`;
   }).join("");
+  const pager = $("pager");
+  if (pager) {
+    pager.hidden = rows.length <= PAGE_SIZE;
+    pager.innerHTML = `<button type="button" id="page-prev">Previous</button><span>Showing ${shown.length ? pageIndex * PAGE_SIZE + 1 : 0}-${pageIndex * PAGE_SIZE + shown.length} of ${rows.length}. Print uses this filtered set, not only this page.</span><button type="button" id="page-next">Next</button>`;
+    $("page-prev").onclick = () => { pageIndex = Math.max(0, pageIndex - 1); render(); };
+    $("page-next").onclick = () => { pageIndex = Math.min(pages - 1, pageIndex + 1); render(); };
+  }
+  document.querySelectorAll(".type-btn").forEach(btn => {
+    btn.onclick = ev => {
+      ev.stopPropagation();
+      const pop = document.getElementById(btn.getAttribute("aria-controls"));
+      if (!pop) return;
+      const opening = pop.hidden;
+      pop.hidden = !opening;
+      btn.setAttribute("aria-expanded", opening ? "true" : "false");
+    };
+  });
 }
 document.querySelector("thead").onclick = ev => {
   const k = ev.target.dataset.k;
@@ -765,7 +839,9 @@ $("rows").onclick = ev => {
   const tr = ev.target.closest("tr.data");
   if (!tr) return;
   state.open = state.open === tr.dataset.id ? null : tr.dataset.id;
-  render();
+  const trial = DATA.trials.find(item => item.id === tr.dataset.id);
+  if (state.open && trial) ensureDetail(trial).then(() => render());
+  else render();
 };
 $("mine").onclick = ev => {
   const btn = ev.target.closest("[data-remove]");
@@ -817,6 +893,15 @@ addFilterRow("role", "RT role", [
   ["Transplant / cellular therapy", "Transplant / cellular therapy"], ["Surgery", "Surgery"],
   ["Imaging", "Imaging"], ["Registry / biospecimen", "Registry / biospecimen"],
 ], ["beam", "RT-focused", "RT component", "Radiopharmaceutical"], "RT roles");
+{
+  const rolePanel = document.getElementById("panel-role");
+  const beam = rolePanel && rolePanel.querySelector('input[value="beam"]');
+  if (beam) beam.dataset.parent = "beam";
+  ["RT-focused", "RT component"].forEach(value => {
+    const box = rolePanel && rolePanel.querySelector(`input[value="${value}"]`);
+    if (box) box.dataset.child = "beam";
+  });
+}
 const BURDEN_MENU = [
   ["Oligoprogressive", "Oligoprogressive"],
   ["Oligometastatic", "Oligometastatic"],
@@ -825,6 +910,8 @@ const BURDEN_MENU = [
   ["Metastatic, burden not specified", "Metastatic, burden not specified"],
   ["Curative / definitive", "Curative / definitive"],
   ["Mixed", "Mixed"],
+  ["Not applicable", "Not applicable"],
+  ["Not classified", "Not classified"],
 ];
 (function addDiseaseFilter() {
   const present = new Set(DATA.trials.flatMap(t => t.disease_sites || []));
@@ -910,7 +997,7 @@ function countryLabel() {
 }
 function paintCountry() {
   const query = ($("country-q").value || "").trim().toLowerCase();
-  const shown = countries.filter(country => !query || country.toLowerCase().includes(query));
+  const shown = countries.filter(country => countryQueryMatch(country, query));
   $("country-list").innerHTML = shown.map(country => `<label class="check"><input type="checkbox" data-country="${esc(country)}"${state.country.has(country) ? " checked" : ""}> ${esc(country)}</label>`).join("") || `<div class="sub">No matching country</div>`;
   $("country-btn").textContent = countryLabel();
   const all = $("country-all");
@@ -1328,8 +1415,14 @@ function openDigest(trials, heading, mode) {
 
 $("print-mine-brief").onclick = () => openDigest(mineTrials(), "My trials", "brief");
 $("print-mine-full").onclick = () => openDigest(mineTrials(), "My trials", "comprehensive");
-$("print-explore-brief").onclick = () => openDigest(exploreRows(), "Explore Worldwide RT Studies", "brief");
-$("print-explore-full").onclick = () => openDigest(exploreRows(), "Explore Worldwide RT Studies", "comprehensive");
+async function printExplore(kind) {
+  const rows = exploreRows();
+  const shards = [...new Set(rows.map(t => t.detail_shard).filter(shard => shard != null))];
+  await Promise.all(shards.map(loadShard));
+  openDigest(rows, "Explore Worldwide RT Studies", kind);
+}
+$("print-explore-brief").onclick = () => printExplore("brief");
+$("print-explore-full").onclick = () => printExplore("comprehensive");
 
 store.load();
 renderMine();

@@ -9,6 +9,7 @@ import re
 import sys
 from pathlib import Path
 
+from .classify_vendor import classify_record
 from .pipelines.ctsu import CTSU_ROOT, load_export, protocol_library
 from .papers import attach_publications
 from .schema_pdf import apply_saved_schemas
@@ -33,261 +34,40 @@ BRIEF_FIELDS = (
     "pretreatment", "during", "followup", "calendar", "specimens", "submission",
 )
 
-DISEASE_RULES = [
-    ("Breast", re.compile(r"breast", re.I)),
-    ("GU", re.compile(r"prostate|bladder|urothelial|renal cell|renal carcinoma|kidney cancer|testicular|penile|ureter", re.I)),
-    ("NSCLC", re.compile(r"non[-\s]?small[-\s]?cell lung|\bnsclc\b", re.I)),
-    ("SCLC", re.compile(r"(?<!non)(?<!non-)(?<!non )small[-\s]?cell lung|\bsclc\b", re.I)),
-    ("Head and neck", re.compile(r"head and neck|nasopharyn|oropharyn|hypopharyn|laryng|oral cavity|salivary|sinonasal", re.I)),
-    ("CNS", re.compile(r"\bgli|brain metast|brain tumor|brain tumour|central nervous system|\bcns\b|meningiom|medulloblast|ependym", re.I)),
-    ("GI", re.compile(r"esophag|gastric|stomach|pancrea|hepatocellular|\bliver\b|rectal|\bcolon\b|colorectal|\banal\b|biliary|cholangi|gastrointestinal", re.I)),
-    ("Gynecologic", re.compile(r"cervix|cervical cancer|endometr|ovarian|vulvar|uterine|gynecolog", re.I)),
-    ("Lymphoma", re.compile(r"lymphoma|hodgkin", re.I)),
-    ("Hematologic", re.compile(r"leukemia|leukaemia|myeloma|myelodysplas|plasmacytoma", re.I)),
-    ("Sarcoma", re.compile(r"sarcoma", re.I)),
-    ("Skin", re.compile(r"melanoma|merkel|cutaneous|skin cancer", re.I)),
-    ("Mixed histology", re.compile(r"mixed histolog|multiple histolog|various histolog|any solid tumou?r|basket trial", re.I)),
-]
-
-_NOT_OLIGO = r"(?<!non[-\s])"
-_MIXED_BURDEN = re.compile(
-    r"locally advanced\s+or\s+metastatic|locally advanced\s+and\s+metastatic|"
-    r"metastatic\s+or\s+locally advanced|"
-    r"oligometastatic\s+or\s+polymetastatic|polymetastatic\s+or\s+oligometastatic|"
-    r"stage\s+(?:IIIC|IIIB|IIIA|III|IIB|IIA|II|IB|IA|I|[1-3])\s*(?:/|or)\s*(?:IV|4)\b",
-    re.I,
-)
-_OLIGO_CAP = re.compile(
-    r"(?:up to|no more than|fewer than|less than|maximum(?: of)?|max(?:imum)?(?: of)?|≤|<=)\s*"
-    r"(?:[1-5]|one|two|three|four|five)\s+"
-    r"((?:brain|intracranial|cerebral)\s+)?(?:metastases|metastasis|lesions|sites)\b"
-    r"|(?:[1-5]|one|two|three|four|five)\s*(?:to|–|-)\s*(?:[1-5]|one|two|three|four|five)\s+"
-    r"((?:brain|intracranial|cerebral)\s+)?(?:metastases|metastasis|lesions|sites)\b"
-    r"|(?:[1-5]|one|two|three|four|five)\s+or fewer\s+"
-    r"((?:brain|intracranial|cerebral)\s+)?(?:metastases|metastasis|lesions|sites)\b",
-    re.I,
-)
-_POLY = re.compile(
-    _NOT_OLIGO + r"\bpolymetast|\b(?:widespread|extensive)\s+metast|"
-    r"exclud\w*\s+(?:\w+\s+){0,4}oligometast\w*|non[-\s]oligometast\w*|not oligometast\w*|"
-    r"(?:more than|greater than|>)\s*(?:5|five|[6-9]|[1-9]\d|six|seven|eight|nine|ten|eleven|twelve)\s+"
-    r"(?:\w+\s+){0,3}(?:metastases|metastasis|lesions|sites)\b|"
-    r"(?:at least|≥|>=)\s*(?:[6-9]|[1-9]\d|six|seven|eight|nine|ten|eleven|twelve)\s+"
-    r"(?:\w+\s+){0,3}(?:metastases|metastasis|lesions|sites)\b",
-    re.I,
-)
-_OLIGO_EXCLUSION = re.compile(
-    r"exclud\w*\s+(?:\w+\s+){0,4}oligometast\w*|non[-\s]oligometast\w*|not oligometast\w*",
-    re.I,
-)
-_CURATIVE = re.compile(
-    r"non[-\s]?metastatic|\bM0\b|no distant metast|without distant metast|"
-    r"stage\s+(?:IIIC|IIIB|IIIA|III|IIB|IIA|II|IB|IA|I|[1-3])\b(?!\s*(?:/|or)\s*(?:IV|4))|"
-    r"locally advanced|locoregional|resectable primary|\badjuvant\b|\bneoadjuvant\b",
-    re.I,
-)
-_NEGATED_MET = re.compile(
-    r"non[-\s]?metast\w*|no(?:\s+\w+){0,3}\s+metast\w*|without(?:\s+\w+){0,3}\s+metast\w*|"
-    r"absence of(?:\s+\w+){0,2}\s+metast\w*|free of(?:\s+\w+){0,2}\s+metast\w*|"
-    r"(?:not|excluding|except)\s+stage\s+(?:IV|4)\b",
-    re.I,
-)
-
-GROUP_TAGS = [
-    ("nrg", re.compile(r"\bNRG\b")),
-    ("swog", re.compile(r"\bSWOG\b")),
-    ("ecog", re.compile(r"ECOG-ACRIN|\bECOG\b|\bACRIN\b", re.I)),
-    ("alliance", re.compile(r"\bALLIANCE\b|Alliance for Clinical Trials")),
-    ("cctg", re.compile(r"\bCCTG\b|Canadian Cancer Trials Group", re.I)),
-    ("cog", re.compile(r"\bCOG\b|Children'?s Oncology Group", re.I)),
-    ("etctn", re.compile(r"\bETCTN\b|\bLAO-", re.I)),
-    ("pep-ctn", re.compile(r"\bPEP-CTN\b|\bPEPN\d", re.I)),
-]
-PIPELINE_TAGS = ("eortc", "rttqa", "trog", "krog", "ctgov", "cctg")
-_USELESS_ACRONYM = re.compile(r"^(?:CDR\d+|NCI-\d{4}-\d+|NCT\d{8}|UM1CA\d+)$", re.I)
+def _classify_input(trial):
+    brief = trial.get("brief") or {}
+    return {
+        "protocol": (trial.get("protocols") or [""])[0],
+        "title": trial.get("title") or "",
+        "population": trial.get("population") or "",
+        "disease": trial.get("ctsu_disease") or "",
+        "conditions": trial.get("conditions") or [],
+        "eligibility": brief.get("eligibility"),
+        "reviewed": trial.get("reviewed") or {},
+    }
 
 
-def _same(left, right):
-    def fold(value):
-        return re.sub(r"[^A-Z0-9]", "", (value or "").upper())
-    return fold(left) == fold(right) and fold(left) != ""
-
-
-def _ids(pattern, blob):
-    found = []
-    for match in pattern.finditer(blob or ""):
-        found.append(next(group for group in match.groups() if group))
-    return found
-
-
-def _acronym(name, protocol):
-    name = (name or "").strip()
-    if not name or _same(name, protocol):
-        return ""
-    match = re.match(r"^(.*?)\s*\(([^)]+)\)\s*$", name)
-    if match:
-        left, right = match.group(1).strip(), match.group(2).strip()
-        if _same(right, protocol) or protocol.upper() in right.upper():
-            return "" if _same(left, protocol) else left
-        if _same(left, protocol) or protocol.upper() in left.upper():
-            return "" if _same(right, protocol) else right
-    if protocol.upper() in name.upper():
-        return ""
-    if len(name) > 48 or _USELESS_ACRONYM.match(name):
-        return ""
-    return name
-
-
-def _lead_allows(trial, network):
-    lead = trial.get("lead_group") or ""
-    groups = " ".join(trial.get("groups") or [])
-    if network == "NRG" and re.search(r"\bNRG\b|\bRTOG\b", lead, re.I):
-        return True
-    if network == "SWOG" and re.search(r"\bSWOG\b", lead, re.I):
-        return True
-    if network == "ECOG" and re.search(r"ECOG", lead, re.I):
-        return True
-    if re.search(r"National Cancer Institute|(?<![A-Za-z])NCI(?![A-Za-z])", lead):
-        if network == "NRG" and re.search(r"\bNRG\b", groups):
-            return True
-        if network == "SWOG" and re.search(r"\bSWOG\b", groups):
-            return True
-        if network == "ECOG" and re.search(r"ECOG", groups, re.I):
-            return True
-    return False
-
-
-def display_name(trial):
-    """Protocol number first, acronym second, for NRG, SWOG, and ECOG-ACRIN."""
-    blob = " ".join([trial.get("name") or "", *(trial.get("protocols") or [])])
-    chosen = None
-    network = None
-    nrg = [f"{match.group(1).upper()}{match.group(2)}" for match in NRG_ID.finditer(blob)]
-    if nrg and _lead_allows(trial, "NRG"):
-        chosen = f"NRG-{nrg[0]}"
-        network = "NRG"
-    if chosen is None:
-        swog = _ids(SWOG_ID, blob)
-        if swog and _lead_allows(trial, "SWOG"):
-            chosen = f"S{swog[0]}"
-            network = "SWOG"
-    if chosen is None:
-        ecog = [item.upper() for item in ECOG_EA.findall(blob)] or [f"E{item}" for item in ECOG_E.findall(blob)]
-        if ecog and _lead_allows(trial, "ECOG"):
-            chosen = ecog[0].upper()
-            network = "ECOG"
-    if chosen is None and _lead_allows(trial, "NRG"):
-        rtog = RTOG_ID.findall(blob)
-        if rtog:
-            chosen = f"RTOG-{rtog[0]}"
-            network = "RTOG"
-    if not chosen:
-        return trial.get("name")
-    acronym = _acronym(trial.get("name") or "", chosen)
-    if acronym and network == "RTOG" and _same(acronym, chosen):
-        acronym = ""
-    return f"{chosen} ({acronym})" if acronym else chosen
+def apply_classification(trial):
+    classified = classify_record(_classify_input(trial))
+    trial["cancer_types"] = classified["cancer_types"]
+    trial["anatomy"] = classified["anatomy"]
+    trial["histology"] = classified["histology"]
+    trial["disease_sites"] = classified["cancer_types"]
+    trial["disease_burden"] = classified["burden"]
+    trial["intent"] = classified["intent"]
+    return classified
 
 
 def disease_sites(trial):
-    text = " ".join([
-        trial.get("title") or "",
-        trial.get("population") or "",
-        trial.get("ctsu_disease") or "",
-        " ".join(trial.get("conditions") or []),
-    ])
-    sites = []
-    for label, pattern in DISEASE_RULES:
-        if pattern.search(text):
-            sites.append(label)
-    if not any(label in sites for label in ("NSCLC", "SCLC")) and re.search(
-        r"\blung\b|mesothelioma|thymoma|\bthymic\b|mediastin|pleura", text, re.I
-    ):
-        sites.append("Lung, other")
-    anatomic = {
-        "Breast", "GU", "NSCLC", "SCLC", "Lung, other", "Head and neck", "CNS", "GI",
-        "Gynecologic", "Lymphoma", "Hematologic", "Sarcoma", "Skin",
-    }
-    if not (set(sites) & anatomic) and re.search(r"\bsolid tumou?rs?\b", text, re.I):
-        if "Mixed histology" not in sites:
-            sites.append("Mixed histology")
-    return sites or ["Other"]
-
-
-def _burden_text(trial):
-    parts = [
-        trial.get("title") or "",
-        trial.get("population") or "",
-        trial.get("ctsu_disease") or "",
-        " ".join(trial.get("conditions") or []),
-    ]
-    eligibility = (trial.get("brief") or {}).get("eligibility") or []
-    if isinstance(eligibility, str):
-        parts.append(eligibility)
-    else:
-        parts.extend(str(item) for item in eligibility)
-    return " ".join(parts)
-
-
-def _oligo_cap(text):
-    """A 1 to 5 lesion cap counts. A cap that applies only to brain metastases does not."""
-    matches = list(_OLIGO_CAP.finditer(text or ""))
-    if not matches:
-        return False
-    return any(not (match.group(1) or match.group(2) or match.group(3)) for match in matches)
-
-
-def _metastatic_signal(text):
-    cleaned = _NEGATED_MET.sub(" ", text or "")
-    if re.search(r"(?<!non[-\s])\bmetast", cleaned, re.I):
-        return True
-    if re.search(r"\bM1[a-c]?\b", cleaned):
-        return True
-    return bool(re.search(r"\bstage\s+(?:IV|4)\b", cleaned, re.I))
-
-
-def burden_labels(text):
-    """One burden list. Oligopersistent studies are also oligometastatic. Mixed stands alone."""
-    text = text or ""
-    if _MIXED_BURDEN.search(text):
-        return ["Mixed"]
-    enrolled = _OLIGO_EXCLUSION.sub(" ", text)
-    oligop = re.search(_NOT_OLIGO + r"\boligoprogress", enrolled, re.I)
-    oligopersist = re.search(_NOT_OLIGO + r"\boligopersist", enrolled, re.I)
-    oligom = re.search(_NOT_OLIGO + r"\boligometa|" + _NOT_OLIGO + r"\boligorecurren|" + _NOT_OLIGO + r"\boligopersist", enrolled, re.I)
-    cap = _oligo_cap(enrolled)
-    sbrt = re.search(r"all sites amenable to (?:SBRT|SABR|metastasis-directed)", enrolled, re.I)
-    poly = _POLY.search(text)
-    curative = _CURATIVE.search(text)
-    metastatic = _metastatic_signal(text)
-    if re.search(r"\bcohorts?\b", text, re.I):
-        kinds = sum([
-            bool(oligop),
-            bool(oligom or cap or sbrt),
-            bool(poly),
-            bool(curative and metastatic),
-        ])
-        if kinds >= 2:
-            return ["Mixed"]
-    labels = []
-    if oligop:
-        labels.append("Oligoprogressive")
-    if oligopersist:
-        labels.append("Oligopersistent")
-    if oligom or cap or sbrt:
-        labels.append("Oligometastatic")
-    if poly:
-        labels.append("Polymetastatic")
-    specific = any(label in labels for label in ("Oligoprogressive", "Oligometastatic", "Polymetastatic"))
-    if curative and not metastatic and not specific:
-        labels.append("Curative / definitive")
-    elif metastatic and not specific:
-        labels.append("Metastatic, burden not specified")
-    return labels
+    if "cancer_types" not in trial:
+        apply_classification(trial)
+    return list(trial.get("cancer_types") or [])
 
 
 def disease_burden(trial):
-    return burden_labels(_burden_text(trial))
+    if "disease_burden" not in trial:
+        apply_classification(trial)
+    return list(trial.get("disease_burden") or [])
 
 
 def source_tags(trial):
@@ -507,8 +287,12 @@ def _attach_paper_status(trials):
             if paper_lib.current_file(pmid):
                 paper["access"] = "on_file"
                 on_file += 1
-            elif row.get("status") == "inaccessible":
-                paper["access"] = "inaccessible"
+            elif row.get("status"):
+                paper["access"] = row["status"]
+                if row["status"] == "on_file":
+                    on_file += 1
+                elif row["status"] != "inaccessible":
+                    needs += 1
             else:
                 paper["access"] = "needs_access"
                 needs += 1
@@ -544,28 +328,60 @@ def _prior_match(index, trial):
     return None
 
 
+def _needs_review(section):
+    if isinstance(section, dict):
+        return section.get("status") == "needs_review"
+    if isinstance(section, list):
+        return any(isinstance(item, dict) and item.get("status") == "needs_review" for item in section)
+    return False
+
+
+def _merge_brief(current, exported):
+    """A newer export brief replaces the cache. A section still needing review keeps the prior text."""
+    current = current or {}
+    exported = _copy_brief(exported or {})
+    if not exported:
+        return current or None
+    if not current:
+        return exported
+    current_version = str(current.get("version_date") or "")
+    export_version = str(exported.get("version_date") or "")
+    if export_version and current_version and export_version < current_version:
+        return current
+    merged = dict(exported)
+    for field in BRIEF_FIELDS:
+        if field in ("version_date", "posted", "schema_source"):
+            continue
+        if _needs_review(exported.get(field)) and current.get(field):
+            merged[field] = current[field]
+            merged["review_warnings"] = list(merged.get("review_warnings") or [])
+            merged["review_warnings"].append(
+                f"{field} still shows the reviewed {current_version or 'earlier'} text. The {export_version or 'newer'} text needs review."
+            )
+    return merged
+
+
 def keep_prior_details(trials, prior_trials, export_studies=None, library_present=False):
     """Keep protocol briefs across a full rebuild.
 
-    A cloud build has no protocol library, so briefs and patient materials are
-    copied from the previous trial file. A brief that is still empty is filled
-    from the CTSU export when that export carries one.
+    A newer reviewed export section replaces a cached brief. A section marked
+    needs_review keeps the last reviewed text and a version warning. A cloud
+    build without the protocol library still keeps the prior library date's brief
+    until that newer export arrives.
     """
     index = {"nct": {}, "isrctn": {}, "protocol": {}}
+    for old in prior_trials or []:
+        if old.get("nct"):
+            index["nct"].setdefault(old["nct"], old)
+        if old.get("isrctn"):
+            index["isrctn"].setdefault(old["isrctn"], old)
+        for protocol in old.get("protocols") or []:
+            index["protocol"].setdefault(str(protocol).upper(), old)
     if not library_present:
-        for old in prior_trials or []:
-            if old.get("nct"):
-                index["nct"].setdefault(old["nct"], old)
-            if old.get("isrctn"):
-                index["isrctn"].setdefault(old["isrctn"], old)
-            for protocol in old.get("protocols") or []:
-                index["protocol"].setdefault(str(protocol).upper(), old)
         for trial in trials:
             old = _prior_match(index, trial)
             if not old:
                 continue
-            if not trial.get("brief") and old.get("brief"):
-                trial["brief"] = old["brief"]
             if not trial.get("patient_materials") and old.get("patient_materials"):
                 trial["patient_materials"] = old["patient_materials"]
 
@@ -577,18 +393,20 @@ def keep_prior_details(trials, prior_trials, export_studies=None, library_presen
         if study.get("protocol"):
             export_by_protocol.setdefault(str(study["protocol"]).upper(), study)
     for trial in trials:
-        if trial.get("brief"):
-            trial["brief_source"] = _brief_source(trial)
-            continue
+        old = _prior_match(index, trial)
+        prior_brief = None if library_present else (old or {}).get("brief")
         study = export_by_nct.get(trial.get("nct")) if trial.get("nct") else None
         if study is None:
             for protocol in trial.get("protocols") or []:
                 study = export_by_protocol.get(str(protocol).upper())
                 if study:
                     break
-        copied = _copy_brief((study or {}).get("brief") or {})
-        if copied:
-            trial["brief"] = copied
+        base = trial.get("brief") or prior_brief
+        merged = _merge_brief(base, (study or {}).get("brief") or {})
+        if merged:
+            trial["brief"] = merged
+        elif prior_brief and not trial.get("brief"):
+            trial["brief"] = prior_brief
         trial["brief_source"] = _brief_source(trial)
 
 
@@ -604,8 +422,7 @@ def annotate(trials, root):
     _attach_registry_schema(trials, root / "data" / "cache" / "ctgov")
     for trial in trials:
         trial["name"] = display_name(trial)
-        trial["disease_sites"] = disease_sites(trial)
-        trial["disease_burden"] = disease_burden(trial)
+        apply_classification(trial)
         trial["source_tags"] = source_tags(trial)
         trial["brief_source"] = _brief_source(trial)
     return trials

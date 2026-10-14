@@ -81,6 +81,13 @@ class TrialStore:
         keys |= protocol_keys(record.get("name"))
         return keys
 
+    def reindex(self):
+        self._nct = {}
+        self._isrctn = {}
+        self._protocol = {}
+        for trial in self.trials:
+            self._index(trial)
+
     def _index(self, trial):
         if trial.get("nct"):
             self._nct[trial["nct"]] = trial

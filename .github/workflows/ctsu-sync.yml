@@ -1,0 +1,72 @@
+name: Sync CTSU export
+
+on:
+  schedule:
+    # Every three hours, after the CTSU export check. Not a clock guarantee.
+    - cron: "47 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldwide-publish
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Apply the published CTSU export
+        id: sync
+        run: |
+          if python scripts/sync_ctsu_export.py; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+      - name: Commit the synced trial list
+        id: commit
+        if: steps.sync.outputs.ok == 'true'
+        run: |
+          git config user.name "worldwide-rt-refresh"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/trials.json docs/index.html data/cache/ctsu-public.json data/cache/ctsu-public.manifest.json
+          if git diff --cached --quiet; then
+            echo "No CTSU export changes"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Sync the CTSU public export $(date -u +%F)"
+            git pull --rebase --no-autostash
+            git push
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Confirm the live Pages build
+        if: steps.commit.outputs.pushed == 'true'
+        run: |
+          sha="${{ steps.commit.outputs.sha }}"
+          for _ in $(seq 1 30); do
+            status="$(gh api "repos/jryck3/worldwide-rt-trials/pages/builds?per_page=5" --jq ".[] | select(.commit[0:40]==\"${sha}\") | .status" | head -n 1 || true)"
+            if [ "$status" = "built" ]; then
+              echo "Pages built ${sha}"
+              exit 0
+            fi
+            if [ "$status" = "errored" ]; then
+              echo "Pages build errored for ${sha}" >&2
+              exit 1
+            fi
+            sleep 20
+          done
+          echo "Pages build for ${sha} did not finish" >&2
+          exit 1

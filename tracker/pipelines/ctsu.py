@@ -38,7 +38,57 @@ RT_MODALITY = {
 
 
 PUBLIC_PAGE = "https://jryck3.github.io/CTSU-Tracker/"
+PUBLIC_EXPORT_URL = PUBLIC_PAGE + "ctsu-public.json"
+PUBLIC_MANIFEST_URL = PUBLIC_PAGE + "ctsu-public.manifest.json"
+WW_ROOT = Path(__file__).resolve().parents[2]
+EXPORT_CACHE = WW_ROOT / "data" / "cache" / "ctsu-public.json"
+MANIFEST_CACHE = WW_ROOT / "data" / "cache" / "ctsu-public.manifest.json"
 _PUBLIC_EXPORT = None
+
+
+def _content_hash(export):
+    """Same consumed-field hash as the CTSU public_export module."""
+    import hashlib
+    studies = []
+    for study in export.get("studies") or []:
+        copied = {key: value for key, value in study.items() if key not in ("projected_completion", "avg_rate")}
+        measurement = dict(copied.get("measurement") or {})
+        measurement.pop("snapshot_at", None)
+        copied["measurement"] = measurement
+        studies.append(copied)
+    consumed = {
+        "schema_version": export.get("schema_version"),
+        "taxonomy_version": export.get("taxonomy_version"),
+        "studies": studies,
+        "history": export.get("history") or {},
+    }
+    raw = json.dumps(consumed, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def _checked(export, manifest):
+    if not isinstance(export, dict) or not export.get("studies"):
+        raise RuntimeError("CTSU export has no studies")
+    expected = (manifest or {}).get("content_hash")
+    if expected and _content_hash(export) != expected:
+        raise RuntimeError("CTSU export hash does not match its manifest")
+    if export.get("schema_version") not in (None, 1):
+        raise RuntimeError("Unsupported CTSU export schema")
+    return export, "ctsu-public.json"
+
+
+def _read_cached():
+    if not EXPORT_CACHE.is_file() or not MANIFEST_CACHE.is_file():
+        return None
+    export = json.loads(EXPORT_CACHE.read_text())
+    manifest = json.loads(MANIFEST_CACHE.read_text())
+    return _checked(export, manifest)
+
+
+def _store_cache(export, manifest):
+    EXPORT_CACHE.parent.mkdir(parents=True, exist_ok=True)
+    EXPORT_CACHE.write_text(json.dumps(export))
+    MANIFEST_CACHE.write_text(json.dumps(manifest, indent=1) + "\n")
 
 
 def _load_embedded_text(text):
@@ -55,37 +105,40 @@ def _load_embedded(path):
 
 
 def _fetch_public():
-    """The published CTSU page. Used when this checkout has no sibling CTSU folder."""
+    """The published CTSU export. A failed fetch keeps the last good cache."""
     global _PUBLIC_EXPORT
     if _PUBLIC_EXPORT is not None:
         return _PUBLIC_EXPORT
     from ..http_client import fetch
-    body, _status = fetch(PUBLIC_PAGE, timeout=180)
-    payload = _load_embedded_text(body)
-    if not payload or not payload.get("studies"):
-        raise RuntimeError("Public CTSU page had no study list")
-    _PUBLIC_EXPORT = payload
-    return payload
+    try:
+        body, status = fetch(PUBLIC_EXPORT_URL, timeout=180)
+        manifest_body, _manifest_status = fetch(PUBLIC_MANIFEST_URL, timeout=60)
+        if status and status >= 400:
+            raise RuntimeError(f"CTSU export HTTP {status}")
+        export = json.loads(body)
+        manifest = json.loads(manifest_body)
+        checked = _checked(export, manifest)
+    except Exception:
+        cached = _read_cached()
+        if cached is None:
+            raise
+        _PUBLIC_EXPORT = cached[0]
+        return cached[0]
+    _store_cache(export, manifest)
+    _PUBLIC_EXPORT = export
+    return export
 
 
 def load_export():
-    """Use the newer of studies.json and the local dashboard, or the published page."""
-    structured = None
-    structured_path = CTSU_ROOT / "data" / "studies.json"
-    if structured_path.is_file():
-        structured = json.loads(structured_path.read_text())
-    embedded = _load_embedded(CTSU_ROOT / "docs" / "index.html")
-    chosen = None
-    source = None
-    if structured and structured.get("studies"):
-        chosen = structured
-        source = "data/studies.json"
-    if embedded and embedded.get("studies") and (embedded.get("generated_at") or "") > ((chosen or {}).get("generated_at") or ""):
-        chosen = embedded
-        source = "docs/index.html"
-    if chosen:
-        return chosen, source
-    return _fetch_public(), PUBLIC_PAGE
+    """Read the published CTSU export. Local studies.json is not the contract."""
+    try:
+        export = _fetch_public()
+        return export, PUBLIC_EXPORT_URL
+    except Exception:
+        cached = _read_cached()
+        if cached is not None:
+            return cached
+        raise RuntimeError("No verified CTSU public export is available")
 
 
 def _record(study, fetched_at, export_source):
@@ -98,13 +151,19 @@ def _record(study, fetched_at, export_source):
     if study.get("lead"):
         trial["lead_group"] = study["lead"]
         trial["groups"] = [study["lead"]]
-    trial["phase"] = study.get("phase")
+    trial["phase"] = study.get("phase_normalized") or study.get("phase")
     trial["phase_code"] = study.get("phase")
-    trial["status"] = STATUS_MAP.get(study.get("status"), "unknown")
+    trial["status"] = STATUS_MAP.get(study.get("ctsu_status") or study.get("status"), "unknown")
     trial["status_source"] = "CTSU public export"
     trial["status_checked"] = (fetched_at or "")[:10] or today_iso()
-    if study.get("ctgov_status"):
-        trial["registry_status"] = CTGOV_STATUS.get(study["ctgov_status"], study["ctgov_status"])
+    registry_status = study.get("registry_status") or study.get("ctgov_status")
+    if registry_status:
+        trial["registry_status"] = CTGOV_STATUS.get(registry_status, registry_status)
+    if study.get("status_basis"):
+        trial["status_basis"] = study["status_basis"]
+    if study.get("cancer_types"):
+        trial["cancer_types"] = list(study["cancer_types"])
+        trial["reviewed"] = {"cancer_types": list(study["cancer_types"]), "burden": list(study.get("burden") or [])}
     trial["population"] = study.get("disease")
     trial["conditions"] = [study["disease"]] if study.get("disease") else []
     trial["rt_role"] = study.get("rt_role")

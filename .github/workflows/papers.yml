@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: paper-links
+  group: worldwide-publish
   cancel-in-progress: false
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
         run: python scripts/refresh_papers.py
 
       - name: Commit paper links
-        if: always()
+        if: success()
         run: |
           files=()
           for f in config/publications.json data/trials.json docs/index.html; do
@@ -43,5 +43,6 @@ jobs:
             echo "No paper-link changes"
           else
             git -c user.name="worldwide-rt-papers" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Refresh paper links $(date -u +%F)"
+            git pull --rebase --no-autostash
             git push
           fi
