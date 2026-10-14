@@ -13224,6 +13224,25 @@
   "found": 0,
   "papers": []
  },
+ "NCT06882499": {
+  "checked_at": "2026-10-14T01:17:58Z",
+  "found": 1,
+  "papers": [
+   {
+    "role": "protocol",
+    "title": "Does stereotactic ablative body radiotherapy (SABR) added to continued systemic therapy improve time to treatment failure compared with physician's choice of systemic therapy in oligoprogressive ER-positive, HER2-negative advanced breast cancer? Study protocol for a multicentre, randomised, open-label phase II trial in Australian tertiary cancer centres (AVATAR-II).",
+    "authors": "Connolly E, et al.",
+    "journal": "BMJ Open",
+    "year": "2026",
+    "pmid": "42692526",
+    "pubmed": "https://pubmed.ncbi.nlm.nih.gov/42692526/",
+    "pmcid": "PMC13548281",
+    "pmc": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13548281/",
+    "doi": "10.1136/bmjopen-2026-119811",
+    "doi_url": "https://doi.org/10.1136/bmjopen-2026-119811"
+   }
+  ]
+ },
  "NCT06897488": {
   "checked_at": "2026-10-09T11:43:12Z",
   "found": 0,

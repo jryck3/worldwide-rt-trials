@@ -162,4 +162,17 @@
 - Primary endpoint: Overall survival (OS); Functional Assessment of Cancer Therapy-General (FACT-G) score
 - Source pipeline: ctsu (also ctsu, ctgov)
 
-All twelve sample trials are present as their own rows.
+## AVATAR-II
+- Name: AVATARII
+- Registry: NCT06882499
+- Group: Peter MacCallum Cancer Centre, Australia
+- Phase: NA; record text says phase 2
+- Status: not yet recruiting
+- Accrual: 74 (target-only) target 74
+- Primary endpoint: The primary endpoint of this study is to measure the time to treatment failure between Arm A and Arm B.
+- Source pipeline: ctgov (also ctgov)
+- Note: ClinicalTrials.gov last update posted 2026-09-18.
+- Note: ClinicalTrials.gov marks this enrollment as Estimated. It is a target, not an accrued headcount.
+- Disagreement (phase): registry value: Not applicable ClinicalTrials.gov record text: The same ClinicalTrials.gov record describes the study as phase 2 in the record text.
+
+All 13 sample trials are present as their own rows.

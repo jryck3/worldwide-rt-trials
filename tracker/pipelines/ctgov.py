@@ -1,6 +1,7 @@
 """ClinicalTrials.gov v2 catch-all for phase 2, 2/3, and 3 radiotherapy trials.
 
-Phase coded as not applicable is kept when the same record describes itself as phase 2 or 3.
+Phase coded as not applicable is kept when the title, brief summary, design text,
+or the opening of the detailed description describes the study as phase 2 or 3.
 Estimated enrollment is a target. Actual enrollment is a sponsor-posted count, not a live snapshot.
 """
 
@@ -127,6 +128,28 @@ def _keep_protocol(value):
     return True
 
 
+def _opening_detail(text):
+    """First paragraph of the detailed description, capped so a later phase mention does not reclassify the trial."""
+    paragraph = (text or "").strip().split("\n\n", 1)[0]
+    return paragraph[:800]
+
+
+_GENERIC_MEASURE = re.compile(
+    r"(?:primary|secondary)\s+(?:outcome\s+measure|endpoint|objective)(?:\s+\d+)?",
+    re.I,
+)
+
+
+def _endpoint_text(outcome):
+    """Use the description when the registry measure is only a placeholder label."""
+    measure = (outcome.get("measure") or "").strip()
+    if measure and not _GENERIC_MEASURE.fullmatch(measure):
+        return measure
+    description = (outcome.get("description") or "").strip()
+    sentence = re.split(r"(?<=[.])\s+", description, maxsplit=1)[0].strip()
+    return sentence or measure
+
+
 def parse_study(study):
     ps = study.get("protocolSection") or study
     ident = ps.get("identificationModule") or {}
@@ -146,7 +169,10 @@ def parse_study(study):
         info.get("designAllocationDescription") if isinstance(info.get("designAllocationDescription"), str) else None,
     ]))
     phase_code = _phase_code(design.get("phases"))
-    spoken = phase_language(" ".join([official, brief, summary, design_text]))
+    spoken = phase_language(" ".join([
+        official, brief, summary, design_text,
+        _opening_detail(description.get("detailedDescription")),
+    ]))
     role, evidence, modality = classify_record(
         [brief, official, ident.get("acronym")],
         arms_mod.get("interventions") or [],
@@ -157,7 +183,7 @@ def parse_study(study):
     listed, open_countries = _countries((ps.get("contactsLocationsModule") or {}).get("locations"))
     endpoints = []
     for outcome in outcomes.get("primaryOutcomes") or []:
-        measure = (outcome.get("measure") or "").strip()
+        measure = _endpoint_text(outcome)
         if measure:
             add_unique(endpoints, measure)
     enrollment = design.get("enrollmentInfo") or {}
@@ -223,8 +249,8 @@ def parse_study(study):
         record["disagreements"].append({
             "field": "phase",
             "registry_value": "Not applicable",
-            "other_value": f"The same ClinicalTrials.gov record describes the study as phase {spoken} in the title or design text.",
-            "other_source": "ClinicalTrials.gov title or design text",
+            "other_value": f"The same ClinicalTrials.gov record describes the study as phase {spoken} in the record text.",
+            "other_source": "ClinicalTrials.gov record text",
         })
     record["accrual"] = {
         "quality": quality,

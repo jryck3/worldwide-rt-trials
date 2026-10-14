@@ -42,7 +42,7 @@ The first pipeline that creates a row is the source. Later pipelines add registr
 4. TROG trial pages. ANZCTR is kept when a TROG study has no NCT.
 5. CCTG public trial list. Studies already ported from CTSU are merged onto the existing row.
 6. KROG protocol board. Enrollment is labeled as Korea.
-7. ClinicalTrials.gov v2, for phase 2, phase 2/3, and phase 3 interventional trials with a radiotherapy intervention, plus phase-not-applicable records whose own text describes a phase 2 or 3 trial. This is the catch-all for groups that are not scraped separately, including JCOG, GORTEC, DAHANCA, DBCG, SAKK, and Cancer Trials Ireland. Those names are tags when the record identifies them.
+7. ClinicalTrials.gov v2, for phase 2, phase 2/3, and phase 3 interventional trials with a radiotherapy intervention, plus phase-not-applicable records whose title, brief summary, design text, or the opening of the detailed description describes a phase 2 or 3 trial. This is the catch-all for groups that are not scraped separately, including JCOG, GORTEC, DAHANCA, DBCG, SAKK, and Cancer Trials Ireland. Those names are tags when the record identifies them.
 
 One row per trial. Matching is NCT, then ISRCTN, then a group protocol number. A TROG site of an NRG trial, an EORTC collaboration, and a CCTG trial already on CTSU stay on one row, with every group name kept. Each candidate inside a platform (TOURIST PRINCE and QUARTZ LUNG, for example) is its own row.
 
