@@ -168,6 +168,9 @@ def disease_sites(trial):
     if not (set(sites) & anatomic) and re.search(r"\bsolid tumou?rs?\b", text, re.I):
         if "Mixed histology" not in sites:
             sites.append("Mixed histology")
+    burden = ("Oligoprogressive disease", "Oligometastatic disease", "Polymetastatic disease")
+    if not any(label in sites for label in burden) and re.search(r"(?<!non[-\s])\bmetast", text, re.I):
+        sites.append("Metastatic disease")
     return sites or ["Other"]
 
 

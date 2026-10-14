@@ -36,10 +36,9 @@
   .counts div { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; min-width: 120px; }
   .counts b { display: block; font-size: 20px; }
   .counts span { color: var(--muted); font-size: 12px; }
-  .filters { display: flex; flex-direction: column; gap: 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 4px 12px 8px; }
-  .filter-row { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
-  .filter-row:first-child { border-top: 0; }
-  .filter-name { min-width: 72px; font: 650 12px/1.3 sans-serif; color: var(--muted); }
+  .filters { display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px 14px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+  .filter-row { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; padding: 0; border: 0; }
+  .filter-name { font: 650 12px/1.3 sans-serif; color: var(--muted); }
   .check { display: flex; flex-direction: row; align-items: center; gap: 5px; font: 14px/1.3 sans-serif; color: var(--ink); }
   .check.all { font: 400 12px/1.3 sans-serif; color: #8b98a6; margin-right: 10px; }
   input[type="search"] { font: 14px/1.3 sans-serif; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; background: #fff; min-width: 280px; }
@@ -50,7 +49,7 @@
   .country-panel input[type="search"] { width: 100%; min-width: 0; margin: 0 0 6px; }
   .country-list { max-height: 260px; overflow: auto; display: flex; flex-direction: column; gap: 4px; padding-top: 4px; }
   .choice-wrap { position: relative; }
-  .choice-btn { position: relative; font: 14px/1.3 sans-serif; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 28px 6px 10px; min-width: 220px; max-width: 420px; text-align: left; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .choice-btn { position: relative; font: 14px/1.3 sans-serif; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 28px 6px 10px; min-width: 160px; max-width: 280px; text-align: left; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .choice-btn::after { content: ""; position: absolute; right: 10px; top: 50%; margin-top: -2px; border: 5px solid transparent; border-top-color: #5c6b7a; }
   .choice-panel { position: absolute; z-index: 7; top: calc(100% + 4px); left: 0; min-width: 260px; max-width: min(420px, 86vw); max-height: 320px; overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; display: flex; flex-direction: column; gap: 4px; }
   .choice-panel[hidden] { display: none; }
@@ -710,8 +709,9 @@ addFilterRow("role", "RT role", [
   ["Transplant / cellular therapy", "Transplant / cellular therapy"], ["Surgery", "Surgery"],
   ["Imaging", "Imaging"], ["Registry / biospecimen", "Registry / biospecimen"],
 ], ["beam", "RT-focused", "RT component", "Radiopharmaceutical"], "RT roles");
-const diseaseOrder = ["Breast", "GU", "NSCLC", "SCLC", "Lung, other", "Head and neck", "CNS", "GI", "Gynecologic", "Lymphoma", "Hematologic", "Sarcoma", "Skin", "Oligoprogressive disease", "Oligometastatic disease", "Polymetastatic disease", "Mixed histology", "Other"];
-const diseases = diseaseOrder.filter(site => DATA.trials.some(t => (t.disease_sites || []).includes(site)));
+const burdenSites = ["Oligoprogressive disease", "Oligometastatic disease", "Polymetastatic disease", "Metastatic disease"];
+const diseaseOrder = ["Breast", "GU", "NSCLC", "SCLC", "Lung, other", "Head and neck", "CNS", "GI", "Gynecologic", "Lymphoma", "Hematologic", "Sarcoma", "Skin", "Mixed histology", "Other"];
+const diseases = diseaseOrder.filter(site => DATA.trials.some(t => (t.disease_sites || []).includes(site))).concat(burdenSites);
 addFilterRow("disease", "Disease", diseases.map(site => [site, site]), diseases);
 const countryCounts = {};
 DATA.trials.forEach(t => countryKeys(t).forEach(country => { countryCounts[country] = (countryCounts[country] || 0) + 1; }));
