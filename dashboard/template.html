@@ -467,12 +467,24 @@ function diseaseMatch(t) {
   if (selected.size === FILTERS.disease.length) return true;
   return sites.some(site => selected.has(site) || ((site === "Other" || site === "Mixed histology") && selected.has("other-mixed")));
 }
+const BURDEN_ORDER = ["Oligoprogressive", "Oligometastatic", "Polymetastatic", "Other"];
+function burdenName(labels) {
+  const specific = [];
+  (labels || []).forEach(label => {
+    const mapped = label === "Oligopersistent" ? "Oligometastatic" : label;
+    if (["Oligoprogressive", "Oligometastatic", "Polymetastatic"].includes(mapped) && !specific.includes(mapped)) specific.push(mapped);
+  });
+  return specific.length === 1 ? specific[0] : "Other";
+}
+function burdenOfTrial(t) {
+  const raw = (t.disease_burden && t.disease_burden.length) ? t.disease_burden : (t.burden || []);
+  return burdenName(raw);
+}
 function burdenMatch(t) {
   const selected = state.burden;
   if (!selected || !selected.size) return false;
   if (selected.size === FILTERS.burden.length) return true;
-  const labels = (t.disease_burden && t.disease_burden.length) ? t.disease_burden : ["Not classified"];
-  return labels.some(label => selected.has(label));
+  return selected.has(burdenOfTrial(t));
 }
 function match(t) {
   if (!state.phase.has(phaseKey(t))) return false;
@@ -902,17 +914,8 @@ addFilterRow("role", "RT role", [
     if (box) box.dataset.child = "beam";
   });
 }
-const BURDEN_MENU = [
-  ["Oligoprogressive", "Oligoprogressive"],
-  ["Oligometastatic", "Oligometastatic"],
-  ["Oligopersistent", "Oligopersistent"],
-  ["Polymetastatic", "Polymetastatic"],
-  ["Metastatic, burden not specified", "Metastatic, burden not specified"],
-  ["Curative / definitive", "Curative / definitive"],
-  ["Mixed", "Mixed"],
-  ["Not applicable", "Not applicable"],
-  ["Not classified", "Not classified"],
-];
+const BURDEN_PRESENT = new Set(DATA.trials.map(burdenOfTrial));
+const BURDEN_MENU = BURDEN_ORDER.filter(label => BURDEN_PRESENT.has(label)).map(label => [label, label]);
 (function addDiseaseFilter() {
   const present = new Set(DATA.trials.flatMap(t => t.disease_sites || []));
   const items = [];
