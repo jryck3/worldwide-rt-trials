@@ -43,14 +43,55 @@ DISEASE_RULES = [
     ("GI", re.compile(r"esophag|gastric|stomach|pancrea|hepatocellular|\bliver\b|rectal|\bcolon\b|colorectal|\banal\b|biliary|cholangi|gastrointestinal", re.I)),
     ("Gynecologic", re.compile(r"cervix|cervical cancer|endometr|ovarian|vulvar|uterine|gynecolog", re.I)),
     ("Lymphoma", re.compile(r"lymphoma|hodgkin", re.I)),
-    ("Hematologic", re.compile(r"leukemia|leukaemia|myeloma|myelodysplas", re.I)),
+    ("Hematologic", re.compile(r"leukemia|leukaemia|myeloma|myelodysplas|plasmacytoma", re.I)),
     ("Sarcoma", re.compile(r"sarcoma", re.I)),
     ("Skin", re.compile(r"melanoma|merkel|cutaneous|skin cancer", re.I)),
-    ("Oligoprogressive disease", re.compile(r"(?<!non[-\s])\boligop", re.I)),
-    ("Oligometastatic disease", re.compile(r"(?<!non[-\s])\boligom", re.I)),
-    ("Polymetastatic disease", re.compile(r"(?<!non[-\s])\bpolymetast", re.I)),
     ("Mixed histology", re.compile(r"mixed histolog|multiple histolog|various histolog|any solid tumou?r|basket trial", re.I)),
 ]
+
+_NOT_OLIGO = r"(?<!non[-\s])"
+_MIXED_BURDEN = re.compile(
+    r"locally advanced\s+or\s+metastatic|locally advanced\s+and\s+metastatic|"
+    r"metastatic\s+or\s+locally advanced|"
+    r"oligometastatic\s+or\s+polymetastatic|polymetastatic\s+or\s+oligometastatic|"
+    r"stage\s+(?:IIIC|IIIB|IIIA|III|IIB|IIA|II|IB|IA|I|[1-3])\s*(?:/|or)\s*(?:IV|4)\b",
+    re.I,
+)
+_OLIGO_CAP = re.compile(
+    r"(?:up to|no more than|fewer than|less than|maximum(?: of)?|max(?:imum)?(?: of)?|≤|<=)\s*"
+    r"(?:[1-5]|one|two|three|four|five)\s+"
+    r"((?:brain|intracranial|cerebral)\s+)?(?:metastases|metastasis|lesions|sites)\b"
+    r"|(?:[1-5]|one|two|three|four|five)\s*(?:to|–|-)\s*(?:[1-5]|one|two|three|four|five)\s+"
+    r"((?:brain|intracranial|cerebral)\s+)?(?:metastases|metastasis|lesions|sites)\b"
+    r"|(?:[1-5]|one|two|three|four|five)\s+or fewer\s+"
+    r"((?:brain|intracranial|cerebral)\s+)?(?:metastases|metastasis|lesions|sites)\b",
+    re.I,
+)
+_POLY = re.compile(
+    _NOT_OLIGO + r"\bpolymetast|\b(?:widespread|extensive)\s+metast|"
+    r"exclud\w*\s+(?:\w+\s+){0,4}oligometast\w*|non[-\s]oligometast\w*|not oligometast\w*|"
+    r"(?:more than|greater than|>)\s*(?:5|five|[6-9]|[1-9]\d|six|seven|eight|nine|ten|eleven|twelve)\s+"
+    r"(?:\w+\s+){0,3}(?:metastases|metastasis|lesions|sites)\b|"
+    r"(?:at least|≥|>=)\s*(?:[6-9]|[1-9]\d|six|seven|eight|nine|ten|eleven|twelve)\s+"
+    r"(?:\w+\s+){0,3}(?:metastases|metastasis|lesions|sites)\b",
+    re.I,
+)
+_OLIGO_EXCLUSION = re.compile(
+    r"exclud\w*\s+(?:\w+\s+){0,4}oligometast\w*|non[-\s]oligometast\w*|not oligometast\w*",
+    re.I,
+)
+_CURATIVE = re.compile(
+    r"non[-\s]?metastatic|\bM0\b|no distant metast|without distant metast|"
+    r"stage\s+(?:IIIC|IIIB|IIIA|III|IIB|IIA|II|IB|IA|I|[1-3])\b(?!\s*(?:/|or)\s*(?:IV|4))|"
+    r"locally advanced|locoregional|resectable primary|\badjuvant\b|\bneoadjuvant\b",
+    re.I,
+)
+_NEGATED_MET = re.compile(
+    r"non[-\s]?metast\w*|no(?:\s+\w+){0,3}\s+metast\w*|without(?:\s+\w+){0,3}\s+metast\w*|"
+    r"absence of(?:\s+\w+){0,2}\s+metast\w*|free of(?:\s+\w+){0,2}\s+metast\w*|"
+    r"(?:not|excluding|except)\s+stage\s+(?:IV|4)\b",
+    re.I,
+)
 
 GROUP_TAGS = [
     ("nrg", re.compile(r"\bNRG\b")),
@@ -159,7 +200,9 @@ def disease_sites(trial):
     for label, pattern in DISEASE_RULES:
         if pattern.search(text):
             sites.append(label)
-    if not any(label in sites for label in ("NSCLC", "SCLC")) and re.search(r"\blung\b", text, re.I):
+    if not any(label in sites for label in ("NSCLC", "SCLC")) and re.search(
+        r"\blung\b|mesothelioma|thymoma|\bthymic\b|mediastin|pleura", text, re.I
+    ):
         sites.append("Lung, other")
     anatomic = {
         "Breast", "GU", "NSCLC", "SCLC", "Lung, other", "Head and neck", "CNS", "GI",
@@ -168,10 +211,83 @@ def disease_sites(trial):
     if not (set(sites) & anatomic) and re.search(r"\bsolid tumou?rs?\b", text, re.I):
         if "Mixed histology" not in sites:
             sites.append("Mixed histology")
-    burden = ("Oligoprogressive disease", "Oligometastatic disease", "Polymetastatic disease")
-    if not any(label in sites for label in burden) and re.search(r"(?<!non[-\s])\bmetast", text, re.I):
-        sites.append("Metastatic disease")
     return sites or ["Other"]
+
+
+def _burden_text(trial):
+    parts = [
+        trial.get("title") or "",
+        trial.get("population") or "",
+        trial.get("ctsu_disease") or "",
+        " ".join(trial.get("conditions") or []),
+    ]
+    eligibility = (trial.get("brief") or {}).get("eligibility") or []
+    if isinstance(eligibility, str):
+        parts.append(eligibility)
+    else:
+        parts.extend(str(item) for item in eligibility)
+    return " ".join(parts)
+
+
+def _oligo_cap(text):
+    """A 1 to 5 lesion cap counts. A cap that applies only to brain metastases does not."""
+    matches = list(_OLIGO_CAP.finditer(text or ""))
+    if not matches:
+        return False
+    return any(not (match.group(1) or match.group(2) or match.group(3)) for match in matches)
+
+
+def _metastatic_signal(text):
+    cleaned = _NEGATED_MET.sub(" ", text or "")
+    if re.search(r"(?<!non[-\s])\bmetast", cleaned, re.I):
+        return True
+    if re.search(r"\bM1[a-c]?\b", cleaned):
+        return True
+    return bool(re.search(r"\bstage\s+(?:IV|4)\b", cleaned, re.I))
+
+
+def burden_labels(text):
+    """One burden list. Oligopersistent studies are also oligometastatic. Mixed stands alone."""
+    text = text or ""
+    if _MIXED_BURDEN.search(text):
+        return ["Mixed"]
+    enrolled = _OLIGO_EXCLUSION.sub(" ", text)
+    oligop = re.search(_NOT_OLIGO + r"\boligoprogress", enrolled, re.I)
+    oligopersist = re.search(_NOT_OLIGO + r"\boligopersist", enrolled, re.I)
+    oligom = re.search(_NOT_OLIGO + r"\boligometa|" + _NOT_OLIGO + r"\boligorecurren|" + _NOT_OLIGO + r"\boligopersist", enrolled, re.I)
+    cap = _oligo_cap(enrolled)
+    sbrt = re.search(r"all sites amenable to (?:SBRT|SABR|metastasis-directed)", enrolled, re.I)
+    poly = _POLY.search(text)
+    curative = _CURATIVE.search(text)
+    metastatic = _metastatic_signal(text)
+    if re.search(r"\bcohorts?\b", text, re.I):
+        kinds = sum([
+            bool(oligop),
+            bool(oligom or cap or sbrt),
+            bool(poly),
+            bool(curative and metastatic),
+        ])
+        if kinds >= 2:
+            return ["Mixed"]
+    labels = []
+    if oligop:
+        labels.append("Oligoprogressive")
+    if oligopersist:
+        labels.append("Oligopersistent")
+    if oligom or cap or sbrt:
+        labels.append("Oligometastatic")
+    if poly:
+        labels.append("Polymetastatic")
+    specific = any(label in labels for label in ("Oligoprogressive", "Oligometastatic", "Polymetastatic"))
+    if curative and not metastatic and not specific:
+        labels.append("Curative / definitive")
+    elif metastatic and not specific:
+        labels.append("Metastatic, burden not specified")
+    return labels
+
+
+def disease_burden(trial):
+    return burden_labels(_burden_text(trial))
 
 
 def source_tags(trial):
@@ -489,6 +605,7 @@ def annotate(trials, root):
     for trial in trials:
         trial["name"] = display_name(trial)
         trial["disease_sites"] = disease_sites(trial)
+        trial["disease_burden"] = disease_burden(trial)
         trial["source_tags"] = source_tags(trial)
         trial["brief_source"] = _brief_source(trial)
     return trials

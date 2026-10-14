@@ -55,6 +55,8 @@
   .choice-panel[hidden] { display: none; }
   input[type="checkbox"] { margin: 0; }
   table { width: 100%; border-collapse: collapse; background: var(--card); margin-top: 12px; font-size: 14px; }
+  th.site-col, td.site-cell { width: 132px; max-width: 132px; overflow-wrap: anywhere; }
+  .choice-child { margin-left: 16px; }
   th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
   th { font-size: 12px; color: var(--muted); font-weight: 650; cursor: pointer; position: sticky; top: 0; background: #eef3f8; }
   tr.data:hover { background: #f3f7fb; }
@@ -172,6 +174,7 @@
     <thead>
       <tr>
         <th data-k="name">Trial</th>
+        <th class="site-col" data-k="site">Site</th>
         <th data-k="lead_group">Group</th>
         <th data-k="phase">Phase</th>
         <th data-k="status">Status</th>
@@ -229,7 +232,7 @@ const FILTERS = {};
 const FILTER_META = {};
 const ALL_LABEL = {
   phase: "All phases", status: "All statuses", role: "All RT roles", disease: "All diseases",
-  quality: "All accrual", source: "All sources", brief: "All briefs",
+  burden: "All burdens", quality: "All accrual", source: "All sources", brief: "All briefs",
 };
 let countries = [];
 function choiceLabel(key) {
@@ -333,6 +336,109 @@ function phaseKey(t) {
   if (t.phase === "cohort" || t.record_kind === "platform" || t.record_kind === "cohort") return "cohort";
   return "other";
 }
+const HISTOLOGY = [
+  ["NSCLC", /non[-\s]?small[-\s]?cell lung|\bnsclc\b/i],
+  ["SCLC", /(?<!non[-\s])small[-\s]?cell lung|\bsclc\b/i],
+  ["Mesothelioma", /mesothelioma/i],
+  ["Thymoma", /thymoma|\bthymic\b/i],
+  ["Plasmacytoma", /plasmacytoma/i],
+  ["Myeloma", /myeloma/i],
+  ["Leukemia", /leukemia|leukaemia/i],
+  ["Lymphoma", /lymphoma|hodgkin/i],
+  ["Myelofibrosis", /myelofibrosis/i],
+  ["MDS", /myelodysplas/i],
+  ["Prostate", /prostate|\bcrpc\b/i],
+  ["Bladder", /bladder|urothelial/i],
+  ["Kidney", /renal cell|renal carcinoma|kidney cancer/i],
+  ["Testis", /testicular|\bgerm cell\b/i],
+  ["Penile", /\bpenile\b/i],
+  ["Pancreas", /pancrea/i],
+  ["Colorectal", /colorectal/i],
+  ["Rectal", /\brectal\b/i],
+  ["Colon", /\bcolon\b/i],
+  ["Esophagus", /esophag/i],
+  ["Gastric", /gastric|\bstomach\b/i],
+  ["Liver", /hepatocellular|\bhcc\b|\bliver\b/i],
+  ["Biliary", /biliary|cholangi/i],
+  ["Anal", /\banal\b/i],
+  ["Cervix", /cervix|cervical cancer|cervical carcinoma/i],
+  ["Endometrial", /endometr/i],
+  ["Ovary", /ovarian/i],
+  ["Vulva", /vulvar/i],
+  ["Nasopharynx", /nasopharyn/i],
+  ["Oropharynx", /oropharyn/i],
+  ["Hypopharynx", /hypopharyn/i],
+  ["Larynx", /laryng/i],
+  ["Sinonasal", /sinonasal/i],
+  ["Oral", /oral cavity/i],
+  ["Salivary", /salivary/i],
+  ["Glioma", /glioblastoma|\bglioma|\bgliom/i],
+  ["Meningioma", /meningiom/i],
+  ["Medulloblastoma", /medulloblast/i],
+  ["Ependymoma", /ependym/i],
+  ["Breast", /\bbreast\b/i],
+  ["Sarcoma", /sarcoma/i],
+  ["Melanoma", /melanoma/i],
+  ["Merkel", /merkel/i],
+  ["NET", /neuroendocrine/i],
+];
+const SITE_PARENTS = [
+  [/lung|mesothelioma|thymoma|thymic|pleura|mediastin/i, "Lung"],
+  [/lymphoma|myeloma|leukemia|leukaemia|plasmacytoma|myelofibrosis|myelodysplas|hematolog|hematopoietic/i, "Heme"],
+  [/gastrointestinal|\bGI\b|esophag|gastric|\bstomach\b|pancrea|colorectal|\bcolon\b|\brectal\b|hepatocellular|\bliver\b|biliary|cholangi|\banal\b/i, "GI"],
+  [/prostate|\bGU\b|genitourinary|bladder|urothelial|kidney|renal|testicular|\bpenile\b|male reproductive/i, "GU"],
+  [/gynecolog|\bGyn\b|cervix|cervical|ovarian|endometr|vulvar|uterine|female reproductive/i, "Gyn"],
+  [/\bbreast\b/i, "Breast"],
+  [/head and neck|nasopharyn|oropharyn|hypopharyn|laryng|sinonasal|oral cavity|salivary/i, "H&N"],
+  [/central nervous|\bcns\b|glioblastoma|\bglioma|meningiom|medulloblast|ependym|\bbrain\b/i, "CNS"],
+  [/sarcoma/i, "Sarcoma"],
+  [/melanoma|merkel|cutaneous|skin cancer/i, "Skin"],
+  [/endocrine/i, "Endocrine"],
+  [/soft tissue/i, "Sarcoma"],
+  [/\bbone\b/i, "Bone"],
+];
+function collapseHits(hits) {
+  const drop = new Set();
+  if (hits.includes("Colorectal")) { drop.add("Colon"); drop.add("Rectal"); }
+  return hits.filter(label => !drop.has(label));
+}
+function siteSummary(text, categories) {
+  const blob = String(text || "");
+  const hits = collapseHits(HISTOLOGY.filter(([, pattern]) => pattern.test(blob)).map(([label]) => label));
+  if (hits.length >= 2) return {text: "Variety", title: hits.join(", ")};
+  if (hits.length === 1) return hits[0].length > 50 ? {text: "Variety", title: hits[0]} : {text: hits[0], title: ""};
+  const parents = [...new Set(SITE_PARENTS.filter(([pattern]) => pattern.test(blob + " " + (categories || []).join(" "))).map(([, label]) => label))];
+  if (parents.length >= 2) return {text: "Variety", title: parents.join(", ")};
+  if (parents.length === 1) return {text: parents[0], title: ""};
+  const raw = (categories || []).map(label => String(label || "").trim()).filter(Boolean);
+  if (raw.length >= 2) return {text: "Variety", title: raw.join(", ")};
+  if (raw.length === 1) {
+    if (raw[0].length > 50 || /cancer/i.test(raw[0])) return {text: raw[0].length > 50 ? "Variety" : "Other", title: raw[0]};
+    return {text: raw[0], title: ""};
+  }
+  return {text: "Other", title: ""};
+}
+function siteBrief(t) {
+  const text = [t.title || "", ...(t.conditions || []), t.ctsu_disease || ""].join(" ");
+  return siteSummary(text, t.disease_sites || []);
+}
+function siteCell(brief) {
+  const hover = brief.text === "Variety" && brief.title ? ` title="${esc(brief.title)}"` : "";
+  return `<td class="site-cell"${hover}>${esc(brief.text)}</td>`;
+}
+function diseaseMatch(t) {
+  const sites = (t.disease_sites && t.disease_sites.length) ? t.disease_sites : ["Other"];
+  const selected = state.disease;
+  if (!selected || !selected.size) return false;
+  if (selected.size === FILTERS.disease.length) return true;
+  return sites.some(site => selected.has(site) || ((site === "Other" || site === "Mixed histology") && selected.has("other-mixed")));
+}
+function burdenMatch(t) {
+  const selected = state.burden;
+  if (!selected || !selected.size) return false;
+  if (selected.size === FILTERS.burden.length) return true;
+  return (t.disease_burden || []).some(label => selected.has(label));
+}
 function match(t) {
   if (!state.phase.has(phaseKey(t))) return false;
   if (!state.status.has(t.status || "unknown")) return false;
@@ -341,7 +447,7 @@ function match(t) {
   const accrual = t.accrual || {};
   if (!state.quality.has(accrual.quality) && !(state.quality.has("reported-once") && accrual.reported)) return false;
   if (!((t.source_tags || [t.source_pipeline]).some(tag => state.source.has(tag)))) return false;
-  if (state.disease && !(t.disease_sites || ["Other"]).some(site => state.disease.has(site))) return false;
+  if (!diseaseMatch(t) || !burdenMatch(t)) return false;
   if (state.country && !countryKeys(t).some(country => state.country.has(country))) return false;
   if (state.brief && !state.brief.has(t.brief_source || "none")) return false;
   if (state.q) {
@@ -439,6 +545,7 @@ function detail(t) {
     ["Protocols", (t.protocols || []).join(", ")],
     ["Groups", (t.groups || []).join(", ")],
     ["Disease site", (t.disease_sites || []).join(", ")],
+    ["Disease burden", (t.disease_burden || []).join(", ")],
     ["CTSU disease", t.ctsu_disease],
     ["NCI program", t.nci_program],
     ["Primary completion", t.primary_completion],
@@ -473,8 +580,9 @@ function exploreRows() {
   let rows = DATA.trials.filter(match);
   const key = state.sort;
   rows.sort((a, b) => {
-    const av = key === "accrual" ? (a.accrual.actual ?? a.accrual.target ?? -1) : key === "endpoint" ? (a.primary_endpoints || [""])[0] : (a[key] || "");
-    const bv = key === "accrual" ? (b.accrual.actual ?? b.accrual.target ?? -1) : key === "endpoint" ? (b.primary_endpoints || [""])[0] : (b[key] || "");
+    const shown = (trial) => key === "accrual" ? (trial.accrual.actual ?? trial.accrual.target ?? -1) : key === "endpoint" ? (trial.primary_endpoints || [""])[0] : key === "site" ? siteBrief(trial).text : (trial[key] || "");
+    const av = shown(a);
+    const bv = shown(b);
     if (av < bv) return -1 * state.dir;
     if (av > bv) return 1 * state.dir;
     return (a.name || "").localeCompare(b.name || "");
@@ -503,7 +611,7 @@ function render() {
   $("rows").innerHTML = rows.map(t => {
     const id = esc(t.id);
     const open = state.open === t.id;
-    return `<tr class="data" data-id="${id}"><td><div class="name">${starBtn(t.id)} ${esc(t.name || t.title)}</div><div class="sub">${esc(t.nct || t.isrctn || "")} ${roleChip(t.rt_role)}</div></td><td>${esc((t.groups || []).slice(0, 3).join(", "))}</td><td>${esc(phaseText(t))}</td><td>${esc(t.status || "")}</td><td>${esc(accrualText(t))}<div>${qChip(t.accrual.quality)}</div></td><td>${esc((t.primary_endpoints || [])[0] || "")}</td><td>${esc(whereText(t))}</td><td>${esc(broughtIn(t))}${onCtsuList(t) && t.source_pipeline !== "ctsu" ? `<div class="sub">Pulled from the CTSU tracker</div>` : ""}</td></tr>${open ? `<tr class="detail"><td colspan="8">${detail(t)}</td></tr>` : ""}`;
+    return `<tr class="data" data-id="${id}"><td><div class="name">${starBtn(t.id)} ${esc(t.name || t.title)}</div><div class="sub">${esc(t.nct || t.isrctn || "")} ${roleChip(t.rt_role)}</div></td>${siteCell(siteBrief(t))}<td>${esc((t.groups || []).slice(0, 3).join(", "))}</td><td>${esc(phaseText(t))}</td><td>${esc(t.status || "")}</td><td>${esc(accrualText(t))}<div>${qChip(t.accrual.quality)}</div></td><td>${esc((t.primary_endpoints || [])[0] || "")}</td><td>${esc(whereText(t))}</td><td>${esc(broughtIn(t))}${onCtsuList(t) && t.source_pipeline !== "ctsu" ? `<div class="sub">Pulled from the CTSU tracker</div>` : ""}</td></tr>${open ? `<tr class="detail"><td colspan="9">${detail(t)}</td></tr>` : ""}`;
   }).join("");
 }
 document.querySelector("thead").onclick = ev => {
@@ -709,10 +817,55 @@ addFilterRow("role", "RT role", [
   ["Transplant / cellular therapy", "Transplant / cellular therapy"], ["Surgery", "Surgery"],
   ["Imaging", "Imaging"], ["Registry / biospecimen", "Registry / biospecimen"],
 ], ["beam", "RT-focused", "RT component", "Radiopharmaceutical"], "RT roles");
-const burdenSites = ["Oligoprogressive disease", "Oligometastatic disease", "Polymetastatic disease", "Metastatic disease"];
-const diseaseOrder = ["Breast", "GU", "NSCLC", "SCLC", "Lung, other", "Head and neck", "CNS", "GI", "Gynecologic", "Lymphoma", "Hematologic", "Sarcoma", "Skin", "Mixed histology", "Other"];
-const diseases = diseaseOrder.filter(site => DATA.trials.some(t => (t.disease_sites || []).includes(site))).concat(burdenSites);
-addFilterRow("disease", "Disease", diseases.map(site => [site, site]), diseases);
+const BURDEN_MENU = [
+  ["Oligoprogressive", "Oligoprogressive"],
+  ["Oligometastatic", "Oligometastatic"],
+  ["Oligopersistent", "Oligopersistent"],
+  ["Polymetastatic", "Polymetastatic"],
+  ["Metastatic, burden not specified", "Metastatic, burden not specified"],
+  ["Curative / definitive", "Curative / definitive"],
+  ["Mixed", "Mixed"],
+];
+(function addDiseaseFilter() {
+  const present = new Set(DATA.trials.flatMap(t => t.disease_sites || []));
+  const items = [];
+  const addFlat = (site) => { if (present.has(site)) items.push({value: site, text: site}); };
+  addFlat("Breast");
+  addFlat("GU");
+  items.push({parent: "lung", text: "Lung, Mediastinum and Pleura"});
+  [["NSCLC", "NSCLC"], ["SCLC", "SCLC"], ["Lung, other", "Other lung"]].forEach(([value, text]) => items.push({value, text, child: "lung"}));
+  ["Head and neck", "CNS", "GI", "Gynecologic"].forEach(addFlat);
+  items.push({parent: "heme", text: "Hematologic"});
+  [["Lymphoma", "Lymphoma"], ["Hematologic", "Other hematologic"]].forEach(([value, text]) => items.push({value, text, child: "heme"}));
+  ["Sarcoma", "Skin"].forEach(addFlat);
+  items.push({value: "other-mixed", text: "Other / mixed histology"});
+  const leaves = items.filter(item => item.value).map(item => [item.value, item.text]);
+  FILTERS.disease = leaves.map(([value]) => value);
+  FILTER_META.disease = {label: "Disease", options: leaves, selected: FILTERS.disease.slice(), defaultLabel: ""};
+  state.disease = new Set(FILTERS.disease);
+  const row = document.createElement("div");
+  row.className = "filter-row";
+  row.innerHTML = `<span class="filter-name">Disease</span><div class="choice-wrap"><button type="button" class="choice-btn" id="choice-disease" aria-expanded="false" aria-controls="panel-disease"></button><div class="choice-panel" id="panel-disease" hidden><label class="check all"><input type="checkbox" data-all="disease" checked> All</label>${items.map(item => {
+    if (item.parent) return `<label class="check"><input type="checkbox" data-parent="${esc(item.parent)}" checked> ${esc(item.text)}</label>`;
+    const labelClass = item.child ? "check choice-child" : "check";
+    return `<label class="${labelClass}"><input type="checkbox" name="disease" value="${esc(item.value)}"${item.child ? ` data-child="${esc(item.child)}"` : ""} checked> ${esc(item.text)}</label>`;
+  }).join("")}</div></div>`;
+  $("filters").appendChild(row);
+  syncAllBox(row);
+  paintChoice("disease");
+  const btn = row.querySelector(".choice-btn");
+  const panel = row.querySelector(".choice-panel");
+  btn.onclick = ev => {
+    const opening = panel.hidden;
+    closeChoicePanels(opening ? panel : null);
+    const country = $("country-panel");
+    if (country) country.hidden = true;
+    panel.hidden = !opening;
+    btn.setAttribute("aria-expanded", String(opening));
+    ev.stopPropagation();
+  };
+})();
+addFilterRow("burden", "Disease burden", BURDEN_MENU, BURDEN_MENU.map(([value]) => value), "All burdens");
 const countryCounts = {};
 DATA.trials.forEach(t => countryKeys(t).forEach(country => { countryCounts[country] = (countryCounts[country] || 0) + 1; }));
 countries = Object.keys(countryCounts).sort((a, b) => (countryCounts[b] - countryCounts[a]) || a.localeCompare(b));
@@ -737,7 +890,7 @@ function syncMaster() {
   master.indeterminate = !complete && (filtersAny || state.country.size > 0);
 }
 function setEveryFilter(on) {
-  document.querySelectorAll('#filters input[type="checkbox"][name]').forEach(box => { box.checked = on; });
+  document.querySelectorAll('#filters input[type="checkbox"][name], #filters input[data-parent]').forEach(box => { box.checked = on; });
   Object.entries(FILTERS).forEach(([key, values]) => { state[key] = new Set(on ? values : []); });
   document.querySelectorAll("#filters .filter-row").forEach(row => {
     if (row.querySelector("input[data-all]")) syncAllBox(row);
@@ -813,15 +966,34 @@ $("filters").addEventListener("change", ev => {
   if (box.dataset.all) {
     const boxes = [...row.querySelectorAll('input[type="checkbox"]:not([data-all])')];
     boxes.forEach(item => { item.checked = box.checked; });
-    state[box.dataset.all] = new Set(box.checked ? boxes.map(item => item.value) : []);
+    const leaves = boxes.filter(item => item.name);
+    state[box.dataset.all] = new Set(box.checked ? leaves.map(item => item.value) : []);
     box.indeterminate = false;
     paintChoice(box.dataset.all);
     syncMaster();
     render();
     return;
   }
+  if (box.dataset.parent) {
+    const kids = [...row.querySelectorAll(`input[data-child="${box.dataset.parent}"]`)];
+    kids.forEach(item => {
+      item.checked = box.checked;
+      if (box.checked) state.disease.add(item.value);
+      else state.disease.delete(item.value);
+    });
+    syncAllBox(row);
+    paintChoice("disease");
+    syncMaster();
+    render();
+    return;
+  }
   if (box.checked) state[box.name].add(box.value);
   else state[box.name].delete(box.value);
+  if (box.dataset.child) {
+    const kids = [...row.querySelectorAll(`input[data-child="${box.dataset.child}"]`)];
+    const parent = row.querySelector(`input[data-parent="${box.dataset.child}"]`);
+    if (parent) parent.checked = kids.every(item => item.checked);
+  }
   syncAllBox(row);
   paintChoice(box.name);
   syncMaster();
@@ -1101,7 +1273,8 @@ function worldwideName(t) {
 function trialArticle(t, mode) {
   const name = worldwideName(t);
   const meta = [phaseText(t), (t.groups || []).slice(0, 3).join(", "), t.status || "", t.nct || t.isrctn || "", onCtsuList(t) ? "Pulled from the CTSU tracker" : ""].filter(Boolean).join(" · ");
-  const site = (t.disease_sites || []).filter(Boolean).join("; ") || "Site not stated";
+  const brief = siteBrief(t);
+  const site = brief.text === "Variety" && brief.title ? brief.title : (brief.text || "Site not stated");
   const steps = (t.brief && t.brief.schema && t.brief.schema.length) ? t.brief.schema : (t.registry_schema || []);
   const schema = steps.length ? (mode === "brief" ? briefSchema(steps) : schemaBlocks(steps)) : "";
   const accrualValue = mode === "comprehensive" ? accrualText(t) : "";
