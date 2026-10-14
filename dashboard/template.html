@@ -49,6 +49,11 @@
   .country-panel { position: absolute; z-index: 6; top: calc(100% + 4px); left: 0; width: min(360px, 86vw); background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; }
   .country-panel input[type="search"] { width: 100%; min-width: 0; margin: 0 0 6px; }
   .country-list { max-height: 260px; overflow: auto; display: flex; flex-direction: column; gap: 4px; padding-top: 4px; }
+  .choice-wrap { position: relative; }
+  .choice-btn { position: relative; font: 14px/1.3 sans-serif; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 28px 6px 10px; min-width: 220px; max-width: 420px; text-align: left; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .choice-btn::after { content: ""; position: absolute; right: 10px; top: 50%; margin-top: -2px; border: 5px solid transparent; border-top-color: #5c6b7a; }
+  .choice-panel { position: absolute; z-index: 7; top: calc(100% + 4px); left: 0; min-width: 260px; max-width: min(420px, 86vw); max-height: 320px; overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+  .choice-panel[hidden] { display: none; }
   input[type="checkbox"] { margin: 0; }
   table { width: 100%; border-collapse: collapse; background: var(--card); margin-top: 12px; font-size: 14px; }
   th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
@@ -222,19 +227,72 @@ function syncAllBox(row) {
 }
 
 const FILTERS = {};
+const FILTER_META = {};
+const ALL_LABEL = {
+  phase: "All phases", status: "All statuses", role: "All RT roles", disease: "All diseases",
+  quality: "All accrual", source: "All sources", brief: "All briefs",
+};
 let countries = [];
-function addFilterRow(key, label, options, selected) {
+function choiceLabel(key) {
+  const meta = FILTER_META[key];
+  const picked = meta.options.filter(([value]) => state[key].has(value));
+  if (!picked.length) return "None selected";
+  if (picked.length === meta.options.length) return ALL_LABEL[key] || ("All " + meta.label.toLowerCase());
+  const sameDefault = meta.selected.length === picked.length && meta.selected.every(value => state[key].has(value));
+  if (sameDefault && meta.defaultLabel) return meta.defaultLabel;
+  if (picked.length > 3) return picked.length + " selected";
+  return picked.map(([, text]) => text).join(", ");
+}
+function paintChoice(key) {
+  const btn = $("choice-" + key);
+  if (!btn) return;
+  const text = choiceLabel(key);
+  btn.textContent = text;
+  btn.title = text;
+}
+function paintChoices() { Object.keys(FILTERS).forEach(paintChoice); }
+function closeChoicePanels(except) {
+  document.querySelectorAll(".choice-panel").forEach(panel => {
+    if (panel === except) return;
+    panel.hidden = true;
+    const btn = panel.parentElement && panel.parentElement.querySelector(".choice-btn");
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  });
+}
+function addFilterRow(key, label, options, selected, defaultLabel) {
   FILTERS[key] = options.map(([value]) => value);
+  FILTER_META[key] = { label, options, selected: selected.slice(), defaultLabel: defaultLabel || "" };
   state[key] = new Set(selected);
   const row = document.createElement("div");
   row.className = "filter-row";
   const allOn = options.every(([value]) => selected.includes(value));
-  row.innerHTML = `<span class="filter-name">${esc(label)}</span><label class="check all"><input type="checkbox" data-all="${esc(key)}"${allOn ? " checked" : ""}> All</label>` + options.map(([value, text]) =>
+  row.innerHTML = `<span class="filter-name">${esc(label)}</span><div class="choice-wrap"><button type="button" class="choice-btn" id="choice-${esc(key)}" aria-expanded="false" aria-controls="panel-${esc(key)}"></button><div class="choice-panel" id="panel-${esc(key)}" hidden><label class="check all"><input type="checkbox" data-all="${esc(key)}"${allOn ? " checked" : ""}> All</label>${options.map(([value, text]) =>
     `<label class="check"><input type="checkbox" name="${esc(key)}" value="${esc(value)}"${selected.includes(value) ? " checked" : ""}> ${esc(text)}</label>`
-  ).join("");
+  ).join("")}</div></div>`;
   $("filters").appendChild(row);
   syncAllBox(row);
+  paintChoice(key);
+  const btn = row.querySelector(".choice-btn");
+  const panel = row.querySelector(".choice-panel");
+  btn.onclick = ev => {
+    const opening = panel.hidden;
+    closeChoicePanels(opening ? panel : null);
+    const country = $("country-panel");
+    if (country) country.hidden = true;
+    panel.hidden = !opening;
+    btn.setAttribute("aria-expanded", String(opening));
+    ev.stopPropagation();
+  };
 }
+document.addEventListener("click", ev => {
+  if (!ev.target.closest(".choice-wrap")) closeChoicePanels(null);
+});
+document.addEventListener("keydown", ev => {
+  if (ev.key !== "Escape") return;
+  closeChoicePanels(null);
+  const country = $("country-panel");
+  if (country) country.hidden = true;
+});
 
 function esc(v) { return String(v ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
 function statedPhase(t) {
@@ -638,21 +696,21 @@ function trialBlob(t) {
 addFilterRow("phase", "Phase", [
   ["2", "Phase 2"], ["2/3", "Phase 2/3"], ["3", "Phase 3"], ["NA", "Not applicable"],
   ["cohort", "Cohorts"], ["unstated", "Not stated"], ["1", "Phase 1"], ["1/2", "Phase 1/2"], ["other", "Other"],
-], ["2", "2/3", "3", "cohort"]);
+], ["2", "2/3", "3", "cohort"], "Phase 2, 2/3, 3, and cohorts");
 addFilterRow("status", "Status", [
   ["not yet recruiting", "Not yet recruiting"], ["recruiting", "Recruiting"],
   ["enrolling by invitation", "Enrolling by invitation"], ["closed to accrual", "Closed to accrual"],
   ["completed", "Completed"], ["suspended", "Suspended"], ["terminated", "Terminated"],
   ["withdrawn", "Withdrawn"], ["unknown", "Unknown"],
-], ["recruiting"]);
+], ["recruiting"], "Recruiting");
 addFilterRow("role", "RT role", [
   ["beam", "External beam and brachytherapy"],
   ["RT-focused", "RT-focused"], ["RT component", "RT component"], ["Radiopharmaceutical", "Radiopharmaceutical"],
   ["Systemic therapy", "Systemic therapy"], ["Cancer control", "Cancer control"],
   ["Transplant / cellular therapy", "Transplant / cellular therapy"], ["Surgery", "Surgery"],
   ["Imaging", "Imaging"], ["Registry / biospecimen", "Registry / biospecimen"],
-], ["beam", "RT-focused", "RT component", "Radiopharmaceutical"]);
-const diseaseOrder = ["Breast", "GU", "NSCLC", "SCLC", "Lung, other", "Head and neck", "CNS", "GI", "Gynecologic", "Lymphoma", "Hematologic", "Sarcoma", "Skin", "Oligometastatic", "Mixed histology", "Other"];
+], ["beam", "RT-focused", "RT component", "Radiopharmaceutical"], "RT roles");
+const diseaseOrder = ["Breast", "GU", "NSCLC", "SCLC", "Lung, other", "Head and neck", "CNS", "GI", "Gynecologic", "Lymphoma", "Hematologic", "Sarcoma", "Skin", "Oligoprogressive disease", "Oligometastatic disease", "Polymetastatic disease", "Mixed histology", "Other"];
 const diseases = diseaseOrder.filter(site => DATA.trials.some(t => (t.disease_sites || []).includes(site)));
 addFilterRow("disease", "Disease", diseases.map(site => [site, site]), diseases);
 const countryCounts = {};
@@ -684,6 +742,7 @@ function setEveryFilter(on) {
   document.querySelectorAll("#filters .filter-row").forEach(row => {
     if (row.querySelector("input[data-all]")) syncAllBox(row);
   });
+  paintChoices();
   state.country = new Set(on ? countries : []);
   paintCountry();
   syncMaster();
@@ -716,7 +775,10 @@ function addCountryFilter(list) {
   $("country-btn").onclick = () => {
     const panel = $("country-panel");
     panel.hidden = !panel.hidden;
-    if (!panel.hidden) $("country-q").focus();
+    if (!panel.hidden) {
+      closeChoicePanels(null);
+      $("country-q").focus();
+    }
   };
   $("country-q").oninput = () => paintCountry();
   $("country-panel").addEventListener("change", ev => {
@@ -753,6 +815,7 @@ $("filters").addEventListener("change", ev => {
     boxes.forEach(item => { item.checked = box.checked; });
     state[box.dataset.all] = new Set(box.checked ? boxes.map(item => item.value) : []);
     box.indeterminate = false;
+    paintChoice(box.dataset.all);
     syncMaster();
     render();
     return;
@@ -760,6 +823,7 @@ $("filters").addEventListener("change", ev => {
   if (box.checked) state[box.name].add(box.value);
   else state[box.name].delete(box.value);
   syncAllBox(row);
+  paintChoice(box.name);
   syncMaster();
   render();
 });

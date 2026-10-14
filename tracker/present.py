@@ -46,7 +46,9 @@ DISEASE_RULES = [
     ("Hematologic", re.compile(r"leukemia|leukaemia|myeloma|myelodysplas", re.I)),
     ("Sarcoma", re.compile(r"sarcoma", re.I)),
     ("Skin", re.compile(r"melanoma|merkel|cutaneous|skin cancer", re.I)),
-    ("Oligometastatic", re.compile(r"oligometasta|oligoprogress", re.I)),
+    ("Oligoprogressive disease", re.compile(r"(?<!non[-\s])\boligop", re.I)),
+    ("Oligometastatic disease", re.compile(r"(?<!non[-\s])\boligom", re.I)),
+    ("Polymetastatic disease", re.compile(r"(?<!non[-\s])\bpolymetast", re.I)),
     ("Mixed histology", re.compile(r"mixed histolog|multiple histolog|various histolog|any solid tumou?r|basket trial", re.I)),
 ]
 
