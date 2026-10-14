@@ -52,7 +52,7 @@ The EU CTIS public search API returned HTTP 403 (missing authentication). Countr
 
 RT-focused means radiotherapy is named in the title or is the randomized question. RT component means protocol-specified external-beam or brachytherapy radiotherapy that is not the randomized question. Radiopharmaceuticals are a separate role: a therapeutic isotope without protocol-specified external-beam or brachytherapy. A trial that combines Lu-177 or SIRT with EBRT stays RT-focused or RT component. Imaging tracers (Ga-68, F-18, FDG) are excluded. Phase 1 studies stay in the file and are hidden until that phase box is checked.
 
-When a registry field disagrees with a group page or with an earlier description, the registry phase, status, population, and primary endpoint are kept, and the disagreement is stored with the date checked.
+When a registry field disagrees with a group page or with an earlier description, the registry status, population, and primary endpoint are kept, and the disagreement is stored with the date checked. A ClinicalTrials.gov phase of not applicable is listed as phase 2, 2/3, or 3 when the trial's own text states that phase. The registry value stays on the disagreement.
 
 ## Rebuild
 
@@ -62,6 +62,6 @@ From this directory:
 python3 build.py
 ```
 
-`--refresh` ignores cached downloads for every pipeline, not only ClinicalTrials.gov. Cached pages live in `data/cache/`. The build reads the CTSU export and does not write into that project. When that folder is absent, as it is on GitHub Actions, the build reads the published CTSU page at https://jryck3.github.io/CTSU-Tracker/. A full rebuild keeps protocol briefs and patient materials from the previous `data/trials.json` when the protocol library is not on that machine, and fills a still-empty brief from the CTSU export. `data/acceptance.md` checks twelve sample trials after each build.
+`--refresh` ignores cached downloads for every pipeline, not only ClinicalTrials.gov. Cached pages live in `data/cache/`. The build reads the CTSU export and does not write into that project. When that folder is absent, as it is on GitHub Actions, the build reads the published CTSU page at https://jryck3.github.io/CTSU-Tracker/. A full rebuild keeps protocol briefs and patient materials from the previous `data/trials.json` when the protocol library is not on that machine, and fills a still-empty brief from the CTSU export. `data/acceptance.md` checks the acceptance sample after each build.
 
 New studies are added by `.github/workflows/refresh.yml` (Monday 15:00 UTC, also runnable by hand). It runs `python build.py --refresh` and commits `data/trials.json`, `docs/index.html`, and `data/acceptance.md` when the acceptance check passes. The Sunday paper-link workflow is a different job and does not add trials.

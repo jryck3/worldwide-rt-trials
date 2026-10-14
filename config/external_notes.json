@@ -72,5 +72,13 @@
       "source": "Woolf D, Downs N, Sutton C, et al. QUARTZ LUNG, a candidate-specific trial within the TOURIST platform. Lung Cancer. 2026;212:109241. The abstract states that 20 patients had been recruited.",
       "url": "https://knowledge.lancashire.ac.uk/id/eprint/58472/"
     }
+  },
+  "NCT06882499": {
+    "countries_listed": ["Australia"],
+    "notes": [
+      "Connolly et al., BMJ Open 2026 (PMID 42692526) is the phase II protocol. ClinicalTrials.gov codes the phase as not applicable. The protocol plans accrual from August 2026. The 18 September 2026 registry update still says not yet recruiting, with an estimated start of 1 November 2026.",
+      "The protocol places the trial in Australian tertiary centres. ClinicalTrials.gov lists no sites. Preferred SABR dose is 20 Gy in one fraction when feasible.",
+      "Primary endpoint is time to treatment failure: progression not amenable to SABR, stopping systemic therapy, or death. The sample size of 74 assumes a median of 6 months versus 11 months, 80% power, and a one-sided 5% alpha."
+    ]
   }
 }

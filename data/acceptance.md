@@ -4,7 +4,7 @@
 - Name: SABR-COMET-3
 - Registry: NCT03862911
 - Group: British Columbia Cancer Agency, Cancer Trials Ireland, BC Cancer
-- Phase: NA; record text says phase 3
+- Phase: 3
 - Status: closed to accrual
 - Accrual: 330 (target-only) target 330
 - Primary endpoint: Overall survival
@@ -44,7 +44,7 @@
 - Name: SIMPLIFY-SABR-COMET
 - Registry: NCT05784428
 - Group: Robert Olson
-- Phase: NA; record text says phase 3
+- Phase: 3
 - Status: recruiting
 - Accrual: 598 (target-only) target 598
 - Primary endpoint: Adverse events; Change in patient-reported quality of life
@@ -59,7 +59,7 @@
 - Name: SARON
 - Registry: NCT02417662
 - Group: RTTQA, University College, London, UCL
-- Phase: NA; record text says phase 2
+- Phase: 2
 - Status: closed to accrual
 - Accrual: 140 (sponsor-posted) target None
 - Primary endpoint: Overall Survival
@@ -116,7 +116,7 @@
 - Name: PRINCE
 - Registry: ISRCTN17123858
 - Group: RTTQA, Southampton Clinical Trials Unit, NIHR, Christie
-- Phase: Not stated; record text says phase 3
+- Phase: 3
 - Status: recruiting
 - Accrual: 472 (target-only) target 472
 - Primary endpoint: Health utility measured using EORTC QLU-C10D Area Under the Curve (AUC; using trapezoidal rule) to derive a health utility score per year. Questionnaires completed: Screening/Baseline, week 4, week 6, week 8, week 12, week 14, month 4, month 6, month 9, month 12, month 15, month 18, month 21.
@@ -128,7 +128,7 @@
 - Name: QUARTZ LUNG
 - Registry: ISRCTN52137148
 - Group: RTTQA, Southampton Clinical Trials Unit, NIHR, Christie
-- Phase: Not stated; record text says phase 3
+- Phase: 3
 - Status: closed to accrual
 - Accrual: 448 (target-only) target 448; reported-once 20 (2026)
 - Primary endpoint: Health utility measured using EORTC QLU-C10D Area Under the Curve (AUC; using trapezoidal rule) to derive a health utility score per year. Questionnaire completed: Screening/Baseline, week 0-2, week 3, week 4, week 5, week 6, week 8, month 3, month 4, month 5, month 6.
@@ -143,7 +143,7 @@
 - Name: ARREST2
 - Registry: NCT05508464
 - Group: London Health Sciences Centre Research Institute OR Lawson Research Institute of St. Joseph's, London Health Sciences Centre
-- Phase: NA; record text says phase 2/3
+- Phase: 2/3
 - Status: recruiting
 - Accrual: 138 (target-only) target 138
 - Primary endpoint: Overall Survival
@@ -166,13 +166,15 @@
 - Name: AVATARII
 - Registry: NCT06882499
 - Group: Peter MacCallum Cancer Centre, Australia
-- Phase: NA; record text says phase 2
+- Phase: 2
 - Status: not yet recruiting
 - Accrual: 74 (target-only) target 74
-- Primary endpoint: The primary endpoint of this study is to measure the time to treatment failure between Arm A and Arm B.
+- Primary endpoint: Time to treatment failure
 - Source pipeline: ctgov (also ctgov)
 - Note: ClinicalTrials.gov last update posted 2026-09-18.
 - Note: ClinicalTrials.gov marks this enrollment as Estimated. It is a target, not an accrued headcount.
+- Note: Connolly et al., BMJ Open 2026 (PMID 42692526) is the phase II protocol. ClinicalTrials.gov codes the phase as not applicable. The protocol plans accrual from August 2026. The 18 September 2026 registry update still says not yet recruiting, with an estimated start of 1 November 2026.
+- Note: The protocol places the trial in Australian tertiary centres. ClinicalTrials.gov lists no sites. Preferred SABR dose is 20 Gy in one fraction when feasible.
 - Disagreement (phase): registry value: Not applicable ClinicalTrials.gov record text: The same ClinicalTrials.gov record describes the study as phase 2 in the record text.
 
 All 13 sample trials are present as their own rows.

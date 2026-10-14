@@ -146,6 +146,8 @@ def _endpoint_text(outcome):
     if measure and not _GENERIC_MEASURE.fullmatch(measure):
         return measure
     description = (outcome.get("description") or "").strip()
+    if re.search(r"\btime to treatment failure\b", description, re.I):
+        return "Time to treatment failure"
     sentence = re.split(r"(?<=[.])\s+", description, maxsplit=1)[0].strip()
     return sentence or measure
 
@@ -210,9 +212,9 @@ def parse_study(study):
     record["lead_group"] = lead
     record["groups"] = [lead] if lead else []
     record["collaborators"] = collaborators
-    record["phase"] = phase_code
     record["phase_code"] = phase_code
     record["phase_in_title"] = spoken
+    record["phase"] = spoken if phase_code == "NA" and spoken in {"2", "3", "2/3"} else phase_code
     record["status"] = CTGOV_STATUS.get(status.get("overallStatus"), "unknown")
     record["status_source"] = "ClinicalTrials.gov"
     record["status_checked"] = today_iso()

@@ -237,11 +237,16 @@ function addFilterRow(key, label, options, selected) {
 }
 
 function esc(v) { return String(v ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+function statedPhase(t) {
+  return ["2", "2/3", "3"].includes(t.phase_in_title) ? t.phase_in_title : "";
+}
 function phaseText(t) {
-  const code = t.phase || "Not stated";
+  const stated = statedPhase(t);
+  const registryBlank = t.phase === "NA" || t.phase === "Not Applicable" || !t.phase;
+  const code = registryBlank && stated ? stated : (t.phase || "Not stated");
   const map = { NA: "Not applicable", cohort: "Cohort", "2": "2", "3": "3", "2/3": "2/3", "1": "1", "1/2": "1/2" };
   let text = map[code] || code;
-  if (t.phase_in_title && t.phase_in_title !== t.phase) text += ` (record text: phase ${t.phase_in_title})`;
+  if (!(registryBlank && stated) && t.phase_in_title && t.phase_in_title !== t.phase) text += ` (record text: phase ${t.phase_in_title})`;
   return text;
 }
 function accrualText(t) {
@@ -265,9 +270,10 @@ function countryKeys(t) {
   return raw.map(country => country === "Korea" ? "South Korea" : country);
 }
 function phaseKey(t) {
+  const stated = statedPhase(t);
+  if ((t.phase === "NA" || t.phase === "Not Applicable" || !t.phase) && stated) return stated;
   if (["2", "2/3", "3", "NA", "1", "1/2"].includes(t.phase)) return t.phase;
   if (t.phase === "cohort" || t.record_kind === "platform" || t.record_kind === "cohort") return "cohort";
-  if (!t.phase && ["2", "2/3", "3"].includes(t.phase_in_title)) return "unstated";
   return "other";
 }
 function match(t) {

@@ -35,6 +35,12 @@ def apply_notes(store):
                 add_unique(trial["groups"], group)
             for note in extra.get("notes") or []:
                 add_unique(trial["accrual"]["notes"], note)
+            listed = False
+            for country in extra.get("countries_listed") or []:
+                add_unique(trial["countries_listed"], country)
+                listed = True
+            if listed:
+                country_limit(trial)
             if extra.get("reported"):
                 apply_accrual(trial, "reported-once", reported=extra["reported"])
             for item in extra.get("disagreements") or []:
