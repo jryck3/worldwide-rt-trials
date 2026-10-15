@@ -148,6 +148,7 @@
     <div class="digest-actions">
       <button class="btn digest-btn" id="print-mine-brief" type="button">Print brief PDF of filtered studies displayed below</button>
       <button class="btn digest-btn" id="print-mine-full" type="button">Print comprehensive PDF of filtered studies displayed below</button>
+      <button class="btn digest-btn" id="print-mine-detail" type="button">Print full PDF of filtered studies displayed below</button>
     </div>
     <div class="mine-tools">
       <div class="combo">
@@ -167,6 +168,7 @@
   <div class="digest-actions">
     <button class="btn digest-btn" id="print-explore-brief" type="button">Print brief PDF of the filtered studies, including later pages</button>
     <button class="btn digest-btn" id="print-explore-full" type="button">Print comprehensive PDF of the filtered studies, including later pages</button>
+    <button class="btn digest-btn" id="print-explore-detail" type="button">Print full PDF of the filtered studies, including later pages</button>
   </div>
   <button class="btn ghost" id="filter-toggle" type="button" aria-expanded="true" aria-controls="filters">Show/hide filters</button>
   <div class="filters" id="filters">
@@ -670,7 +672,7 @@ function render() {
     [DATA.trials.filter(t => t.brief_source === "protocol" || t.brief_source === "paper").length, "With a protocol or paper brief"],
   ].map(([n, label]) => `<div><b>${n}</b><span>${label}</span></div>`).join("");
   $("empty").hidden = rows.length > 0;
-  $("print-explore-brief").disabled = $("print-explore-full").disabled = !rows.length;
+  $("print-explore-brief").disabled = $("print-explore-full").disabled = $("print-explore-detail").disabled = !rows.length;
   const lib = DATA.ctsu_library;
   $("library").textContent = lib && lib.as_of ? `NCI protocol briefs from the CTSU protocol library as of ${lib.as_of}.` : "";
   const papers = DATA.paper_library;
@@ -778,7 +780,7 @@ function mineTrials() {
 function renderMine() {
   const list = mineTrials();
   $("share").disabled = $("clear").disabled = !store.list.length;
-  $("print-mine-brief").disabled = $("print-mine-full").disabled = !list.length;
+  $("print-mine-brief").disabled = $("print-mine-full").disabled = $("print-mine-detail").disabled = !list.length;
   $("mine").innerHTML = list.length
     ? list.map(card).join("")
     : `<div class="empty-mine"><b>No trials selected.</b> Search above, or click the star on a study in the table.</div>`;
@@ -1117,6 +1119,15 @@ const DIGEST_CSS = `
   header.run h1 { margin: 2px 0 0; font: 650 18pt/1.15 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f3a5f; }
   .when { margin: 4px 0 0; color: #5b6676; font: 10pt/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
   article.study { break-inside: avoid; page-break-inside: avoid; padding: 10px 0 12px; border-bottom: 1px solid #d5dde6; }
+  article.study.long { break-inside: auto; page-break-inside: auto; }
+  .brief h4 { margin: 8px 0 3px; font: 650 11pt/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f3a5f; }
+  .brief ul, .brief ol { margin: 2px 0 0; padding-left: 18px; }
+  .brief li { margin: 1px 0; }
+  .brief table { width: 100%; border-collapse: collapse; margin-top: 4px; font: 9pt/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .brief th, .brief td { border: 1px solid #d5dde6; padding: 3px 6px; text-align: left; vertical-align: top; }
+  .brief .caveat, .brief .detail-grid { margin: 4px 0; font: 9pt/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #3d4756; }
+  .brief .flow { list-style: none; margin: 0; padding: 0; }
+  .brief .flow > li { display: block; margin: 6px 0; }
   article.study h2 { margin: 0; font: 650 13pt/1.25 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f3a5f; }
   .meta, .title, .accrual, .none { margin: 3px 0 0; }
   .meta, .accrual, .none { font: 9.5pt/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #3d4756; }
@@ -1365,13 +1376,17 @@ function trialArticle(t, mode) {
   const meta = [phaseText(t), (t.groups || []).slice(0, 3).join(", "), t.status || "", t.nct || t.isrctn || "", onCtsuList(t) ? "Pulled from the CTSU tracker" : ""].filter(Boolean).join(" · ");
   const brief = siteBrief(t);
   const site = brief.text === "Variety" && brief.title ? brief.title : (brief.text || "Site not stated");
+  const accrualValue = mode === "brief" ? "" : accrualText(t);
+  const accrual = accrualValue && accrualValue !== "No number" ? `<p class="accrual">${esc(accrualValue)}</p>` : "";
+  const title = t.title && t.title !== name ? `<p class="title">${esc(t.title)}</p>` : "";
+  const head = `<h2>${esc(name)}</h2><p class="meta">${esc(meta)}</p>${title}`;
+  if (mode === "detail") {
+    return `<article class="study long" data-site="${esc(site)}">${head}${briefHtml(t)}${accrual}</article>`;
+  }
   const steps = (t.brief && t.brief.schema && t.brief.schema.length) ? t.brief.schema : (t.registry_schema || []);
   const schema = steps.length ? (mode === "brief" ? briefSchema(steps) : schemaBlocks(steps)) : "";
-  const accrualValue = mode === "comprehensive" ? accrualText(t) : "";
-  const accrual = accrualValue && accrualValue !== "No number" ? accrualValue : "";
   const none = schema ? "" : (mode === "brief" && (t.brief || steps.length) ? "" : `<p class="none">${t.brief ? "No schema is on file for this protocol brief." : "No protocol brief is on file."}</p>`);
-  const title = t.title && t.title !== name ? `<p class="title">${esc(t.title)}</p>` : "";
-  return `<article class="study" data-site="${esc(site)}"><h2>${esc(name)}</h2><p class="meta">${esc(meta)}</p>${title}${schema ? `<div class="schema">${schema}</div>` : none}${accrual ? `<p class="accrual">${esc(accrual)}</p>` : ""}</article>`;
+  return `<article class="study" data-site="${esc(site)}">${head}${schema ? `<div class="schema">${schema}</div>` : none}${accrual}</article>`;
 }
 
 function worldwideFilters() {
@@ -1393,9 +1408,14 @@ function worldwideFilters() {
 
 function openDigest(trials, heading, mode) {
   if (!trials.length) return;
-  if (trials.length > DIGEST_LIMIT && !confirm("You have selected to print more than 25 studies. Are you sure?")) return;
+  const full = mode === "detail";
+  const limit = full ? 5 : DIGEST_LIMIT;
+  const prompt = full
+    ? "Unlike the comprehensive reports, these reports print all details on this study. You have selected to print more than 5 studies. Are you sure?"
+    : "You have selected to print more than 25 studies. Are you sure?";
+  if (trials.length > limit && !confirm(prompt)) return;
   const when = new Date().toLocaleString("en-US", {dateStyle: "long", timeStyle: "short"});
-  const kind = mode === "brief" ? "Brief" : "Comprehensive";
+  const kind = mode === "brief" ? "Brief" : full ? "Full" : "Comprehensive";
   const now = new Date();
   const stamp = String(now.getMonth() + 1).padStart(2, "0") + String(now.getDate()).padStart(2, "0") + now.getFullYear();
   const html = digestDocument({
@@ -1418,6 +1438,13 @@ function openDigest(trials, heading, mode) {
 
 $("print-mine-brief").onclick = () => openDigest(mineTrials(), "My trials", "brief");
 $("print-mine-full").onclick = () => openDigest(mineTrials(), "My trials", "comprehensive");
+$("print-mine-detail").onclick = () => printMine("detail");
+async function printMine(kind) {
+  const rows = mineTrials();
+  const shards = [...new Set(rows.map(t => t.detail_shard).filter(shard => shard != null))];
+  await Promise.all(shards.map(loadShard));
+  openDigest(rows, "My trials", kind);
+}
 async function printExplore(kind) {
   const rows = exploreRows();
   const shards = [...new Set(rows.map(t => t.detail_shard).filter(shard => shard != null))];
@@ -1426,6 +1453,7 @@ async function printExplore(kind) {
 }
 $("print-explore-brief").onclick = () => printExplore("brief");
 $("print-explore-full").onclick = () => printExplore("comprehensive");
+$("print-explore-detail").onclick = () => printExplore("detail");
 
 store.load();
 renderMine();
