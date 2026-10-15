@@ -17,6 +17,7 @@
     --red: #8d2f2f;
   }
   * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { margin: 0; font: 15px/1.45 "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif; color: var(--ink); background: var(--paper); }
   header { background: #14304f; color: #fff; padding: 22px 28px 18px; }
   .head-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
@@ -41,26 +42,35 @@
   .filter-name { font: 650 12px/1.3 sans-serif; color: var(--muted); }
   .check { display: flex; flex-direction: row; align-items: center; gap: 5px; font: 14px/1.3 sans-serif; color: var(--ink); }
   .check.all { font: 400 12px/1.3 sans-serif; color: #8b98a6; margin-right: 10px; }
-  input[type="search"] { font: 14px/1.3 sans-serif; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; background: #fff; min-width: 280px; }
+  input[type="search"] { font: 16px/1.3 sans-serif; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; background: #fff; min-width: 0; width: min(320px, 100%); max-width: 100%; }
   .search-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .country-wrap { position: relative; }
-  .country-btn { font: 14px/1.3 sans-serif; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; min-width: 220px; text-align: left; cursor: pointer; }
-  .country-panel { position: absolute; z-index: 6; top: calc(100% + 4px); left: 0; width: min(360px, calc(100vw - 24px)); max-height: min(420px, 70vh); overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; }
-  .pager { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
-  .type-btn { font: inherit; font-size: 13px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 2px 8px; cursor: pointer; }
-  .type-popover { position: absolute; z-index: 8; max-width: calc(100vw - 24px); max-height: 50vh; overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
-  @media (max-width: 760px) {
-    thead { display: none; }
-    table, tbody, tr.data, tr.data td { display: block; width: auto; max-width: none; }
-    tr.data { border: 1px solid var(--line); border-radius: 10px; margin: 0 0 10px; padding: 8px; background: #fff; }
-  }
+  .country-btn { font: 16px/1.3 sans-serif; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; min-width: 0; max-width: 100%; text-align: left; cursor: pointer; }
+  .country-panel { position: absolute; z-index: 6; top: calc(100% + 4px); left: 0; width: min(360px, calc(100vw - 16px)); max-height: min(420px, 70vh); overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; }
+  .pager { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+  .pager button { font: 16px/1.2 sans-serif; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+  .pager button:disabled { opacity: .45; }
+  .type-anchor { position: relative; display: inline-block; max-width: 100%; min-width: 0; }
+  .type-btn { font: inherit; font-size: 13px; background: #fff; border: 1px solid var(--line); border-radius: 7px; padding: 6px 10px; cursor: pointer; }
+  .type-popover { position: absolute; z-index: 8; max-width: min(320px, calc(100vw - 16px)); max-height: min(50vh, 320px); overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+  .filters[hidden], .pager[hidden], .country-panel[hidden], .choice-panel[hidden], .type-popover[hidden] { display: none; }
+  .result-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0; }
+  .m-sort { display: none; gap: 8px; align-items: center; }
+  .m-sort select, #m-dir { font: 16px/1.2 sans-serif; min-height: 44px; border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 8px 10px; }
+  .disclose { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 4px 8px; width: 100%; min-height: 44px; padding: 2px; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+  .disclose .chev { width: 10px; height: 10px; margin-top: 8px; border-right: 2px solid var(--blue); border-bottom: 2px solid var(--blue); transform: rotate(-45deg); }
+  .disclose[aria-expanded="true"] .chev { transform: rotate(45deg); margin-top: 5px; }
+  .trial-head { display: flex; gap: 6px; align-items: flex-start; min-width: 0; }
+  .disclose:focus-visible, .type-btn:focus-visible, .choice-btn:focus-visible, .country-btn:focus-visible, .star:focus-visible, .pager button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  .field-k { display: none; }
+  .print-note { color: var(--red); }
   .country-panel input[type="search"] { width: 100%; min-width: 0; margin: 0 0 6px; }
-  .country-list { max-height: 260px; overflow: auto; display: flex; flex-direction: column; gap: 4px; padding-top: 4px; }
+  .country-list { display: flex; flex-direction: column; gap: 4px; padding-top: 4px; }
   .choice-wrap { position: relative; }
-  .choice-btn { position: relative; font: 14px/1.3 sans-serif; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px 28px 6px 10px; min-width: 160px; max-width: 280px; text-align: left; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .choice-btn { position: relative; font: 16px/1.3 sans-serif; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 8px 28px 8px 10px; min-width: 0; max-width: 280px; text-align: left; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .choice-btn::after { content: ""; position: absolute; right: 10px; top: 50%; margin-top: -2px; border: 5px solid transparent; border-top-color: #5c6b7a; }
-  .choice-panel { position: absolute; z-index: 7; top: calc(100% + 4px); left: 0; min-width: 220px; max-width: calc(100vw - 24px); max-height: min(320px, 70vh); overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; display: flex; flex-direction: column; gap: 4px; }
-  .choice-panel[hidden] { display: none; }
+  .choice-panel { position: absolute; z-index: 7; top: calc(100% + 4px); left: 0; min-width: 0; max-width: min(320px, calc(100vw - 16px)); max-height: min(320px, 70vh); overflow: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px rgba(20, 30, 50, .12); padding: 8px; display: flex; flex-direction: column; gap: 4px; }
   input[type="checkbox"] { margin: 0; }
   table { width: 100%; border-collapse: collapse; background: var(--card); margin-top: 12px; font-size: 14px; }
   th.site-col, td.site-cell { width: 132px; max-width: 132px; overflow-wrap: anywhere; }
@@ -83,8 +93,9 @@
   .statusq { background: #eef1f4; }
   .empty { padding: 28px; color: var(--muted); }
   a { color: var(--blue); }
-  .detail-grid { display: grid; grid-template-columns: 180px 1fr; gap: 4px 10px; font-size: 14px; }
+  .detail-grid { display: grid; grid-template-columns: minmax(140px, 180px) minmax(0, 1fr); gap: 4px 10px; font-size: 14px; }
   .detail-grid b { color: var(--muted); font-weight: 600; }
+  .detail-grid > div, .detail-grid > b, .paper, .paper a, .detail-grid a { min-width: 0; overflow-wrap: anywhere; }
   .paper + .paper { margin-top: 8px; }
   .mine-panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin: 8px 0 16px; }
   .mine-panel h2 { margin: 0 0 10px; font-size: 18px; }
@@ -107,7 +118,7 @@
   .metric .ml { color: var(--muted); font-size: 12px; }
   .bar { height: 10px; background: #e6ebf1; border-radius: 6px; overflow: hidden; }
   .bar > span { display: block; height: 100%; background: var(--blue); }
-  .star { border: 0; background: transparent; cursor: pointer; color: #b7791f; font-size: 18px; line-height: 1; padding: 0 4px 0 0; }
+  .star { border: 0; background: transparent; cursor: pointer; color: #b7791f; font-size: 18px; line-height: 1; min-width: 44px; min-height: 44px; padding: 0; }
   .empty-mine { color: var(--muted); border: 1px dashed var(--line); border-radius: 10px; padding: 14px; }
   .patient-materials { margin: 0 0 14px; padding: 12px 14px; border: 1px solid var(--line); border-left: 4px solid var(--blue); border-radius: 8px; background: #fff; }
   .patient-materials h4 { margin: 0 0 8px; font-size: 15px; color: var(--blue); }
@@ -130,6 +141,31 @@
   .pre { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; margin-top: 0; }
   .pre th, .pre td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; vertical-align: top; }
   .pre th { position: static; cursor: default; background: #f4f7fb; font-size: 12px; }
+  @media (max-width: 1100px) {
+    main { padding: 12px 12px 32px; }
+    .filters { display: grid; grid-template-columns: minmax(0, 1fr); }
+    .filter-row, .choice-wrap, .country-wrap, .search-tools { min-width: 0; max-width: 100%; width: 100%; }
+    .choice-btn, .country-btn, #filter-toggle { width: 100%; max-width: 100%; min-height: 44px; white-space: normal; }
+    .search-tools input { width: 100%; }
+    .m-sort { display: flex; flex-wrap: wrap; }
+    #results { display: block; width: 100%; background: transparent; margin-top: 0; }
+    #results > thead { display: none; }
+    #results > tbody { display: grid; gap: 10px; }
+    #results > tbody > tr.data { display: grid; gap: 2px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: #fff; min-width: 0; }
+    #results > tbody > tr.data > td { display: block; border: 0; padding: 3px 0; min-width: 0; overflow-wrap: anywhere; }
+    #results .field-k { display: block; font: 650 11px/1.3 sans-serif; color: var(--muted); letter-spacing: .03em; text-transform: uppercase; }
+    #results > tbody > tr.detail, #results > tbody > tr.detail > td { display: block; width: 100%; min-width: 0; }
+    #results > tbody > tr.detail > td { border: 0; padding: 4px 2px 12px; }
+    .detail-grid { grid-template-columns: minmax(0, 1fr); }
+    .detail-grid > b { margin-top: 8px; }
+    .brief .pre { display: block; width: 100%; }
+    .brief .pre thead { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .brief .pre tbody, .brief .pre tr, .brief .pre td { display: block; width: 100%; }
+    .brief .pre tr { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; margin: 0 0 8px; background: #fff; }
+    .brief .pre td { border: 0; padding: 4px 0; }
+    .brief .pre td::before { content: attr(data-label); display: block; font: 650 11px/1.3 sans-serif; color: var(--muted); letter-spacing: .03em; text-transform: uppercase; }
+    .card .x { min-width: 44px; min-height: 44px; }
+  }
 </style>
 </head>
 <body>
@@ -152,8 +188,9 @@
     </div>
     <div class="mine-tools">
       <div class="combo">
-        <input id="add-q" type="search" placeholder="Add a trial: name, NCT, ISRCTN, or group" autocomplete="off">
-        <ul id="add-list" hidden></ul>
+        <label class="sr-only" for="add-q">Add a trial</label>
+        <input id="add-q" type="search" placeholder="Add a trial: name, NCT, ISRCTN, or group" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="add-list" aria-autocomplete="list">
+        <ul id="add-list" role="listbox" hidden></ul>
       </div>
       <button class="btn" id="share" type="button">Copy share link</button>
       <button class="btn ghost" id="clear" type="button">Clear list</button>
@@ -170,17 +207,35 @@
     <button class="btn digest-btn" id="print-explore-full" type="button">Print comprehensive PDF of the filtered studies, including later pages</button>
     <button class="btn digest-btn" id="print-explore-detail" type="button">Print full PDF of the filtered studies, including later pages</button>
   </div>
-  <button class="btn ghost" id="filter-toggle" type="button" aria-expanded="true" aria-controls="filters">Show/hide filters</button>
+  <button class="btn ghost" id="filter-toggle" type="button" aria-expanded="true" aria-controls="filters">Hide filters</button>
   <div class="filters" id="filters">
     <div class="filter-row">
       <span class="filter-name">Search</span>
       <div class="search-tools">
+        <label class="sr-only" for="q">Search trials</label>
         <input id="q" type="search" placeholder="Name, NCT, ISRCTN, group, disease">
         <label class="check all"><input type="checkbox" id="master-all"> All</label>
       </div>
     </div>
   </div>
-  <table>
+  <div class="result-tools" id="results-start" tabindex="-1">
+    <div class="pager" id="pager-top" hidden></div>
+    <label class="m-sort">Sort
+      <select id="m-sort" aria-label="Sort trials">
+        <option value="name">Trial</option>
+        <option value="site">Cancer type</option>
+        <option value="lead_group">Group</option>
+        <option value="phase">Phase</option>
+        <option value="status">Status</option>
+        <option value="accrual">Accrual</option>
+        <option value="endpoint">Primary endpoint</option>
+        <option value="where">Where open</option>
+        <option value="source_pipeline">Brought in by</option>
+      </select>
+      <button type="button" id="m-dir">Ascending</button>
+    </label>
+  </div>
+  <table id="results">
     <thead>
       <tr>
         <th data-k="name">Trial</th>
@@ -269,6 +324,7 @@ function closeChoicePanels(except) {
   document.querySelectorAll(".choice-panel").forEach(panel => {
     if (panel === except) return;
     panel.hidden = true;
+    clearFloat(panel);
     const btn = panel.parentElement && panel.parentElement.querySelector(".choice-btn");
     if (btn) btn.setAttribute("aria-expanded", "false");
   });
@@ -292,14 +348,18 @@ function addFilterRow(key, label, options, selected, defaultLabel) {
     const opening = panel.hidden;
     closeChoicePanels(opening ? panel : null);
     const country = $("country-panel");
-    if (country) country.hidden = true;
+    if (country) { country.hidden = true; clearFloat(country); const countryBtn = $("country-btn"); if (countryBtn) countryBtn.setAttribute("aria-expanded", "false"); }
+    closeTypePopovers();
     panel.hidden = !opening;
     btn.setAttribute("aria-expanded", String(opening));
+    if (opening) placeFloat(btn, panel);
+    else clearFloat(panel);
     ev.stopPropagation();
   };
 }
 document.addEventListener("click", ev => {
   if (!ev.target.closest(".choice-wrap")) closeChoicePanels(null);
+  if (!ev.target.closest(".type-anchor")) closeTypePopovers();
 });
 document.addEventListener("keydown", ev => {
   if (ev.key !== "Escape") return;
@@ -456,11 +516,11 @@ function cancerTypeHtml(labels, id) {
   if (!clean.length) return "Not classified";
   if (clean.length <= 2 && clean.join("").length <= 40) return esc(clean.join(", "));
   const pop = `type-pop-${id}`;
-  return `<button type="button" class="type-btn" aria-expanded="false" aria-controls="${pop}">Multiple cancer types (${clean.length})</button><div class="type-popover" id="${pop}" hidden><ul>${clean.map(label => `<li>${esc(label)}</li>`).join("")}</ul></div>`;
+  return `<span class="type-anchor"><button type="button" class="type-btn" aria-expanded="false" aria-controls="${pop}">Multiple cancer types (${clean.length})</button><div class="type-popover" id="${pop}" hidden><ul>${clean.map(label => `<li>${esc(label)}</li>`).join("")}</ul></div></span>`;
 }
 function siteCell(t) {
   const labels = (t.cancer_types && t.cancer_types.length) ? t.cancer_types : [siteBrief(t).text];
-  return `<td class="site-cell">${cancerTypeHtml(labels, String(t.id).replace(/[^A-Za-z0-9_-]/g, ""))}</td>`;
+  return `<td class="site-cell" data-label="Cancer type"><span class="field-k">Cancer type</span>${cancerTypeHtml(labels, String(t.id).replace(/[^A-Za-z0-9_-]/g, ""))}</td>`;
 }
 function diseaseMatch(t) {
   const sites = (t.disease_sites && t.disease_sites.length) ? t.disease_sites : ["Other"];
@@ -512,8 +572,8 @@ function qChip(q) {
   const cls = q === "snapshot" ? "snap" : q === "target-only" ? "target" : q === "sponsor-posted" ? "posted" : q === "reported-once" ? "once" : "statusq";
   return `<span class="chip ${cls}">${esc(QUALITY[q] || q)}</span>`;
 }
-function assessRows(rows) {
-  return (rows || []).map(row => `<tr><td>${esc(row.item)}</td><td>${esc(row.window)}</td><td>${esc(row.note || "")}</td></tr>`).join("");
+function assessRows(rows, heads) {
+  return (rows || []).map(row => `<tr><td data-label="${esc(heads[0])}">${esc(row.item)}</td><td data-label="${esc(heads[1])}">${esc(row.window)}</td><td data-label="${esc(heads[2])}">${esc(row.note || "")}</td></tr>`).join("");
 }
 function schemaHtml(steps) {
   return (steps || []).map((step, i, all) => {
@@ -522,16 +582,18 @@ function schemaHtml(steps) {
   }).join("");
 }
 function briefHtml(t) {
+  if (t._detailPending && !t.brief && !t.registry_schema) return `<p class="caveat" role="status">Loading the protocol brief.</p>`;
+  if (t._detailError && !t.brief && !t.registry_schema) return `<p class="caveat" role="status">The study details did not load. <button type="button" class="retry-detail" data-retry="${esc(t.id)}">Try again</button></p>`;
   const b = t.brief;
   if (b) {
     const amendments = (b.amendments || []).map(item => `<li><b>${esc(item.date)}</b> ${esc(item.text)}</li>`).join("");
     const eligibility = (b.eligibility || []).map(item => `<li>${esc(item)}</li>`).join("");
     const submission = (b.submission || []).map(item => `<li><b>${esc(item.label)}</b> ${esc(item.text)}</li>`).join("");
-    const pre = assessRows(b.pretreatment);
-    const during = assessRows(b.during);
-    const follow = assessRows(b.followup);
-    const calendar = assessRows(b.calendar);
-    const specimens = assessRows(b.specimens);
+    const pre = assessRows(b.pretreatment, ["Assessment", "Window", "Note"]);
+    const during = assessRows(b.during, ["Assessment", "Timing", "Note"]);
+    const follow = assessRows(b.followup, ["Assessment", "Timing", "Note"]);
+    const calendar = assessRows(b.calendar, ["Assessment", "Timing", "Note"]);
+    const specimens = assessRows(b.specimens, ["Specimen", "Timing", "Note"]);
     const steps = schemaHtml(b.schema);
     const fromProtocolFile = !b.schema_source || /protocol on file|protocol page|CTSU/i.test(b.schema_source);
     const caveat = fromProtocolFile
@@ -637,31 +699,124 @@ function exploreRows() {
   });
   return rows;
 }
-const PAGE_SIZE = 50;
+function pageSize() {
+  return window.matchMedia("(max-width: 1100px)").matches ? 12 : 50;
+}
 let pageIndex = 0;
+let openToken = 0;
+let stickTo = null;
 const detailCache = {};
+const detailInflight = {};
 async function loadShard(shard) {
   if (shard == null) return [];
-  if (!detailCache[shard]) {
-    const response = await fetch(`details/${shard}.json`);
-    detailCache[shard] = response.ok ? await response.json() : [];
-    for (const row of detailCache[shard]) {
-      const trial = DATA.trials.find(item => item.id === row.id);
-      if (trial) Object.assign(trial, row);
-    }
+  if (detailCache[shard]) return detailCache[shard];
+  if (!detailInflight[shard]) {
+    detailInflight[shard] = fetch(`details/${shard}.json`).then(async response => {
+      if (!response.ok) throw new Error(String(response.status));
+      const rows = await response.json();
+      if (!Array.isArray(rows)) throw new Error("detail shape");
+      detailCache[shard] = rows;
+      rows.forEach(row => {
+        const trial = DATA.trials.find(item => item.id === row.id);
+        if (trial) Object.assign(trial, row);
+      });
+      return rows;
+    }).finally(() => { delete detailInflight[shard]; });
   }
-  return detailCache[shard];
+  return detailInflight[shard];
 }
 async function ensureDetail(t) {
   if (!t || t.detail_shard == null) return t;
   await loadShard(t.detail_shard);
+  t._detailLoaded = true;
   return t;
 }
-function render() {
+function domSlug(id) {
+  return String(id || "").replace(/[^A-Za-z0-9_-]/g, "");
+}
+function clearFloat(panel) {
+  if (!panel) return;
+  ["position", "left", "top", "right", "bottom", "width", "minWidth", "maxWidth", "maxHeight"].forEach(key => { panel.style[key] = ""; });
+}
+function visualBox() {
+  const vv = window.visualViewport;
+  return {left: vv ? vv.offsetLeft : 0, top: vv ? vv.offsetTop : 0, width: vv ? vv.width : document.documentElement.clientWidth, height: vv ? vv.height : window.innerHeight};
+}
+function placeFloat(anchor, panel) {
+  if (!anchor || !panel || panel.hidden) return;
+  panel.style.position = "fixed";
+  panel.style.right = "auto";
+  panel.style.bottom = "auto";
+  panel.style.minWidth = "0";
+  const box = visualBox();
+  const margin = 8;
+  const maxW = Math.max(160, box.width - margin * 2);
+  const cap = panel.classList.contains("type-popover") ? box.height * 0.5 : Math.min(320, box.height * 0.7);
+  panel.style.maxWidth = maxW + "px";
+  panel.style.maxHeight = Math.max(120, Math.min(cap, box.height - margin * 2)) + "px";
+  panel.style.width = Math.min(Math.max(panel.scrollWidth, 180), maxW) + "px";
+  const rect = anchor.getBoundingClientRect();
+  let left = rect.left;
+  const width = panel.offsetWidth;
+  if (left + width > box.left + box.width - margin) left = box.left + box.width - margin - width;
+  if (left < box.left + margin) left = box.left + margin;
+  let top = rect.bottom + 4;
+  const height = panel.offsetHeight;
+  if (top + height > box.top + box.height - margin) {
+    const above = rect.top - 4 - height;
+    top = above >= box.top + margin ? above : Math.max(box.top + margin, box.top + box.height - margin - height);
+  }
+  panel.style.left = Math.round(left) + "px";
+  panel.style.top = Math.round(top) + "px";
+}
+function closeTypePopovers() {
+  document.querySelectorAll(".type-popover").forEach(pop => {
+    pop.hidden = true;
+    clearFloat(pop);
+    const btn = document.querySelector(`.type-btn[aria-controls="${pop.id}"]`);
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  });
+}
+function repositionFloats() {
+  document.querySelectorAll(".choice-panel, .country-panel, .type-popover").forEach(panel => {
+    if (panel.hidden) return;
+    const btn = panel.id === "country-panel" ? $("country-btn") : document.querySelector(`[aria-controls="${panel.id}"]`);
+    placeFloat(btn, panel);
+  });
+}
+function paintPager(el, suffix, rows, pages, shown) {
+  if (!el) return;
+  el.hidden = rows.length <= pageSize();
+  const start = shown.length ? pageIndex * pageSize() + 1 : 0;
+  const end = pageIndex * pageSize() + shown.length;
+  el.innerHTML = `<button type="button" id="page-prev-${suffix}"${pageIndex <= 0 ? " disabled" : ""}>Previous</button><span>Showing ${start}-${end} of ${rows.length}. Print uses this filtered set, not only this page.</span><button type="button" id="page-next-${suffix}"${pageIndex >= pages - 1 ? " disabled" : ""}>Next</button>`;
+  const prev = $("page-prev-" + suffix);
+  const next = $("page-next-" + suffix);
+  if (prev) prev.onclick = () => { if (pageIndex <= 0) return; pageIndex -= 1; render({scrollToResults: true}); };
+  if (next) next.onclick = () => { if (pageIndex >= pages - 1) return; pageIndex += 1; render({scrollToResults: true}); };
+}
+function syncSortUi() {
+  const sel = $("m-sort");
+  if (sel && sel.querySelector(`option[value="${state.sort}"]`)) sel.value = state.sort;
+  const dir = $("m-dir");
+  if (dir) {
+    const asc = state.dir > 0;
+    dir.textContent = asc ? "Ascending" : "Descending";
+    dir.setAttribute("aria-label", asc ? "Sort ascending. Activate for descending." : "Sort descending. Activate for ascending.");
+  }
+  document.querySelectorAll("#results thead th[data-k]").forEach(th => {
+    th.setAttribute("aria-sort", th.dataset.k === state.sort ? (state.dir > 0 ? "ascending" : "descending") : "none");
+  });
+}
+function render(opts) {
+  const scrollY = window.scrollY;
+  const stick = stickTo;
+  stickTo = null;
   const rows = exploreRows();
-  const pages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+  const size = pageSize();
+  const pages = Math.max(1, Math.ceil(rows.length / size));
   if (pageIndex >= pages) pageIndex = 0;
-  const shown = rows.slice(pageIndex * PAGE_SIZE, (pageIndex + 1) * PAGE_SIZE);
+  const shown = rows.slice(pageIndex * size, (pageIndex + 1) * size);
   const recruiting = rows.filter(t => t.status === "recruiting").length;
   const snap = rows.filter(t => t.accrual.quality === "snapshot").length;
   $("counts").innerHTML = [
@@ -682,33 +837,49 @@ function render() {
   $("rows").innerHTML = shown.map(t => {
     const id = esc(t.id);
     const open = state.open === t.id;
-    return `<tr class="data" data-id="${id}"><td><div class="name">${starBtn(t.id)} ${esc(t.name || t.title)}</div><div class="sub">${esc(t.nct || t.isrctn || "")} ${roleChip(t.rt_role)}</div></td>${siteCell(t)}<td>${esc((t.groups || []).slice(0, 3).join(", "))}</td><td>${esc(phaseText(t))}</td><td>${esc(t.status || "")}</td><td>${esc(accrualText(t))}<div>${qChip(t.accrual.quality)}</div></td><td>${esc((t.primary_endpoints || [])[0] || "")}</td><td>${esc(whereText(t))}</td><td>${esc(broughtIn(t))}${onCtsuList(t) && t.source_pipeline !== "ctsu" ? `<div class="sub">Pulled from the CTSU tracker</div>` : ""}</td></tr>${open ? `<tr class="detail"><td colspan="9">${detail(t)}</td></tr>` : ""}`;
+    const slug = domSlug(t.id);
+    const openId = `open-${slug}`;
+    const detailId = `detail-${slug}`;
+    const labeled = (name, html) => `<span class="field-k">${esc(name)}</span>${html}`;
+    return `<tr class="data" data-id="${id}"><td data-label="Trial"><div class="trial-head">${starBtn(t.id)}<button type="button" class="disclose" id="${openId}" aria-expanded="${open}" aria-controls="${detailId}"><span class="chev" aria-hidden="true"></span><span><span class="name">${esc(t.name || t.title)}</span><span class="sub">${esc(t.nct || t.isrctn || "")} ${roleChip(t.rt_role)}</span></span></button></div></td>${siteCell(t)}<td data-label="Group">${labeled("Group", esc((t.groups || []).slice(0, 3).join(", ")))}</td><td data-label="Phase">${labeled("Phase", esc(phaseText(t)))}</td><td data-label="Status">${labeled("Status", esc(t.status || ""))}</td><td data-label="Accrual">${labeled("Accrual", `${esc(accrualText(t))}<div>${qChip(t.accrual.quality)}</div>`)}</td><td data-label="Primary endpoint">${labeled("Primary endpoint", esc((t.primary_endpoints || [])[0] || ""))}</td><td data-label="Where open">${labeled("Where open", esc(whereText(t)))}</td><td data-label="Brought in by">${labeled("Brought in by", `${esc(broughtIn(t))}${onCtsuList(t) && t.source_pipeline !== "ctsu" ? `<div class="sub">Pulled from the CTSU tracker</div>` : ""}`)}</td></tr>${open ? `<tr class="detail" id="${detailId}"><td colspan="9">${detail(t)}</td></tr>` : ""}`;
   }).join("");
-  const pager = $("pager");
-  if (pager) {
-    pager.hidden = rows.length <= PAGE_SIZE;
-    pager.innerHTML = `<button type="button" id="page-prev">Previous</button><span>Showing ${shown.length ? pageIndex * PAGE_SIZE + 1 : 0}-${pageIndex * PAGE_SIZE + shown.length} of ${rows.length}. Print uses this filtered set, not only this page.</span><button type="button" id="page-next">Next</button>`;
-    $("page-prev").onclick = () => { pageIndex = Math.max(0, pageIndex - 1); render(); };
-    $("page-next").onclick = () => { pageIndex = Math.min(pages - 1, pageIndex + 1); render(); };
-  }
+  paintPager($("pager-top"), "top", rows, pages, shown);
+  paintPager($("pager"), "bottom", rows, pages, shown);
+  syncSortUi();
   document.querySelectorAll(".type-btn").forEach(btn => {
     btn.onclick = ev => {
       ev.stopPropagation();
       const pop = document.getElementById(btn.getAttribute("aria-controls"));
       if (!pop) return;
       const opening = pop.hidden;
-      pop.hidden = !opening;
-      btn.setAttribute("aria-expanded", opening ? "true" : "false");
+      closeTypePopovers();
+      if (!opening) { btn.focus(); return; }
+      pop.hidden = false;
+      btn.setAttribute("aria-expanded", "true");
+      placeFloat(btn, pop);
     };
   });
+  if (opts && opts.scrollToResults) {
+    const start = $("results-start");
+    if (start) {
+      start.focus();
+      start.scrollIntoView({block: "start"});
+    }
+  } else if (stick && stick.id) {
+    const again = document.getElementById(stick.id);
+    if (again) window.scrollBy(0, again.getBoundingClientRect().top - stick.top);
+  } else if (Math.abs(window.scrollY - scrollY) > 1) window.scrollTo(0, scrollY);
+  repositionFloats();
 }
-document.querySelector("thead").onclick = ev => {
-  const k = ev.target.dataset.k;
+document.querySelector("#results thead").onclick = ev => {
+  const k = ev.target.dataset.k || (ev.target.closest("th") && ev.target.closest("th").dataset.k);
   if (!k) return;
   if (state.sort === k) state.dir *= -1;
   else { state.sort = k; state.dir = 1; }
   render();
 };
+$("m-sort").onchange = () => { state.sort = $("m-sort").value; render(); };
+$("m-dir").onclick = () => { state.dir *= -1; render(); };
 const sync = { available: location.protocol !== "file:", api: null, user: null };
 const store = {
   list: [], remote: null,
@@ -842,20 +1013,61 @@ async function initFirebase() {
 
 function showAddList(items, active) {
   const list = $("add-list");
-  if (!items) { list.hidden = true; list.innerHTML = ""; return; }
+  const box = $("add-q");
+  if (!items) { list.hidden = true; list.innerHTML = ""; box.setAttribute("aria-expanded", "false"); return; }
   list.hidden = false;
-  list.innerHTML = items.length ? items.map((t, i) => `<li class="${i === active ? "act" : ""}" data-add="${esc(t.id)}"><b>${esc(t.name || t.title)}</b><div class="proto">${esc(t.nct || t.isrctn || "")}</div></li>`).join("") : `<li>No matching trial</li>`;
+  box.setAttribute("aria-expanded", "true");
+  list.innerHTML = items.length ? items.map((t, i) => `<li role="option" id="add-opt-${i}" class="${i === active ? "act" : ""}" aria-selected="${i === active}" data-add="${esc(t.id)}"><b>${esc(t.name || t.title)}</b><div class="proto">${esc(t.nct || t.isrctn || t.title || "")}</div></li>`).join("") : `<li>No matching trial</li>`;
+  if (items.length) box.setAttribute("aria-activedescendant", `add-opt-${active}`);
+  else box.removeAttribute("aria-activedescendant");
 }
 
+function openTrial(id) {
+  const token = ++openToken;
+  const trial = DATA.trials.find(item => item.id === id);
+  if (state.open === id) { state.open = null; render(); return; }
+  state.open = id;
+  if (trial) trial._detailError = false;
+  const cached = trial && trial.detail_shard != null && detailCache[trial.detail_shard];
+  if (trial && trial.detail_shard != null && !cached) trial._detailPending = true;
+  render();
+  if (!trial || trial.detail_shard == null || cached) {
+    if (trial) trial._detailPending = false;
+    return;
+  }
+  ensureDetail(trial).then(() => {
+    trial._detailPending = false;
+    trial._detailError = false;
+    if (token !== openToken || state.open !== id) return;
+    render();
+  }).catch(() => {
+    trial._detailPending = false;
+    trial._detailError = true;
+    if (token !== openToken || state.open !== id) return;
+    render();
+  });
+}
 $("rows").onclick = ev => {
+  const retry = ev.target.closest(".retry-detail");
+  if (retry) {
+    const trial = DATA.trials.find(item => item.id === retry.dataset.retry);
+    if (trial) { trial._detailError = false; trial._detailPending = true; state.open = trial.id; render(); ensureDetail(trial).then(() => { trial._detailPending = false; render(); }).catch(() => { trial._detailPending = false; trial._detailError = true; render(); }); }
+    return;
+  }
+  if (ev.target.closest("a, .type-btn, .type-popover")) return;
   const star = ev.target.closest("[data-star]");
-  if (star) { store.toggle(star.dataset.star); return; }
+  if (star) {
+    const disc = star.closest("tr.data") && star.closest("tr.data").querySelector(".disclose");
+    stickTo = disc ? {id: disc.id, top: disc.getBoundingClientRect().top} : null;
+    store.toggle(star.dataset.star);
+    return;
+  }
+  if (ev.target.closest("button") && !ev.target.closest(".disclose")) return;
   const tr = ev.target.closest("tr.data");
   if (!tr) return;
-  state.open = state.open === tr.dataset.id ? null : tr.dataset.id;
-  const trial = DATA.trials.find(item => item.id === tr.dataset.id);
-  if (state.open && trial) ensureDetail(trial).then(() => render());
-  else render();
+  const disc = tr.querySelector(".disclose");
+  stickTo = disc ? {id: disc.id, top: disc.getBoundingClientRect().top} : null;
+  openTrial(tr.dataset.id);
 };
 $("mine").onclick = ev => {
   const btn = ev.target.closest("[data-remove]");
@@ -873,6 +1085,9 @@ $("add-q").addEventListener("keydown", ev => {
   if (ev.key === "ArrowUp") { addActive = Math.max(0, addActive - 1); showAddList(addHits, addActive); ev.preventDefault(); }
   if (ev.key === "Enter" && addHits[addActive]) { store.add(addHits[addActive].id); $("add-q").value = ""; showAddList(null); }
   if (ev.key === "Escape") showAddList(null);
+});
+$("add-list").addEventListener("pointerdown", ev => {
+  if (ev.target.closest("[data-add]")) ev.preventDefault();
 });
 $("add-list").onclick = ev => {
   const li = ev.target.closest("[data-add]");
@@ -951,9 +1166,12 @@ const BURDEN_MENU = BURDEN_ORDER.filter(label => BURDEN_PRESENT.has(label)).map(
     const opening = panel.hidden;
     closeChoicePanels(opening ? panel : null);
     const country = $("country-panel");
-    if (country) country.hidden = true;
+    if (country) { country.hidden = true; clearFloat(country); const countryBtn = $("country-btn"); if (countryBtn) countryBtn.setAttribute("aria-expanded", "false"); }
+    closeTypePopovers();
     panel.hidden = !opening;
     btn.setAttribute("aria-expanded", String(opening));
+    if (opening) placeFloat(btn, panel);
+    else clearFloat(panel);
     ev.stopPropagation();
   };
 })();
@@ -1014,16 +1232,20 @@ function addCountryFilter(list) {
   state.country = new Set(list);
   const row = document.createElement("div");
   row.className = "filter-row";
-  row.innerHTML = `<span class="filter-name">Country</span><div class="country-wrap"><button type="button" class="country-btn" id="country-btn">All countries</button><div class="country-panel" id="country-panel" hidden><input id="country-q" type="search" placeholder="Search countries" autocomplete="off"><label class="check all"><input type="checkbox" id="country-all" checked> All</label><div class="country-list" id="country-list"></div></div></div>`;
+  row.innerHTML = `<span class="filter-name">Country</span><div class="country-wrap"><button type="button" class="country-btn" id="country-btn" aria-expanded="false" aria-controls="country-panel">All countries</button><div class="country-panel" id="country-panel" hidden><label class="sr-only" for="country-q">Search countries</label><input id="country-q" type="search" placeholder="Search countries" autocomplete="off"><label class="check all"><input type="checkbox" id="country-all" checked> All</label><div class="country-list" id="country-list"></div></div></div>`;
   $("filters").appendChild(row);
   paintCountry();
-  $("country-btn").onclick = () => {
+  $("country-btn").onclick = ev => {
     const panel = $("country-panel");
-    panel.hidden = !panel.hidden;
-    if (!panel.hidden) {
+    const opening = panel.hidden;
+    panel.hidden = !opening;
+    $("country-btn").setAttribute("aria-expanded", String(opening));
+    if (opening) {
       closeChoicePanels(null);
-      $("country-q").focus();
-    }
+      closeTypePopovers();
+      placeFloat($("country-btn"), panel);
+    } else clearFloat(panel);
+    ev.stopPropagation();
   };
   $("country-q").oninput = () => paintCountry();
   $("country-panel").addEventListener("change", ev => {
@@ -1035,19 +1257,32 @@ function addCountryFilter(list) {
     } else return;
     paintCountry();
     syncMaster();
+    pageIndex = 0;
     render();
     ev.stopPropagation();
   });
   document.addEventListener("click", ev => {
-    if (!ev.target.closest(".country-wrap")) $("country-panel").hidden = true;
+    if (!ev.target.closest(".country-wrap")) {
+      $("country-panel").hidden = true;
+      clearFloat($("country-panel"));
+      $("country-btn").setAttribute("aria-expanded", "false");
+    }
   });
-  $("country-q").addEventListener("keydown", ev => {
-    if (ev.key === "Escape") $("country-panel").hidden = true;
+  document.addEventListener("keydown", ev => {
+    if (ev.key !== "Escape") return;
+    const back = document.querySelector('.country-btn[aria-expanded="true"], .choice-btn[aria-expanded="true"], .type-btn[aria-expanded="true"]');
+    $("country-panel").hidden = true;
+    clearFloat($("country-panel"));
+    $("country-btn").setAttribute("aria-expanded", "false");
+    closeChoicePanels(null);
+    closeTypePopovers();
+    if (back) back.focus();
   });
 }
 $("filters").addEventListener("change", ev => {
   const box = ev.target;
   if (!box.matches || !box.matches('input[type="checkbox"]')) return;
+  pageIndex = 0;
   if (box.id === "master-all") {
     const complete = Object.entries(FILTERS).every(([key, values]) => values.every(value => state[key].has(value))) && state.country.size === countries.length;
     setEveryFilter(!complete);
@@ -1092,12 +1327,20 @@ $("filters").addEventListener("change", ev => {
   render();
 });
 syncMaster();
-$("q").oninput = () => { state.q = $("q").value; render(); };
+$("q").oninput = () => { state.q = $("q").value; pageIndex = 0; render(); };
 $("filter-toggle").onclick = () => {
   const box = $("filters");
   box.hidden = !box.hidden;
-  $("filter-toggle").setAttribute("aria-expanded", String(!box.hidden));
+  const open = !box.hidden;
+  $("filter-toggle").setAttribute("aria-expanded", String(open));
+  $("filter-toggle").textContent = open ? "Hide filters" : "Show filters";
 };
+window.addEventListener("resize", repositionFloats);
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", repositionFloats);
+  window.visualViewport.addEventListener("scroll", repositionFloats);
+}
+window.addEventListener("scroll", repositionFloats, true);
 
 const DIGEST_LIMIT = 25;
 const DIGEST_CAVEAT = "Clinic rendition of the protocol brief on file. Confirm the current protocol before enrollment.";
@@ -1406,14 +1649,27 @@ function worldwideFilters() {
   return parts.join(" · ");
 }
 
-function openDigest(trials, heading, mode) {
+function showPrintNote() {
+  let note = $("print-note");
+  if (!note) {
+    note = document.createElement("p");
+    note.id = "print-note";
+    note.className = "print-note";
+    note.setAttribute("role", "status");
+    const anchor = document.activeElement && document.activeElement.parentElement;
+    (anchor || document.querySelector("main")).appendChild(note);
+  }
+  note.hidden = false;
+  note.textContent = "The report window did not open. Allow pop-up windows for this site, then use the print button again.";
+}
+function openDigest(trials, heading, mode, existingWindow) {
   if (!trials.length) return;
   const full = mode === "detail";
   const limit = full ? 5 : DIGEST_LIMIT;
   const prompt = full
     ? "Unlike the comprehensive reports, these reports print all details on this study. You have selected to print more than 5 studies. Are you sure?"
     : "You have selected to print more than 25 studies. Are you sure?";
-  if (trials.length > limit && !confirm(prompt)) return;
+  if (!existingWindow && trials.length > limit && !confirm(prompt)) return;
   const when = new Date().toLocaleString("en-US", {dateStyle: "long", timeStyle: "short"});
   const kind = mode === "brief" ? "Brief" : full ? "Full" : "Comprehensive";
   const now = new Date();
@@ -1428,29 +1684,44 @@ function openDigest(trials, heading, mode) {
     places: "",
     articles: trials.map(t => trialArticle(t, mode)).join("")
   });
-  const w = window.open("", "_blank");
-  if (!w) return;
+  const w = existingWindow || window.open("", "_blank");
+  if (!w) { showPrintNote(); return; }
+  const noteOk = $("print-note");
+  if (noteOk) noteOk.hidden = true;
   w.document.open();
   w.document.write(html);
   w.document.close();
   setTimeout(() => { try { w.focus(); w.print(); } catch (e) {} }, 250);
 }
 
-$("print-mine-brief").onclick = () => openDigest(mineTrials(), "My trials", "brief");
-$("print-mine-full").onclick = () => openDigest(mineTrials(), "My trials", "comprehensive");
+$("print-mine-brief").onclick = () => printMine("brief");
+$("print-mine-full").onclick = () => printMine("comprehensive");
 $("print-mine-detail").onclick = () => printMine("detail");
-async function printMine(kind) {
-  const rows = mineTrials();
-  const shards = [...new Set(rows.map(t => t.detail_shard).filter(shard => shard != null))];
-  await Promise.all(shards.map(loadShard));
-  openDigest(rows, "My trials", kind);
+async function printPrepared(rows, heading, kind) {
+  if (!rows.length) return;
+  const full = kind === "detail";
+  const limit = full ? 5 : DIGEST_LIMIT;
+  const prompt = full
+    ? "Unlike the comprehensive reports, these reports print all details on this study. You have selected to print more than 5 studies. Are you sure?"
+    : "You have selected to print more than 25 studies. Are you sure?";
+  if (rows.length > limit && !confirm(prompt)) return;
+  const w = window.open("", "_blank");
+  if (!w) { showPrintNote(); return; }
+  w.document.open();
+  w.document.write("<p>Preparing the report.</p>");
+  w.document.close();
+  try {
+    const shards = [...new Set(rows.map(t => t.detail_shard).filter(shard => shard != null))];
+    await Promise.all(shards.map(loadShard));
+    openDigest(rows, heading, kind, w);
+  } catch (err) {
+    w.document.open();
+    w.document.write("<p>The study details did not load. Close this window and use the print button again.</p>");
+    w.document.close();
+  }
 }
-async function printExplore(kind) {
-  const rows = exploreRows();
-  const shards = [...new Set(rows.map(t => t.detail_shard).filter(shard => shard != null))];
-  await Promise.all(shards.map(loadShard));
-  openDigest(rows, "Explore Worldwide RT Studies", kind);
-}
+function printMine(kind) { return printPrepared(mineTrials(), "My trials", kind); }
+function printExplore(kind) { return printPrepared(exploreRows(), "Explore Worldwide RT Studies", kind); }
 $("print-explore-brief").onclick = () => printExplore("brief");
 $("print-explore-full").onclick = () => printExplore("comprehensive");
 $("print-explore-detail").onclick = () => printExplore("detail");
