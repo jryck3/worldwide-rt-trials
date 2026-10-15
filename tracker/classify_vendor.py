@@ -1,5 +1,5 @@
 # Vendored from CTSU Trials Workspace/scripts/trial_classification.py
-# sha256 97ff5201551a5fa05f6d642ae71ad92f8bb35b6f2f6366819de4171186484072
+# sha256 05a8ee97883a6e8a5be80b25de81d0b92cd8e580a8c83564c52d69fec9748fe7
 """Build-time disease classification for the three trial trackers.
 
 Anatomy, histology, metastatic burden, and treatment intent stay separate.
@@ -228,6 +228,13 @@ def _nontherapeutic(text):
 
 BURDEN_ORDER = ("Oligoprogressive", "Oligometastatic", "Polymetastatic", "Other")
 _BURDEN_FOLD = {"Oligopersistent": "Oligometastatic"}
+# Prior or already removed oligometastases are not the enrolled population.
+_TREATED_OLIGO = re.compile(
+    r"resect\w*\s+or\s+ablat\w*\s+of\s+.{0,80}?oligometast\w*.{0,80}?\ballowed\b"
+    r"|other than resected\s*/\s*ablated(?:\s+\w+){0,8}\s+oligometast\w*"
+    r"|resected\s*/\s*ablated(?:\s+\w+){0,6}\s+oligometast\w*",
+    re.I,
+)
 
 
 def one_burden(labels):
@@ -249,11 +256,12 @@ def burden_labels(text):
     enrolled = _enrolled_text(original)
     if _nontherapeutic(original):
         return ["Other"]
+    oligo_text = _TREATED_OLIGO.sub(" ", enrolled)
     oligop = re.search(_NOT_OLIGO + r"\boligoprogress", enrolled, re.I)
     oligopersist = re.search(_NOT_OLIGO + r"\boligopersist", enrolled, re.I)
-    oligom = re.search(_NOT_OLIGO + r"\boligometa|" + _NOT_OLIGO + r"\boligorecurren", enrolled, re.I)
-    cap = _oligo_cap(enrolled)
-    sbrt = re.search(r"all sites amenable to (?:SBRT|SABR|metastasis-directed)", enrolled, re.I)
+    oligom = re.search(_NOT_OLIGO + r"\boligometa|" + _NOT_OLIGO + r"\boligorecurren", oligo_text, re.I)
+    cap = _oligo_cap(oligo_text)
+    sbrt = re.search(r"all sites amenable to (?:SBRT|SABR|metastasis-directed)", oligo_text, re.I)
     poly = _POLY.search(enrolled)
     specific = []
     if oligop:
