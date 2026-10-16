@@ -30,7 +30,7 @@ jobs:
       - name: Commit new trials
         run: |
           files=()
-          for f in data/trials.json docs/index.html data/acceptance.md; do
+          for f in data/trials.json docs/index.html docs/details data/acceptance.md; do
             if [ -f "$f" ]; then files+=("$f"); fi
           done
           if [ ${#files[@]} -eq 0 ]; then

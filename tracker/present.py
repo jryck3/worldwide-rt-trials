@@ -47,12 +47,45 @@ def _classify_input(trial):
     }
 
 
+def broad_sites(labels):
+    """Map fine cancer labels onto the disease-menu groups. Prostate stays GU. Liver stays GI."""
+    menu = {
+        "Prostate": "GU", "Bladder": "GU", "Kidney": "GU", "Testis": "GU", "Penile": "GU",
+        "GU": "GU", "Genitourinary Cancers": "GU", "Male Reproductive System Cancer": "GU",
+        "Liver": "GI", "Pancreas": "GI", "Colorectal": "GI", "Colon": "GI", "Rectal": "GI",
+        "Esophagus": "GI", "Gastric": "GI", "Biliary": "GI", "Anal": "GI", "GI": "GI",
+        "Gastrointestinal Cancer": "GI",
+        "Breast": "Breast", "Breast Cancer": "Breast",
+        "NSCLC": "NSCLC", "SCLC": "SCLC", "Lung, other": "Lung, other",
+        "Head and neck": "Head and neck", "Head and Neck Cancer": "Head and neck",
+        "CNS": "CNS", "Glioma": "CNS", "Meningioma": "CNS", "Medulloblastoma": "CNS", "Ependymoma": "CNS",
+        "Gynecologic": "Gynecologic", "Gyn": "Gynecologic", "Cervix": "Gynecologic",
+        "Endometrial": "Gynecologic", "Ovary": "Gynecologic", "Vulva": "Gynecologic",
+        "Female Reproductive System Cancer": "Gynecologic",
+        "Lymphoma": "Lymphoma", "Hematologic": "Hematologic", "Leukemia": "Hematologic",
+        "Myeloma": "Hematologic", "Myelofibrosis": "Hematologic", "Hematologic Cancer": "Hematologic",
+        "Sarcoma": "Sarcoma", "Skin": "Skin", "Melanoma": "Skin", "Merkel": "Skin", "Skin Cancer": "Skin",
+    }
+    lung = ("NSCLC", "SCLC", "Lung, other")
+    sites = []
+    for label in labels or []:
+        text = str(label or "").strip()
+        if text in ("Lung", "Lung Cancer", "Lung, Mediastinal, and Pleural Cancer"):
+            chosen = lung
+        else:
+            chosen = (menu.get(text),) if menu.get(text) else ()
+        for key in chosen:
+            if key and key not in sites:
+                sites.append(key)
+    return sites
+
+
 def apply_classification(trial):
     classified = classify_record(_classify_input(trial))
     trial["cancer_types"] = classified["cancer_types"]
     trial["anatomy"] = classified["anatomy"]
     trial["histology"] = classified["histology"]
-    trial["disease_sites"] = classified["cancer_types"]
+    trial["disease_sites"] = broad_sites(classified["cancer_types"]) or broad_sites(classified["anatomy"]) or ["Other"]
     trial["disease_burden"] = classified["burden"]
     trial["intent"] = classified["intent"]
     return classified

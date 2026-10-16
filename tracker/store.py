@@ -198,6 +198,15 @@ class TrialStore:
             trial["checked_at"] = record["checked_at"]
         if record.get("phase_in_title"):
             trial["phase_in_title"] = record["phase_in_title"]
+        if record.get("cancer_types"):
+            trial["cancer_types"] = list(record["cancer_types"])
+        incoming_reviewed = record.get("reviewed") or {}
+        if incoming_reviewed:
+            reviewed = dict(trial.get("reviewed") or {})
+            for key, value in incoming_reviewed.items():
+                if value:
+                    reviewed[key] = list(value) if isinstance(value, list) else value
+            trial["reviewed"] = reviewed
         trial["id"] = choose_id(trial)
 
     def _merge_phase(self, trial, record, initial):

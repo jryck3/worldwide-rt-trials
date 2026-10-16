@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT))
 from tracker.pipelines.ctsu import (  # noqa: E402
     STATUS_MAP, _fetch_public, _read_cached,
 )
+from tracker.present import broad_sites  # noqa: E402
 
 TRIALS = ROOT / "data" / "trials.json"
 
@@ -79,11 +80,12 @@ def apply_export(trials, studies):
             match["rt_role"] = study["rt_role"]
         if study.get("cancer_types"):
             match["cancer_types"] = list(study["cancer_types"])
-            match["disease_sites"] = list(study["cancer_types"])
-            match["reviewed"] = {
-                "cancer_types": list(study["cancer_types"]),
-                "burden": list(study.get("burden") or []),
-            }
+            reviewed = dict(match.get("reviewed") or {})
+            reviewed["cancer_types"] = list(study["cancer_types"])
+            if study.get("burden"):
+                reviewed["burden"] = list(study["burden"])
+            match["reviewed"] = reviewed
+            match["disease_sites"] = broad_sites(study["cancer_types"]) or broad_sites(study.get("anatomy")) or list(match.get("disease_sites") or ["Other"])
         if study.get("burden"):
             match["disease_burden"] = list(study["burden"])
         if study.get("brief"):
